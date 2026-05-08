@@ -1,4 +1,3 @@
-export * from './SupabaseBaseRepository';
 export * from './SupabasePerfilRepository';
 export * from './SupabasePerfilViajeroRepository';
 export * from './SupabaseDestinoRepository';
