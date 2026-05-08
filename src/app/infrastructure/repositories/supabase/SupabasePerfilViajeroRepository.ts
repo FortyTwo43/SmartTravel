@@ -3,10 +3,10 @@ import { PerfilViajeroRepository } from '../../../domain/repositories/PerfilViaj
 import { supabase } from '../../database/supabase.client';
 import { SupabaseBaseRepository } from './SupabaseBaseRepository';
 
-export class SupabasePerfilViajeroRepository 
-  extends SupabaseBaseRepository<PerfilViajero> 
+export class SupabasePerfilViajeroRepository
+  extends SupabaseBaseRepository<PerfilViajero>
   implements PerfilViajeroRepository {
-  
+
   constructor() {
     super(supabase, 'perfil_viajero');
   }

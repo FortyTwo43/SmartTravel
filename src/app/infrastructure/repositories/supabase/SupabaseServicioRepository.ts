@@ -3,10 +3,10 @@ import { ServicioRepository } from '../../../domain/repositories/ServicioReposit
 import { supabase } from '../../database/supabase.client';
 import { SupabaseBaseRepository } from './SupabaseBaseRepository';
 
-export class SupabaseServicioRepository 
-  extends SupabaseBaseRepository<Servicio> 
+export class SupabaseServicioRepository
+  extends SupabaseBaseRepository<Servicio>
   implements ServicioRepository {
-  
+
   constructor() {
     super(supabase, 'servicio');
   }

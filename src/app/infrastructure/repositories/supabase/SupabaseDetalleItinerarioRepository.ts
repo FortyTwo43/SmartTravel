@@ -3,10 +3,10 @@ import { DetalleItinerarioRepository } from '../../../domain/repositories/Detall
 import { supabase } from '../../database/supabase.client';
 import { SupabaseBaseRepository } from './SupabaseBaseRepository';
 
-export class SupabaseDetalleItinerarioRepository 
-  extends SupabaseBaseRepository<DetalleItinerario> 
+export class SupabaseDetalleItinerarioRepository
+  extends SupabaseBaseRepository<DetalleItinerario>
   implements DetalleItinerarioRepository {
-  
+
   constructor() {
     super(supabase, 'detalle_itinerario');
   }

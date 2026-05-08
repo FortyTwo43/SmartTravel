@@ -5,7 +5,7 @@ export class SupabaseBaseRepository<T> implements BaseRepository<T> {
   constructor(
     protected supabase: SupabaseClient,
     protected tableName: string
-  ) {}
+  ) { }
 
   async create(item: Omit<T, 'id'>): Promise<T> {
     const { data, error } = await this.supabase
