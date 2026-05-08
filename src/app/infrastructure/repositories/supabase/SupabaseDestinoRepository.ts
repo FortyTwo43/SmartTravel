@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { SupabaseClient } from '@supabase/supabase-js';
 import { Destino } from '../../../domain/entities/Destino';
 import { DestinoRepository } from '../../../domain/repositories/DestinoRepository';
+import { buildSupabaseError } from './supabase-error';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +15,11 @@ export class SupabaseDestinoRepository implements DestinoRepository {
   async create(item: Omit<Destino, 'id'>): Promise<Destino> {
     const { data, error } = await this.supabase
       .from(this.tableName)
-      .insert(item as any)
+      .insert(item as Record<string, unknown>)
       .select()
       .single();
 
-    if (error) throw new Error(error.message);
+    if (error) throw buildSupabaseError('create', this.tableName, error);
     return data as Destino;
   }
 
@@ -27,7 +28,7 @@ export class SupabaseDestinoRepository implements DestinoRepository {
       .from(this.tableName)
       .select('*');
 
-    if (error) throw new Error(error.message);
+    if (error) throw buildSupabaseError('getAll', this.tableName, error);
     return data as Destino[];
   }
 
@@ -38,29 +39,29 @@ export class SupabaseDestinoRepository implements DestinoRepository {
       .eq('id', id)
       .maybeSingle();
 
-    if (error) throw new Error(error.message);
+    if (error) throw buildSupabaseError('getById', this.tableName, error);
     return data as Destino | null;
   }
 
   async update(id: string, item: Partial<Destino>): Promise<Destino> {
     const { data, error } = await this.supabase
       .from(this.tableName)
-      .update(item as any)
+      .update(item as Record<string, unknown>)
       .eq('id', id)
       .select()
       .single();
 
-    if (error) throw new Error(error.message);
+    if (error) throw buildSupabaseError('update', this.tableName, error);
     return data as Destino;
   }
 
   async delete(id: string): Promise<boolean> {
-    const { error } = await this.supabase
+    const { error, count } = await this.supabase
       .from(this.tableName)
-      .delete()
+      .delete({ count: 'exact' })
       .eq('id', id);
 
-    if (error) throw new Error(error.message);
-    return true;
+    if (error) throw buildSupabaseError('delete', this.tableName, error);
+    return (count ?? 0) > 0;
   }
 }

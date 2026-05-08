@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { SupabaseClient } from '@supabase/supabase-js';
 import { PerfilViajero } from '../../../domain/entities/PerfilViajero';
 import { PerfilViajeroRepository } from '../../../domain/repositories/PerfilViajeroRepository';
+import { buildSupabaseError } from './supabase-error';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +15,11 @@ export class SupabasePerfilViajeroRepository implements PerfilViajeroRepository 
   async create(item: Omit<PerfilViajero, 'id'>): Promise<PerfilViajero> {
     const { data, error } = await this.supabase
       .from(this.tableName)
-      .insert(item as any)
+      .insert(item as Record<string, unknown>)
       .select()
       .single();
 
-    if (error) throw new Error(error.message);
+    if (error) throw buildSupabaseError('create', this.tableName, error);
     return data as PerfilViajero;
   }
 
@@ -27,7 +28,7 @@ export class SupabasePerfilViajeroRepository implements PerfilViajeroRepository 
       .from(this.tableName)
       .select('*');
 
-    if (error) throw new Error(error.message);
+    if (error) throw buildSupabaseError('getAll', this.tableName, error);
     return data as PerfilViajero[];
   }
 
@@ -38,29 +39,29 @@ export class SupabasePerfilViajeroRepository implements PerfilViajeroRepository 
       .eq('id', id)
       .maybeSingle();
 
-    if (error) throw new Error(error.message);
+    if (error) throw buildSupabaseError('getById', this.tableName, error);
     return data as PerfilViajero | null;
   }
 
   async update(id: string, item: Partial<PerfilViajero>): Promise<PerfilViajero> {
     const { data, error } = await this.supabase
       .from(this.tableName)
-      .update(item as any)
+      .update(item as Record<string, unknown>)
       .eq('id', id)
       .select()
       .single();
 
-    if (error) throw new Error(error.message);
+    if (error) throw buildSupabaseError('update', this.tableName, error);
     return data as PerfilViajero;
   }
 
   async delete(id: string): Promise<boolean> {
-    const { error } = await this.supabase
+    const { error, count } = await this.supabase
       .from(this.tableName)
-      .delete()
+      .delete({ count: 'exact' })
       .eq('id', id);
 
-    if (error) throw new Error(error.message);
-    return true;
+    if (error) throw buildSupabaseError('delete', this.tableName, error);
+    return (count ?? 0) > 0;
   }
 }
