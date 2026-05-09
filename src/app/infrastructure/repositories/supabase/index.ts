@@ -8,3 +8,4 @@ export * from './SupabaseDetalleItinerarioRepository';
 export * from './SupabaseReservaRepository';
 export * from './SupabaseRecomendacionRepository';
 export * from './SupabaseNotificacionRepository';
+export * from './auth/SupabaseAuthRepository';

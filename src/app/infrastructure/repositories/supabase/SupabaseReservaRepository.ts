@@ -3,9 +3,9 @@ import { SupabaseClient } from '@supabase/supabase-js';
 import { Reserva } from '../../../domain/entities/Reserva';
 import { ReservaRepository } from '../../../domain/repositories/ReservaRepository';
 import { CreateReservaDto, UpdateReservaDto } from '../../../domain/entities/dtos';
-import { buildSupabaseError } from './supabase-error';
+import { buildSupabaseError } from './supabaseUtils/supabase-error';
 import { SupabaseCrudRepository } from './SupabaseCrudRepository';
-import { mapDateToIso, mapDateFromDb } from './mapper-helpers';
+import { mapDateToIso, mapDateFromDb } from './supabaseUtils/mapper-helpers';
 
 @Injectable({
   providedIn: 'root'

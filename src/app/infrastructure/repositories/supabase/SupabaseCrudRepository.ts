@@ -1,5 +1,5 @@
 import { SupabaseClient } from '@supabase/supabase-js';
-import { buildSupabaseError } from './supabase-error';
+import { buildSupabaseError } from './supabaseUtils/supabase-error';
 
 /**
  * Abstract base class for CRUD Supabase repositories.
