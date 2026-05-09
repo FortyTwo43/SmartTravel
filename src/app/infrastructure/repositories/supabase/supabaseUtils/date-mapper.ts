@@ -16,7 +16,7 @@ export class DateMapper {
    */
   static toDate(value: Date | string | undefined): Date | undefined {
     if (!value) return undefined;
-    return value instanceof Date ? value : new Date(value as string);
+    return value instanceof Date ? value : new Date(value);
   }
 
   /**
@@ -32,7 +32,7 @@ export class DateMapper {
     for (const field of dateFields) {
       const value = mapped[field];
       if (value && typeof value === 'string') {
-        mapped[field] = new Date(value) as any;
+        mapped[field] = new Date(value) as unknown as T[keyof T];
       }
     }
     return mapped;
