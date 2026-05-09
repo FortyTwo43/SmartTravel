@@ -92,7 +92,7 @@ export class SupabaseReservaRepository implements ReservaRepository {
       ...row,
       fecha_reserva: row.fecha_reserva instanceof Date
         ? row.fecha_reserva
-        : new Date(row.fecha_reserva as unknown as string)
+        : new Date(row.fecha_reserva as string)
     };
   }
 }

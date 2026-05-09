@@ -15,12 +15,12 @@ export class SupabaseServicioRepository implements ServicioRepository {
   async create(item: Omit<Servicio, 'id'>): Promise<Servicio> {
     const { data, error } = await this.supabase
       .from(this.tableName)
-      .insert(item as Record<string, unknown>)
+      .insert(item)
       .select()
       .single();
 
     if (error) throw buildSupabaseError('create', this.tableName, error);
-    return data as Servicio;
+    return data;
   }
 
   async getAll(): Promise<Servicio[]> {
@@ -46,13 +46,13 @@ export class SupabaseServicioRepository implements ServicioRepository {
   async update(id: string, item: Partial<Servicio>): Promise<Servicio> {
     const { data, error } = await this.supabase
       .from(this.tableName)
-      .update(item as Record<string, unknown>)
+      .update(item)
       .eq('id', id)
       .select()
       .single();
 
     if (error) throw buildSupabaseError('update', this.tableName, error);
-    return data as Servicio;
+    return data;
   }
 
   async delete(id: string): Promise<boolean> {

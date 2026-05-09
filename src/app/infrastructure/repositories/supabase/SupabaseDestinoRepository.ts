@@ -15,12 +15,12 @@ export class SupabaseDestinoRepository implements DestinoRepository {
   async create(item: Omit<Destino, 'id'>): Promise<Destino> {
     const { data, error } = await this.supabase
       .from(this.tableName)
-      .insert(item as Record<string, unknown>)
+      .insert(item)
       .select()
       .single();
 
     if (error) throw buildSupabaseError('create', this.tableName, error);
-    return data as Destino;
+    return data;
   }
 
   async getAll(): Promise<Destino[]> {
@@ -46,13 +46,13 @@ export class SupabaseDestinoRepository implements DestinoRepository {
   async update(id: string, item: Partial<Destino>): Promise<Destino> {
     const { data, error } = await this.supabase
       .from(this.tableName)
-      .update(item as Record<string, unknown>)
+      .update(item)
       .eq('id', id)
       .select()
       .single();
 
     if (error) throw buildSupabaseError('update', this.tableName, error);
-    return data as Destino;
+    return data;
   }
 
   async delete(id: string): Promise<boolean> {

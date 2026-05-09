@@ -15,12 +15,12 @@ export class SupabasePerfilViajeroRepository implements PerfilViajeroRepository 
   async create(item: Omit<PerfilViajero, 'id'>): Promise<PerfilViajero> {
     const { data, error } = await this.supabase
       .from(this.tableName)
-      .insert(item as Record<string, unknown>)
+      .insert(item)
       .select()
       .single();
 
     if (error) throw buildSupabaseError('create', this.tableName, error);
-    return data as PerfilViajero;
+    return data;
   }
 
   async getAll(): Promise<PerfilViajero[]> {
@@ -46,13 +46,13 @@ export class SupabasePerfilViajeroRepository implements PerfilViajeroRepository 
   async update(id: string, item: Partial<PerfilViajero>): Promise<PerfilViajero> {
     const { data, error } = await this.supabase
       .from(this.tableName)
-      .update(item as Record<string, unknown>)
+      .update(item)
       .eq('id', id)
       .select()
       .single();
 
     if (error) throw buildSupabaseError('update', this.tableName, error);
-    return data as PerfilViajero;
+    return data;
   }
 
   async delete(id: string): Promise<boolean> {

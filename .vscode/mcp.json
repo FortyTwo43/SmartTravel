@@ -5,6 +5,19 @@
       "command": "npx",
       "args": ["-y", "@angular/cli", "mcp"]
     },
+    "sonarqube": {
+      "command": "docker",
+      "args": [
+        "run",
+        "--rm",
+        "-i",
+        "-e",
+        "SONARQUBE_TOKEN=${input:sonar_token}",
+        "-e",
+        "SONARQUBE_ORG=${input:sonar_org}",
+        "mcp/sonarqube"
+      ]
+    },
     "github": {
       "type": "http",
       "url": "https://api.githubcopilot.com/mcp/",
@@ -19,6 +32,17 @@
       "id": "github_token",
       "description": "GitHub Fine-grained Token",
       "password": true
+    },
+    {
+      "type": "promptString",
+      "id": "sonar_token",
+      "description": "SonarQube Token",
+      "password": true
+    },
+    {
+      "type": "promptString",
+      "id": "sonar_org",
+      "description": "SonarQube Organization"
     }
   ]
 }

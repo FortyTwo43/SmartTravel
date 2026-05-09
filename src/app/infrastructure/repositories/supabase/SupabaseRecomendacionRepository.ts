@@ -82,7 +82,7 @@ export class SupabaseRecomendacionRepository implements RecomendacionRepository 
       ...row,
       fecha_generada: row.fecha_generada instanceof Date
         ? row.fecha_generada
-        : new Date(row.fecha_generada as unknown as string)
+        : new Date(row.fecha_generada as string)
     };
   }
 }
