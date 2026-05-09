@@ -3,33 +3,16 @@ import { SupabaseClient } from '@supabase/supabase-js';
 import { Reserva } from '../../../domain/entities/Reserva';
 import { ReservaRepository } from '../../../domain/repositories/ReservaRepository';
 import { buildSupabaseError } from './supabase-error';
+import { SupabaseCrudRepository } from './SupabaseCrudRepository';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SupabaseReservaRepository implements ReservaRepository {
-  private readonly tableName = 'reserva';
+export class SupabaseReservaRepository extends SupabaseCrudRepository<Reserva> implements ReservaRepository {
+  protected readonly tableName = 'reserva';
 
-  constructor(private readonly supabase: SupabaseClient) { }
-
-  async create(item: Omit<Reserva, 'id'>): Promise<Reserva> {
-    const { data, error } = await this.supabase
-      .from(this.tableName)
-      .insert(this.mapToRow(item))
-      .select()
-      .single();
-
-    if (error) throw buildSupabaseError('create', this.tableName, error);
-    return this.mapFromRow(data);
-  }
-
-  async getAll(): Promise<Reserva[]> {
-    const { data, error } = await this.supabase
-      .from(this.tableName)
-      .select('*');
-
-    if (error) throw buildSupabaseError('getAll', this.tableName, error);
-    return (data ?? []).map((row) => this.mapFromRow(row));
+  constructor(protected readonly supabase: SupabaseClient) {
+    super();
   }
 
   async findByPerfilId(perfilId: string): Promise<Reserva[]> {
@@ -42,40 +25,7 @@ export class SupabaseReservaRepository implements ReservaRepository {
     return (data ?? []).map((row) => this.mapFromRow(row));
   }
 
-  async getById(id: string): Promise<Reserva | null> {
-    const { data, error } = await this.supabase
-      .from(this.tableName)
-      .select('*')
-      .eq('id', id)
-      .maybeSingle();
-
-    if (error) throw buildSupabaseError('getById', this.tableName, error);
-    return data ? this.mapFromRow(data) : null;
-  }
-
-  async update(id: string, item: Partial<Reserva>): Promise<Reserva> {
-    const { data, error } = await this.supabase
-      .from(this.tableName)
-      .update(this.mapToRow(item))
-      .eq('id', id)
-      .select()
-      .single();
-
-    if (error) throw buildSupabaseError('update', this.tableName, error);
-    return this.mapFromRow(data);
-  }
-
-  async delete(id: string): Promise<boolean> {
-    const { error, count } = await this.supabase
-      .from(this.tableName)
-      .delete({ count: 'exact' })
-      .eq('id', id);
-
-    if (error) throw buildSupabaseError('delete', this.tableName, error);
-    return (count ?? 0) > 0;
-  }
-  
-  private mapToRow(item: Partial<Reserva>): Record<string, unknown> {
+  protected override mapToRow(item: Partial<Reserva>): Record<string, unknown> {
     const mapped: Record<string, unknown> = { ...item };
 
     if (item.fecha_reserva) {
@@ -87,7 +37,7 @@ export class SupabaseReservaRepository implements ReservaRepository {
     return mapped;
   }
 
-  private mapFromRow(row: Reserva): Reserva {
+  protected override mapFromRow(row: Reserva): Reserva {
     return {
       ...row,
       fecha_reserva: row.fecha_reserva instanceof Date
