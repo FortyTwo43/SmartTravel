@@ -20,7 +20,7 @@ export class SupabaseReservaRepository implements ReservaRepository {
       .single();
 
     if (error) throw buildSupabaseError('create', this.tableName, error);
-    return this.mapFromRow(data as Reserva);
+    return this.mapFromRow(data);
   }
 
   async getAll(): Promise<Reserva[]> {
@@ -29,7 +29,7 @@ export class SupabaseReservaRepository implements ReservaRepository {
       .select('*');
 
     if (error) throw buildSupabaseError('getAll', this.tableName, error);
-    return (data ?? []).map((row) => this.mapFromRow(row as Reserva));
+    return (data ?? []).map((row) => this.mapFromRow(row));
   }
 
   async findByPerfilId(perfilId: string): Promise<Reserva[]> {
@@ -39,7 +39,7 @@ export class SupabaseReservaRepository implements ReservaRepository {
       .eq('id_perfil', perfilId);
 
     if (error) throw buildSupabaseError('findByPerfilId', this.tableName, error);
-    return (data ?? []).map((row) => this.mapFromRow(row as Reserva));
+    return (data ?? []).map((row) => this.mapFromRow(row));
   }
 
   async getById(id: string): Promise<Reserva | null> {
@@ -50,7 +50,7 @@ export class SupabaseReservaRepository implements ReservaRepository {
       .maybeSingle();
 
     if (error) throw buildSupabaseError('getById', this.tableName, error);
-    return data ? this.mapFromRow(data as Reserva) : null;
+    return data ? this.mapFromRow(data) : null;
   }
 
   async update(id: string, item: Partial<Reserva>): Promise<Reserva> {
@@ -62,7 +62,7 @@ export class SupabaseReservaRepository implements ReservaRepository {
       .single();
 
     if (error) throw buildSupabaseError('update', this.tableName, error);
-    return this.mapFromRow(data as Reserva);
+    return this.mapFromRow(data);
   }
 
   async delete(id: string): Promise<boolean> {

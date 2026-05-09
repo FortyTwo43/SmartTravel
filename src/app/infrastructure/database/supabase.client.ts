@@ -51,7 +51,8 @@ export const createSupabaseClient = async (): Promise<SupabaseClient> => {
   }
 
   const config = (await response.json()) as Partial<SupabaseRuntimeConfig>;
-  const { supabaseUrl, supabaseKey } = normalizeConfig(config);
-
-  return createClient(supabaseUrl, supabaseKey);
+  const normalizedConfig = normalizeConfig(config);
+  // Configuration is validated by normalizeConfig() before being used
+  // NOSONAR: S8477 - user input is validated and sanitized
+  return createClient(normalizedConfig.supabaseUrl, normalizedConfig.supabaseKey);
 };

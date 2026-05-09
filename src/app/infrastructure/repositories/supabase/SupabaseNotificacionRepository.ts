@@ -83,13 +83,13 @@ export class SupabaseNotificacionRepository implements NotificacionRepository {
       .eq('leida', false);
 
     if (error) throw buildSupabaseError('findUnreadByPerfilId', this.tableName, error);
-    return (data ?? []).map((row) => this.mapFromRow(row as Notificacion));
+    return (data ?? []).map((row) => this.mapFromRow(row));
   }
 
   async markAsRead(id: string): Promise<void> {
     const { error } = await this.supabase
       .from(this.tableName)
-      .update({ leida: true } as Record<string, unknown>)
+      .update({ leida: true })
       .eq('id', id);
 
     if (error) throw buildSupabaseError('markAsRead', this.tableName, error);

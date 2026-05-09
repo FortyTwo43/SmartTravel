@@ -20,7 +20,7 @@ export class SupabaseDetalleItinerarioRepository implements DetalleItinerarioRep
       .single();
 
     if (error) throw buildSupabaseError('create', this.tableName, error);
-    return this.mapFromRow(data as DetalleItinerario);
+    return this.mapFromRow(data);
   }
 
   async getAll(): Promise<DetalleItinerario[]> {

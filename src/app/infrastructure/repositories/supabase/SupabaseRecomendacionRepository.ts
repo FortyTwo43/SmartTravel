@@ -20,7 +20,7 @@ export class SupabaseRecomendacionRepository implements RecomendacionRepository 
       .single();
 
     if (error) throw buildSupabaseError('create', this.tableName, error);
-    return this.mapFromRow(data as Recomendacion);
+    return this.mapFromRow(data);
   }
 
   async getAll(): Promise<Recomendacion[]> {
@@ -29,7 +29,7 @@ export class SupabaseRecomendacionRepository implements RecomendacionRepository 
       .select('*');
 
     if (error) throw buildSupabaseError('getAll', this.tableName, error);
-    return (data ?? []).map((row) => this.mapFromRow(row as Recomendacion));
+    return (data ?? []).map((row) => this.mapFromRow(row));
   }
 
   async getById(id: string): Promise<Recomendacion | null> {
@@ -40,7 +40,7 @@ export class SupabaseRecomendacionRepository implements RecomendacionRepository 
       .maybeSingle();
 
     if (error) throw buildSupabaseError('getById', this.tableName, error);
-    return data ? this.mapFromRow(data as Recomendacion) : null;
+    return data ? this.mapFromRow(data) : null;
   }
 
   async update(id: string, item: Partial<Recomendacion>): Promise<Recomendacion> {
@@ -52,7 +52,7 @@ export class SupabaseRecomendacionRepository implements RecomendacionRepository 
       .single();
 
     if (error) throw buildSupabaseError('update', this.tableName, error);
-    return this.mapFromRow(data as Recomendacion);
+    return this.mapFromRow(data);
   }
 
   async delete(id: string): Promise<boolean> {

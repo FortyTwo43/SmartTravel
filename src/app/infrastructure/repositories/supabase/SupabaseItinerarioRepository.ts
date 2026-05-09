@@ -20,7 +20,7 @@ export class SupabaseItinerarioRepository implements ItinerarioRepository {
       .single();
 
     if (error) throw buildSupabaseError('create', this.tableName, error);
-    return this.mapFromRow(data as Itinerario);
+    return this.mapFromRow(data);
   }
 
   async getAll(): Promise<Itinerario[]> {
@@ -29,7 +29,7 @@ export class SupabaseItinerarioRepository implements ItinerarioRepository {
       .select('*');
 
     if (error) throw buildSupabaseError('getAll', this.tableName, error);
-    return (data ?? []).map((row) => this.mapFromRow(row as Itinerario));
+    return (data ?? []).map((row) => this.mapFromRow(row));
   }
 
   async findByPerfilId(perfilId: string): Promise<Itinerario[]> {
@@ -39,7 +39,7 @@ export class SupabaseItinerarioRepository implements ItinerarioRepository {
       .eq('id_perfil', perfilId);
 
     if (error) throw buildSupabaseError('findByPerfilId', this.tableName, error);
-    return (data ?? []).map((row) => this.mapFromRow(row as Itinerario));
+    return (data ?? []).map((row) => this.mapFromRow(row));
   }
 
   async getById(id: string): Promise<Itinerario | null> {

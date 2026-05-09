@@ -20,7 +20,7 @@ export class SupabasePerfilRepository implements PerfilRepository {
       .single();
 
     if (error) throw buildSupabaseError('create', this.tableName, error);
-    return this.mapFromRow(data as Perfil);
+    return this.mapFromRow(data);
   }
 
   async getAll(): Promise<Perfil[]> {
@@ -29,7 +29,7 @@ export class SupabasePerfilRepository implements PerfilRepository {
       .select('*');
 
     if (error) throw buildSupabaseError('getAll', this.tableName, error);
-    return (data ?? []).map((row) => this.mapFromRow(row as Perfil));
+    return (data ?? []).map((row) => this.mapFromRow(row));
   }
 
   async getById(id: string): Promise<Perfil | null> {
@@ -40,7 +40,7 @@ export class SupabasePerfilRepository implements PerfilRepository {
       .maybeSingle();
 
     if (error) throw buildSupabaseError('getById', this.tableName, error);
-    return data ? this.mapFromRow(data as Perfil) : null;
+    return data ? this.mapFromRow(data) : null;
   }
 
   async update(id: string, item: Partial<Perfil>): Promise<Perfil> {
@@ -52,7 +52,7 @@ export class SupabasePerfilRepository implements PerfilRepository {
       .single();
 
     if (error) throw buildSupabaseError('update', this.tableName, error);
-    return this.mapFromRow(data as Perfil);
+    return this.mapFromRow(data);
   }
 
   async delete(id: string): Promise<boolean> {
