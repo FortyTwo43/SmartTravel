@@ -7,3 +7,4 @@ export * from './DetalleItinerario';
 export * from './Reserva';
 export * from './Recomendacion';
 export * from './Notificacion';
+export * from './dtos';

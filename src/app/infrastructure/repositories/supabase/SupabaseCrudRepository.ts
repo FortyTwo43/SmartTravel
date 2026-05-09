@@ -3,19 +3,28 @@ import { buildSupabaseError } from './supabase-error';
 
 /**
  * Abstract base class for CRUD Supabase repositories.
+ * Generic types:
+ * - T: The entity type
+ * - CreateDto: DTO for creating new entities
+ * - UpdateDto: DTO for updating entities
+ * 
  * Supports optional field transformations via mapToRow/mapFromRow hooks.
  * Reduces code duplication for CRUD operations and entity mapping.
  */
-export abstract class SupabaseCrudRepository<T extends { id: string }> {
+export abstract class SupabaseCrudRepository<
+  T extends { id: string },
+  CreateDto = Omit<T, 'id'>,
+  UpdateDto = Partial<T>
+> {
   protected abstract readonly tableName: string;
   protected abstract readonly supabase: SupabaseClient;
 
   /**
-   * Hook for transforming entity to database row format.
+   * Hook for transforming DTO to database row format.
    * Override if custom field transformations are needed.
    */
-  protected mapToRow(item: Partial<T>): Record<string, unknown> {
-    return item;
+  protected mapToRow(item: CreateDto | UpdateDto): Record<string, unknown> {
+    return item as Record<string, unknown>;
   }
 
   /**
@@ -26,7 +35,7 @@ export abstract class SupabaseCrudRepository<T extends { id: string }> {
     return row;
   }
 
-  async create(item: Omit<T, 'id'>): Promise<T> {
+  async create(item: CreateDto): Promise<T> {
     const { data, error } = await this.supabase
       .from(this.tableName)
       .insert(this.mapToRow(item))
@@ -57,7 +66,7 @@ export abstract class SupabaseCrudRepository<T extends { id: string }> {
     return data ? this.mapFromRow(data) : null;
   }
 
-  async update(id: string, item: Partial<T>): Promise<T> {
+  async update(id: string, item: UpdateDto): Promise<T> {
     const { data, error } = await this.supabase
       .from(this.tableName)
       .update(this.mapToRow(item))
