@@ -82,7 +82,7 @@ export class SupabasePerfilRepository implements PerfilRepository {
       ...row,
       fecha_registro: row.fecha_registro instanceof Date
         ? row.fecha_registro
-        : new Date(row.fecha_registro as string)
+        : new Date(row.fecha_registro)
     };
   }
 }

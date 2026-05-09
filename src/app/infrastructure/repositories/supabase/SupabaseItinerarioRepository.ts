@@ -98,10 +98,10 @@ export class SupabaseItinerarioRepository implements ItinerarioRepository {
       ...row,
       fecha_inicio: row.fecha_inicio instanceof Date
         ? row.fecha_inicio
-        : new Date(row.fecha_inicio as string),
+        : new Date(row.fecha_inicio),
       fecha_fin: row.fecha_fin instanceof Date
         ? row.fecha_fin
-        : new Date(row.fecha_fin as string)
+        : new Date(row.fecha_fin)
     };
   }
 

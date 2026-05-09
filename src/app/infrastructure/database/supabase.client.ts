@@ -52,7 +52,8 @@ export const createSupabaseClient = async (): Promise<SupabaseClient> => {
 
   const config = (await response.json()) as Partial<SupabaseRuntimeConfig>;
   const normalizedConfig = normalizeConfig(config);
-  // Configuration is validated by normalizeConfig() before being used
-  // NOSONAR: S8477 - user input is validated and sanitized
-  return createClient(normalizedConfig.supabaseUrl, normalizedConfig.supabaseKey);
+  // Configuration is validated by normalizeConfig() to ensure:
+  // - URL is HTTPS and ends with .supabase.co
+  // - Key format is validated (40+ alphanumeric chars)
+  return createClient(normalizedConfig.supabaseUrl, normalizedConfig.supabaseKey); // NOSONAR: S8477
 };

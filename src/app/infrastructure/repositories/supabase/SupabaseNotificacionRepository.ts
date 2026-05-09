@@ -112,7 +112,7 @@ export class SupabaseNotificacionRepository implements NotificacionRepository {
       ...row,
       fecha_envio: row.fecha_envio instanceof Date
         ? row.fecha_envio
-        : new Date(row.fecha_envio as string)
+        : new Date(row.fecha_envio)
     };
   }
 }

@@ -88,7 +88,7 @@ export class SupabaseDetalleItinerarioRepository implements DetalleItinerarioRep
   private mapFromRow(row: DetalleItinerario): DetalleItinerario {
     return {
       ...row,
-      fecha: row.fecha instanceof Date ? row.fecha : new Date(row.fecha as string)
+      fecha: row.fecha instanceof Date ? row.fecha : new Date(row.fecha)
     };
   }
 
