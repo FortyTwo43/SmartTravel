@@ -4,7 +4,7 @@ import { Perfil } from '../../../domain/entities/Perfil';
 import { PerfilRepository } from '../../../domain/repositories/PerfilRepository';
 import { CreatePerfilDto, UpdatePerfilDto } from '../../../domain/entities/dtos';
 import { SupabaseCrudRepository } from './SupabaseCrudRepository';
-import { mapDateToIso, mapDateFromDb } from './mapper-helpers';
+import { mapDateToIso, mapDateFromDb } from './supabaseUtils/mapper-helpers';
 
 @Injectable({
   providedIn: 'root'

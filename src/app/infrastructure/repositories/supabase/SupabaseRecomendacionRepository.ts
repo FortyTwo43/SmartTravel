@@ -4,7 +4,7 @@ import { Recomendacion } from '../../../domain/entities/Recomendacion';
 import { RecomendacionRepository } from '../../../domain/repositories/RecomendacionRepository';
 import { CreateRecomendacionDto, UpdateRecomendacionDto } from '../../../domain/entities/dtos';
 import { SupabaseCrudRepository } from './SupabaseCrudRepository';
-import { mapDateToIso, mapDateFromDb } from './mapper-helpers';
+import { mapDateToIso, mapDateFromDb } from './supabaseUtils/mapper-helpers';
 
 @Injectable({
   providedIn: 'root'

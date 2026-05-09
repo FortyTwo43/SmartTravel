@@ -3,9 +3,9 @@ import { SupabaseClient } from '@supabase/supabase-js';
 import { DetalleItinerario } from '../../../domain/entities/DetalleItinerario';
 import { DetalleItinerarioRepository } from '../../../domain/repositories/DetalleItinerarioRepository';
 import { CreateDetalleItinerarioDto, UpdateDetalleItinerarioDto } from '../../../domain/entities/dtos';
-import { buildSupabaseError } from './supabase-error';
+import { buildSupabaseError } from './supabaseUtils/supabase-error';
 import { SupabaseCrudRepository } from './SupabaseCrudRepository';
-import { mapDateToIso, mapDateFromDb } from './mapper-helpers';
+import { mapDateToIso, mapDateFromDb } from './supabaseUtils/mapper-helpers';
 
 @Injectable({
   providedIn: 'root'

@@ -3,9 +3,9 @@ import { SupabaseClient } from '@supabase/supabase-js';
 import { Notificacion } from '../../../domain/entities/Notificacion';
 import { NotificacionRepository } from '../../../domain/repositories/NotificacionRepository';
 import { CreateNotificacionDto, UpdateNotificacionDto } from '../../../domain/entities/dtos';
-import { buildSupabaseError } from './supabase-error';
+import { buildSupabaseError } from './supabaseUtils/supabase-error';
 import { SupabaseCrudRepository } from './SupabaseCrudRepository';
-import { mapDateToIso, mapDateFromDb } from './mapper-helpers';
+import { mapDateToIso, mapDateFromDb } from './supabaseUtils/mapper-helpers';
 
 @Injectable({
   providedIn: 'root'
