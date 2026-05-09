@@ -7,6 +7,20 @@ type SupabaseRuntimeConfig = {
 
 const CONFIG_URL = '/config.json';
 
+const isValidSupabaseUrl = (url: string): boolean => {
+  try {
+    const parsed = new URL(url);
+    return parsed.protocol === 'https:' && parsed.hostname.endsWith('.supabase.co');
+  } catch {
+    return false;
+  }
+};
+
+const isValidSupabaseKey = (key: string): boolean => {
+  // Supabase keys are base64-encoded and typically 40+ characters
+  return /^[A-Za-z0-9_-]{40,}$/.test(key);
+};
+
 const normalizeConfig = (config: Partial<SupabaseRuntimeConfig>): SupabaseRuntimeConfig => {
   const supabaseUrl = (config.supabaseUrl ?? '').trim();
   const supabaseKey = (config.supabaseKey ?? '').trim();
@@ -15,11 +29,22 @@ const normalizeConfig = (config: Partial<SupabaseRuntimeConfig>): SupabaseRuntim
     throw new Error('Supabase runtime config is missing supabaseUrl or supabaseKey.');
   }
 
+  if (!isValidSupabaseUrl(supabaseUrl)) {
+    throw new Error(`Invalid Supabase URL: ${supabaseUrl}. Must be a valid HTTPS URL ending with .supabase.co`);
+  }
+
+  if (!isValidSupabaseKey(supabaseKey)) {
+    throw new Error('Invalid Supabase key format. Key must be at least 40 characters long and contain only alphanumeric characters, underscores, or hyphens.');
+  }
+
   return { supabaseUrl, supabaseKey };
 };
 
 export const createSupabaseClient = async (): Promise<SupabaseClient> => {
-  const response = await fetch(CONFIG_URL, { cache: 'no-store' });
+  const response = await fetch(CONFIG_URL, {
+    cache: 'no-store',
+    signal: AbortSignal.timeout(10_000),
+  });
 
   if (!response.ok) {
     throw new Error(`Failed to load Supabase runtime config from ${CONFIG_URL}.`);
