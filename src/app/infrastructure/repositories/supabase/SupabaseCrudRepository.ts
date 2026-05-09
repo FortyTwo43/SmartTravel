@@ -15,7 +15,7 @@ export abstract class SupabaseCrudRepository<T extends { id: string }> {
    * Override if custom field transformations are needed.
    */
   protected mapToRow(item: Partial<T>): Record<string, unknown> {
-    return item as Record<string, unknown>;
+    return item;
   }
 
   /**
