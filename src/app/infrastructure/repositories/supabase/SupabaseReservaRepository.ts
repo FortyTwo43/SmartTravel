@@ -4,6 +4,7 @@ import { Reserva } from '../../../domain/entities/Reserva';
 import { ReservaRepository } from '../../../domain/repositories/ReservaRepository';
 import { buildSupabaseError } from './supabase-error';
 import { SupabaseCrudRepository } from './SupabaseCrudRepository';
+import { mapDateToIso, mapDateFromDb } from './mapper-helpers';
 
 @Injectable({
   providedIn: 'root'
@@ -29,9 +30,7 @@ export class SupabaseReservaRepository extends SupabaseCrudRepository<Reserva> i
     const mapped: Record<string, unknown> = { ...item };
 
     if (item.fecha_reserva) {
-      mapped['fecha_reserva'] = item.fecha_reserva instanceof Date
-        ? item.fecha_reserva.toISOString()
-        : item.fecha_reserva;
+      mapped['fecha_reserva'] = mapDateToIso(item.fecha_reserva);
     }
 
     return mapped;
@@ -40,9 +39,7 @@ export class SupabaseReservaRepository extends SupabaseCrudRepository<Reserva> i
   protected override mapFromRow(row: Reserva): Reserva {
     return {
       ...row,
-      fecha_reserva: row.fecha_reserva instanceof Date
-        ? row.fecha_reserva
-        : new Date(row.fecha_reserva)
+      fecha_reserva: mapDateFromDb(row.fecha_reserva)
     };
   }
 }

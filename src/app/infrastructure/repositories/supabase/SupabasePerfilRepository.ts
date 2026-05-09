@@ -3,6 +3,7 @@ import { SupabaseClient } from '@supabase/supabase-js';
 import { Perfil } from '../../../domain/entities/Perfil';
 import { PerfilRepository } from '../../../domain/repositories/PerfilRepository';
 import { SupabaseCrudRepository } from './SupabaseCrudRepository';
+import { mapDateToIso, mapDateFromDb } from './mapper-helpers';
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +19,7 @@ export class SupabasePerfilRepository extends SupabaseCrudRepository<Perfil> imp
     const mapped: Record<string, unknown> = { ...item };
 
     if (item.fecha_registro) {
-      mapped['fecha_registro'] = item.fecha_registro instanceof Date
-        ? item.fecha_registro.toISOString()
-        : item.fecha_registro;
+      mapped['fecha_registro'] = mapDateToIso(item.fecha_registro);
     }
 
     return mapped;
@@ -29,9 +28,7 @@ export class SupabasePerfilRepository extends SupabaseCrudRepository<Perfil> imp
   protected override mapFromRow(row: Perfil): Perfil {
     return {
       ...row,
-      fecha_registro: row.fecha_registro instanceof Date
-        ? row.fecha_registro
-        : new Date(row.fecha_registro)
+      fecha_registro: mapDateFromDb(row.fecha_registro)
     };
   }
 }
