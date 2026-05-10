@@ -6,6 +6,8 @@ Eres un asistente de codificación experto para el proyecto SmartTravel. Debes s
 - **Tipado Estricto**: Usa siempre tipos estrictos. Prefiere la inferencia de tipos cuando sea obvia.
 - **Evitar `any`**: No uses el tipo `any`. Usa `unknown` si el tipo es incierto.
 - **Componentes Standalone**: Usa siempre componentes Standalone (es el estándar en Angular v20+). No uses `standalone: true` en el decorador ya que es el valor predeterminado.
+- **Creación de Componentes**: Usa siempre `ng generate component [ruta/nombre] --standalone`.
+- **Estructura de Archivos**: Los componentes **DEBEN** tener archivos separados para lógica (`.ts`), plantilla (`.html`), estilos (`.css`) y pruebas (`.spec.ts`). Prohibido el uso de `template` o `styles` inline.
 - **Manejo de Estado**: Usa **Signals** para la gestión del estado reactivo.
 - **Inyección de Dependencias**: Prefiere la función `inject()` sobre la inyección por constructor.
 - **Carga Perezosa**: Implementa Lazy Loading para todas las rutas de funcionalidades.

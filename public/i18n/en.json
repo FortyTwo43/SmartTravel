@@ -11,7 +11,18 @@
   "AUTH": {
     "LOGIN": "Login",
     "SIGNUP": "Sign Up",
-    "LOGOUT": "Logout"
+    "LOGOUT": "Logout",
+    "WELCOME_BACK": "Welcome back",
+    "SUBTITLE": "Your next smart destination awaits.",
+    "EMAIL": "Email address",
+    "PASSWORD": "Password",
+    "FORGOT_PASSWORD": "Forgot password?",
+    "ENTER": "Sign in",
+    "OR_CONTINUE_WITH": "Or continue with",
+    "LOGIN_GOOGLE": "Login with Google",
+    "NO_ACCOUNT": "Don't have an account?",
+    "REGISTER_FREE": "Register for free",
+    "PLACEHOLDER_EMAIL": "name@example.com"
   },
   "COMMON": {
     "SAVE": "Save",
