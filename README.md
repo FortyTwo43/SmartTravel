@@ -80,7 +80,6 @@ perfil {
 
 perfil_viajero {
     string id PK
-    string id_perfil FK
     string intereses
     decimal presupuesto
     string idioma
@@ -114,6 +113,7 @@ establecimiento_turistico {
     string nombre
     string tipo
     string descripcion
+    string estado
 }
 
 servicio_reservable {
@@ -122,6 +122,7 @@ servicio_reservable {
     string nombre
     decimal precio
     string descripcion
+    string comodidades_adicionales
     boolean disponibilidad
 }
 
@@ -157,7 +158,7 @@ reserva {
 recomendacion {
     string id PK
     string id_perfil FK
-    string id_servicio_reservable FK
+    string id_establecimiento_turistico FK
     string motivo
     date fecha_generada
 }
@@ -199,5 +200,5 @@ servicio_reservable ||--o{ detalle_itinerario : pertenece
 
 servicio_reservable ||--o{ reserva : genera
 
-servicio_reservable ||--o{ recomendacion : recomendado
+establecimiento_turistico ||--o{ recomendacion : recomendado
 ```

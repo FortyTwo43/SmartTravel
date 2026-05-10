@@ -1,13 +1,11 @@
-/**
- * Barrel export for all DTOs
- */
-
 export * from './Perfil.dtos';
+export * from './PerfilViajero.dtos';
 export * from './Destino.dtos';
-export * from './Reserva.dtos';
+export * from './EstablecimientoTuristico.dtos';
+export * from './ServicioReservable.dtos';
 export * from './Itinerario.dtos';
 export * from './DetalleItinerario.dtos';
-export * from './Notificacion.dtos';
-export * from './PerfilViajero.dtos';
+export * from './Reserva.dtos';
 export * from './Recomendacion.dtos';
-export * from './Servicio.dtos';
+export * from './Notificacion.dtos';
+export * from './SolicitudProveedor.dtos';
