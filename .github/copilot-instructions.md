@@ -1,55 +1,42 @@
+# Instrucciones de Desarrollo - SmartTravel
 
-You are an expert in TypeScript, Angular, and scalable web application development. You write functional, maintainable, performant, and accessible code following Angular and TypeScript best practices.
+Eres un asistente de codificación experto para el proyecto SmartTravel. Debes seguir estrictamente estas reglas para mantener la consistencia y la arquitectura del sistema.
 
-## TypeScript Best Practices
+## 🟢 Estándares de TypeScript y Angular
+- **Tipado Estricto**: Usa siempre tipos estrictos. Prefiere la inferencia de tipos cuando sea obvia.
+- **Evitar `any`**: No uses el tipo `any`. Usa `unknown` si el tipo es incierto.
+- **Componentes Standalone**: Usa siempre componentes Standalone (es el estándar en Angular v20+). No uses `standalone: true` en el decorador ya que es el valor predeterminado.
+- **Manejo de Estado**: Usa **Signals** para la gestión del estado reactivo.
+- **Inyección de Dependencias**: Prefiere la función `inject()` sobre la inyección por constructor.
+- **Carga Perezosa**: Implementa Lazy Loading para todas las rutas de funcionalidades.
+- **Atributos de Host**: NO uses `@HostBinding` ni `@HostListener`. Define los bindings dentro del objeto `host` en el decorador `@Component`.
+- **Optimización**: Usa `NgOptimizedImage` para todas las imágenes estáticas.
 
-- Use strict type checking
-- Prefer type inference when the type is obvious
-- Avoid the `any` type; use `unknown` when type is uncertain
+## ♿ Accesibilidad (A11y)
+- El código **DEBE** pasar todas las pruebas de AXE.
+- Sigue los estándares mínimos de WCAG AA (gestión de foco, contraste de color y atributos ARIA).
 
-## Angular Best Practices
+## 🌍 Internacionalización (i18n)
+- Todo texto visible para el usuario **DEBE** implementarse usando traducciones.
+- Usa el pipe `{{ 'KEY' | translate }}` en HTML o `TranslateService` en TypeScript.
+- Las claves están en `public/i18n/es.json` y `en.json`. No inventes claves sin agregarlas a estos archivos.
 
-- Always use standalone components over NgModules
-- Must NOT set `standalone: true` inside Angular decorators. It's the default in Angular v20+.
-- Use signals for state management
-- Implement lazy loading for feature routes
-- Do NOT use the `@HostBinding` and `@HostListener` decorators. Put host bindings inside the `host` object of the `@Component` or `@Directive` decorator instead
-- Use `NgOptimizedImage` for all static images.
-  - `NgOptimizedImage` does not work for inline base64 images.
+## 🎨 Temas y Estilos
+- Usa **SIEMPRE** las variables CSS definidas en `src/app/presentation/theme/theme.css`.
+- **PROHIBIDO** el uso de colores en hexadecimal, RGB o nombres de colores fijos en los componentes. Usa `var(--color-primary)`, `var(--bg-main)`, `var(--text-main)`, etc.
+- Respeta el diseño premium: usa bordes redondeados (`var(--radius-lg)`), sombras suaves (`var(--shadow-md)`) y tipografías correctas (`var(--font-headline)` para títulos).
 
-## Accessibility Requirements
+## 📂 Arquitectura y Estructura de Carpetas
+Debes colocar los archivos en las rutas correspondientes:
+- **Componentes de UI Global**: `src/app/presentation/components/ui` (Botones, inputs, tarjetas básicas).
+- **Componentes de Presentación**: `src/app/presentation/components` (Componentes reutilizables de negocio).
+- **Layouts**: `src/app/presentation/layouts` (Estructuras de página como Sidebar, Navbar).
+- **Páginas**: `src/app/presentation/pages` (Componentes que representan rutas completas).
+- **Repositorios**: Siempre usa la infraestructura de Supabase en `src/app/infrastructure/repositories/supabase`.
 
-- It MUST pass all AXE checks.
-- It MUST follow all WCAG AA minimums, including focus management, color contrast, and ARIA attributes.
+## 🏗️ Dominio y Entidades
+- **NO MODIFICAR** las entidades en `src/app/domain/entities` a menos que el usuario lo solicite explícitamente. El dominio es el corazón del sistema y debe permanecer estable.
 
-### Components
-
-- Keep components small and focused on a single responsibility
-- Use `input()` and `output()` functions instead of decorators
-- Use `computed()` for derived state
-- Set `changeDetection: ChangeDetectionStrategy.OnPush` in `@Component` decorator
-- Prefer inline templates for small components
-- Prefer Reactive forms instead of Template-driven ones
-- Do NOT use `ngClass`, use `class` bindings instead
-- Do NOT use `ngStyle`, use `style` bindings instead
-- When using external templates/styles, use paths relative to the component TS file.
-
-## State Management
-
-- Use signals for local component state
-- Use `computed()` for derived state
-- Keep state transformations pure and predictable
-- Do NOT use `mutate` on signals, use `update` or `set` instead
-
-## Templates
-
-- Keep templates simple and avoid complex logic
-- Use native control flow (`@if`, `@for`, `@switch`) instead of `*ngIf`, `*ngFor`, `*ngSwitch`
-- Use the async pipe to handle observables
-- Do not assume globals like (`new Date()`) are available.
-
-## Services
-
-- Design services around a single responsibility
-- Use the `providedIn: 'root'` option for singleton services
-- Use the `inject()` function instead of constructor injection
+## ✨ Iconos
+- Usa exclusivamente la librería **Lucide Angular**.
+- **Carga Local**: No cargues iconos globalmente en `app.config.ts`. Cada componente debe importar los iconos que necesita usando `LucideAngularModule.pick({ IconName })` en su array de `imports`.

@@ -1,0 +1,22 @@
+{
+  "APP_TITLE": "SmartTravel",
+  "WELCOME": "Bienvenido a SmartTravel",
+  "NAV": {
+    "HOME": "Inicio",
+    "DESTINATIONS": "Destinos",
+    "ITINERARIES": "Itinerarios",
+    "RESERVATIONS": "Reservas",
+    "PROFILE": "Perfil"
+  },
+  "AUTH": {
+    "LOGIN": "Iniciar sesión",
+    "SIGNUP": "Registrarse",
+    "LOGOUT": "Cerrar sesión"
+  },
+  "COMMON": {
+    "SAVE": "Guardar",
+    "CANCEL": "Cancelar",
+    "DELETE": "Eliminar",
+    "EDIT": "Editar"
+  }
+}
