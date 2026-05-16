@@ -151,6 +151,36 @@
   }
 }
 
+@media (max-width: 768px) {
+  .form-panel {
+    padding: 2rem;
+  }
+  
+  .form-card {
+    padding: 1.5rem;
+  }
+  
+  .logo {
+    height: 50px;
+  }
+  
+  .welcome-title {
+    font-size: 2rem;
+  }
+  
+  .welcome-subtitle {
+    font-size: 0.875rem;
+    margin-bottom: 1.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .login-form {
+    gap: 2rem;
+  }
+}
+
 .hero-overlay {
   position: absolute;
   inset: 0;
