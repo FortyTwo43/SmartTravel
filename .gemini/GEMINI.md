@@ -29,6 +29,11 @@ Eres un asistente de codificación experto para el proyecto SmartTravel. Debes s
 - **PROHIBIDO** el uso de colores en hexadecimal, RGB o nombres de colores fijos en los componentes. Usa `var(--color-primary)`, `var(--bg-main)`, `var(--text-main)`, etc.
 - Respeta el diseño premium: usa bordes redondeados (`var(--radius-lg)`), sombras suaves (`var(--shadow-md)`) y tipografías correctas (`var(--font-headline)` para títulos).
 
+## 📱 Responsividad y Mobile First
+- **Todas** las interfaces **DEBEN** ser responsivas y estar optimizadas para celulares.
+- El punto de ruptura (*breakpoint*) estándar para móviles **DEBE** ser `@media (max-width: 768px)`.
+- Prioriza que el contenido principal sea visible sin necesidad de scroll excesivo en dispositivos móviles.
+
 ## � Tipografía y Escalabilidad de Fuente
 - **TODOS** los tamaños de fuente **DEBEN** usar unidades `rem` en lugar de `px`. Esto permite que el sistema de escalado de fuente funcione correctamente.
 - Ejemplo correcto: `font-size: 1rem;` o `font-size: 0.875rem;`
