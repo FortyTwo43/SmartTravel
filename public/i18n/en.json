@@ -22,7 +22,8 @@
     "LOGIN_GOOGLE": "Login with Google",
     "NO_ACCOUNT": "Don't have an account?",
     "REGISTER_FREE": "Register for free",
-    "PLACEHOLDER_EMAIL": "name@example.com"
+    "PLACEHOLDER_EMAIL": "name@example.com",
+    "PLACEHOLDER_PASSWORD": "password"
   },
   "COMMON": {
     "SAVE": "Save",

@@ -5,35 +5,27 @@
       <div class="logo-container">
         <img src="assets/smart_travel_logo.png" alt="SmartTravel Logo" class="logo">
       </div>
-      
+
       <h1 class="welcome-title">{{ 'AUTH.WELCOME_BACK' | translate }}</h1>
       <p class="welcome-subtitle">{{ 'AUTH.SUBTITLE' | translate }}</p>
 
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
-        <app-ui-input 
-          formControlName="email"
-          [label]="'AUTH.EMAIL' | translate"
-          [placeholder]="'AUTH.PLACEHOLDER_EMAIL' | translate"
-          type="email"
-          icon="mail"
-        ></app-ui-input>
+        <app-ui-input formControlName="email" [label]="'AUTH.EMAIL' | translate"
+          [placeholder]="'AUTH.PLACEHOLDER_EMAIL' | translate" type="email" icon="mail"></app-ui-input>
 
         <div class="password-group">
           <div class="password-header">
             <label>{{ 'AUTH.PASSWORD' | translate }}</label>
             <a href="#" class="forgot-link">{{ 'AUTH.FORGOT_PASSWORD' | translate }}</a>
           </div>
-          <app-ui-input 
-            formControlName="password"
-            type="password"
-            icon="lock"
-          ></app-ui-input>
+          <app-ui-input formControlName="password" [placeholder]="'AUTH.PLACEHOLDER_PASSWORD' | translate"
+            type="password" icon="lock"></app-ui-input>
         </div>
 
         @if (errorMessage) {
-          <div class="error-box">
-            {{ errorMessage }}
-          </div>
+        <div class="error-box">
+          {{ errorMessage }}
+        </div>
         }
 
         <app-ui-button type="submit" variant="primary" [disabled]="isLoading">
@@ -50,7 +42,7 @@
         </app-ui-button>
 
         <p class="signup-prompt">
-          {{ 'AUTH.NO_ACCOUNT' | translate }} 
+          {{ 'AUTH.NO_ACCOUNT' | translate }}
           <a href="#" class="signup-link">{{ 'AUTH.REGISTER_FREE' | translate }}</a>
         </p>
       </form>
@@ -63,7 +55,7 @@
     <div class="hero-content">
       <h2 class="hero-title">Descubre el mundo con inteligencia.</h2>
       <p class="hero-description">
-        Nuestra IA analiza miles de destinos para ofrecerte la experiencia personalizada definitiva, 
+        Nuestra IA analiza miles de destinos para ofrecerte la experiencia personalizada definitiva,
         desde el clima perfecto hasta las joyas ocultas más exclusivas.
       </p>
     </div>

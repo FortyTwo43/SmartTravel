@@ -22,7 +22,8 @@
     "LOGIN_GOOGLE": "Login con Google",
     "NO_ACCOUNT": "¿No tienes una cuenta?",
     "REGISTER_FREE": "Regístrate gratis",
-    "PLACEHOLDER_EMAIL": "nombre@ejemplo.com"
+    "PLACEHOLDER_EMAIL": "nombre@ejemplo.com",
+    "PLACEHOLDER_PASSWORD": "contraseña"
   },
   "COMMON": {
     "SAVE": "Guardar",
