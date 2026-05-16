@@ -1,11 +1,9 @@
-export interface Servicio {
+export interface EstablecimientoTuristico {
   id: string;
   id_proveedor: string;
   id_destino: string;
   nombre: string;
-  tipo_servicio: string;
+  tipo: string;
   descripcion: string;
-  precio: number;
-  disponibilidad: boolean;
   estado: string;
 }

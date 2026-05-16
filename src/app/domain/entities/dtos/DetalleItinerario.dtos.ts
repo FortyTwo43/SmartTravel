@@ -4,7 +4,7 @@
 
 export interface CreateDetalleItinerarioDto {
   id_itinerario: string;
-  id_servicio: string;
+  id_servicio_reservable: string;
   fecha: Date;
   hora: string;
   prioridad: string;
@@ -13,7 +13,7 @@ export interface CreateDetalleItinerarioDto {
 
 export interface UpdateDetalleItinerarioDto {
   id_itinerario?: string;
-  id_servicio?: string;
+  id_servicio_reservable?: string;
   fecha?: Date;
   hora?: string;
   prioridad?: string;

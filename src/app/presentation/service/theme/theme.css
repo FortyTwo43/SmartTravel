@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+
+:root {
+  /* Colors from Image */
+  --color-primary: #0288D1;
+  --color-secondary: #4CAF50;
+  --color-tertiary: #C26C02;
+  --color-neutral: #73777D;
+
+  /* Light Theme */
+  --bg-main: #E9ECEF;
+  --bg-surface: #FFFFFF;
+  --bg-surface-alt: #F8F9FA;
+  
+  --text-main: #1F2937;
+  --text-muted: #6B7280;
+  --text-on-primary: #FFFFFF;
+  
+  --border-color: #D1D5DB;
+  --input-bg: #F3F4F6;
+
+  /* Spacing & Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+  
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+  /* Fonts */
+  --font-headline: 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Font Size Scaling */
+  --font-scale: 1;
+
+  /* Apply font scale to root so all rem units inherit the scaling */
+  font-size: calc(16px * var(--font-scale));
+}
+
+[data-theme='dark'] {
+  /* Dark Theme Palette */
+  --bg-main: #0F172A;
+  --bg-surface: #1E293B;
+  --bg-surface-alt: #334155;
+  
+  --text-main: #F9FAFB;
+  --text-muted: #9CA3AF;
+  --text-on-primary: #FFFFFF;
+  
+  --border-color: #334155;
+  --input-bg: #0F172A;
+  
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.5);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.6), 0 4px 6px -4px rgb(0 0 0 / 0.6);
+}

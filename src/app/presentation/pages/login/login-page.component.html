@@ -1,0 +1,63 @@
+<div class="login-container">
+  <!-- Panel Izquierdo: Formulario -->
+  <div class="form-panel">
+    <div class="form-card">
+      <div class="logo-container">
+        <img src="assets/smart_travel_logo.png" alt="SmartTravel Logo" class="logo">
+      </div>
+
+      <h1 class="welcome-title">{{ 'AUTH.WELCOME_BACK' | translate }}</h1>
+      <p class="welcome-subtitle">{{ 'AUTH.SUBTITLE' | translate }}</p>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+        <app-ui-input formControlName="email" [label]="'AUTH.EMAIL' | translate"
+          [placeholder]="'AUTH.PLACEHOLDER_EMAIL' | translate" type="email" icon="mail"></app-ui-input>
+
+        <div class="password-group">
+          <div class="password-header">
+            <label for="password-input">{{ 'AUTH.PASSWORD' | translate }}</label>
+            <a href="#" class="forgot-link">{{ 'AUTH.FORGOT_PASSWORD' | translate }}</a>
+          </div>
+          <app-ui-input id="password-input" formControlName="password" [placeholder]="'AUTH.PLACEHOLDER_PASSWORD' | translate"
+            type="password" icon="lock"></app-ui-input>
+        </div>
+
+        @if (errorMessage) {
+        <div class="error-box">
+          {{ errorMessage }}
+        </div>
+        }
+
+        <app-ui-button type="submit" variant="primary" [disabled]="isLoading">
+          {{ (isLoading ? '...' : 'AUTH.ENTER' | translate) }}
+        </app-ui-button>
+
+        <div class="separator">
+          <span>{{ 'AUTH.OR_CONTINUE_WITH' | translate }}</span>
+        </div>
+
+        <app-ui-button variant="outlined" class="google-btn" [disabled]="isLoading">
+          <img src="https://www.google.com/favicon.ico" alt="Google" class="google-icon">
+          {{ 'AUTH.LOGIN_GOOGLE' | translate }}
+        </app-ui-button>
+
+        <p class="signup-prompt">
+          {{ 'AUTH.NO_ACCOUNT' | translate }}
+          <a href="#" class="signup-link">{{ 'AUTH.REGISTER_FREE' | translate }}</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Panel Derecho: Imagen/Hero -->
+  <div class="hero-panel">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h2 class="hero-title">Descubre el mundo con inteligencia.</h2>
+      <p class="hero-description">
+        Nuestra IA analiza miles de destinos para ofrecerte la experiencia personalizada definitiva,
+        desde el clima perfecto hasta las joyas ocultas más exclusivas.
+      </p>
+    </div>
+  </div>
+</div>

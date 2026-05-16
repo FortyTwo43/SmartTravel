@@ -1,0 +1,34 @@
+{
+  "APP_TITLE": "SmartTravel",
+  "WELCOME": "Bienvenido a SmartTravel",
+  "NAV": {
+    "HOME": "Inicio",
+    "DESTINATIONS": "Destinos",
+    "ITINERARIES": "Itinerarios",
+    "RESERVATIONS": "Reservas",
+    "PROFILE": "Perfil"
+  },
+  "AUTH": {
+    "LOGIN": "Iniciar sesión",
+    "SIGNUP": "Registrarse",
+    "LOGOUT": "Cerrar sesión",
+    "WELCOME_BACK": "Bienvenido de nuevo",
+    "SUBTITLE": "Tu próximo destino inteligente te espera.",
+    "EMAIL": "Correo electrónico",
+    "PASSWORD": "Contraseña",
+    "FORGOT_PASSWORD": "Recuperar contraseña",
+    "ENTER": "Ingresar",
+    "OR_CONTINUE_WITH": "O continúa con",
+    "LOGIN_GOOGLE": "Login con Google",
+    "NO_ACCOUNT": "¿No tienes una cuenta?",
+    "REGISTER_FREE": "Regístrate gratis",
+    "PLACEHOLDER_EMAIL": "nombre@ejemplo.com",
+    "PLACEHOLDER_PASSWORD": "contraseña"
+  },
+  "COMMON": {
+    "SAVE": "Guardar",
+    "CANCEL": "Cancelar",
+    "DELETE": "Eliminar",
+    "EDIT": "Editar"
+  }
+}

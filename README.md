@@ -63,120 +63,142 @@ For more information on using the Angular CLI, including detailed command refere
 ```mermaid
 erDiagram
 
-    auth.users{
-        string id PK
-        string email
-        string encrypted_password
-    }
+auth.users{
+    string id PK
+    string email
+    string encrypted_password
+}
 
-    perfil {
-        string id PK
-        string nombre
-        string apellido
-        string rol
-        date fecha_registro
-        string estado
-    }
+perfil {
+    string id PK
+    string nombre
+    string apellido
+    string rol
+    date fecha_registro
+    string estado
+}
 
-    perfil_viajero {
-        string id PK
-        string id_perfil FK
-        string intereses
-        decimal presupuesto
-        string idioma
-    }
+perfil_viajero {
+    string id PK
+    string intereses
+    decimal presupuesto
+    string idioma
+}
 
-    destino {
-        string id PK
-        string nombre
-        string ciudad
-        string pais
-        string descripcion
-        string tipo_experiencia
-        string imagen
-    }
+solicitud_proveedor {
+    string id PK
+    string id_perfil FK
+    string nombre_negocio
+    string descripcion
+    string telefono
+    string documento_url
+    string estado
+    date fecha_solicitud
+}
 
-    servicio {
-        string id PK
-        string id_proveedor FK
-        string id_destino FK
-        string nombre
-        string tipo_servicio
-        string descripcion
-        decimal precio
-        boolean disponibilidad
-        string estado
-    }
+destino {
+    string id PK
+    string nombre
+    string ciudad
+    string pais
+    string descripcion
+    string tipo_experiencia
+    string imagen
+}
 
-    itinerario {
-        string id PK
-        string id_perfil FK
-        string nombre
-        date fecha_inicio
-        date fecha_fin
-        string estado
-    }
+establecimiento_turistico {
+    string id PK
+    string id_proveedor FK
+    string id_destino FK
+    string nombre
+    string tipo
+    string descripcion
+    string estado
+}
 
-    detalle_itinerario {
-        string id PK
-        string id_itinerario FK
-        string id_servicio FK
-        date fecha
-        string hora
-        string prioridad
-        string estado
-    }
+servicio_reservable {
+    string id PK
+    string id_establecimiento FK
+    string nombre
+    decimal precio
+    string descripcion
+    string comodidades_adicionales
+    boolean disponibilidad
+}
 
-    reserva {
-        string id PK
-        string id_perfil FK
-        string id_servicio FK
-        date fecha_reserva
-        int cantidad_personas
-        decimal precio_total
-        string estado
-    }
+itinerario {
+    string id PK
+    string id_perfil FK
+    string nombre
+    date fecha_inicio
+    date fecha_fin
+    string estado
+}
 
-    recomendacion {
-        string id PK
-        string id_perfil FK
-        string id_servicio FK
-        string motivo
-        date fecha_generada
-    }
+detalle_itinerario {
+    string id PK
+    string id_itinerario FK
+    string id_servicio_reservable FK
+    date fecha
+    string hora
+    string prioridad
+    string estado
+}
 
-    notificacion {
-        string id PK
-        string id_perfil FK
-        string mensaje
-        date fecha_envio
-        boolean leida
-    }
+reserva {
+    string id PK
+    string id_perfil FK
+    string id_servicio_reservable FK
+    date fecha_reserva
+    int cantidad_personas
+    decimal precio_total
+    string estado
+}
+
+recomendacion {
+    string id PK
+    string id_perfil FK
+    string id_establecimiento_turistico FK
+    string motivo
+    date fecha_generada
+}
+
+notificacion {
+    string id PK
+    string id_perfil FK
+    string mensaje
+    date fecha_envio
+    boolean leida
+}
 
 
-    %% RELACIONES
+%% RELACIONES
 
-    auth.users ||--|| perfil : tiene
+auth.users ||--|| perfil : tiene
 
-    perfil ||--|| perfil_viajero : tiene
+perfil ||--|| perfil_viajero : tiene
 
-    perfil ||--o{ itinerario : crea
+perfil ||--o{ solicitud_proveedor : solicita
 
-    perfil ||--o{ reserva : realiza
+perfil ||--o{ itinerario : crea
 
-    perfil ||--o{ notificacion : recibe
+perfil ||--o{ reserva : realiza
 
-    perfil ||--o{ recomendacion : obtiene
+perfil ||--o{ notificacion : recibe
 
-    destino ||--o{ servicio : contiene
+perfil ||--o{ recomendacion : obtiene
 
-    perfil ||--o{ servicio : publica
+destino ||--o{ establecimiento_turistico : contiene
 
-    itinerario ||--o{ detalle_itinerario : incluye
+perfil ||--o{ establecimiento_turistico : administra
 
-    servicio ||--o{ detalle_itinerario : pertenece
+establecimiento_turistico ||--o{ servicio_reservable : ofrece
 
-    servicio ||--o{ reserva : genera
+itinerario ||--o{ detalle_itinerario : incluye
 
-    servicio ||--o{ recomendacion : recomendado
+servicio_reservable ||--o{ detalle_itinerario : pertenece
+
+servicio_reservable ||--o{ reserva : genera
+
+establecimiento_turistico ||--o{ recomendacion : recomendado
 ```
