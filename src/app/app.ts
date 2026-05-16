@@ -1,7 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { LucideAngularModule, Moon, Sun } from 'lucide-angular';
 import { ThemeService } from './presentation/service/theme/theme.service';
 import { FontSizeService } from './presentation/service/font-size/font-size.service';
 

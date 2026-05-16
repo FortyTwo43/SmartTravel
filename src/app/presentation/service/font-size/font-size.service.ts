@@ -110,7 +110,8 @@ export class FontSizeService {
    */
   canDecrease(): boolean {
     const levels: FontSizeLevel[] = ['small', 'normal', 'large', 'extra-large'];
-    return levels.indexOf(this.currentLevel()) > 0;
+    const currentIndex = levels.indexOf(this.currentLevel());
+    return currentIndex > 0;
   }
 
   private getInitialFontSize(): FontSizeLevel {

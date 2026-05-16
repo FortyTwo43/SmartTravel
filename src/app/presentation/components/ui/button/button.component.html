@@ -2,7 +2,7 @@
   [type]="type()" 
   [class]="'btn ' + variantClass()" 
   [disabled]="disabled()"
-  (click)="onClick.emit($event)"
+  (click)="click.emit($event)"
 >
   <ng-content></ng-content>
 </button>

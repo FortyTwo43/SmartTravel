@@ -11,7 +11,7 @@ export class ButtonComponent {
   type = input<'button' | 'submit' | 'reset'>('button');
   variant = input<'primary' | 'secondary' | 'outlined' | 'inverted'>('primary');
   disabled = input<boolean>(false);
-  onClick = output<MouseEvent>();
+  click = output<MouseEvent>();
 
   variantClass(): string {
     return `btn-${this.variant()}`;

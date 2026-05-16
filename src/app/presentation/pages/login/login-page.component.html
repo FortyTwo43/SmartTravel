@@ -15,10 +15,10 @@
 
         <div class="password-group">
           <div class="password-header">
-            <label>{{ 'AUTH.PASSWORD' | translate }}</label>
+            <label for="password-input">{{ 'AUTH.PASSWORD' | translate }}</label>
             <a href="#" class="forgot-link">{{ 'AUTH.FORGOT_PASSWORD' | translate }}</a>
           </div>
-          <app-ui-input formControlName="password" [placeholder]="'AUTH.PLACEHOLDER_PASSWORD' | translate"
+          <app-ui-input id="password-input" formControlName="password" [placeholder]="'AUTH.PLACEHOLDER_PASSWORD' | translate"
             type="password" icon="lock"></app-ui-input>
         </div>
 
