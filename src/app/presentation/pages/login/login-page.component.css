@@ -138,7 +138,7 @@
   display: none;
   flex: 1.2;
   position: relative;
-  background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&q=80&w=2070');
+  background-image: url('/assets/photo-1506744038136-46273834b3fb.avif');
   background-size: cover;
   background-position: center;
 }
