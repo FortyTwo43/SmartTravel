@@ -30,5 +30,71 @@
     "CANCEL": "Cancel",
     "DELETE": "Delete",
     "EDIT": "Edit"
+  },
+  "NAVBAR": {
+    "TITLE": "Smart Travel AI",
+    "DESTINATIONS": "Destinations",
+    "AI_PLANNER": "AI Planner",
+    "PROVIDERS": "Providers",
+    "ABOUT": "About Us",
+    "LOGIN": "Log In",
+    "REGISTER": "Register Now"
+  },
+  "HOME": {
+    "HERO": {
+      "TITLE": "Explore the world with artificial intelligence",
+      "SUBTITLE": "Our cutting-edge AI analyzes thousands of destinations to offer you the ultimate personalized experience, from perfect weather to the planet's most exclusive hidden gems.",
+      "PLAN_TRIP": "Plan my trip",
+      "PROVIDER": "I'm a Provider",
+      "INTRO_VIDEO": "Introduction Video"
+    },
+    "FEATURES": {
+      "PERSONALIZATION": "Total Personalization",
+      "PERSONALIZATION_DESC": "Our neural network learns from your past preferences and future desires to curate destinations that resonate with your identity.",
+      "SAVINGS": "Smart Savings",
+      "SAVINGS_DESC": "Predictive algorithms that find the exact moment to book, maximizing your budget without compromising on luxury.",
+      "STRESS_FREE": "Stress-Free Experience",
+      "STRESS_FREE_DESC": "Dynamic itineraries that adjust in real-time based on weather, traffic, and availability, so you only worry about enjoying yourself."
+    },
+    "INFO": {
+      "TRAVELER_BADGE": "TRAVELER",
+      "TRAVELER_TITLE": "Discover your next destination",
+      "TRAVELER_DESC": "Join the elite travelers who use AI to design unforgettable adventures.",
+      "START_NOW": "Start now",
+      "PROVIDER_BADGE": "PROVIDER",
+      "PROVIDER_TITLE": "Boost your business",
+      "PROVIDER_DESC": "Reach the perfect travelers through our predictive recommendation engine.",
+      "REGISTER_COMPANY": "Register my company"
+    },
+    "DESTINATIONS": {
+      "TITLE": "Popular Destinations",
+      "SUBTITLE": "Curated selections by our AI for this season.",
+      "VIEW_ALL": "View all",
+      "FROM": "From",
+      "MALDIVES": "Maldives",
+      "MALDIVES_DESC": "Luxury over water",
+      "KYOTO": "Kyoto, Japan",
+      "KYOTO_DESC": "Culture and modernity",
+      "DUBAI": "Dubai, UAE",
+      "DUBAI_DESC": "Futuristic architecture",
+      "SANTORINI": "Santorini, GR",
+      "SANTORINI_DESC": "Endless views"
+    },
+    "CTA": {
+      "TITLE": "Start your next adventure today",
+      "SUBTITLE": "Join thousands of travelers who are already exploring the world in a smarter, more personalized, and efficient way.",
+      "REGISTER_FREE": "Register for Free"
+    }
+  },
+  "FOOTER": {
+    "TITLE": "Smart Travel AI",
+    "COPYRIGHT": "© 2024 Smart Travel AI. Precision Engineering for Modern Voyagers.",
+    "LINKS": {
+      "PRIVACY": "Privacy Policy",
+      "TERMS": "Terms of Service",
+      "COOKIES": "Cookie Settings",
+      "SUPPORT": "Global Support",
+      "PARTNER": "Partner Program"
+    }
   }
 }

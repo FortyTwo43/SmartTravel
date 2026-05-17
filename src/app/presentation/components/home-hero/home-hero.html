@@ -6,9 +6,9 @@
     <h1 class="hero-title">{{ 'HOME.HERO.TITLE' | translate }}</h1>
     <p class="hero-subtitle">{{ 'HOME.HERO.SUBTITLE' | translate }}</p>
     <div class="hero-actions">
-      <button class="btn btn-primary btn-lg">
+      <button class="btn btn-primary btn-lg group">
         {{ 'HOME.HERO.PLAN_TRIP' | translate }}
-        <!-- Include lucide icon here if needed, but per rules, Lucide must be imported -->
+        <lucide-icon name="arrow-right" class="hero-btn-icon group-hover:translate-x-1"></lucide-icon>
       </button>
       <button class="btn btn-outlined btn-lg">
         {{ 'HOME.HERO.PROVIDER' | translate }}
@@ -19,7 +19,7 @@
       <div class="video-overlay"></div>
       <div class="video-content">
         <div class="play-btn">
-          <!-- Play icon or similar -->
+          <lucide-icon name="play" class="hero-play-icon"></lucide-icon>
         </div>
         <p class="video-text">{{ 'HOME.HERO.INTRO_VIDEO' | translate }}</p>
       </div>
