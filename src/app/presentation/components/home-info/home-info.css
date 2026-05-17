@@ -46,7 +46,8 @@
 .info-gradient {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, var(--bg-main) 0%, transparent 60%);
+  /* background: linear-gradient(to top, var(--bg-main) 0%, transparent 60%); */
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, transparent 70%);
 }
 
 .info-content {
@@ -82,12 +83,14 @@
 .info-title {
   font-size: 2rem;
   font-family: var(--font-headline);
-  color: var(--text-main);
+  /* color: var(--text-main); */
+  color: #ffffff;
   line-height: 1.2;
 }
 
 .info-desc {
-  color: var(--text-muted);
+  /* color: var(--text-muted); */
+  color: rgba(255, 255, 255, 0.85);
   max-width: 24rem;
   font-family: var(--font-body);
   line-height: 1.5;
