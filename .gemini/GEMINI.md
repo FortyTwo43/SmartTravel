@@ -56,4 +56,20 @@ Debes colocar los archivos en las rutas correspondientes:
 
 ## ✨ Iconos
 - Usa exclusivamente la librería **Lucide Angular**.
-- **Carga Local**: No cargues iconos globalmente en `app.config.ts`. Cada componente debe importar los iconos que necesita usando `LucideAngularModule.pick({ IconName })` en su array de `imports`.
+- **Carga Local**: No cargues iconos globalmente en `app.config.ts`. Cada componente debe importar los iconos que necesita en su decorador `@Component` de la siguiente manera estricta (como se hace en `login-page.component.ts`) para evitar errores:
+  1. Importar `LucideAngularModule` en el array `imports`.
+  2. Proveer los iconos específicos usando el array `providers` con `LUCIDE_ICONS` y `LucideIconProvider`.
+  Ejemplo:
+  ```typescript
+  import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Mail } from 'lucide-angular';
+  
+  @Component({
+    imports: [LucideAngularModule],
+    providers: [{
+      provide: LUCIDE_ICONS,
+      multi: true,
+      useValue: new LucideIconProvider({ Mail })
+    }]
+  })
+  ```
+  **PROHIBIDO** usar `LucideAngularModule.pick(...)` en el array de `imports`.
