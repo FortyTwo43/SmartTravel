@@ -9,6 +9,7 @@ Eres un asistente de codificación experto para el proyecto SmartTravel. Debes s
 - **Creación de Componentes**: Usa siempre `ng generate component [ruta/nombre] --standalone`.
 - **Creación de Servicios**: Usa siempre `ng generate service [ruta/nombre]`.
 - **Estructura de Archivos**: Los componentes **DEBEN** tener archivos separados para lógica (`.ts`), plantilla (`.html`), estilos (`.css`) y pruebas (`.spec.ts`). Prohibido el uso de `template` o `styles` inline.
+- **Componentes**: Cada componente debe estar dentro de una carpeta y dentro de ella de sigue la **Estructura de Archivos**`definida anteriormente, unicamente para ese componente. **Prohibido** colocar diferentes componentes dentro de esa carpeta.
 - **Manejo de Estado**: Usa **Signals** para la gestión del estado reactivo.
 - **Inyección de Dependencias**: Prefiere la función `inject()` sobre la inyección por constructor.
 - **Carga Perezosa**: Implementa Lazy Loading para todas las rutas de funcionalidades.
