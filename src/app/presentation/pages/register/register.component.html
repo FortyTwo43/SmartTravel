@@ -1,0 +1,226 @@
+<div class="register-container">
+  <!-- LEFT SIDE: Registration Form (60%) -->
+  <div class="form-panel">
+    <!-- Back Button -->
+    <div class="back-button-container">
+      <a class="back-button" routerLink="/">
+        <lucide-icon name="arrow_left"></lucide-icon>
+        <span>{{ 'REGISTER.BACK_HOME' | translate }}</span>
+      </a>
+    </div>
+
+    <div class="form-wrapper">
+      <!-- Header -->
+      <div class="form-header">
+        <h1>{{ 'REGISTER.CREATE_ACCOUNT' | translate }}</h1>
+        <p>{{ 'REGISTER.START_EXPERIENCE' | translate }}</p>
+      </div>
+
+      <!-- Role Selector -->
+      <div class="role-selector">
+        <button
+          (click)="selectRole('traveler')"
+          [class.active]="selectedRole() === 'traveler'"
+          class="role-btn"
+        >
+          <lucide-icon name="briefcase"></lucide-icon>
+          <span>{{ 'REGISTER.TRAVELER' | translate }}</span>
+        </button>
+        <button
+          (click)="selectRole('provider')"
+          [class.active]="selectedRole() === 'provider'"
+          class="role-btn"
+        >
+          <lucide-icon name="building"></lucide-icon>
+          <span>{{ 'REGISTER.PROVIDER' | translate }}</span>
+        </button>
+      </div>
+
+      <!-- Form -->
+      <form class="registration-form-wrapper">
+        <div class="form-scroll-container">
+          <div class="form-scroll-content">
+            <!-- Personal Info Section -->
+            <div class="form-section">
+              <h3 class="section-title">{{ 'REGISTER.PERSONAL_INFO' | translate }}</h3>
+              
+              <div class="form-row two-columns">
+                <label class="form-group">
+                  <span class="form-label">{{ 'REGISTER.FIRST_NAME' | translate }}</span>
+                  <input type="text" class="form-input" [placeholder]="'REGISTER.PLACEHOLDER_FIRST_NAME' | translate" />
+                </label>
+                <label class="form-group">
+                  <span class="form-label">{{ 'REGISTER.LAST_NAME' | translate }}</span>
+                  <input type="text" class="form-input" [placeholder]="'REGISTER.PLACEHOLDER_LAST_NAME' | translate" />
+                </label>
+              </div>
+
+              <label class="form-group">
+                <span class="form-label">{{ 'AUTH.EMAIL' | translate }}</span>
+                <input type="email" class="form-input" [placeholder]="'AUTH.PLACEHOLDER_EMAIL' | translate" />
+              </label>
+
+              <div class="form-row two-columns">
+                <label class="form-group">
+                  <span class="form-label">{{ 'REGISTER.PASSWORD' | translate }}</span>
+                  <div class="password-wrapper">
+                    <input
+                      [type]="passwordVisible() ? 'text' : 'password'"
+                      class="form-input"
+                      placeholder="••••••••"
+                    />
+                    <button type="button" (click)="togglePasswordVisibility()" class="password-toggle">
+                      <lucide-icon [name]="passwordVisible() ? 'eye_off' : 'eye'"></lucide-icon>
+                    </button>
+                  </div>
+                </label>
+                <label class="form-group">
+                  <span class="form-label">{{ 'REGISTER.CONFIRM_PASSWORD' | translate }}</span>
+                  <div class="password-wrapper">
+                    <input
+                      [type]="confirmPasswordVisible() ? 'text' : 'password'"
+                      class="form-input"
+                      placeholder="••••••••"
+                    />
+                    <button type="button" (click)="toggleConfirmPasswordVisibility()" class="password-toggle">
+                      <lucide-icon [name]="confirmPasswordVisible() ? 'eye_off' : 'eye'"></lucide-icon>
+                    </button>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Travel Preferences (Viajero) -->
+            @if (selectedRole() === 'traveler') {
+            <div class="form-section">
+              <h3 class="section-title">{{ 'REGISTER.TRAVEL_PREFERENCES' | translate }}</h3>
+              
+              <div class="form-row two-columns">
+                <label class="form-group">
+                  <span class="form-label">{{ 'REGISTER.BUDGET' | translate }}</span>
+                  <select class="form-input">
+                    <option>{{ 'REGISTER.BUDGET_ECONOMIC' | translate }}</option>
+                    <option>{{ 'REGISTER.BUDGET_STANDARD' | translate }}</option>
+                    <option>{{ 'REGISTER.BUDGET_LUXURY' | translate }}</option>
+                    <option>{{ 'REGISTER.BUDGET_ELITE' | translate }}</option>
+                  </select>
+                </label>
+                <label class="form-group">
+                  <span class="form-label">{{ 'REGISTER.LANGUAGE' | translate }}</span>
+                  <select class="form-input">
+                    <option>{{ 'REGISTER.LANGUAGE_SPANISH' | translate }}</option>
+                    <option>{{ 'REGISTER.LANGUAGE_ENGLISH' | translate }}</option>
+                    <option>{{ 'REGISTER.LANGUAGE_FRENCH' | translate }}</option>
+                    <option>{{ 'REGISTER.LANGUAGE_GERMAN' | translate }}</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+            }
+
+            <!-- Business Info (Proveedor) -->
+            @if (selectedRole() === 'provider') {
+            <div class="form-section">
+              <h3 class="section-title">{{ 'REGISTER.BUSINESS_INFO' | translate }}</h3>
+              
+              <div class="form-row two-columns">
+                <label class="form-group">
+                  <span class="form-label">{{ 'REGISTER.BUSINESS_NAME' | translate }}</span>
+                  <input type="text" class="form-input" [placeholder]="'REGISTER.PLACEHOLDER_BUSINESS_NAME' | translate" />
+                </label>
+                <label class="form-group">
+                  <span class="form-label">{{ 'REGISTER.BUSINESS_TYPE' | translate }}</span>
+                  <select class="form-input">
+                    <option>{{ 'REGISTER.BUSINESS_TYPE_AGENCY' | translate }}</option>
+                    <option>{{ 'REGISTER.BUSINESS_TYPE_TRANSPORT' | translate }}</option>
+                    <option>{{ 'REGISTER.BUSINESS_TYPE_ACCOMMODATION' | translate }}</option>
+                    <option>{{ 'REGISTER.BUSINESS_TYPE_GUIDE' | translate }}</option>
+                    <option>{{ 'REGISTER.BUSINESS_TYPE_RESTAURANT' | translate }}</option>
+                    <option>{{ 'REGISTER.BUSINESS_TYPE_OTHER' | translate }}</option>
+                  </select>
+                </label>
+              </div>
+
+              <div class="form-row two-columns">
+                <label class="form-group">
+                  <span class="form-label">{{ 'REGISTER.PHONE' | translate }}</span>
+                  <input type="tel" class="form-input" [placeholder]="'REGISTER.PLACEHOLDER_PHONE' | translate" />
+                </label>
+                <label class="form-group">
+                  <span class="form-label">{{ 'REGISTER.LOCATION' | translate }}</span>
+                  <input type="text" class="form-input" [placeholder]="'REGISTER.PLACEHOLDER_LOCATION' | translate" />
+                </label>
+              </div>
+
+              <label class="form-group">
+                <span class="form-label">{{ 'REGISTER.SERVICE_DESCRIPTION' | translate }}</span>
+                <textarea class="form-input textarea-input" [placeholder]="'REGISTER.PLACEHOLDER_SERVICE_DESC' | translate"></textarea>
+              </label>
+
+              <label class="form-group">
+                <span class="form-label">{{ 'REGISTER.BUSINESS_EVIDENCE' | translate }}</span>
+                <div class="file-upload-area">
+                  <lucide-icon name="cloud_upload"></lucide-icon>
+                  <p><span class="file-upload-highlight">{{ 'REGISTER.UPLOAD_FILES' | translate }}</span> {{ 'REGISTER.OR_DRAG_DROP' | translate }}</p>
+                  <p class="file-upload-hint">{{ 'REGISTER.FILE_HINT' | translate }}</p>
+                </div>
+              </label>
+
+              <div class="info-message">
+                <lucide-icon name="info"></lucide-icon>
+                <p>{{ 'REGISTER.ADMIN_REVIEW' | translate }}</p>
+              </div>
+            </div>
+            }
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="submit-button">
+          {{ selectedRole() === 'provider' ? ('REGISTER.SUBMIT_PROVIDER' | translate) : ('REGISTER.SUBMIT_TRAVELER' | translate) }}
+        </button>
+
+        <!-- Login Link -->
+        <p class="login-link">
+          {{ 'REGISTER.HAVE_ACCOUNT' | translate }}
+          <a routerLink="/login">{{ 'REGISTER.SIGN_IN_LINK' | translate }}</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <!-- RIGHT SIDE: Branding (40%) -->
+  <div class="branding-panel">
+    <div class="brand-background"></div>
+    <div class="brand-overlay"></div>
+    <div class="brand-content">
+      <div class="brand-header">
+        <svg class="brand-logo" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
+        </svg>
+        <h2>Midnight Voyager</h2>
+      </div>
+      <div class="glass-panel">
+        <h3>{{ 'REGISTER.DISCOVER_WORLD' | translate }}</h3>
+        <div class="accent-line"></div>
+        <p>{{ 'REGISTER.BRAND_DESCRIPTION' | translate }}</p>
+        <div class="stats">
+          <div class="stat">
+            <span class="stat-number">500+</span>
+            <span class="stat-label">{{ 'REGISTER.DESTINATIONS' | translate }}</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-number">24/7</span>
+            <span class="stat-label">{{ 'REGISTER.SUPPORT' | translate }}</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-number">100%</span>
+            <span class="stat-label">{{ 'REGISTER.SECURE' | translate }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
