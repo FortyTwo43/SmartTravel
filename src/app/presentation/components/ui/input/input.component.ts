@@ -23,7 +23,13 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@a
   styleUrl: './input.component.css'
 })
 export class InputComponent implements ControlValueAccessor {
-  id = input<string>('input-' + Math.random().toString(36).substring(2, 9));
+  private static generateSecureId(): string {
+    const array = new Uint8Array(6);
+    crypto.getRandomValues(array);
+    return 'input-' + Array.from(array, byte => byte.toString(16).padStart(2, '0')).join('');
+  }
+
+  id = input<string>(InputComponent.generateSecureId());
   label = input<string>('');
   type = input<'text' | 'password' | 'email'>('text');
   placeholder = input<string>('');

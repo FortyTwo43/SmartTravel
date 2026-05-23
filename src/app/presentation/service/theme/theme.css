@@ -32,6 +32,12 @@
   /* Fonts */
   --font-headline: 'Plus Jakarta Sans', sans-serif;
   --font-body: 'Inter', sans-serif;
+
+  /* Font Size Scaling */
+  --font-scale: 1;
+
+  /* Apply font scale to root so all rem units inherit the scaling */
+  font-size: calc(16px * var(--font-scale));
 }
 
 [data-theme='dark'] {

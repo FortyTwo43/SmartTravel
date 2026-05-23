@@ -1,8 +1,8 @@
 import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { LucideAngularModule, Moon, Sun } from 'lucide-angular';
-import { ThemeService } from './presentation/theme/theme.service';
+import { ThemeService } from './presentation/service/theme/theme.service';
+import { FontSizeService } from './presentation/service/font-size/font-size.service';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +17,7 @@ export class App {
   protected readonly title = signal('SmartTravel');
   private readonly translate = inject(TranslateService);
   protected readonly themeService = inject(ThemeService);
+  protected readonly fontSizeService = inject(FontSizeService);
 
   constructor() {
     this.translate.addLangs(['es', 'en']);

@@ -15,7 +15,7 @@ export class ThemeService {
     // Automatically apply theme changes to document element
     effect(() => {
       const currentTheme = this.theme();
-      document.documentElement.setAttribute('data-theme', currentTheme);
+      document.documentElement.dataset['theme'] = currentTheme;
       localStorage.setItem(this.THEME_KEY, currentTheme);
     });
   }
@@ -33,6 +33,6 @@ export class ThemeService {
     if (savedTheme) return savedTheme;
     
     // Check system preference
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    return globalThis.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   }
 }
