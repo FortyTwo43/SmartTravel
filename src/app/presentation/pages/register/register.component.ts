@@ -81,7 +81,7 @@ export default class RegisterComponent {
 
   // Campos provider
   nombre_negocio = '';
-  tipo_negocio = 'agencia';
+  tipo_negocio: '' | 'restaurante' | 'hotel' | 'tour' = '';
   telefono = '';
   ubicacion = '';
   descripcion = '';
@@ -207,7 +207,7 @@ export default class RegisterComponent {
         idioma: this.idioma,
         // Provider
         nombre_negocio: this.nombre_negocio.trim(),
-        tipo_negocio: this.tipo_negocio,
+        tipo_negocio: this.tipo_negocio as 'restaurante' | 'hotel' | 'tour',
         telefono: this.telefono.trim(),
         descripcion: this.descripcion.trim(),
         ubicacion: this.ubicacion.trim(),
