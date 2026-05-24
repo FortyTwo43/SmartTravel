@@ -4,7 +4,7 @@ export interface AuthResponse {
 }
 
 export interface IAuthRepository {
-    signUp(email: string, password: string): Promise<AuthResponse>;
+    signUp(email: string, password: string, metadata?: Record<string, any>): Promise<AuthResponse>;
     signIn(email: string, password: string): Promise<AuthResponse>;
     signOut(): Promise<void>;
-}
+}

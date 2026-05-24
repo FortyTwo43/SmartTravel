@@ -390,6 +390,27 @@ select.form-input option:checked {
   border-color: rgba(139, 205, 255, 0.2);
 }
 
+/* Alert Messages */
+.alert-message {
+  padding: 0.875rem 1rem;
+  border-radius: 0.625rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.alert-error {
+  background-color: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #f87171;
+}
+
+.alert-success {
+  background-color: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #4ade80;
+}
+
 /* Submit Button */
 .submit-button {
   width: 100%;
@@ -406,12 +427,17 @@ select.form-input option:checked {
   font-size: 0.9375rem;
 }
 
-.submit-button:hover {
+.submit-button:hover:not(:disabled) {
   background-color: var(--surface-tint);
 }
 
-.submit-button:active {
+.submit-button:active:not(:disabled) {
   transform: scale(0.98);
+}
+
+.submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 /* Login Link */

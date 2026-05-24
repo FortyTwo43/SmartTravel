@@ -22,6 +22,7 @@
           (click)="selectRole('traveler')"
           [class.active]="selectedRole() === 'traveler'"
           class="role-btn"
+          type="button"
         >
           <lucide-icon name="briefcase"></lucide-icon>
           <span>{{ 'REGISTER.TRAVELER' | translate }}</span>
@@ -30,14 +31,27 @@
           (click)="selectRole('provider')"
           [class.active]="selectedRole() === 'provider'"
           class="role-btn"
+          type="button"
         >
           <lucide-icon name="building"></lucide-icon>
           <span>{{ 'REGISTER.PROVIDER' | translate }}</span>
         </button>
       </div>
 
+      <!-- Error / Success messages -->
+      @if (errorMessage()) {
+        <div class="alert-message alert-error">
+          {{ errorMessage() }}
+        </div>
+      }
+      @if (successMessage()) {
+        <div class="alert-message alert-success">
+          {{ successMessage() }}
+        </div>
+      }
+
       <!-- Form -->
-      <form class="registration-form-wrapper">
+      <form class="registration-form-wrapper" (ngSubmit)="onSubmit()">
         <div class="form-scroll-container">
           <div class="form-scroll-content">
             <!-- Personal Info Section -->
@@ -47,17 +61,35 @@
               <div class="form-row two-columns">
                 <label class="form-group">
                   <span class="form-label">{{ 'REGISTER.FIRST_NAME' | translate }}</span>
-                  <input type="text" class="form-input" [placeholder]="'REGISTER.PLACEHOLDER_FIRST_NAME' | translate" />
+                  <input
+                    type="text"
+                    class="form-input"
+                    [placeholder]="'REGISTER.PLACEHOLDER_FIRST_NAME' | translate"
+                    [(ngModel)]="nombre"
+                    name="nombre"
+                  />
                 </label>
                 <label class="form-group">
                   <span class="form-label">{{ 'REGISTER.LAST_NAME' | translate }}</span>
-                  <input type="text" class="form-input" [placeholder]="'REGISTER.PLACEHOLDER_LAST_NAME' | translate" />
+                  <input
+                    type="text"
+                    class="form-input"
+                    [placeholder]="'REGISTER.PLACEHOLDER_LAST_NAME' | translate"
+                    [(ngModel)]="apellido"
+                    name="apellido"
+                  />
                 </label>
               </div>
 
               <label class="form-group">
                 <span class="form-label">{{ 'AUTH.EMAIL' | translate }}</span>
-                <input type="email" class="form-input" [placeholder]="'AUTH.PLACEHOLDER_EMAIL' | translate" />
+                <input
+                  type="email"
+                  class="form-input"
+                  [placeholder]="'AUTH.PLACEHOLDER_EMAIL' | translate"
+                  [(ngModel)]="email"
+                  name="email"
+                />
               </label>
 
               <div class="form-row two-columns">
@@ -68,6 +100,8 @@
                       [type]="passwordVisible() ? 'text' : 'password'"
                       class="form-input"
                       placeholder="••••••••"
+                      [(ngModel)]="password"
+                      name="password"
                     />
                     <button type="button" (click)="togglePasswordVisibility()" class="password-toggle">
                       <lucide-icon [name]="passwordVisible() ? 'eye_off' : 'eye'"></lucide-icon>
@@ -81,6 +115,8 @@
                       [type]="confirmPasswordVisible() ? 'text' : 'password'"
                       class="form-input"
                       placeholder="••••••••"
+                      [(ngModel)]="confirmPassword"
+                      name="confirmPassword"
                     />
                     <button type="button" (click)="toggleConfirmPasswordVisibility()" class="password-toggle">
                       <lucide-icon [name]="confirmPasswordVisible() ? 'eye_off' : 'eye'"></lucide-icon>
@@ -98,20 +134,20 @@
               <div class="form-row two-columns">
                 <label class="form-group">
                   <span class="form-label">{{ 'REGISTER.BUDGET' | translate }}</span>
-                  <select class="form-input">
-                    <option>{{ 'REGISTER.BUDGET_ECONOMIC' | translate }}</option>
-                    <option>{{ 'REGISTER.BUDGET_STANDARD' | translate }}</option>
-                    <option>{{ 'REGISTER.BUDGET_LUXURY' | translate }}</option>
-                    <option>{{ 'REGISTER.BUDGET_ELITE' | translate }}</option>
+                  <select class="form-input" [(ngModel)]="presupuesto" name="presupuesto">
+                    <option value="economico">{{ 'REGISTER.BUDGET_ECONOMIC' | translate }}</option>
+                    <option value="estandar">{{ 'REGISTER.BUDGET_STANDARD' | translate }}</option>
+                    <option value="lujo">{{ 'REGISTER.BUDGET_LUXURY' | translate }}</option>
+                    <option value="elite">{{ 'REGISTER.BUDGET_ELITE' | translate }}</option>
                   </select>
                 </label>
                 <label class="form-group">
                   <span class="form-label">{{ 'REGISTER.LANGUAGE' | translate }}</span>
-                  <select class="form-input">
-                    <option>{{ 'REGISTER.LANGUAGE_SPANISH' | translate }}</option>
-                    <option>{{ 'REGISTER.LANGUAGE_ENGLISH' | translate }}</option>
-                    <option>{{ 'REGISTER.LANGUAGE_FRENCH' | translate }}</option>
-                    <option>{{ 'REGISTER.LANGUAGE_GERMAN' | translate }}</option>
+                  <select class="form-input" [(ngModel)]="idioma" name="idioma">
+                    <option value="es">{{ 'REGISTER.LANGUAGE_SPANISH' | translate }}</option>
+                    <option value="en">{{ 'REGISTER.LANGUAGE_ENGLISH' | translate }}</option>
+                    <option value="fr">{{ 'REGISTER.LANGUAGE_FRENCH' | translate }}</option>
+                    <option value="de">{{ 'REGISTER.LANGUAGE_GERMAN' | translate }}</option>
                   </select>
                 </label>
               </div>
@@ -126,17 +162,23 @@
               <div class="form-row two-columns">
                 <label class="form-group">
                   <span class="form-label">{{ 'REGISTER.BUSINESS_NAME' | translate }}</span>
-                  <input type="text" class="form-input" [placeholder]="'REGISTER.PLACEHOLDER_BUSINESS_NAME' | translate" />
+                  <input
+                    type="text"
+                    class="form-input"
+                    [placeholder]="'REGISTER.PLACEHOLDER_BUSINESS_NAME' | translate"
+                    [(ngModel)]="nombre_negocio"
+                    name="nombre_negocio"
+                  />
                 </label>
                 <label class="form-group">
                   <span class="form-label">{{ 'REGISTER.BUSINESS_TYPE' | translate }}</span>
-                  <select class="form-input">
-                    <option>{{ 'REGISTER.BUSINESS_TYPE_AGENCY' | translate }}</option>
-                    <option>{{ 'REGISTER.BUSINESS_TYPE_TRANSPORT' | translate }}</option>
-                    <option>{{ 'REGISTER.BUSINESS_TYPE_ACCOMMODATION' | translate }}</option>
-                    <option>{{ 'REGISTER.BUSINESS_TYPE_GUIDE' | translate }}</option>
-                    <option>{{ 'REGISTER.BUSINESS_TYPE_RESTAURANT' | translate }}</option>
-                    <option>{{ 'REGISTER.BUSINESS_TYPE_OTHER' | translate }}</option>
+                  <select class="form-input" [(ngModel)]="tipo_negocio" name="tipo_negocio">
+                    <option value="agencia">{{ 'REGISTER.BUSINESS_TYPE_AGENCY' | translate }}</option>
+                    <option value="transporte">{{ 'REGISTER.BUSINESS_TYPE_TRANSPORT' | translate }}</option>
+                    <option value="alojamiento">{{ 'REGISTER.BUSINESS_TYPE_ACCOMMODATION' | translate }}</option>
+                    <option value="guia">{{ 'REGISTER.BUSINESS_TYPE_GUIDE' | translate }}</option>
+                    <option value="restaurante">{{ 'REGISTER.BUSINESS_TYPE_RESTAURANT' | translate }}</option>
+                    <option value="otro">{{ 'REGISTER.BUSINESS_TYPE_OTHER' | translate }}</option>
                   </select>
                 </label>
               </div>
@@ -144,17 +186,34 @@
               <div class="form-row two-columns">
                 <label class="form-group">
                   <span class="form-label">{{ 'REGISTER.PHONE' | translate }}</span>
-                  <input type="tel" class="form-input" [placeholder]="'REGISTER.PLACEHOLDER_PHONE' | translate" />
+                  <input
+                    type="tel"
+                    class="form-input"
+                    [placeholder]="'REGISTER.PLACEHOLDER_PHONE' | translate"
+                    [(ngModel)]="telefono"
+                    name="telefono"
+                  />
                 </label>
                 <label class="form-group">
                   <span class="form-label">{{ 'REGISTER.LOCATION' | translate }}</span>
-                  <input type="text" class="form-input" [placeholder]="'REGISTER.PLACEHOLDER_LOCATION' | translate" />
+                  <input
+                    type="text"
+                    class="form-input"
+                    [placeholder]="'REGISTER.PLACEHOLDER_LOCATION' | translate"
+                    [(ngModel)]="ubicacion"
+                    name="ubicacion"
+                  />
                 </label>
               </div>
 
               <label class="form-group">
                 <span class="form-label">{{ 'REGISTER.SERVICE_DESCRIPTION' | translate }}</span>
-                <textarea class="form-input textarea-input" [placeholder]="'REGISTER.PLACEHOLDER_SERVICE_DESC' | translate"></textarea>
+                <textarea
+                  class="form-input textarea-input"
+                  [placeholder]="'REGISTER.PLACEHOLDER_SERVICE_DESC' | translate"
+                  [(ngModel)]="descripcion"
+                  name="descripcion"
+                ></textarea>
               </label>
 
               <label class="form-group">
@@ -176,8 +235,12 @@
         </div>
 
         <!-- Submit Button -->
-        <button type="submit" class="submit-button">
-          {{ selectedRole() === 'provider' ? ('REGISTER.SUBMIT_PROVIDER' | translate) : ('REGISTER.SUBMIT_TRAVELER' | translate) }}
+        <button type="submit" class="submit-button" [disabled]="isLoading()">
+          @if (isLoading()) {
+            <span>{{ 'REGISTER.LOADING' | translate }}</span>
+          } @else {
+            {{ selectedRole() === 'provider' ? ('REGISTER.SUBMIT_PROVIDER' | translate) : ('REGISTER.SUBMIT_TRAVELER' | translate) }}
+          }
         </button>
 
         <!-- Login Link -->
@@ -223,4 +286,5 @@
       </div>
     </div>
   </div>
+
 </div>

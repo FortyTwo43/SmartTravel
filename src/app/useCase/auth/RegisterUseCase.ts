@@ -1,0 +1,146 @@
+import { Injectable, inject } from '@angular/core';
+import { SupabaseAuthRepository } from '../../infrastructure/repositories/supabase/auth/SupabaseAuthRepository';
+import { SupabasePerfilRepository } from '../../infrastructure/repositories/supabase/SupabasePerfilRepository';
+import { SupabasePerfilViajeroRepository } from '../../infrastructure/repositories/supabase/SupabasePerfilViajeroRepository';
+import { SupabaseSolicitudProveedorRepository } from '../../infrastructure/repositories/supabase/SupabaseSolicitudProveedorRepository';
+import { AuthenticationError } from '../../domain/errors/auth-errors';
+
+export interface RegisterRequest {
+  // Datos comunes
+  email: string;
+  password: string;
+  nombre: string;
+  apellido: string;
+  rol: 'traveler' | 'provider';
+
+  // Solo traveler
+  presupuesto?: number;
+  idioma?: string;
+
+  // Solo provider
+  nombre_negocio?: string;
+  tipo_negocio?: string;
+  telefono?: string;
+  descripcion?: string;
+  ubicacion?: string;
+}
+
+export interface RegisterResult {
+  success: boolean;
+  role: 'traveler' | 'provider';
+  /** Para provider: mensaje informativo de que está pendiente de revisión */
+  message?: string;
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class RegisterUseCase {
+  private readonly authRepository = inject(SupabaseAuthRepository);
+  private readonly perfilRepository = inject(SupabasePerfilRepository);
+  private readonly perfilViajeroRepository = inject(SupabasePerfilViajeroRepository);
+  private readonly solicitudProveedorRepository = inject(SupabaseSolicitudProveedorRepository);
+
+  async execute(request: RegisterRequest): Promise<RegisterResult> {
+    if (request.rol === 'traveler') {
+      return await this.registerTraveler(request);
+    } else {
+      return await this.registerProvider(request);
+    }
+  }
+
+  // ─── FLUJO TRAVELER ────────────────────────────────────────────────────────
+
+  private async registerTraveler(request: RegisterRequest): Promise<RegisterResult> {
+    const metadata = {
+      first_name: request.nombre,
+      last_name: request.apellido,
+      rol: 'viajero',
+      intereses: '',
+      presupuesto: request.presupuesto ?? 0,
+      idioma: request.idioma ?? 'es'
+    };
+
+    // PASO 1: Crear usuario en Supabase Auth
+    const authResponse = await this.authRepository.signUp(request.email, request.password, metadata);
+
+    if (!authResponse.user || !authResponse.session) {
+      return {
+        success: true,
+        role: 'traveler',
+        message: 'Usuario registrado. Por favor, revisa tu bandeja de entrada y confirma tu correo electrónico.'
+      };
+    }
+
+    // PASO 2 y 3: El trigger handle_new_user en Supabase creará automáticamente
+    // los registros en las tablas `perfil` y `perfil_viajero` basándose en la metadata.
+
+    // PASO 4: Login automático — signUp con confirmación desactivada en Supabase
+    // ya devuelve la sesión activa en authResponse.session.
+    // No se requiere llamar signIn nuevamente.
+
+    return { success: true, role: 'traveler' };
+  }
+
+  // ─── FLUJO PROVIDER ────────────────────────────────────────────────────────
+
+  private async registerProvider(request: RegisterRequest): Promise<RegisterResult> {
+    const metadata = {
+      first_name: request.nombre,
+      last_name: request.apellido,
+      rol: 'provider'
+    };
+
+    // PASO 1: Crear usuario en Supabase Auth
+    const authResponse = await this.authRepository.signUp(request.email, request.password, metadata);
+
+    if (!authResponse.user) {
+      return {
+        success: true,
+        role: 'provider',
+        message: 'Usuario registrado. Por favor, revisa tu bandeja de entrada y confirma tu correo electrónico.'
+      };
+    }
+
+    const userId = authResponse.user.id;
+
+    // PASO 2: El trigger de DB ya creó el perfil con estado 'activo'.
+    // Actualizamos el estado a 'pending' para el proveedor.
+    try {
+      await this.perfilRepository.update(userId, { estado: 'pending' });
+    } catch (error: any) {
+      throw new Error('Error al actualizar el perfil: ' + (error.message ?? 'Error desconocido'));
+    }
+
+    try {
+      // PASO 3: Crear solicitud_proveedor
+      await this.solicitudProveedorRepository.createWithId({
+        id: userId,
+        id_perfil: userId,
+        nombre_negocio: request.nombre_negocio ?? '',
+        tipo_negocio: request.tipo_negocio ?? '',
+        descripcion: request.descripcion ?? '',
+        telefono: request.telefono ?? '',
+        ubicacion: request.ubicacion ?? '',
+        documento_url: '',
+        estado: 'pending',
+        fecha_solicitud: new Date(),
+      });
+    } catch (error: any) {
+      throw new Error('Error al enviar la solicitud de proveedor: ' + (error.message ?? 'Error desconocido'));
+    }
+
+    // PASO 4: NO hacer login. El proveedor queda pendiente.
+    let finalMessage = 'Tu solicitud fue enviada y será revisada por un administrador antes de habilitar tu cuenta.';
+    
+    if (!authResponse.session) {
+      finalMessage = 'Revisa tu correo para confirmarlo. Tu solicitud como proveedor también será revisada por un administrador.';
+    }
+
+    return {
+      success: true,
+      role: 'provider',
+      message: finalMessage,
+    };
+  }
+}
