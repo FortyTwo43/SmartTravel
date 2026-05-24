@@ -2,7 +2,7 @@ export interface SolicitudProveedor {
   id: string;
   id_perfil: string;
   nombre_negocio: string;
-  tipo_negocio: string;
+  tipo_negocio: 'restaurante' | 'hotel' | 'tour';
   descripcion: string;
   telefono: string;
   ubicacion: string;

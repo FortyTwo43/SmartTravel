@@ -20,7 +20,7 @@ export interface RegisterRequest {
 
   // Solo provider
   nombre_negocio?: string;
-  tipo_negocio?: string;
+  tipo_negocio?: 'restaurante' | 'hotel' | 'tour';
   telefono?: string;
   descripcion?: string;
   ubicacion?: string;
@@ -130,19 +130,18 @@ export class RegisterUseCase {
 
     try {
       // PASO 3: Crear solicitud_proveedor
-      await this.solicitudProveedorRepository.createWithId({
-        id: userId,
+      await this.solicitudProveedorRepository.create({
         id_perfil: userId,
         nombre_negocio: request.nombre_negocio ?? '',
-        tipo_negocio: request.tipo_negocio ?? '',
+        tipo_negocio: request.tipo_negocio as 'restaurante' | 'hotel' | 'tour',
         descripcion: request.descripcion ?? '',
         telefono: request.telefono ?? '',
         ubicacion: request.ubicacion ?? '',
         documento_url: documentoUrl,
         estado: 'pendiente',
-        fecha_solicitud: new Date(),
       });
     } catch (error: any) {
+      console.log("ERROR AL ENVIAR LA SOLICITUD DE PROVEEDOR: ", error.message);
       throw new Error('Error al enviar la solicitud de proveedor: ' + (error.message ?? 'Error desconocido'));
     }
 
