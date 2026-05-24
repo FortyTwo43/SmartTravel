@@ -86,6 +86,7 @@ export default class RegisterComponent {
   ubicacion = '';
   descripcion = '';
   selectedFile: File | null = null;
+  isDragging = signal(false);
 
   // Mapa de valores del select de presupuesto a número
   private readonly presupuestoMap: Record<string, number> = {
@@ -109,28 +110,57 @@ export default class RegisterComponent {
     this.confirmPasswordVisible.set(!this.confirmPasswordVisible());
   }
 
+  onDragOver(event: DragEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.isDragging.set(true);
+  }
+
+  onDragLeave(event: DragEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.isDragging.set(false);
+  }
+
+  onDrop(event: DragEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.isDragging.set(false);
+    
+    if (event.dataTransfer?.files && event.dataTransfer.files.length > 0) {
+      this.handleFile(event.dataTransfer.files[0]);
+    }
+  }
+
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
     if (file) {
-      const allowed = ['application/pdf', 'image/png', 'image/jpeg'];
-      if (!allowed.includes(file.type)) {
-        this.errorMessage.set('Archivo no permitido. Solo PDF, PNG o JPEG.');
-        this.selectedFile = null;
-        event.target.value = '';
-        return;
-      }
-      
-      const maxSize = 5 * 1024 * 1024; // 5 MB
-      if (file.size > maxSize) {
-        this.errorMessage.set('El archivo supera el tamaño máximo de 5MB.');
-        this.selectedFile = null;
-        event.target.value = '';
-        return;
-      }
-
-      this.selectedFile = file;
-      this.errorMessage.set(null);
+      this.handleFile(file);
     }
+    event.target.value = '';
+  }
+
+  private handleFile(file: File) {
+    const allowed = ['application/pdf', 'image/png', 'image/jpeg'];
+    if (!allowed.includes(file.type)) {
+      this.errorMessage.set('Archivo no permitido. Solo PDF, PNG o JPEG.');
+      this.selectedFile = null;
+      return;
+    }
+    
+    const maxSize = 5 * 1024 * 1024; // 5 MB
+    if (file.size > maxSize) {
+      this.errorMessage.set('El archivo supera el tamaño máximo de 5MB.');
+      this.selectedFile = null;
+      return;
+    }
+
+    this.selectedFile = file;
+    this.errorMessage.set(null);
+  }
+
+  removeFile() {
+    this.selectedFile = null;
   }
 
   async onSubmit() {

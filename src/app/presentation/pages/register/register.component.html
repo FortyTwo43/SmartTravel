@@ -216,14 +216,42 @@
                 ></textarea>
               </label>
 
-              <label class="form-group">
+              <div class="form-group">
                 <span class="form-label">{{ 'REGISTER.BUSINESS_EVIDENCE' | translate }}</span>
-                <div class="file-upload-area">
-                  <lucide-icon name="cloud_upload"></lucide-icon>
-                  <p><span class="file-upload-highlight">{{ 'REGISTER.UPLOAD_FILES' | translate }}</span> {{ 'REGISTER.OR_DRAG_DROP' | translate }}</p>
-                  <p class="file-upload-hint">{{ 'REGISTER.FILE_HINT' | translate }}</p>
-                </div>
-              </label>
+                
+                @if (!selectedFile) {
+                  <label 
+                    class="file-upload-area" 
+                    [class.dragging]="isDragging()"
+                    (dragover)="onDragOver($event)"
+                    (dragleave)="onDragLeave($event)"
+                    (drop)="onDrop($event)"
+                    style="cursor: pointer; display: block;">
+                    
+                    <input 
+                      type="file" 
+                      class="hidden-file-input" 
+                      accept="application/pdf, image/png, image/jpeg" 
+                      (change)="onFileSelected($event)"
+                      style="display: none;"
+                    />
+                    
+                    <lucide-icon name="cloud_upload"></lucide-icon>
+                    <p><span class="file-upload-highlight">{{ 'REGISTER.UPLOAD_FILES' | translate }}</span> {{ 'REGISTER.OR_DRAG_DROP' | translate }}</p>
+                    <p class="file-upload-hint">{{ 'REGISTER.FILE_HINT' | translate }} (Max 5MB)</p>
+                  </label>
+                } @else {
+                  <div class="selected-file-area" style="display: flex; align-items: center; justify-content: space-between; padding: 1rem; border: 1px dashed rgba(255, 255, 255, 0.4); border-radius: 8px; margin-top: 0.5rem; background: rgba(255, 255, 255, 0.05);">
+                    <div class="file-info" style="display: flex; align-items: center; gap: 0.75rem; color: #e2e8f0;">
+                      <lucide-icon name="briefcase" [size]="20"></lucide-icon>
+                      <span style="font-weight: 500; font-size: 0.9rem; word-break: break-all;">{{ selectedFile.name }}</span>
+                    </div>
+                    <button type="button" class="remove-file-btn" (click)="removeFile()" style="background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #ef4444; padding: 0.25rem;">
+                      <lucide-icon name="x" [size]="20"></lucide-icon>
+                    </button>
+                  </div>
+                }
+              </div>
 
               <div class="info-message">
                 <lucide-icon name="info"></lucide-icon>

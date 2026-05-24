@@ -97,6 +97,10 @@ export class RegisterUseCase {
       throw error;
     }
 
+    console.log(authResponse);
+    console.log(authResponse.user);
+    console.log(authResponse.session)
+
     if (!authResponse.user) {
       return {
         success: true,
