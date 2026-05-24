@@ -120,16 +120,8 @@ export class RegisterUseCase {
       }
     }
 
-    // PASO 2: El trigger de DB ya creó el perfil con estado 'activo'.
-    // Actualizamos el estado a 'pending' para el proveedor.
     try {
-      await this.perfilRepository.update(userId, { estado: 'inactivo' });
-    } catch (error: any) {
-      throw new Error('Error al actualizar el perfil: ' + (error.message ?? 'Error desconocido'));
-    }
-
-    try {
-      // PASO 3: Crear solicitud_proveedor
+      // PASO 2: Crear solicitud_proveedor
       await this.solicitudProveedorRepository.create({
         id_perfil: userId,
         nombre_negocio: request.nombre_negocio ?? '',
@@ -145,7 +137,7 @@ export class RegisterUseCase {
       throw new Error('Error al enviar la solicitud de proveedor: ' + (error.message ?? 'Error desconocido'));
     }
 
-    // PASO 4: NO hacer login. El proveedor queda pendiente.
+    // PASO 3: El proveedor queda pendiente.
     let finalMessage = 'Tu solicitud fue enviada y será revisada por un administrador antes de habilitar tu cuenta.';
     
     if (!authResponse.session) {
