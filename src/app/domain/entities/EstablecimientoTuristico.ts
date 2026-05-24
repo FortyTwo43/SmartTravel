@@ -5,5 +5,5 @@ export interface EstablecimientoTuristico {
   nombre: string;
   tipo: string;
   descripcion: string;
-  estado: string;
+  estado: 'activo' | 'inactivo';
 }

@@ -17,10 +17,18 @@ export class SupabaseStorageRepository implements IStorageRepository {
       throw new Error(`Error al subir archivo: ${error.message}`);
     }
 
-    const { data: publicUrlData } = this.supabase.storage
-      .from(bucket)
-      .getPublicUrl(path);
+    return path;
+  }
 
-    return publicUrlData.publicUrl;
+  async getSignedUrl(bucket: string, path: string, expiresIn: number = 3600): Promise<string> {
+    const { data, error } = await this.supabase.storage
+      .from(bucket)
+      .createSignedUrl(path, expiresIn);
+
+    if (error) {
+      throw new Error(`Error al generar URL firmada: ${error.message}`);
+    }
+
+    return data.signedUrl;
   }
 }

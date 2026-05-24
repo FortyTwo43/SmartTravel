@@ -8,7 +8,7 @@ export interface CreateReservaDto {
   fecha_reserva: Date;
   cantidad_personas: number;
   precio_total: number;
-  estado: string;
+  estado: 'pendiente' | 'aceptado' | 'rechazado';
 }
 
 export interface UpdateReservaDto {
@@ -17,5 +17,5 @@ export interface UpdateReservaDto {
   fecha_reserva?: Date;
   cantidad_personas?: number;
   precio_total?: number;
-  estado?: string;
+  estado?: 'pendiente' | 'aceptado' | 'rechazado';
 }

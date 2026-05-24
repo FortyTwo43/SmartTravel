@@ -23,7 +23,7 @@ import {
 } from 'lucide-angular';
 import { RegisterUseCase, RegisterRequest } from '../../../useCase/auth/RegisterUseCase';
 
-type Role = 'traveler' | 'provider';
+type Role = 'viajero' | 'proveedor';
 
 @Component({
   selector: 'app-register',
@@ -58,7 +58,7 @@ export default class RegisterComponent {
   private readonly registerUseCase = inject(RegisterUseCase);
   private readonly router = inject(Router);
 
-  selectedRole = signal<Role>('traveler');
+  selectedRole = signal<Role>('viajero');
 
   passwordVisible = signal(false);
   confirmPasswordVisible = signal(false);
@@ -180,7 +180,7 @@ export default class RegisterComponent {
       return;
     }
 
-    if (this.selectedRole() === 'provider') {
+    if (this.selectedRole() === 'proveedor') {
       if (!this.nombre_negocio.trim() || !this.telefono.trim() || !this.descripcion.trim() || !this.ubicacion.trim()) {
         this.errorMessage.set('Por favor completa todos los campos del negocio.');
         return;
@@ -216,7 +216,7 @@ export default class RegisterComponent {
 
       const result = await this.registerUseCase.execute(request);
 
-      if (result.role === 'provider') {
+      if (result.role === 'proveedor') {
         // Proveedor: mostrar mensaje y redirigir al login
         this.successMessage.set(result.message ?? 'Solicitud enviada correctamente.');
         setTimeout(() => {

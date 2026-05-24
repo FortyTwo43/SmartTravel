@@ -12,7 +12,7 @@ export interface RegisterRequest {
   password: string;
   nombre: string;
   apellido: string;
-  rol: 'traveler' | 'provider';
+  rol: 'viajero' | 'proveedor';
 
   // Solo traveler
   presupuesto?: number;
@@ -29,7 +29,7 @@ export interface RegisterRequest {
 
 export interface RegisterResult {
   success: boolean;
-  role: 'traveler' | 'provider';
+  role: 'viajero' | 'proveedor';
   /** Para provider: mensaje informativo de que está pendiente de revisión */
   message?: string;
 }
@@ -45,7 +45,7 @@ export class RegisterUseCase {
   private readonly uploadProviderDocumentUseCase = inject(UploadProviderDocumentUseCase);
 
   async execute(request: RegisterRequest): Promise<RegisterResult> {
-    if (request.rol === 'traveler') {
+    if (request.rol === 'viajero') {
       return await this.registerTraveler(request);
     } else {
       return await this.registerProvider(request);
@@ -67,14 +67,14 @@ export class RegisterUseCase {
       authResponse = await this.authRepository.signUp(request.email, request.password, metadata);
     } catch (error: any) {
       if (error instanceof AuthenticationError) {
-        return { success: false, role: 'traveler', message: error.message };
+        return { success: false, role: 'viajero', message: error.message };
       }
       throw error;
     }
 
     return { 
       success: true, 
-      role: 'traveler',
+      role: 'viajero',
       message: 'Usuario registrado exitosamente. Te hemos enviado un correo de verificación, por favor revisa tu bandeja de entrada para confirmarlo.'
     };
   }
@@ -83,7 +83,7 @@ export class RegisterUseCase {
     const metadata = {
       first_name: request.nombre,
       last_name: request.apellido,
-      rol: 'provider'
+      rol: 'proveedor'
     };
 
     // PASO 1: Crear usuario en Supabase Auth
@@ -92,7 +92,7 @@ export class RegisterUseCase {
       authResponse = await this.authRepository.signUp(request.email, request.password, metadata);
     } catch (error: any) {
       if (error instanceof AuthenticationError) {
-        return { success: false, role: 'provider', message: error.message };
+        return { success: false, role: 'proveedor', message: error.message };
       }
       throw error;
     }
@@ -104,7 +104,7 @@ export class RegisterUseCase {
     if (!authResponse.user) {
       return {
         success: true,
-        role: 'provider',
+        role: 'proveedor',
         message: 'Usuario registrado exitosamente. Te hemos enviado un correo de verificación, por favor revisa tu bandeja de entrada para confirmarlo.'
       };
     }
@@ -139,7 +139,7 @@ export class RegisterUseCase {
         telefono: request.telefono ?? '',
         ubicacion: request.ubicacion ?? '',
         documento_url: documentoUrl,
-        estado: 'pending',
+        estado: 'pendiente',
         fecha_solicitud: new Date(),
       });
     } catch (error: any) {
@@ -155,7 +155,7 @@ export class RegisterUseCase {
 
     return {
       success: true,
-      role: 'provider',
+      role: 'proveedor',
       message: finalMessage,
     };
   }

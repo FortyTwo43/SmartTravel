@@ -19,8 +19,8 @@
       <!-- Role Selector -->
       <div class="role-selector">
         <button
-          (click)="selectRole('traveler')"
-          [class.active]="selectedRole() === 'traveler'"
+          (click)="selectRole('viajero')"
+          [class.active]="selectedRole() === 'viajero'"
           class="role-btn"
           type="button"
         >
@@ -28,8 +28,8 @@
           <span>{{ 'REGISTER.TRAVELER' | translate }}</span>
         </button>
         <button
-          (click)="selectRole('provider')"
-          [class.active]="selectedRole() === 'provider'"
+          (click)="selectRole('proveedor')"
+          [class.active]="selectedRole() === 'proveedor'"
           class="role-btn"
           type="button"
         >
@@ -127,7 +127,7 @@
             </div>
 
             <!-- Travel Preferences (Viajero) -->
-            @if (selectedRole() === 'traveler') {
+            @if (selectedRole() === 'viajero') {
             <div class="form-section">
               <h3 class="section-title">{{ 'REGISTER.TRAVEL_PREFERENCES' | translate }}</h3>
               
@@ -155,7 +155,7 @@
             }
 
             <!-- Business Info (Proveedor) -->
-            @if (selectedRole() === 'provider') {
+            @if (selectedRole() === 'proveedor') {
             <div class="form-section">
               <h3 class="section-title">{{ 'REGISTER.BUSINESS_INFO' | translate }}</h3>
               
@@ -267,7 +267,7 @@
           @if (isLoading()) {
             <span>{{ 'REGISTER.LOADING' | translate }}</span>
           } @else {
-            {{ selectedRole() === 'provider' ? ('REGISTER.SUBMIT_PROVIDER' | translate) : ('REGISTER.SUBMIT_TRAVELER' | translate) }}
+            {{ selectedRole() === 'proveedor' ? ('REGISTER.SUBMIT_PROVIDER' | translate) : ('REGISTER.SUBMIT_TRAVELER' | translate) }}
           }
         </button>
 

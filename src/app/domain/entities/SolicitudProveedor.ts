@@ -7,6 +7,6 @@ export interface SolicitudProveedor {
   telefono: string;
   ubicacion: string;
   documento_url: string;
-  estado: string;
+  estado: 'pendiente' | 'aceptado' | 'rechazado';
   fecha_solicitud: Date;
 }

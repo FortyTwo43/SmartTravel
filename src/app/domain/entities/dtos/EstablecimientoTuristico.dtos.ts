@@ -8,7 +8,7 @@ export interface CreateEstablecimientoTuristicoDto {
   nombre: string;
   tipo: string;
   descripcion: string;
-  estado: string;
+  estado: 'activo' | 'inactivo';
 }
 
 export interface UpdateEstablecimientoTuristicoDto {
@@ -17,5 +17,5 @@ export interface UpdateEstablecimientoTuristicoDto {
   nombre?: string;
   tipo?: string;
   descripcion?: string;
-  estado?: string;
+  estado?: 'activo' | 'inactivo';
 }
