@@ -85,6 +85,7 @@ export default class RegisterComponent {
   telefono = '';
   ubicacion = '';
   descripcion = '';
+  selectedFile: File | null = null;
 
   // Mapa de valores del select de presupuesto a número
   private readonly presupuestoMap: Record<string, number> = {
@@ -106,6 +107,30 @@ export default class RegisterComponent {
 
   toggleConfirmPasswordVisibility() {
     this.confirmPasswordVisible.set(!this.confirmPasswordVisible());
+  }
+
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      const allowed = ['application/pdf', 'image/png', 'image/jpeg'];
+      if (!allowed.includes(file.type)) {
+        this.errorMessage.set('Archivo no permitido. Solo PDF, PNG o JPEG.');
+        this.selectedFile = null;
+        event.target.value = '';
+        return;
+      }
+      
+      const maxSize = 5 * 1024 * 1024; // 5 MB
+      if (file.size > maxSize) {
+        this.errorMessage.set('El archivo supera el tamaño máximo de 5MB.');
+        this.selectedFile = null;
+        event.target.value = '';
+        return;
+      }
+
+      this.selectedFile = file;
+      this.errorMessage.set(null);
+    }
   }
 
   async onSubmit() {
@@ -130,6 +155,10 @@ export default class RegisterComponent {
         this.errorMessage.set('Por favor completa todos los campos del negocio.');
         return;
       }
+      if (!this.selectedFile) {
+        this.errorMessage.set('Por favor sube el documento requerido (PDF, PNG o JPEG).');
+        return;
+      }
     }
 
     this.isLoading.set(true);
@@ -152,6 +181,7 @@ export default class RegisterComponent {
         telefono: this.telefono.trim(),
         descripcion: this.descripcion.trim(),
         ubicacion: this.ubicacion.trim(),
+        documento: this.selectedFile || undefined,
       };
 
       const result = await this.registerUseCase.execute(request);

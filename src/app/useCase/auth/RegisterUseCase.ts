@@ -4,6 +4,7 @@ import { SupabasePerfilRepository } from '../../infrastructure/repositories/supa
 import { SupabasePerfilViajeroRepository } from '../../infrastructure/repositories/supabase/SupabasePerfilViajeroRepository';
 import { SupabaseSolicitudProveedorRepository } from '../../infrastructure/repositories/supabase/SupabaseSolicitudProveedorRepository';
 import { AuthenticationError } from '../../domain/errors/auth-errors';
+import { UploadProviderDocumentUseCase } from '../upload/UploadProviderDocumentUseCase';
 
 export interface RegisterRequest {
   // Datos comunes
@@ -23,6 +24,7 @@ export interface RegisterRequest {
   telefono?: string;
   descripcion?: string;
   ubicacion?: string;
+  documento?: File;
 }
 
 export interface RegisterResult {
@@ -40,6 +42,7 @@ export class RegisterUseCase {
   private readonly perfilRepository = inject(SupabasePerfilRepository);
   private readonly perfilViajeroRepository = inject(SupabasePerfilViajeroRepository);
   private readonly solicitudProveedorRepository = inject(SupabaseSolicitudProveedorRepository);
+  private readonly uploadProviderDocumentUseCase = inject(UploadProviderDocumentUseCase);
 
   async execute(request: RegisterRequest): Promise<RegisterResult> {
     if (request.rol === 'traveler') {
@@ -48,8 +51,6 @@ export class RegisterUseCase {
       return await this.registerProvider(request);
     }
   }
-
-  // ─── FLUJO TRAVELER ────────────────────────────────────────────────────────
 
   private async registerTraveler(request: RegisterRequest): Promise<RegisterResult> {
     const metadata = {
@@ -61,28 +62,22 @@ export class RegisterUseCase {
       idioma: request.idioma ?? 'es'
     };
 
-    // PASO 1: Crear usuario en Supabase Auth
-    const authResponse = await this.authRepository.signUp(request.email, request.password, metadata);
-
-    if (!authResponse.user || !authResponse.session) {
-      return {
-        success: true,
-        role: 'traveler',
-        message: 'Usuario registrado. Por favor, revisa tu bandeja de entrada y confirma tu correo electrónico.'
-      };
+    let authResponse;
+    try {
+      authResponse = await this.authRepository.signUp(request.email, request.password, metadata);
+    } catch (error: any) {
+      if (error instanceof AuthenticationError) {
+        return { success: false, role: 'traveler', message: error.message };
+      }
+      throw error;
     }
 
-    // PASO 2 y 3: El trigger handle_new_user en Supabase creará automáticamente
-    // los registros en las tablas `perfil` y `perfil_viajero` basándose en la metadata.
-
-    // PASO 4: Login automático — signUp con confirmación desactivada en Supabase
-    // ya devuelve la sesión activa en authResponse.session.
-    // No se requiere llamar signIn nuevamente.
-
-    return { success: true, role: 'traveler' };
+    return { 
+      success: true, 
+      role: 'traveler',
+      message: 'Usuario registrado exitosamente. Te hemos enviado un correo de verificación, por favor revisa tu bandeja de entrada para confirmarlo.'
+    };
   }
-
-  // ─── FLUJO PROVIDER ────────────────────────────────────────────────────────
 
   private async registerProvider(request: RegisterRequest): Promise<RegisterResult> {
     const metadata = {
@@ -92,22 +87,39 @@ export class RegisterUseCase {
     };
 
     // PASO 1: Crear usuario en Supabase Auth
-    const authResponse = await this.authRepository.signUp(request.email, request.password, metadata);
+    let authResponse;
+    try {
+      authResponse = await this.authRepository.signUp(request.email, request.password, metadata);
+    } catch (error: any) {
+      if (error instanceof AuthenticationError) {
+        return { success: false, role: 'provider', message: error.message };
+      }
+      throw error;
+    }
 
     if (!authResponse.user) {
       return {
         success: true,
         role: 'provider',
-        message: 'Usuario registrado. Por favor, revisa tu bandeja de entrada y confirma tu correo electrónico.'
+        message: 'Usuario registrado exitosamente. Te hemos enviado un correo de verificación, por favor revisa tu bandeja de entrada para confirmarlo.'
       };
     }
 
     const userId = authResponse.user.id;
 
+    let documentoUrl = '';
+    if (request.documento) {
+      try {
+        documentoUrl = await this.uploadProviderDocumentUseCase.execute(userId, request.documento);
+      } catch (error: any) {
+        throw new Error('Error al subir el documento: ' + (error.message ?? 'Error desconocido'));
+      }
+    }
+
     // PASO 2: El trigger de DB ya creó el perfil con estado 'activo'.
     // Actualizamos el estado a 'pending' para el proveedor.
     try {
-      await this.perfilRepository.update(userId, { estado: 'pending' });
+      await this.perfilRepository.update(userId, { estado: 'inactivo' });
     } catch (error: any) {
       throw new Error('Error al actualizar el perfil: ' + (error.message ?? 'Error desconocido'));
     }
@@ -122,7 +134,7 @@ export class RegisterUseCase {
         descripcion: request.descripcion ?? '',
         telefono: request.telefono ?? '',
         ubicacion: request.ubicacion ?? '',
-        documento_url: '',
+        documento_url: documentoUrl,
         estado: 'pending',
         fecha_solicitud: new Date(),
       });
@@ -134,7 +146,7 @@ export class RegisterUseCase {
     let finalMessage = 'Tu solicitud fue enviada y será revisada por un administrador antes de habilitar tu cuenta.';
     
     if (!authResponse.session) {
-      finalMessage = 'Revisa tu correo para confirmarlo. Tu solicitud como proveedor también será revisada por un administrador.';
+      finalMessage = 'Registro exitoso. Te hemos enviado un correo de verificación. Tu solicitud como proveedor también será revisada por un administrador.';
     }
 
     return {
