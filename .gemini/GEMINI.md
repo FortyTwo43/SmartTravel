@@ -9,6 +9,7 @@ Eres un asistente de codificación experto para el proyecto SmartTravel. Debes s
 - **Creación de Componentes**: Usa siempre `ng generate component [ruta/nombre] --standalone`.
 - **Creación de Servicios**: Usa siempre `ng generate service [ruta/nombre]`.
 - **Estructura de Archivos**: Los componentes **DEBEN** tener archivos separados para lógica (`.ts`), plantilla (`.html`), estilos (`.css`) y pruebas (`.spec.ts`). Prohibido el uso de `template` o `styles` inline.
+- **Componentes**: Cada componente debe estar dentro de una carpeta y dentro de ella de sigue la **Estructura de Archivos**`definida anteriormente, unicamente para ese componente. **Prohibido** colocar diferentes componentes dentro de esa carpeta.
 - **Manejo de Estado**: Usa **Signals** para la gestión del estado reactivo.
 - **Inyección de Dependencias**: Prefiere la función `inject()` sobre la inyección por constructor.
 - **Carga Perezosa**: Implementa Lazy Loading para todas las rutas de funcionalidades.
@@ -55,4 +56,20 @@ Debes colocar los archivos en las rutas correspondientes:
 
 ## ✨ Iconos
 - Usa exclusivamente la librería **Lucide Angular**.
-- **Carga Local**: No cargues iconos globalmente en `app.config.ts`. Cada componente debe importar los iconos que necesita usando `LucideAngularModule.pick({ IconName })` en su array de `imports`.
+- **Carga Local**: No cargues iconos globalmente en `app.config.ts`. Cada componente debe importar los iconos que necesita en su decorador `@Component` de la siguiente manera estricta (como se hace en `login-page.component.ts`) para evitar errores:
+  1. Importar `LucideAngularModule` en el array `imports`.
+  2. Proveer los iconos específicos usando el array `providers` con `LUCIDE_ICONS` y `LucideIconProvider`.
+  Ejemplo:
+  ```typescript
+  import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Mail } from 'lucide-angular';
+  
+  @Component({
+    imports: [LucideAngularModule],
+    providers: [{
+      provide: LUCIDE_ICONS,
+      multi: true,
+      useValue: new LucideIconProvider({ Mail })
+    }]
+  })
+  ```
+  **PROHIBIDO** usar `LucideAngularModule.pick(...)` en el array de `imports`.

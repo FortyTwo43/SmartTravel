@@ -2,7 +2,7 @@ export interface Perfil {
   id: string;
   nombre: string;
   apellido: string;
-  rol: string;
+  rol: 'viajero' | 'proveedor' | 'admin';
   fecha_registro: Date;
-  estado: string;
+  estado: 'activo' | 'inactivo';
 }

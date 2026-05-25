@@ -89,8 +89,10 @@ solicitud_proveedor {
     string id PK
     string id_perfil FK
     string nombre_negocio
+    string tipo_negocio
     string descripcion
     string telefono
+    string ubicacion
     string documento_url
     string estado
     date fecha_solicitud

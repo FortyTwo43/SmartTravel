@@ -5,7 +5,7 @@ import { SolicitudProveedorRepository } from '../../../domain/repositories/Solic
 import { CreateSolicitudProveedorDto, UpdateSolicitudProveedorDto } from '../../../domain/entities/dtos';
 import { SupabaseCrudRepository } from './SupabaseCrudRepository';
 import { buildSupabaseError } from './supabaseUtils/supabase-error';
-import { mapDateFromDb } from './supabaseUtils/mapper-helpers';
+import { mapDateFromDb, mapDateToIso } from './supabaseUtils/mapper-helpers';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +28,16 @@ export class SupabaseSolicitudProveedorRepository
 
     if (error) throw buildSupabaseError('findByPerfilId', this.tableName, error);
     return (data ?? []).map((row) => this.mapFromRow(row));
+  }
+
+  protected override mapToRow(item: CreateSolicitudProveedorDto | UpdateSolicitudProveedorDto): Record<string, unknown> {
+    const mapped: Record<string, unknown> = { ...item };
+
+    if ('fecha_solicitud' in item && item.fecha_solicitud) {
+      mapped['fecha_solicitud'] = mapDateToIso(item.fecha_solicitud as Date);
+    }
+
+    return mapped;
   }
 
   protected override mapFromRow(row: SolicitudProveedor): SolicitudProveedor {

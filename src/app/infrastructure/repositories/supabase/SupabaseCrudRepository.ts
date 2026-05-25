@@ -46,6 +46,17 @@ export abstract class SupabaseCrudRepository<
     return this.mapFromRow(data);
   }
 
+  async createWithId(item: CreateDto & { id: string }): Promise<T> {
+    const { data, error } = await this.supabase
+      .from(this.tableName)
+      .insert(this.mapToRow(item))
+      .select()
+      .single();
+
+    if (error) throw buildSupabaseError('createWithId', this.tableName, error);
+    return this.mapFromRow(data);
+  }
+
   async getAll(): Promise<T[]> {
     const { data, error } = await this.supabase
       .from(this.tableName)
