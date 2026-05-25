@@ -6,7 +6,7 @@ import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Mail, Lock, Eye,
 import { InputComponent } from '../../components/ui/input/input.component';
 import { ButtonComponent } from '../../components/ui/button/button.component';
 import { LoginUseCase } from '../../../useCase/auth/LoginUseCase';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -17,7 +17,8 @@ import { Router } from '@angular/router';
     ReactiveFormsModule,
     LucideAngularModule,
     InputComponent,
-    ButtonComponent
+    ButtonComponent,
+    RouterLink
   ],
   providers: [
     {
