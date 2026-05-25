@@ -182,40 +182,11 @@ export default class RegisterComponent {
   }
 
   async onSubmit() {
-    // Validaciones básicas
-    if (!this.nombre.trim() || !this.apellido.trim() || !this.email.trim() || !this.password) {
-      this.errorMessage.set(this.translateService.instant('REGISTER.ERROR_REQUIRED_FIELDS'));
+    // Validate form data
+    const validationError = this.validateFormData();
+    if (validationError) {
+      this.errorMessage.set(validationError);
       return;
-    }
-
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.email)) {
-      this.errorMessage.set(this.translateService.instant('REGISTER.ERROR_INVALID_EMAIL_FORMAT'));
-      return;
-    }
-
-    if (this.password !== this.confirmPassword) {
-      this.errorMessage.set(this.translateService.instant('REGISTER.ERROR_PASSWORD_MISMATCH'));
-      return;
-    }
-
-    if (this.password.length < 8) {
-      this.errorMessage.set(this.translateService.instant('REGISTER.ERROR_MIN_LENGTH_8'));
-      return;
-    }
-
-    if (this.selectedRole() === 'proveedor') {
-      if (!this.nombre_negocio.trim() || !this.telefono.trim() || !this.descripcion.trim() || !this.ubicacion.trim()) {
-        this.errorMessage.set(this.translateService.instant('REGISTER.ERROR_BUSINESS_FIELDS'));
-        return;
-      }
-      if (!/^\d{10}$/.test(this.telefono)) {
-        this.errorMessage.set(this.translateService.instant('REGISTER.ERROR_PHONE_10_DIGITS'));
-        return;
-      }
-      if (!this.selectedFile) {
-        this.errorMessage.set(this.translateService.instant('REGISTER.ERROR_DOCUMENT_REQUIRED'));
-        return;
-      }
     }
 
     this.isLoading.set(true);
@@ -249,26 +220,72 @@ export default class RegisterComponent {
         return;
       }
 
-      if (result.role === 'proveedor') {
-        // Proveedor: mostrar mensaje y redirigir al login
-        this.successMessage.set(result.message ?? this.translateService.instant('REGISTER.PROVIDER_REQUEST_SENT'));
-        setTimeout(() => {
-          this.router.navigate(['/login']);
-        }, 3000);
-      } else if (result.message) {
-        // Viajero con mensaje: mostrar y redirigir al login
-        this.successMessage.set(result.message);
-        setTimeout(() => {
-          this.router.navigate(['/login']);
-        }, 3000);
-      } else {
-        // Viajero sin mensaje: ir al home (login automático)
-        this.router.navigate(['/home']);
-      }
+      this.handleRegistrationSuccess(result);
     } catch (error: any) {
       this.errorMessage.set(this.getFriendlyError(error));
     } finally {
       this.isLoading.set(false);
+    }
+  }
+
+  private validateFormData(): string | null {
+    // Validaciones básicas
+    if (!this.nombre.trim() || !this.apellido.trim() || !this.email.trim() || !this.password) {
+      return this.translateService.instant('REGISTER.ERROR_REQUIRED_FIELDS');
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.email)) {
+      return this.translateService.instant('REGISTER.ERROR_INVALID_EMAIL_FORMAT');
+    }
+
+    if (this.password !== this.confirmPassword) {
+      return this.translateService.instant('REGISTER.ERROR_PASSWORD_MISMATCH');
+    }
+
+    if (this.password.length < 8) {
+      return this.translateService.instant('REGISTER.ERROR_MIN_LENGTH_8');
+    }
+
+    // Validaciones específicas del proveedor
+    if (this.selectedRole() === 'proveedor') {
+      return this.validateProviderFields();
+    }
+
+    return null;
+  }
+
+  private validateProviderFields(): string | null {
+    if (!this.nombre_negocio.trim() || !this.telefono.trim() || !this.descripcion.trim() || !this.ubicacion.trim()) {
+      return this.translateService.instant('REGISTER.ERROR_BUSINESS_FIELDS');
+    }
+
+    if (!/^\d{10}$/.test(this.telefono)) {
+      return this.translateService.instant('REGISTER.ERROR_PHONE_10_DIGITS');
+    }
+
+    if (!this.selectedFile) {
+      return this.translateService.instant('REGISTER.ERROR_DOCUMENT_REQUIRED');
+    }
+
+    return null;
+  }
+
+  private handleRegistrationSuccess(result: any): void {
+    if (result.role === 'proveedor') {
+      // Proveedor: mostrar mensaje y redirigir al login
+      this.successMessage.set(result.message ?? this.translateService.instant('REGISTER.PROVIDER_REQUEST_SENT'));
+      setTimeout(() => {
+        this.router.navigate(['/login']);
+      }, 3000);
+    } else if (result.message) {
+      // Viajero con mensaje: mostrar y redirigir al login
+      this.successMessage.set(result.message);
+      setTimeout(() => {
+        this.router.navigate(['/login']);
+      }, 3000);
+    } else {
+      // Viajero sin mensaje: ir al home (login automático)
+      this.router.navigate(['/home']);
     }
   }
 
