@@ -504,7 +504,7 @@ select.form-input option:checked {
   bottom: 0;
   background-size: cover;
   background-position: center;
-  background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAdr-LKeNFDD-J0JJcNWHbNb2EfnQNc_1lTxxWdGk6mtyi1fe4yVrpqLi22oGDl7UT2WZIRw5VgcuE0Ut_uaUbRATiD6yVcYIsT1xPDWVQITfDj_jPYmq2jLQdndCxQza3hMu_3ryr32_K84wh1sTUvaq0oGDdHimgKXSo-G6cwZbpbed1mjlDcn8--hT0rs-eRmrIG1hQHAScSRAEeIB5mplp2DR7HgaVnUoAwsvlBexQy9FtHPreZg7qhUR3iOaNGiWhYwI6GbA');
+  background-image: url('/assets/imagen_registro.png');
 }
 
 .brand-overlay {
