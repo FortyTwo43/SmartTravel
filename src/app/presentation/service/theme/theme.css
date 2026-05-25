@@ -1,78 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
 
 :root {
-  /* Midnight Voyager Color Palette */
-  --surface: #0d1322;
-  --surface-dim: #0d1322;
-  --surface-bright: #33394a;
-  --surface-container-lowest: #080e1d;
-  --surface-container-low: #151b2b;
-  --surface-container: #191f2f;
-  --surface-container-high: #242a3a;
-  --surface-container-highest: #2f3445;
-  
-  --on-surface: #dde2f8;
-  --on-surface-variant: #bec7d2;
-  --inverse-surface: #dde2f8;
-  --inverse-on-surface: #2a3040;
-  
-  --outline: #89929b;
-  --outline-variant: #3f4850;
-  --surface-tint: #8fcdff;
-  
-  --primary: #8fcdff;
-  --on-primary: #00344f;
-  --primary-container: #1c99dd;
-  --on-primary-container: #002d45;
-  --inverse-primary: #006495;
-  
-  --secondary: #c7bfff;
-  --on-secondary: #2c1092;
-  --secondary-container: #4634ab;
-  --on-secondary-container: #b8afff;
-  
-  --tertiary: #ffb1c6;
-  --on-tertiary: #650030;
-  --tertiary-container: #fe4a91;
-  --on-tertiary-container: #59002a;
-  
-  --error: #ffb4ab;
-  --on-error: #690005;
-  --error-container: #93000a;
-  --on-error-container: #ffdad6;
-  
-  --primary-fixed: #cbe6ff;
-  --primary-fixed-dim: #8fcdff;
-  --on-primary-fixed: #001e30;
-  --on-primary-fixed-variant: #004b71;
-  
-  --secondary-fixed: #e5deff;
-  --secondary-fixed-dim: #c7bfff;
-  --on-secondary-fixed: #180065;
-  --on-secondary-fixed-variant: #4331a8;
-  
-  --tertiary-fixed: #ffd9e1;
-  --tertiary-fixed-dim: #ffb1c6;
-  --on-tertiary-fixed: #3f001b;
-  --on-tertiary-fixed-variant: #8e0046;
-  
-  --background: #0d1322;
-  --on-background: #dde2f8;
-  --surface-variant: #2f3445;
+  /* Colors from Image */
+  --color-primary: #0288D1;
+  --color-secondary: #4CAF50;
+  --color-tertiary: #C26C02;
+  --color-neutral: #73777D;
 
-  /* Legacy color mappings for compatibility */
-  --bg-main: var(--surface);
-  --bg-surface: var(--surface-container);
-  --bg-surface-alt: var(--surface-container-low);
+  /* Light Theme */
+  --bg-main: #E9ECEF;
+  --bg-surface: #FFFFFF;
+  --bg-surface-alt: #F8F9FA;
   
-  --text-main: var(--on-surface);
-  --text-muted: var(--on-surface-variant);
-  --text-on-primary: var(--on-primary);
+  --text-main: #1F2937;
+  --text-muted: #6B7280;
+  --text-on-primary: #FFFFFF;
   
-  --color-primary: var(--primary);
-  --color-secondary: var(--secondary);
-  --border-color: var(--outline);
-  --input-bg: var(--surface-container-lowest);
+  --border-color: #D1D5DB;
+  --input-bg: #F3F4F6;
 
   /* Spacing & Radius */
   --radius-sm: 8px;
@@ -86,11 +31,29 @@
 
   /* Fonts */
   --font-headline: 'Plus Jakarta Sans', sans-serif;
-  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Inter', sans-serif;
 
   /* Font Size Scaling */
   --font-scale: 1;
 
   /* Apply font scale to root so all rem units inherit the scaling */
   font-size: calc(16px * var(--font-scale));
+}
+
+[data-theme='dark'] {
+  /* Dark Theme Palette */
+  --bg-main: #0F172A;
+  --bg-surface: #1E293B;
+  --bg-surface-alt: #334155;
+  
+  --text-main: #F9FAFB;
+  --text-muted: #9CA3AF;
+  --text-on-primary: #FFFFFF;
+  
+  --border-color: #334155;
+  --input-bg: #0F172A;
+  
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.5);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.6), 0 4px 6px -4px rgb(0 0 0 / 0.6);
 }
