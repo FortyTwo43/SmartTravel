@@ -243,9 +243,15 @@ export default class RegisterComponent {
 
       const result = await this.registerUseCase.execute(request);
 
+      // Check if registration failed
+      if (!result.success) {
+        this.errorMessage.set(result.message ?? this.translateService.instant('REGISTER.ERROR_UNEXPECTED'));
+        return;
+      }
+
       if (result.role === 'proveedor') {
         // Proveedor: mostrar mensaje y redirigir al login
-        this.successMessage.set(result.message ?? 'Solicitud enviada correctamente.');
+        this.successMessage.set(result.message ?? this.translateService.instant('REGISTER.PROVIDER_REQUEST_SENT'));
         setTimeout(() => {
           this.router.navigate(['/login']);
         }, 3000);
