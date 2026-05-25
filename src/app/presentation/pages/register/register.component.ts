@@ -249,17 +249,15 @@ export default class RegisterComponent {
         setTimeout(() => {
           this.router.navigate(['/login']);
         }, 3000);
+      } else if (result.message) {
+        // Viajero con mensaje: mostrar y redirigir al login
+        this.successMessage.set(result.message);
+        setTimeout(() => {
+          this.router.navigate(['/login']);
+        }, 3000);
       } else {
-        // Viajero: si hay un mensaje (ej. confirmación de correo), lo mostramos y vamos al login
-        if (result.message) {
-          this.successMessage.set(result.message);
-          setTimeout(() => {
-            this.router.navigate(['/login']);
-          }, 3000);
-        } else {
-          // Si no hay mensaje, vamos al home directamente (login automático)
-          this.router.navigate(['/home']);
-        }
+        // Viajero sin mensaje: ir al home (login automático)
+        this.router.navigate(['/home']);
       }
     } catch (error: any) {
       this.errorMessage.set(this.getFriendlyError(error));

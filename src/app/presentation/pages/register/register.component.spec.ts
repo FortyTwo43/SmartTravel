@@ -1,10 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import RegisterComponent from './register.component';
 import { RegisterUseCase } from '../../../useCase/auth/RegisterUseCase';
-import { Router } from '@angular/router';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { of } from 'rxjs';
-import { provideRouter } from '@angular/router';
+import { Router, provideRouter } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { vi } from 'vitest';
 
 describe('RegisterComponent', () => {

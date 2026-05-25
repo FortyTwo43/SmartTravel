@@ -3,9 +3,8 @@ import { LoginPageComponent } from './login-page.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { LucideAngularModule, Mail, Lock, Eye, EyeOff, Sparkles } from 'lucide-angular';
 import { LoginUseCase } from '../../../useCase/auth/LoginUseCase';
-import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-import { provideRouter } from '@angular/router';
+import { provideRouter, Router } from '@angular/router';
 import { vi } from 'vitest';
 
 describe('LoginPageComponent', () => {

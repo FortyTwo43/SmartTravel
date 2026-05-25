@@ -62,9 +62,8 @@ export class RegisterUseCase {
       idioma: request.idioma ?? 'es'
     };
 
-    let authResponse;
     try {
-      authResponse = await this.authRepository.signUp(request.email, request.password, metadata);
+      await this.authRepository.signUp(request.email, request.password, metadata);
     } catch (error: any) {
       if (error instanceof AuthenticationError) {
         return { success: false, role: 'viajero', message: error.message };
