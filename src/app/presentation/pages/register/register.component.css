@@ -188,6 +188,8 @@
 }
 
 .form-input {
+  width: 100%;
+  box-sizing: border-box;
   background-color: var(--surface-container-lowest);
   border: 1px solid var(--outline-variant);
   border-radius: 0.5rem;
@@ -323,6 +325,11 @@ select.form-input option:checked {
   position: relative;
   display: flex;
   align-items: center;
+  width: 100%;
+}
+
+.password-wrapper .form-input {
+  padding-right: 2.75rem;
 }
 
 .password-toggle {
