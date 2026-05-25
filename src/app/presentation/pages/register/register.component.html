@@ -1,0 +1,268 @@
+<div class="register-container">
+  <!-- LEFT SIDE: Registration Form (60%) -->
+  <div class="form-panel">
+    <!-- Back Button -->
+    <div class="back-button-container">
+      <a class="back-button" routerLink="/">
+        <lucide-icon name="arrow_left"></lucide-icon>
+        <span>{{ 'REGISTER.BACK_HOME' | translate }}</span>
+      </a>
+    </div>
+
+    <div class="form-wrapper">
+      <!-- Header -->
+      <div class="form-header">
+        <h1>{{ 'REGISTER.CREATE_ACCOUNT' | translate }}</h1>
+        <p>{{ 'REGISTER.START_EXPERIENCE' | translate }}</p>
+      </div>
+
+      <!-- Role Selector -->
+      <div class="role-selector">
+        <button (click)="selectRole('viajero')" [class.active]="selectedRole() === 'viajero'" class="role-btn"
+          type="button">
+          <lucide-icon name="briefcase"></lucide-icon>
+          <span>{{ 'REGISTER.TRAVELER' | translate }}</span>
+        </button>
+        <button (click)="selectRole('proveedor')" [class.active]="selectedRole() === 'proveedor'" class="role-btn"
+          type="button">
+          <lucide-icon name="building"></lucide-icon>
+          <span>{{ 'REGISTER.PROVIDER' | translate }}</span>
+        </button>
+      </div>
+
+      <!-- Error / Success messages -->
+      @if (errorMessage()) {
+      <div class="alert-message alert-error">
+        {{ errorMessage() }}
+      </div>
+      }
+      @if (successMessage()) {
+      <div class="alert-message alert-success">
+        {{ successMessage() }}
+      </div>
+      }
+
+      <!-- Form -->
+      <form class="registration-form-wrapper" (ngSubmit)="onSubmit()">
+        <div class="form-scroll-container">
+          <div class="form-scroll-content">
+            <!-- Personal Info Section -->
+            <div class="form-section">
+              <h3 class="section-title">{{ 'REGISTER.PERSONAL_INFO' | translate }}</h3>
+
+              <div class="form-row two-columns">
+                <label class="form-group">
+                  <span class="form-label">{{ 'REGISTER.FIRST_NAME' | translate }}</span>
+                  <input type="text" class="form-input" [placeholder]="'REGISTER.PLACEHOLDER_FIRST_NAME' | translate"
+                    [(ngModel)]="nombre" name="nombre" />
+                </label>
+                <label class="form-group">
+                  <span class="form-label">{{ 'REGISTER.LAST_NAME' | translate }}</span>
+                  <input type="text" class="form-input" [placeholder]="'REGISTER.PLACEHOLDER_LAST_NAME' | translate"
+                    [(ngModel)]="apellido" name="apellido" />
+                </label>
+              </div>
+
+              <label class="form-group">
+                <span class="form-label">{{ 'AUTH.EMAIL' | translate }}</span>
+                <input type="email" class="form-input" [class.ng-invalid-custom]="emailInvalid"
+                  [placeholder]="'AUTH.PLACEHOLDER_EMAIL' | translate" [(ngModel)]="email" name="email" />
+                @if (emailInvalid) {
+                <div class="input-error-message">{{ 'REGISTER.ERROR_INVALID_EMAIL_FORMAT' | translate }}</div>
+                }
+              </label>
+
+              <div class="form-row two-columns">
+                <label class="form-group">
+                  <span class="form-label">{{ 'REGISTER.PASSWORD' | translate }}</span>
+                  <div class="password-wrapper">
+                    <input [type]="passwordVisible() ? 'text' : 'password'" class="form-input"
+                      [class.ng-invalid-custom]="passwordInvalid" placeholder="••••••••" [(ngModel)]="password"
+                      name="password" />
+                    <button type="button" (click)="togglePasswordVisibility()" class="password-toggle">
+                      <lucide-icon [name]="passwordVisible() ? 'eye_off' : 'eye'"></lucide-icon>
+                    </button>
+                  </div>
+                  @if (passwordInvalid) {
+                  <div class="input-error-message">{{ 'REGISTER.ERROR_MIN_LENGTH_8' | translate }}</div>
+                  }
+                </label>
+                <label class="form-group">
+                  <span class="form-label">{{ 'REGISTER.CONFIRM_PASSWORD' | translate }}</span>
+                  <div class="password-wrapper">
+                    <input [type]="confirmPasswordVisible() ? 'text' : 'password'" class="form-input"
+                      [class.ng-invalid-custom]="passwordsMismatch" placeholder="••••••••" [(ngModel)]="confirmPassword"
+                      name="confirmPassword" />
+                    <button type="button" (click)="toggleConfirmPasswordVisibility()" class="password-toggle">
+                      <lucide-icon [name]="confirmPasswordVisible() ? 'eye_off' : 'eye'"></lucide-icon>
+                    </button>
+                  </div>
+                  @if (passwordsMismatch) {
+                  <div class="input-error-message">{{ 'REGISTER.ERROR_PASSWORD_MISMATCH' | translate }}</div>
+                  }
+                </label>
+              </div>
+            </div>
+
+            <!-- Travel Preferences (Viajero) -->
+            @if (selectedRole() === 'viajero') {
+            <div class="form-section">
+              <h3 class="section-title">{{ 'REGISTER.TRAVEL_PREFERENCES' | translate }}</h3>
+
+              <div class="form-row two-columns">
+                <label class="form-group">
+                  <span class="form-label">{{ 'REGISTER.BUDGET' | translate }}</span>
+                  <select class="form-input" [(ngModel)]="presupuesto" name="presupuesto">
+                    <option value="economico">{{ 'REGISTER.BUDGET_ECONOMIC' | translate }}</option>
+                    <option value="estandar">{{ 'REGISTER.BUDGET_STANDARD' | translate }}</option>
+                    <option value="lujo">{{ 'REGISTER.BUDGET_LUXURY' | translate }}</option>
+                    <option value="elite">{{ 'REGISTER.BUDGET_ELITE' | translate }}</option>
+                  </select>
+                </label>
+                <label class="form-group">
+                  <span class="form-label">{{ 'REGISTER.LANGUAGE' | translate }}</span>
+                  <select class="form-input" [(ngModel)]="idioma" name="idioma">
+                    <option value="es">{{ 'REGISTER.LANGUAGE_SPANISH' | translate }}</option>
+                    <option value="en">{{ 'REGISTER.LANGUAGE_ENGLISH' | translate }}</option>
+                    <option value="fr">{{ 'REGISTER.LANGUAGE_FRENCH' | translate }}</option>
+                    <option value="de">{{ 'REGISTER.LANGUAGE_GERMAN' | translate }}</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+            }
+
+            <!-- Business Info (Proveedor) -->
+            @if (selectedRole() === 'proveedor') {
+            <div class="form-section">
+              <h3 class="section-title">{{ 'REGISTER.BUSINESS_INFO' | translate }}</h3>
+
+              <div class="form-row two-columns">
+                <label class="form-group">
+                  <span class="form-label">{{ 'REGISTER.BUSINESS_NAME' | translate }}</span>
+                  <input type="text" class="form-input" [placeholder]="'REGISTER.PLACEHOLDER_BUSINESS_NAME' | translate"
+                    [(ngModel)]="nombre_negocio" name="nombre_negocio" />
+                </label>
+                <label class="form-group">
+                  <span class="form-label">{{ 'REGISTER.BUSINESS_TYPE' | translate }}</span>
+                  <select class="form-input" [(ngModel)]="tipo_negocio" name="tipo_negocio">
+                    <option value="" disabled selected>{{ 'REGISTER.BUSINESS_TYPE_PLACEHOLDER' | translate }}</option>
+                    <option value="restaurante">{{ 'REGISTER.BUSINESS_TYPE_RESTAURANT' | translate }}</option>
+                    <option value="hotel">{{ 'REGISTER.BUSINESS_TYPE_HOTEL' | translate }}</option>
+                    <option value="tour">{{ 'REGISTER.BUSINESS_TYPE_TOUR' | translate }}</option>
+                  </select>
+                </label>
+              </div>
+
+              <div class="form-row two-columns">
+                <label class="form-group">
+                  <span class="form-label">{{ 'REGISTER.PHONE' | translate }}</span>
+                  <input type="tel" class="form-input" [class.ng-invalid-custom]="phoneInvalid"
+                    [placeholder]="'REGISTER.PLACEHOLDER_PHONE' | translate" [(ngModel)]="telefono" name="telefono" />
+                  @if (phoneInvalid) {
+                  <div class="input-error-message">{{ 'REGISTER.ERROR_PHONE_10_DIGITS' | translate }}</div>
+                  }
+                </label>
+                <label class="form-group">
+                  <span class="form-label">{{ 'REGISTER.LOCATION' | translate }}</span>
+                  <input type="text" class="form-input" [placeholder]="'REGISTER.PLACEHOLDER_LOCATION' | translate"
+                    [(ngModel)]="ubicacion" name="ubicacion" />
+                </label>
+              </div>
+
+              <label class="form-group">
+                <span class="form-label">{{ 'REGISTER.SERVICE_DESCRIPTION' | translate }}</span>
+                <textarea class="form-input textarea-input"
+                  [placeholder]="'REGISTER.PLACEHOLDER_SERVICE_DESC' | translate" [(ngModel)]="descripcion"
+                  name="descripcion"></textarea>
+              </label>
+
+              <div class="form-group">
+                <span class="form-label">{{ 'REGISTER.BUSINESS_EVIDENCE' | translate }}</span>
+
+                @if (!selectedFile) {
+                <label class="file-upload-area" [class.dragging]="isDragging()" (dragover)="onDragOver($event)"
+                  (dragleave)="onDragLeave($event)" (drop)="onDrop($event)" style="cursor: pointer; display: block;">
+
+                  <input type="file" class="hidden-file-input" accept="application/pdf, image/png, image/jpeg"
+                    (change)="onFileSelected($event)" style="display: none;" />
+
+                  <lucide-icon name="cloud_upload"></lucide-icon>
+                  <p><span class="file-upload-highlight">{{ 'REGISTER.UPLOAD_FILES' | translate }}</span> {{
+                    'REGISTER.OR_DRAG_DROP' | translate }}</p>
+                  <p class="file-upload-hint">{{ 'REGISTER.FILE_HINT' | translate }} (Max 5MB)</p>
+                </label>
+                } @else {
+                <div class="selected-file-area"
+                  style="display: flex; align-items: center; justify-content: space-between; padding: 1rem; border: 1px dashed rgba(255, 255, 255, 0.4); border-radius: 8px; margin-top: 0.5rem; background: rgba(255, 255, 255, 0.05);">
+                  <div class="file-info" style="display: flex; align-items: center; gap: 0.75rem; color: #e2e8f0;">
+                    <lucide-icon name="briefcase" [size]="20"></lucide-icon>
+                    <span style="font-weight: 500; font-size: 0.9rem; word-break: break-all;">{{ selectedFile.name
+                      }}</span>
+                  </div>
+                  <button type="button" class="remove-file-btn" (click)="removeFile()"
+                    style="background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #ef4444; padding: 0.25rem;">
+                    <lucide-icon name="x" [size]="20"></lucide-icon>
+                  </button>
+                </div>
+                }
+              </div>
+
+              <div class="info-message">
+                <lucide-icon name="info"></lucide-icon>
+                <p>{{ 'REGISTER.ADMIN_REVIEW' | translate }}</p>
+              </div>
+            </div>
+            }
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="submit-button" [disabled]="isLoading()">
+          @if (isLoading()) {
+          <span>{{ 'REGISTER.LOADING' | translate }}</span>
+          } @else {
+          {{ selectedRole() === 'proveedor' ? ('REGISTER.SUBMIT_PROVIDER' | translate) : ('REGISTER.SUBMIT_TRAVELER' |
+          translate) }}
+          }
+        </button>
+
+        <!-- Login Link -->
+        <p class="login-link">
+          {{ 'REGISTER.HAVE_ACCOUNT' | translate }}
+          <a routerLink="/login">{{ 'REGISTER.SIGN_IN_LINK' | translate }}</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <!-- RIGHT SIDE: Branding (40%) -->
+  <div class="branding-panel">
+    <div class="brand-background"></div>
+    <div class="brand-overlay"></div>
+    <div class="brand-content">
+      <div class="glass-panel">
+        <h3>{{ 'REGISTER.DISCOVER_WORLD' | translate }}</h3>
+        <div class="accent-line"></div>
+        <p>{{ 'REGISTER.BRAND_DESCRIPTION' | translate }}</p>
+        <div class="stats">
+          <div class="stat">
+            <span class="stat-number">500+</span>
+            <span class="stat-label">{{ 'REGISTER.DESTINATIONS' | translate }}</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-number">24/7</span>
+            <span class="stat-label">{{ 'REGISTER.SUPPORT' | translate }}</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-number">100%</span>
+            <span class="stat-label">{{ 'REGISTER.SECURE' | translate }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { HomeCta } from './home-cta';
 
@@ -8,7 +9,7 @@ describe('HomeCta', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HomeCta],
+      imports: [HomeCta, TranslateModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(HomeCta);

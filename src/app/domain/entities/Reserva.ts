@@ -5,5 +5,5 @@ export interface Reserva {
   fecha_reserva: Date;
   cantidad_personas: number;
   precio_total: number;
-  estado: string;
+  estado: 'pendiente' | 'aceptado' | 'rechazado';
 }

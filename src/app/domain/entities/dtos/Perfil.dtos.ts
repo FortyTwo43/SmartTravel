@@ -3,15 +3,17 @@
  */
 
 export interface CreatePerfilDto {
+  id?: string;
   nombre: string;
   apellido: string;
-  rol: string;
-  estado: string;
+  rol: 'viajero' | 'proveedor' | 'admin';
+  estado: 'activo' | 'inactivo';
+  fecha_registro?: Date;
 }
 
 export interface UpdatePerfilDto {
   nombre?: string;
   apellido?: string;
-  rol?: string;
-  estado?: string;
+  rol?: 'viajero' | 'proveedor' | 'admin';
+  estado?: 'activo' | 'inactivo'
 }
