@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/cor
 import { CommonModule } from '@angular/common';
 import { RouterLink, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import {
   LucideAngularModule,
   LUCIDE_ICONS,
@@ -57,11 +57,29 @@ type Role = 'viajero' | 'proveedor';
 export default class RegisterComponent {
   private readonly registerUseCase = inject(RegisterUseCase);
   private readonly router = inject(Router);
+  private readonly translateService = inject(TranslateService);
 
   selectedRole = signal<Role>('viajero');
 
   passwordVisible = signal(false);
   confirmPasswordVisible = signal(false);
+
+  // Validaciones en tiempo real
+  get emailInvalid(): boolean {
+    return this.email.length > 0 && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.email);
+  }
+
+  get passwordInvalid(): boolean {
+    return this.password.length > 0 && this.password.length < 8;
+  }
+
+  get passwordsMismatch(): boolean {
+    return this.confirmPassword.length > 0 && this.password !== this.confirmPassword;
+  }
+
+  get phoneInvalid(): boolean {
+    return this.telefono.length > 0 && !/^\d{10}$/.test(this.telefono);
+  }
 
   // Estado del formulario
   isLoading = signal(false);
@@ -166,27 +184,36 @@ export default class RegisterComponent {
   async onSubmit() {
     // Validaciones básicas
     if (!this.nombre.trim() || !this.apellido.trim() || !this.email.trim() || !this.password) {
-      this.errorMessage.set('Por favor completa todos los campos obligatorios.');
+      this.errorMessage.set(this.translateService.instant('REGISTER.ERROR_REQUIRED_FIELDS'));
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.email)) {
+      this.errorMessage.set(this.translateService.instant('REGISTER.ERROR_INVALID_EMAIL_FORMAT'));
       return;
     }
 
     if (this.password !== this.confirmPassword) {
-      this.errorMessage.set('Las contraseñas no coinciden.');
+      this.errorMessage.set(this.translateService.instant('REGISTER.ERROR_PASSWORD_MISMATCH'));
       return;
     }
 
-    if (this.password.length < 6) {
-      this.errorMessage.set('La contraseña debe tener al menos 6 caracteres.');
+    if (this.password.length < 8) {
+      this.errorMessage.set(this.translateService.instant('REGISTER.ERROR_MIN_LENGTH_8'));
       return;
     }
 
     if (this.selectedRole() === 'proveedor') {
       if (!this.nombre_negocio.trim() || !this.telefono.trim() || !this.descripcion.trim() || !this.ubicacion.trim()) {
-        this.errorMessage.set('Por favor completa todos los campos del negocio.');
+        this.errorMessage.set(this.translateService.instant('REGISTER.ERROR_BUSINESS_FIELDS'));
+        return;
+      }
+      if (!/^\d{10}$/.test(this.telefono)) {
+        this.errorMessage.set(this.translateService.instant('REGISTER.ERROR_PHONE_10_DIGITS'));
         return;
       }
       if (!this.selectedFile) {
-        this.errorMessage.set('Por favor sube el documento requerido (PDF, PNG o JPEG).');
+        this.errorMessage.set(this.translateService.instant('REGISTER.ERROR_DOCUMENT_REQUIRED'));
         return;
       }
     }
@@ -245,21 +272,21 @@ export default class RegisterComponent {
     const msg: string = error?.message ?? '';
 
     if (msg.includes('already registered') || msg.includes('already been registered') || msg.includes('User already registered')) {
-      return 'Este correo electrónico ya está registrado. Por favor inicia sesión.';
+      return this.translateService.instant('REGISTER.ERROR_EMAIL_EXISTS');
     }
     if (msg.includes('Invalid email')) {
-      return 'El correo electrónico no es válido.';
+      return this.translateService.instant('REGISTER.ERROR_INVALID_EMAIL');
     }
     if (msg.includes('Password')) {
-      return 'La contraseña no cumple los requisitos mínimos.';
+      return this.translateService.instant('REGISTER.ERROR_WEAK_PASSWORD');
     }
     if (msg.includes('perfil')) {
-      return 'Error al crear el perfil. Por favor intenta de nuevo.';
+      return this.translateService.instant('REGISTER.ERROR_CREATE_PROFILE');
     }
     if (msg.includes('solicitud')) {
-      return 'Error al enviar la solicitud. Por favor intenta de nuevo.';
+      return this.translateService.instant('REGISTER.ERROR_SUBMIT_REQUEST');
     }
 
-    return msg || 'Ocurrió un error inesperado. Por favor intenta de nuevo.';
+    return msg || this.translateService.instant('REGISTER.ERROR_UNEXPECTED');
   }
 }

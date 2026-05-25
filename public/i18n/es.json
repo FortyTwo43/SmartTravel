@@ -150,6 +150,19 @@
     "BRAND_DESCRIPTION": "Experiencia personalizada diseñada para el viajero moderno. Gestiona tus aventuras con la precisión de la logística de lujo.",
     "DESTINATIONS": "Destinos",
     "SUPPORT": "Soporte",
-    "SECURE": "Seguro"
+    "SECURE": "Seguro",
+    "ERROR_REQUIRED_FIELDS": "Por favor completa todos los campos obligatorios.",
+    "ERROR_PASSWORD_MISMATCH": "Las contraseñas no coinciden.",
+    "ERROR_MIN_LENGTH_8": "La contraseña debe tener al menos 8 caracteres.",
+    "ERROR_BUSINESS_FIELDS": "Por favor completa todos los campos del negocio.",
+    "ERROR_PHONE_10_DIGITS": "El teléfono debe tener exactamente 10 dígitos.",
+    "ERROR_DOCUMENT_REQUIRED": "Por favor sube el documento requerido (PDF, PNG o JPEG).",
+    "ERROR_EMAIL_EXISTS": "Este correo electrónico ya está registrado. Por favor inicia sesión.",
+    "ERROR_INVALID_EMAIL": "El correo electrónico no es válido.",
+    "ERROR_INVALID_EMAIL_FORMAT": "El formato del correo es inválido.",
+    "ERROR_WEAK_PASSWORD": "La contraseña no cumple los requisitos mínimos.",
+    "ERROR_CREATE_PROFILE": "Error al crear el perfil. Por favor intenta de nuevo.",
+    "ERROR_SUBMIT_REQUEST": "Error al enviar la solicitud. Por favor intenta de nuevo.",
+    "ERROR_UNEXPECTED": "Ocurrió un error inesperado. Por favor intenta de nuevo."
   }
 }

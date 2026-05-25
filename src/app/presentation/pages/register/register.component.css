@@ -216,6 +216,20 @@
   cursor: not-allowed;
 }
 
+.form-input.ng-invalid-custom {
+  border-color: #ef4444;
+}
+
+.form-input.ng-invalid-custom:focus {
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+}
+
+.input-error-message {
+  color: #ef4444;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
 /* Select Styles */
 select.form-input {
   appearance: none;

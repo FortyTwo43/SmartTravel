@@ -150,6 +150,19 @@
     "BRAND_DESCRIPTION": "Personalized experience designed for the modern traveler. Manage your adventures with the precision of luxury logistics.",
     "DESTINATIONS": "Destinations",
     "SUPPORT": "Support",
-    "SECURE": "Secure"
+    "SECURE": "Secure",
+    "ERROR_REQUIRED_FIELDS": "Please fill in all required fields.",
+    "ERROR_PASSWORD_MISMATCH": "Passwords do not match.",
+    "ERROR_MIN_LENGTH_8": "Password must be at least 8 characters long.",
+    "ERROR_BUSINESS_FIELDS": "Please fill in all business fields.",
+    "ERROR_PHONE_10_DIGITS": "Phone number must have exactly 10 digits.",
+    "ERROR_DOCUMENT_REQUIRED": "Please upload the required document (PDF, PNG, or JPEG).",
+    "ERROR_EMAIL_EXISTS": "This email is already registered. Please sign in.",
+    "ERROR_INVALID_EMAIL": "The email address is invalid.",
+    "ERROR_INVALID_EMAIL_FORMAT": "Invalid email format.",
+    "ERROR_WEAK_PASSWORD": "Password does not meet minimum requirements.",
+    "ERROR_CREATE_PROFILE": "Error creating profile. Please try again.",
+    "ERROR_SUBMIT_REQUEST": "Error submitting request. Please try again.",
+    "ERROR_UNEXPECTED": "An unexpected error occurred. Please try again."
   }
 }
