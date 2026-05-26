@@ -4,6 +4,6 @@ export interface DetalleItinerario {
   id_servicio_reservable: string;
   fecha: Date;
   hora: string;
-  prioridad: string;
-  estado: string;
+  prioridad: 'alto' | 'medio' | 'bajo';
+  estado: 'pendiente' | 'en_progreso' | 'completado';
 }

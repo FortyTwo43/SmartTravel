@@ -7,7 +7,7 @@ export interface CreateItinerarioDto {
   nombre: string;
   fecha_inicio: Date;
   fecha_fin: Date;
-  estado: string;
+  estado: 'interes' | 'planeado' | 'activo' | 'completado' | 'pausado';
 }
 
 export interface UpdateItinerarioDto {
@@ -15,5 +15,5 @@ export interface UpdateItinerarioDto {
   nombre?: string;
   fecha_inicio?: Date;
   fecha_fin?: Date;
-  estado?: string;
+  estado?: 'interes' | 'planeado' | 'activo' | 'completado' | 'pausado';
 }

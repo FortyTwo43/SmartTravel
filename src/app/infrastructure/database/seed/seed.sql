@@ -6,14 +6,14 @@
 -- ====================================================================
 INSERT INTO public.destino (id, nombre, ciudad, pais, descripcion, tipo_experiencia, imagen)
 VALUES 
-    ('11111111-1111-4111-a111-111111111111', 'Galápagos', 'Puerto Ayora', 'Ecuador', 'Las islas encantadas', 'Aventura', 'https://ejemplo.com/galapagos.jpg'),
-    ('11111111-1111-4111-a111-111111111112', 'Centro Histórico', 'Quito', 'Ecuador', 'El centro histórico de Quito', 'Cultura', 'https://ejemplo.com/quito.jpg'),
-    ('11111111-1111-4111-a111-111111111113', 'Parque Nacional Cajas', 'Cuenca', 'Ecuador', 'Naturaleza y lagunas', 'Naturaleza', 'https://ejemplo.com/cajas.jpg'),
-    ('11111111-1111-4111-a111-111111111114', 'Montañita', 'Santa Elena', 'Ecuador', 'Playa y surf', 'Playa', 'https://ejemplo.com/montanita.jpg'),
-    ('11111111-1111-4111-a111-111111111115', 'Volcán Cotopaxi', 'Latacunga', 'Ecuador', 'Volcán activo', 'Aventura', 'https://ejemplo.com/cotopaxi.jpg'),
-    ('11111111-1111-4111-a111-111111111116', 'Laguna de Quilotoa', 'Pujilí', 'Ecuador', 'Cráter de volcán', 'Aventura', 'https://ejemplo.com/quilotoa.jpg'),
-    ('11111111-1111-4111-a111-111111111117', 'Baños de Agua Santa', 'Baños', 'Ecuador', 'Cascadas y termas', 'Aventura', 'https://ejemplo.com/banos.jpg'),
-    ('11111111-1111-4111-a111-111111111118', 'Ruinas de Ingapirca', 'Cañar', 'Ecuador', 'Complejo arqueológico', 'Cultura', 'https://ejemplo.com/ingapirca.jpg')
+    ('11111111-1111-4111-a111-111111111111', 'Galápagos', 'Puerto Ayora', 'Ecuador', 'Las islas encantadas', 'aventura', 'https://ejemplo.com/galapagos.jpg'),
+    ('11111111-1111-4111-a111-111111111112', 'Centro Histórico', 'Quito', 'Ecuador', 'El centro histórico de Quito', 'cultura', 'https://ejemplo.com/quito.jpg'),
+    ('11111111-1111-4111-a111-111111111113', 'Parque Nacional Cajas', 'Cuenca', 'Ecuador', 'Naturaleza y lagunas', 'naturaleza', 'https://ejemplo.com/cajas.jpg'),
+    ('11111111-1111-4111-a111-111111111114', 'Montañita', 'Santa Elena', 'Ecuador', 'Playa y surf', 'playa', 'https://ejemplo.com/montanita.jpg'),
+    ('11111111-1111-4111-a111-111111111115', 'Volcán Cotopaxi', 'Latacunga', 'Ecuador', 'Volcán activo', 'aventura', 'https://ejemplo.com/cotopaxi.jpg'),
+    ('11111111-1111-4111-a111-111111111116', 'Laguna de Quilotoa', 'Pujilí', 'Ecuador', 'Cráter de volcán', 'aventura', 'https://ejemplo.com/quilotoa.jpg'),
+    ('11111111-1111-4111-a111-111111111117', 'Baños de Agua Santa', 'Baños', 'Ecuador', 'Cascadas y termas', 'aventura', 'https://ejemplo.com/banos.jpg'),
+    ('11111111-1111-4111-a111-111111111118', 'Ruinas de Ingapirca', 'Cañar', 'Ecuador', 'Complejo arqueológico', 'cultura', 'https://ejemplo.com/ingapirca.jpg')
 ON CONFLICT (id) DO NOTHING;
 
 -- ====================================================================
@@ -68,13 +68,13 @@ ON CONFLICT (id) DO NOTHING;
 INSERT INTO public.itinerario (id, id_perfil, nombre, fecha_inicio, fecha_fin, estado)
 VALUES 
     ('55555555-5555-4555-a555-555555555551', '3c11e737-3931-4c03-996a-5fe33cb90361', 'Aventura Galápagos', '2026-06-15', '2026-06-20', 'activo'),
-    ('55555555-5555-4555-a555-555555555552', '7ff518fc-b966-4589-847e-f54da9272a6d', 'Ruta del Sol', '2026-07-01', '2026-07-10', 'planeado'),
+    ('55555555-5555-4555-a555-555555555552', '7ff518fc-b966-4589-847e-f54da9272a6d', 'Ruta del Sol', '2026-07-01', '2026-07-10', 'interes'),
     ('55555555-5555-4555-a555-555555555553', '3c11e737-3931-4c03-996a-5fe33cb90361', 'Escapada Andes', '2026-08-05', '2026-08-08', 'completado'),
     ('55555555-5555-4555-a555-555555555554', '7ff518fc-b966-4589-847e-f54da9272a6d', 'Visita Cultura', '2026-09-12', '2026-09-15', 'activo'),
-    ('55555555-5555-4555-a555-555555555555', '3c11e737-3931-4c03-996a-5fe33cb90361', 'Fin de semana', '2026-10-01', '2026-10-03', 'planeado'),
-    ('55555555-5555-4555-a555-555555555556', '7ff518fc-b966-4589-847e-f54da9272a6d', 'Feriado de Noviembre', '2026-11-01', '2026-11-04', 'planeado'),
-    ('55555555-5555-4555-a555-555555555557', '3c11e737-3931-4c03-996a-5fe33cb90361', 'Navidad en la Playa', '2026-12-23', '2026-12-26', 'planeado'),
-    ('55555555-5555-4555-a555-555555555558', '7ff518fc-b966-4589-847e-f54da9272a6d', 'Fin de año', '2026-12-29', '2027-01-02', 'planeado')
+    ('55555555-5555-4555-a555-555555555555', '3c11e737-3931-4c03-996a-5fe33cb90361', 'Fin de semana', '2026-10-01', '2026-10-03', 'interes'),
+    ('55555555-5555-4555-a555-555555555556', '7ff518fc-b966-4589-847e-f54da9272a6d', 'Feriado de Noviembre', '2026-11-01', '2026-11-04', 'interes'),
+    ('55555555-5555-4555-a555-555555555557', '3c11e737-3931-4c03-996a-5fe33cb90361', 'Navidad en la Playa', '2026-12-23', '2026-12-26', 'interes'),
+    ('55555555-5555-4555-a555-555555555558', '7ff518fc-b966-4589-847e-f54da9272a6d', 'Fin de año', '2026-12-29', '2027-01-02', 'interes')
 ON CONFLICT (id) DO NOTHING;
 
 -- ====================================================================
@@ -82,14 +82,14 @@ ON CONFLICT (id) DO NOTHING;
 -- ====================================================================
 INSERT INTO public.detalle_itinerario (id, id_itinerario, id_servicio_reservable, fecha, hora, estado, prioridad)
 VALUES 
-    ('66666666-6666-4666-a666-666666666661', '55555555-5555-4555-a555-555555555551', '33333333-3333-4333-a333-333333333331', '2026-06-15', '14:00:00', 'confirmado', 'alta'),
-    ('66666666-6666-4666-a666-666666666662', '55555555-5555-4555-a555-555555555552', '33333333-3333-4333-a333-333333333332', '2026-07-01', '19:00:00', 'pendiente', 'media'),
-    ('66666666-6666-4666-a666-666666666663', '55555555-5555-4555-a555-555555555553', '33333333-3333-4333-a333-333333333333', '2026-08-05', '08:00:00', 'completado', 'alta'),
-    ('66666666-6666-4666-a666-666666666664', '55555555-5555-4555-a555-555555555554', '33333333-3333-4333-a333-333333333334', '2026-09-12', '10:00:00', 'confirmado', 'baja'),
-    ('66666666-6666-4666-a666-666666666665', '55555555-5555-4555-a555-555555555555', '33333333-3333-4333-a333-333333333335', '2026-10-01', '15:00:00', 'pendiente', 'alta'),
-    ('66666666-6666-4666-a666-666666666666', '55555555-5555-4555-a555-555555555556', '33333333-3333-4333-a333-333333333336', '2026-11-02', '13:00:00', 'pendiente', 'media'),
-    ('66666666-6666-4666-a666-666666666667', '55555555-5555-4555-a555-555555555557', '33333333-3333-4333-a333-333333333337', '2026-12-24', '09:00:00', 'pendiente', 'alta'),
-    ('66666666-6666-4666-a666-666666666668', '55555555-5555-4555-a555-555555555558', '33333333-3333-4333-a333-333333333338', '2026-12-30', '11:00:00', 'pendiente', 'baja')
+    ('66666666-6666-4666-a666-666666666661', '55555555-5555-4555-a555-555555555551', '33333333-3333-4333-a333-333333333331', '2026-06-15', '14:00:00', 'en_progreso', 'alto'),
+    ('66666666-6666-4666-a666-666666666662', '55555555-5555-4555-a555-555555555552', '33333333-3333-4333-a333-333333333332', '2026-07-01', '19:00:00', 'pendiente', 'medio'),
+    ('66666666-6666-4666-a666-666666666663', '55555555-5555-4555-a555-555555555553', '33333333-3333-4333-a333-333333333333', '2026-08-05', '08:00:00', 'completado', 'alto'),
+    ('66666666-6666-4666-a666-666666666664', '55555555-5555-4555-a555-555555555554', '33333333-3333-4333-a333-333333333334', '2026-09-12', '10:00:00', 'en_progreso', 'bajo'),
+    ('66666666-6666-4666-a666-666666666665', '55555555-5555-4555-a555-555555555555', '33333333-3333-4333-a333-333333333335', '2026-10-01', '15:00:00', 'pendiente', 'alto'),
+    ('66666666-6666-4666-a666-666666666666', '55555555-5555-4555-a555-555555555556', '33333333-3333-4333-a333-333333333336', '2026-11-02', '13:00:00', 'pendiente', 'medio'),
+    ('66666666-6666-4666-a666-666666666667', '55555555-5555-4555-a555-555555555557', '33333333-3333-4333-a333-333333333337', '2026-12-24', '09:00:00', 'pendiente', 'alto'),
+    ('66666666-6666-4666-a666-666666666668', '55555555-5555-4555-a555-555555555558', '33333333-3333-4333-a333-333333333338', '2026-12-30', '11:00:00', 'pendiente', 'bajo')
 ON CONFLICT (id) DO NOTHING;
 
 -- ====================================================================

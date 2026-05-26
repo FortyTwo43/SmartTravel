@@ -8,7 +8,7 @@ export interface CreateDetalleItinerarioDto {
   fecha: Date;
   hora: string;
   prioridad: string;
-  estado: string;
+  estado: 'pendiente' | 'en_progreso' | 'completado';
 }
 
 export interface UpdateDetalleItinerarioDto {
@@ -17,5 +17,5 @@ export interface UpdateDetalleItinerarioDto {
   fecha?: Date;
   hora?: string;
   prioridad?: string;
-  estado?: string;
+  estado?: 'pendiente' | 'en_progreso' | 'completado';
 }

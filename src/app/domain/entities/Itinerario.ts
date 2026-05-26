@@ -4,5 +4,5 @@ export interface Itinerario {
   nombre: string;
   fecha_inicio: Date;
   fecha_fin: Date;
-  estado: string;
+  estado: 'interes' | 'activo' | 'completado' | 'pausado';
 }

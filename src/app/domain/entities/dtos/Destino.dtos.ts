@@ -7,7 +7,7 @@ export interface CreateDestinoDto {
   ciudad: string;
   pais: string;
   descripcion: string;
-  tipo_experiencia: string;
+  tipo_experiencia: 'aventura' | 'cultura' | 'naturaleza' | 'playa'
   imagen: string;
 }
 
@@ -16,6 +16,6 @@ export interface UpdateDestinoDto {
   ciudad?: string;
   pais?: string;
   descripcion?: string;
-  tipo_experiencia?: string;
+  tipo_experiencia?: 'aventura' | 'cultura' | 'naturaleza' | 'playa'
   imagen?: string;
 }
