@@ -164,5 +164,41 @@
     "ERROR_CREATE_PROFILE": "Error al crear el perfil. Por favor intenta de nuevo.",
     "ERROR_SUBMIT_REQUEST": "Error al enviar la solicitud. Por favor intenta de nuevo.",
     "ERROR_UNEXPECTED": "Ocurrió un error inesperado. Por favor intenta de nuevo."
+  },
+  "TRAVELER_ONBOARDING": {
+    "TITLE": "Personaliza tu experiencia",
+    "SUBTITLE": "Selecciona tus intereses para ofrecerte las mejores recomendaciones y diseñar el viaje de tus sueños.",
+    "INTERESTS_HEADING": "¿Qué te apasiona?",
+    "INTERESTS": {
+      "SPORTS": "Deportes",
+      "CUISINE": "Cocina",
+      "CULTURE": "Cultura",
+      "NATURE": "Naturaleza",
+      "BEACH": "Playa",
+      "MOUNTAIN": "Montaña",
+      "HISTORY": "Historia",
+      "TECHNOLOGY": "Tecnología",
+      "GASTRONOMY": "Gastronomía",
+      "PHOTOGRAPHY": "Fotografía",
+      "ECOTOURISM": "Ecoturismo"
+    },
+    "TRAVEL_TYPE_HEADING": "Tipo de viaje",
+    "TRAVEL_TYPE": {
+      "SOLO": "Solo",
+      "COUPLE": "Pareja",
+      "FAMILY": "Familia",
+      "FRIENDS": "Amigos"
+    },
+    "BUDGET_HEADING": "Planificación",
+    "ESTIMATED_BUDGET": "Presupuesto estimado",
+    "YOUR_PROFILE": "Tu perfil actual",
+    "PROFILE_DESCRIPTION": "Está configurando una experiencia para un viaje en Pareja con intereses principales en Cocina y Naturaleza.",
+    "FINALIZE_BUTTON": "Finalizar configuración",
+    "READY_TO_EXPLORE": "¿Listo para explorar?",
+    "NEXT_ADVENTURE": "Tu próxima aventura comienza aquí.",
+    "LOADING": "...",
+    "ERROR_VALIDATION": "Por favor completa todos los campos y selecciona al menos un interés.",
+    "ERROR_SAVE": "Error al guardar la configuración. Por favor intenta de nuevo.",
+    "ERROR_UNKNOWN": "Ocurrió un error desconocido. Por favor intenta de nuevo."
   }
 }

@@ -164,5 +164,41 @@
     "ERROR_CREATE_PROFILE": "Error creating profile. Please try again.",
     "ERROR_SUBMIT_REQUEST": "Error submitting request. Please try again.",
     "ERROR_UNEXPECTED": "An unexpected error occurred. Please try again."
+  },
+  "TRAVELER_ONBOARDING": {
+    "TITLE": "Personalize your experience",
+    "SUBTITLE": "Select your interests to offer you the best recommendations and design the trip of your dreams.",
+    "INTERESTS_HEADING": "What are you passionate about?",
+    "INTERESTS": {
+      "SPORTS": "Sports",
+      "CUISINE": "Cuisine",
+      "CULTURE": "Culture",
+      "NATURE": "Nature",
+      "BEACH": "Beach",
+      "MOUNTAIN": "Mountain",
+      "HISTORY": "History",
+      "TECHNOLOGY": "Technology",
+      "GASTRONOMY": "Gastronomy",
+      "PHOTOGRAPHY": "Photography",
+      "ECOTOURISM": "Ecotourism"
+    },
+    "TRAVEL_TYPE_HEADING": "Travel type",
+    "TRAVEL_TYPE": {
+      "SOLO": "Solo",
+      "COUPLE": "Couple",
+      "FAMILY": "Family",
+      "FRIENDS": "Friends"
+    },
+    "BUDGET_HEADING": "Planning",
+    "ESTIMATED_BUDGET": "Estimated budget",
+    "YOUR_PROFILE": "Your current profile",
+    "PROFILE_DESCRIPTION": "You are configuring an experience for a trip as a Couple with main interests in Cuisine and Nature.",
+    "FINALIZE_BUTTON": "Finalize configuration",
+    "READY_TO_EXPLORE": "Ready to explore?",
+    "NEXT_ADVENTURE": "Your next adventure begins here.",
+    "LOADING": "...",
+    "ERROR_VALIDATION": "Please complete all fields and select at least one interest.",
+    "ERROR_SAVE": "Error saving configuration. Please try again.",
+    "ERROR_UNKNOWN": "An unknown error occurred. Please try again."
   }
 }

@@ -51,4 +51,8 @@ export class SupabaseAuthRepository implements IAuthRepository {
       throw new AuthenticationError(error.message, error.status?.toString());
     }
   }
+
+  async getCurrentUser() {
+    return this.supabase.auth.getUser();
+  }
 }

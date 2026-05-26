@@ -54,10 +54,19 @@ export class LoginPageComponent {
 
     try {
       const { email, password } = this.loginForm.value;
-      await this.loginUseCase.execute(email, password);
+      const result = await this.loginUseCase.execute(email, password);
       console.log('Login exitoso');
-      // Redirigir al home o dashboard
-      // this.router.navigate(['/home']);
+      
+      // Redirect based on user role
+      if (result.role === 'viajero') {
+        this.router.navigate(['/traveler-onboarding']);
+      } else if (result.role === 'proveedor') {
+        // Future: proveedor dashboard
+        this.router.navigate(['/provider-dashboard']);
+      } else {
+        // Default redirect for other roles
+        this.router.navigate(['/home']);
+      }
     } catch (error: any) {
       this.errorMessage = error.message || 'Error al iniciar sesión';
     } finally {
