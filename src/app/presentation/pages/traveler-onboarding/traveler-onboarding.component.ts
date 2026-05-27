@@ -32,7 +32,7 @@ import { TRAVEL_TYPES } from '../../constants/travel-types.constant';
   templateUrl: './traveler-onboarding.component.html',
   styleUrl: './traveler-onboarding.component.css',
   host: {
-    '[attr.style]': '"--primary: #0288D1"'
+    '[attr.style]': '"--primary: var(--color-primary)"'
   }
 })
 export class TravelerOnboardingComponent implements OnInit {
