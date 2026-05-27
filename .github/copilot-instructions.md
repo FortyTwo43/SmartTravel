@@ -49,6 +49,7 @@ Debes colocar los archivos en las rutas correspondientes:
 - **Componentes de Presentación**: `src/app/presentation/components` (Componentes reutilizables de negocio).
 - **Layouts**: `src/app/presentation/layouts` (Estructuras de página como Sidebar, Navbar).
 - **Páginas**: `src/app/presentation/pages` (Componentes que representan rutas completas).
+- **Constantes**: `src/app/presentation/constants` (Archivos de constantes, opciones predefinidas y configuraciones estáticas).
 - **Repositorios**: Siempre usa la infraestructura de Supabase en `src/app/infrastructure/repositories/supabase`.
 
 ## 🏗️ Dominio y Entidades

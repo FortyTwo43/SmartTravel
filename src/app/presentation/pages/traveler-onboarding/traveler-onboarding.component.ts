@@ -8,6 +8,8 @@ import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Check, ChevronRi
 import { InitializePerfilViajeroUseCase } from '../../../useCase/traveler/InitializePerfilViajeroUseCase';
 import { ButtonComponent } from '../../components/ui/button/button.component';
 import { Footer } from '../../layouts/footer/footer';
+import { INTERESTS } from '../../constants/interests.constant';
+import { TRAVEL_TYPES } from '../../constants/travel-types.constant';
 
 @Component({
   selector: 'app-traveler-onboarding',
@@ -57,29 +59,12 @@ export class TravelerOnboardingComponent implements OnInit {
   }
 
   // Intereses (checkboxes)
-  readonly INTERESTS = signal([
-    { id: 'deportes', label: 'TRAVELER_ONBOARDING.INTERESTS.SPORTS', icon: 'activity' },
-    { id: 'cocina', label: 'TRAVELER_ONBOARDING.INTERESTS.CUISINE', icon: 'utensils' },
-    { id: 'cultura', label: 'TRAVELER_ONBOARDING.INTERESTS.CULTURE', icon: 'landmark' },
-    { id: 'naturaleza', label: 'TRAVELER_ONBOARDING.INTERESTS.NATURE', icon: 'leaf' },
-    { id: 'playa', label: 'TRAVELER_ONBOARDING.INTERESTS.BEACH', icon: 'umbrella' },
-    { id: 'montaña', label: 'TRAVELER_ONBOARDING.INTERESTS.MOUNTAIN', icon: 'mountain' },
-    { id: 'historia', label: 'TRAVELER_ONBOARDING.INTERESTS.HISTORY', icon: 'book-open' },
-    { id: 'tecnologia', label: 'TRAVELER_ONBOARDING.INTERESTS.TECHNOLOGY', icon: 'monitor' },
-    { id: 'gastronomia', label: 'TRAVELER_ONBOARDING.INTERESTS.GASTRONOMY', icon: 'coffee' },
-    { id: 'fotografia', label: 'TRAVELER_ONBOARDING.INTERESTS.PHOTOGRAPHY', icon: 'camera' },
-    { id: 'ecoturismo', label: 'TRAVELER_ONBOARDING.INTERESTS.ECOTOURISM', icon: 'compass' },
-  ]);
+  readonly INTERESTS = signal(INTERESTS);
 
   selectedInterests = signal<string[]>(['cocina', 'naturaleza', 'tecnologia']);
 
   // Travel type pills
-  readonly TRAVEL_TYPES = signal([
-    { id: 'solo', label: 'TRAVELER_ONBOARDING.TRAVEL_TYPE.SOLO' },
-    { id: 'pareja', label: 'TRAVELER_ONBOARDING.TRAVEL_TYPE.COUPLE' },
-    { id: 'familia', label: 'TRAVELER_ONBOARDING.TRAVEL_TYPE.FAMILY' },
-    { id: 'amigos', label: 'TRAVELER_ONBOARDING.TRAVEL_TYPE.FRIENDS' }
-  ]);
+  readonly TRAVEL_TYPES = signal(TRAVEL_TYPES);
 
   selectedTravelType = signal<'solo' | 'pareja' | 'familia' | 'amigos'>('pareja');
 
