@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-  { 
-    path: 'login', 
-    loadComponent: () => import('./presentation/pages/login/login-page.component').then(m => m.LoginPageComponent) 
+  {
+    path: 'login',
+    loadComponent: () => import('./presentation/pages/login/login-page.component').then(m => m.LoginPageComponent)
   },
   {
     path: 'register',
@@ -11,7 +11,7 @@ export const routes: Routes = [
   },
   {
     path: 'traveler-onboarding',
-    loadComponent: () => import('./presentation/pages/traveler-onboarding/traveler-onboarding.component').then(m => m.TravelerOnboardingComponent)
+    loadComponent: () => import('./presentation/pages/viajero/traveler-onboarding/traveler-onboarding.component').then(m => m.TravelerOnboardingComponent)
   },
   {
     path: 'home',

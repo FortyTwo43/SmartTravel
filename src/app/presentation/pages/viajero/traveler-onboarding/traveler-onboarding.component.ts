@@ -5,11 +5,11 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 import { TranslateModule } from '@ngx-translate/core';
 import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Check, ChevronRight, Activity, Utensils, Landmark, Leaf, Umbrella, Mountain, BookOpen, Monitor, Coffee, Camera, Compass, Info } from 'lucide-angular';
 
-import { InitializePerfilViajeroUseCase } from '../../../useCase/traveler/InitializePerfilViajeroUseCase';
-import { ButtonComponent } from '../../components/ui/button/button.component';
-import { Footer } from '../../layouts/footer/footer';
-import { INTERESTS } from '../../constants/interests.constant';
-import { TRAVEL_TYPES } from '../../constants/travel-types.constant';
+import { InitializePerfilViajeroUseCase } from '../../../../useCase/traveler/InitializePerfilViajeroUseCase';
+import { ButtonComponent } from '../../../components/ui/button/button.component';
+import { Footer } from '../../../layouts/footer/footer';
+import { INTERESTS } from '../../../constants/interests.constant';
+import { TRAVEL_TYPES } from '../../../constants/travel-types.constant';
 
 @Component({
   selector: 'app-traveler-onboarding',
