@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Check, ChevronRight } from 'lucide-angular';
+import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Check, ChevronRight, Activity, Utensils, Landmark, Leaf, Umbrella, Mountain, BookOpen, Monitor, Coffee, Camera, Compass, Info } from 'lucide-angular';
 
 import { InitializePerfilViajeroUseCase } from '../../../useCase/traveler/InitializePerfilViajeroUseCase';
 import { ButtonComponent } from '../../components/ui/button/button.component';
@@ -24,7 +24,7 @@ import { Footer } from '../../layouts/footer/footer';
     {
       provide: LUCIDE_ICONS,
       multi: true,
-      useValue: new LucideIconProvider({ Check, ChevronRight })
+      useValue: new LucideIconProvider({ Check, ChevronRight, Activity, Utensils, Landmark, Leaf, Umbrella, Mountain, BookOpen, Monitor, Coffee, Camera, Compass, Info })
     }
   ],
   templateUrl: './traveler-onboarding.component.html',
@@ -58,17 +58,17 @@ export class TravelerOnboardingComponent implements OnInit {
 
   // Intereses (checkboxes)
   readonly INTERESTS = signal([
-    { id: 'deportes', label: 'TRAVELER_ONBOARDING.INTERESTS.SPORTS', icon: 'sports_soccer' },
-    { id: 'cocina', label: 'TRAVELER_ONBOARDING.INTERESTS.CUISINE', icon: 'restaurant' },
-    { id: 'cultura', label: 'TRAVELER_ONBOARDING.INTERESTS.CULTURE', icon: 'museum' },
-    { id: 'naturaleza', label: 'TRAVELER_ONBOARDING.INTERESTS.NATURE', icon: 'eco' },
-    { id: 'playa', label: 'TRAVELER_ONBOARDING.INTERESTS.BEACH', icon: 'water' },
-    { id: 'montaña', label: 'TRAVELER_ONBOARDING.INTERESTS.MOUNTAIN', icon: 'terrain' },
-    { id: 'historia', label: 'TRAVELER_ONBOARDING.INTERESTS.HISTORY', icon: 'history' },
-    { id: 'tecnologia', label: 'TRAVELER_ONBOARDING.INTERESTS.TECHNOLOGY', icon: 'computer' },
-    { id: 'gastronomia', label: 'TRAVELER_ONBOARDING.INTERESTS.GASTRONOMY', icon: 'lunch_dining' },
-    { id: 'fotografia', label: 'TRAVELER_ONBOARDING.INTERESTS.PHOTOGRAPHY', icon: 'photo_camera' },
-    { id: 'ecoturismo', label: 'TRAVELER_ONBOARDING.INTERESTS.ECOTOURISM', icon: 'forest' },
+    { id: 'deportes', label: 'TRAVELER_ONBOARDING.INTERESTS.SPORTS', icon: 'activity' },
+    { id: 'cocina', label: 'TRAVELER_ONBOARDING.INTERESTS.CUISINE', icon: 'utensils' },
+    { id: 'cultura', label: 'TRAVELER_ONBOARDING.INTERESTS.CULTURE', icon: 'landmark' },
+    { id: 'naturaleza', label: 'TRAVELER_ONBOARDING.INTERESTS.NATURE', icon: 'leaf' },
+    { id: 'playa', label: 'TRAVELER_ONBOARDING.INTERESTS.BEACH', icon: 'umbrella' },
+    { id: 'montaña', label: 'TRAVELER_ONBOARDING.INTERESTS.MOUNTAIN', icon: 'mountain' },
+    { id: 'historia', label: 'TRAVELER_ONBOARDING.INTERESTS.HISTORY', icon: 'book-open' },
+    { id: 'tecnologia', label: 'TRAVELER_ONBOARDING.INTERESTS.TECHNOLOGY', icon: 'monitor' },
+    { id: 'gastronomia', label: 'TRAVELER_ONBOARDING.INTERESTS.GASTRONOMY', icon: 'coffee' },
+    { id: 'fotografia', label: 'TRAVELER_ONBOARDING.INTERESTS.PHOTOGRAPHY', icon: 'camera' },
+    { id: 'ecoturismo', label: 'TRAVELER_ONBOARDING.INTERESTS.ECOTOURISM', icon: 'compass' },
   ]);
 
   selectedInterests = signal<string[]>(['cocina', 'naturaleza', 'tecnologia']);

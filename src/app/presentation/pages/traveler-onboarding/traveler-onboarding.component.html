@@ -36,8 +36,8 @@
                   (change)="toggleInterest(interest.id)"
                   hidden
                 />
-                <span class="interest-icon material-symbols-outlined">
-                  {{ interest.icon }}
+                <span class="interest-icon">
+                  <lucide-icon [name]="interest.icon"></lucide-icon>
                 </span>
                 <span class="interest-label">{{ interest.label | translate }}</span>
                 @if (isInterestSelected(interest.id)) {
@@ -127,7 +127,9 @@
         <!-- Profile Card -->
         <div class="sidebar-card profile-card">
           <div class="profile-header">
-            <span class="info-icon material-symbols-outlined">info</span>
+            <span class="info-icon">
+              <lucide-icon name="info"></lucide-icon>
+            </span>
             <h3 class="profile-title">{{ 'TRAVELER_ONBOARDING.YOUR_PROFILE' | translate }}</h3>
           </div>
           <p class="profile-description">{{ 'TRAVELER_ONBOARDING.PROFILE_DESCRIPTION' | translate }}</p>

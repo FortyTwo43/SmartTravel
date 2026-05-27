@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { SupabasePerfilViajeroRepository } from '../../infrastructure/repositories/supabase/SupabasePerfilViajeroRepository';
 import { SupabaseAuthRepository } from '../../infrastructure/repositories/supabase/auth/SupabaseAuthRepository';
-import { CreatePerfilViajeroDto } from '../../domain/entities/dtos';
+import { UpdatePerfilViajeroDto } from '../../domain/entities/dtos';
 import { PerfilViajero } from '../../domain/entities/PerfilViajero';
 
 export interface InitializePerfilViajeroRequest {
@@ -45,16 +45,15 @@ export class InitializePerfilViajeroUseCase {
 
       const userId = data.user.id;
 
-      // Create the PerfilViajero DTO
-      const createDto: CreatePerfilViajeroDto = {
-        id: userId,
+      // Update the PerfilViajero DTO (profile already exists in DB)
+      const updateDto: UpdatePerfilViajeroDto = {
         intereses: request.intereses,
         presupuesto: request.presupuesto,
         idioma: request.idioma
       };
 
-      // Save to database using repository
-      const perfilViajero = await this.perfilViajeroRepository.createWithId(createDto);
+      // Update existing record in database using repository
+      const perfilViajero = await this.perfilViajeroRepository.update(userId, updateDto);
 
       return {
         success: true,
