@@ -139,7 +139,6 @@ export class TravelerOnboardingComponent implements OnInit {
         intereses: this.selectedInterests().join(','),
         tipoViaje: this.selectedTravelType(),
         presupuesto: this.form.get('presupuesto')?.value || 0,
-        idioma: 'es'
       });
 
       if (result.success) {

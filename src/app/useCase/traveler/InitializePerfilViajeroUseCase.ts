@@ -8,7 +8,6 @@ export interface InitializePerfilViajeroRequest {
   intereses: string;
   tipoViaje: 'solo' | 'pareja' | 'familia' | 'amigos';
   presupuesto: number;
-  idioma: string;
 }
 
 export interface InitializePerfilViajeroResult {
@@ -49,7 +48,7 @@ export class InitializePerfilViajeroUseCase {
       const updateDto: UpdatePerfilViajeroDto = {
         intereses: request.intereses,
         presupuesto: request.presupuesto,
-        idioma: request.idioma
+        tipo_viaje: request.tipoViaje
       };
 
       // Update existing record in database using repository
