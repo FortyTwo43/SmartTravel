@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ProveedorSidebarComponent } from '../proveedor-sidebar/proveedor-sidebar';
 import { ProveedorHeaderComponent } from '../proveedor-header/proveedor-header';
-import { Footer } from '../footer/footer';
+import { Footer } from '../../footer/footer';
 
 @Component({
   selector: 'app-proveedor-layout',
