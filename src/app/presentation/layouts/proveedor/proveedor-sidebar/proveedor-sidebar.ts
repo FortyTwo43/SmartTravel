@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, LayoutDashboard, Calendar, ConciergeBell, Users, BarChart, Bell, Settings } from 'lucide-angular';
 
 @Component({
   selector: 'app-proveedor-sidebar',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule],
+  imports: [CommonModule, LucideAngularModule, TranslateModule],
   providers: [{
     provide: LUCIDE_ICONS,
     multi: true,
