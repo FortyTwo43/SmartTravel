@@ -12,8 +12,7 @@ export class MetricCardComponent {
   @Input({ required: true }) label!: string;
   @Input({ required: true }) value!: string | number;
   @Input() valueColorClass = '';
-  @Input() trend?: string;
-  @Input() trendColorClass = '';
+
   @Input({ required: true }) progressPercent!: number;
   @Input({ required: true }) progressColorClass!: string;
   @Input() progressOpacity?: number;

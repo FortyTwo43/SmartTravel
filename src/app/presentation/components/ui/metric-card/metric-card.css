@@ -56,13 +56,13 @@
 .text-primary { color: var(--color-primary); }
 .text-secondary { color: var(--color-secondary); }
 .text-tertiary { color: var(--color-tertiary); }
-.text-error { color: #ffb4ab; }
+.text-error { color: var(--color-negative); }
 .text-muted { color: var(--text-muted); }
 
 .bg-primary { background-color: var(--color-primary); }
 .bg-secondary { background-color: var(--color-secondary); }
 .bg-tertiary { background-color: var(--color-tertiary); }
-.bg-error { background-color: #ffb4ab; }
+.bg-error { background-color: var(--color-negative); }
 .bg-muted { background-color: var(--text-muted); }
 .bg-primary-dim { background-color: rgba(2, 136, 209, 0.5); }
 

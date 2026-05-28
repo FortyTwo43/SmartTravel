@@ -3,17 +3,16 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { MetricCardComponent } from '../../ui/metric-card/metric-card';
 
-export interface MetricItem {
+import { DashboardKpis } from '../../../../domain/entities/DashboardKpis';
+
+export interface MetricCardConfig {
   label: string;
-  value: string | number;
-  valueColorClass?: string;
-  trend?: string;
-  trendColorClass?: string;
+  value: string;
+  valueColorClass: string;
   progressPercent: number;
   progressColorClass: string;
   progressOpacity?: number;
 }
-
 @Component({
   selector: 'app-proveedor-metrics',
   standalone: true,
@@ -22,5 +21,10 @@ export interface MetricItem {
   styleUrl: './proveedor-metrics.css'
 })
 export class ProveedorMetricsComponent {
-  @Input() metrics: MetricItem[] = [];
+  @Input() kpis: DashboardKpis | null = null;
+
+  get formattedIngresos(): string {
+    if (!this.kpis) return '$0k';
+    return '$' + (this.kpis.ingresos_totales / 1000).toFixed(0) + 'k';
+  }
 }

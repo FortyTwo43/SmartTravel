@@ -6,8 +6,8 @@ import { ProveedorChartPlaceholderComponent } from '../../../components/proveedo
 import { ProveedorActivityComponent } from '../../../components/proveedor/proveedor-activity/proveedor-activity';
 import { ProveedorInsightsComponent, TravelTypeStat } from '../../../components/proveedor/proveedor-insights/proveedor-insights';
 import { ProveedorServicesComponent } from '../../../components/proveedor/proveedor-services/proveedor-services';
-import { MetricItem } from '../../../components/proveedor/proveedor-metrics/proveedor-metrics';
 import { EstablecimientoTuristico } from '../../../../domain/entities/EstablecimientoTuristico';
+import { DashboardKpis } from '../../../../domain/entities/DashboardKpis';
 import { LoadDashboardKpisUseCase } from '../../../../useCase/proveedor/LoadDashboardKpisUseCase';
 
 @Component({
@@ -38,50 +38,7 @@ export class ProveedorDashboardComponent implements OnInit {
     estado: 'activo'
   };
 
-  metricsData = signal<MetricItem[]>([
-    {
-      label: 'PROVIDER_DASHBOARD.METRICS.MONTHLY_RESERVATIONS',
-      value: '1,284',
-      valueColorClass: 'text-primary',
-      trend: '+12%',
-      trendColorClass: 'text-secondary',
-      progressPercent: 75,
-      progressColorClass: 'bg-primary'
-    },
-    {
-      label: 'PROVIDER_DASHBOARD.METRICS.TOTAL_REVENUE',
-      value: '$142k',
-      valueColorClass: 'text-secondary',
-      trend: '+8.4%',
-      trendColorClass: 'text-secondary',
-      progressPercent: 85,
-      progressColorClass: 'bg-secondary'
-    },
-    {
-      label: 'PROVIDER_DASHBOARD.METRICS.ACTIVE_SERVICES',
-      value: '42',
-      progressPercent: 100,
-      progressColorClass: 'bg-muted',
-      progressOpacity: 0.2
-    },
-    {
-      label: 'PROVIDER_DASHBOARD.METRICS.AVAILABILITY',
-      value: '94%',
-      trend: '+4%',
-      trendColorClass: 'text-secondary',
-      progressPercent: 94,
-      progressColorClass: 'bg-tertiary'
-    },
-    {
-      label: 'PROVIDER_DASHBOARD.METRICS.CANCELLATION_RATE',
-      value: '2.1%',
-      valueColorClass: 'text-error',
-      trend: '-0.5%',
-      trendColorClass: 'text-error',
-      progressPercent: 15,
-      progressColorClass: 'bg-error'
-    }
-  ]);
+  kpisData = signal<DashboardKpis | null>(null);
 
   insightsTravelStats: TravelTypeStat[] = [
     { label: 'PROVIDER_DASHBOARD.INSIGHTS.TRAVEL_TYPES.COUPLE', percentage: 54, textColorClass: 'text-primary', bgColorClass: 'bg-primary' },
@@ -114,51 +71,7 @@ export class ProveedorDashboardComponent implements OnInit {
   async ngOnInit() {
     try {
       const kpis = await this.loadDashboardKpisUseCase.execute(this.establecimiento.id_proveedor);
-      
-      this.metricsData.set([
-        {
-          label: 'PROVIDER_DASHBOARD.METRICS.MONTHLY_RESERVATIONS',
-          value: kpis.reservas_mensuales.toLocaleString(),
-          valueColorClass: 'text-primary',
-          trend: '+12%',
-          trendColorClass: 'text-secondary',
-          progressPercent: 75,
-          progressColorClass: 'bg-primary'
-        },
-        {
-          label: 'PROVIDER_DASHBOARD.METRICS.TOTAL_REVENUE',
-          value: '$' + (kpis.ingresos_totales / 1000).toFixed(0) + 'k',
-          valueColorClass: 'text-secondary',
-          trend: '+8.4%',
-          trendColorClass: 'text-secondary',
-          progressPercent: 85,
-          progressColorClass: 'bg-secondary'
-        },
-        {
-          label: 'PROVIDER_DASHBOARD.METRICS.ACTIVE_SERVICES',
-          value: kpis.servicios_activos.toString(),
-          progressPercent: 100,
-          progressColorClass: 'bg-muted',
-          progressOpacity: 0.2
-        },
-        {
-          label: 'PROVIDER_DASHBOARD.METRICS.AVAILABILITY',
-          value: kpis.disponibilidad_porcentaje + '%',
-          trend: '+4%',
-          trendColorClass: 'text-secondary',
-          progressPercent: kpis.disponibilidad_porcentaje,
-          progressColorClass: 'bg-tertiary'
-        },
-        {
-          label: 'PROVIDER_DASHBOARD.METRICS.CANCELLATION_RATE',
-          value: kpis.tasa_cancelacion + '%',
-          valueColorClass: 'text-error',
-          trend: '-0.5%',
-          trendColorClass: 'text-error',
-          progressPercent: kpis.tasa_cancelacion,
-          progressColorClass: 'bg-error'
-        }
-      ]);
+      this.kpisData.set(kpis);
     } catch (error) {
       console.error('Error loading Dashboard KPIs:', error);
     }

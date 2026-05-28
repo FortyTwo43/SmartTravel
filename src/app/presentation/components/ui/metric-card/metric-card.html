@@ -2,9 +2,6 @@
   <p class="metric-label">{{label}}</p>
   <div class="metric-value-container">
     <h3 class="metric-value" [ngClass]="valueColorClass">{{value}}</h3>
-    @if (trend) {
-      <span class="metric-trend" [ngClass]="trendColorClass">{{trend}}</span>
-    }
   </div>
   <div class="progress-bar-bg">
     <div class="progress-bar-fill" [ngClass]="progressColorClass" [style.width.%]="progressPercent" [style.opacity]="progressOpacity ? progressOpacity : 1"></div>
