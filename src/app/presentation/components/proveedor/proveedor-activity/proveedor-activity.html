@@ -14,20 +14,22 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of activities">
-          <td class="client-cell">
-            <div class="avatar" [ngClass]="item.colorClass">{{item.initials}}</div>
-            <span>{{item.name}}</span>
-          </td>
-          <td class="text-muted">{{item.service}}</td>
-          <td>{{item.pax}}</td>
-          <td>
-            <span class="status-pill" [ngClass]="{
-              'status-green': item.status === 'Confirmada' || item.status === 'Completada',
-              'status-amber': item.status === 'Pendiente'
-            }">{{item.status}}</span>
-          </td>
-        </tr>
+        @for (item of activities; track item.name) {
+          <tr>
+            <td class="client-cell">
+              <div class="avatar" [ngClass]="item.colorClass">{{item.initials}}</div>
+              <span>{{item.name}}</span>
+            </td>
+            <td class="text-muted">{{item.service}}</td>
+            <td>{{item.pax}}</td>
+            <td>
+              <span class="status-pill" [ngClass]="{
+                'status-green': item.status === 'Confirmada' || item.status === 'Completada',
+                'status-amber': item.status === 'Pendiente'
+              }">{{item.status}}</span>
+            </td>
+          </tr>
+        }
       </tbody>
     </table>
   </div>

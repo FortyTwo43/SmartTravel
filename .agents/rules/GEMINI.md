@@ -74,3 +74,6 @@ Debes colocar los archivos en las rutas correspondientes:
   })
   ```
   **PROHIBIDO** usar `LucideAngularModule.pick(...)` en el array de `imports`.
+
+## 🔄 Flujo de Control de Angular
+- **Sintaxis Moderna**: Utiliza SIEMPRE la nueva sintaxis de flujo de control introducida en Angular v17+ (`@if`, `@for`, `@switch`) en lugar de las directivas estructurales antiguas (`*ngIf`, `*ngFor`, `*ngSwitch`).

@@ -1,61 +1,50 @@
 <div class="metrics-grid">
-  <!-- Metric Card -->
-  <div class="metric-card">
-    <p class="metric-label">Reservas Mensuales</p>
-    <div class="metric-value-container">
-      <h3 class="metric-value text-primary">1,284</h3>
-      <span class="metric-trend text-secondary">+12%</span>
-    </div>
-    <div class="progress-bar-bg">
-      <div class="progress-bar-fill bg-primary" style="width: 75%"></div>
-    </div>
-  </div>
+  <app-metric-card
+    label="Reservas Mensuales"
+    value="1,284"
+    valueColorClass="text-primary"
+    trend="+12%"
+    trendColorClass="text-secondary"
+    [progressPercent]="75"
+    progressColorClass="bg-primary">
+  </app-metric-card>
 
-  <!-- Metric Card -->
-  <div class="metric-card">
-    <p class="metric-label">Ingresos Totales</p>
-    <div class="metric-value-container">
-      <h3 class="metric-value text-secondary">$142k</h3>
-      <span class="metric-trend text-secondary">+8.4%</span>
-    </div>
-    <div class="progress-bar-bg">
-      <div class="progress-bar-fill bg-secondary" style="width: 85%"></div>
-    </div>
-  </div>
+  <app-metric-card
+    label="Ingresos Totales"
+    value="$142k"
+    valueColorClass="text-secondary"
+    trend="+8.4%"
+    trendColorClass="text-secondary"
+    [progressPercent]="85"
+    progressColorClass="bg-secondary">
+  </app-metric-card>
 
-  <!-- Metric Card -->
-  <div class="metric-card">
-    <p class="metric-label">Servicios Activos</p>
-    <div class="metric-value-container">
-      <h3 class="metric-value">42</h3>
-      <lucide-icon name="info" class="icon-md text-muted"></lucide-icon>
-    </div>
-    <div class="progress-bar-bg">
-      <div class="progress-bar-fill bg-muted" style="width: 100%; opacity: 0.2"></div>
-    </div>
-  </div>
+  <app-metric-card
+    label="Servicios Activos"
+    value="42"
+    icon="info"
+    iconColorClass="text-muted"
+    [progressPercent]="100"
+    progressColorClass="bg-muted"
+    [progressOpacity]="0.2">
+  </app-metric-card>
 
-  <!-- Metric Card -->
-  <div class="metric-card">
-    <p class="metric-label">Disponibilidad</p>
-    <div class="metric-value-container">
-      <h3 class="metric-value">94%</h3>
-      <span class="metric-trend text-secondary">+4%</span>
-    </div>
-    <div class="progress-bar-bg">
-      <div class="progress-bar-fill bg-tertiary" style="width: 94%"></div>
-    </div>
-  </div>
+  <app-metric-card
+    label="Disponibilidad"
+    value="94%"
+    trend="+4%"
+    trendColorClass="text-secondary"
+    [progressPercent]="94"
+    progressColorClass="bg-tertiary">
+  </app-metric-card>
 
-  <!-- Metric Card -->
-  <div class="metric-card border-error">
-    <p class="metric-label">Tasa Cancelación</p>
-    <div class="metric-value-container">
-      <h3 class="metric-value text-error">2.1%</h3>
-      <span class="metric-trend text-error">-0.5%</span>
-    </div>
-    <div class="progress-bar-bg">
-      <div class="progress-bar-fill bg-error" style="width: 15%"></div>
-    </div>
-  </div>
+  <app-metric-card
+    label="Tasa Cancelación"
+    value="2.1%"
+    valueColorClass="text-error"
+    trend="-0.5%"
+    trendColorClass="text-error"
+    [progressPercent]="15"
+    progressColorClass="bg-error">
+  </app-metric-card>
 </div>

@@ -31,9 +31,11 @@
   <div class="insights-section">
     <p class="section-label">Intereses TOP</p>
     <div class="interests-container">
-      <span *ngFor="let interest of interests" class="interest-tag">
-        {{interest}}
-      </span>
+      @for (interest of interests; track interest) {
+        <span class="interest-tag">
+          {{interest}}
+        </span>
+      }
     </div>
   </div>
 </div>

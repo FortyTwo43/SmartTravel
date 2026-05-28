@@ -8,28 +8,30 @@
   </div>
   
   <div class="services-grid">
-    <div *ngFor="let s of services" class="service-card group">
-      <div class="card-header">
-        <div class="icon-container">
-          <span class="text-primary font-bold">{{ s.title.charAt(0) }}</span>
+    @for (s of services; track s.title) {
+      <div class="service-card group">
+        <div class="card-header">
+          <div class="icon-container">
+            <span class="text-primary font-bold">{{ s.title.charAt(0) }}</span>
+          </div>
+          <span class="status-pill {{s.statusClass}}">{{s.status}}</span>
         </div>
-        <span class="status-pill {{s.statusClass}}">{{s.status}}</span>
+        
+        <h5 class="service-name">{{s.title}}</h5>
+        <p class="service-desc">{{s.desc}}</p>
+        
+        <div class="card-footer">
+          <div>
+            <p class="res-label">RESERVAS</p>
+            <p class="res-value">{{s.res}}</p>
+          </div>
+          <div class="action-buttons">
+            <button class="action-btn"><lucide-icon name="edit-2" class="icon-xs"></lucide-icon></button>
+            <button class="action-btn"><lucide-icon name="line-chart" class="icon-xs"></lucide-icon></button>
+            <button class="action-btn btn-error"><lucide-icon name="power" class="icon-xs"></lucide-icon></button>
+          </div>
+        </div>
       </div>
-      
-      <h5 class="service-name">{{s.title}}</h5>
-      <p class="service-desc">{{s.desc}}</p>
-      
-      <div class="card-footer">
-        <div>
-          <p class="res-label">RESERVAS</p>
-          <p class="res-value">{{s.res}}</p>
-        </div>
-        <div class="action-buttons">
-          <button class="action-btn"><lucide-icon name="edit-2" class="icon-xs"></lucide-icon></button>
-          <button class="action-btn"><lucide-icon name="line-chart" class="icon-xs"></lucide-icon></button>
-          <button class="action-btn btn-error"><lucide-icon name="power" class="icon-xs"></lucide-icon></button>
-        </div>
-      </div>
-    </div>
+    }
   </div>
 </div>
