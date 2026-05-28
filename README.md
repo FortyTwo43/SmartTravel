@@ -73,9 +73,9 @@ perfil {
     string id PK
     string nombre
     string apellido
-    string rol
+    string rol "'viajero' | 'proveedor' | 'admin'"
     date fecha_registro
-    string estado
+    string estado "'activo' | 'inactivo'"
 }
 
 perfil_viajero {
@@ -83,18 +83,19 @@ perfil_viajero {
     string intereses
     decimal presupuesto
     string idioma
+    string tipo_viaje "'solo' | 'pareja' | 'familia' | 'amigos'"
 }
 
 solicitud_proveedor {
     string id PK
     string id_perfil FK
     string nombre_negocio
-    string tipo_negocio
+    string tipo_negocio "'restaurante' | 'hotel' | 'tour'"
     string descripcion
     string telefono
     string ubicacion
     string documento_url
-    string estado
+    string estado "'pendiente' | 'aceptado' | 'rechazado'"
     date fecha_solicitud
 }
 
@@ -104,7 +105,7 @@ destino {
     string ciudad
     string pais
     string descripcion
-    string tipo_experiencia
+    string tipo_experiencia "'aventura' | 'cultura' | 'naturaleza' | 'playa'"
     string imagen
 }
 
@@ -113,9 +114,9 @@ establecimiento_turistico {
     string id_proveedor FK
     string id_destino FK
     string nombre
-    string tipo
+    string tipo "'restaurante' | 'hotel' | 'tour'"
     string descripcion
-    string estado
+    string estado "'activo' | 'inactivo'"
 }
 
 servicio_reservable {
@@ -134,7 +135,7 @@ itinerario {
     string nombre
     date fecha_inicio
     date fecha_fin
-    string estado
+    string estado "'interes' | 'activo' | 'completado' | 'pausado'"
 }
 
 detalle_itinerario {
@@ -143,8 +144,8 @@ detalle_itinerario {
     string id_servicio_reservable FK
     date fecha
     string hora
-    string prioridad
-    string estado
+    string prioridad "'alto' | 'medio' | 'bajo'"
+    string estado "'pendiente' | 'en_progreso' | 'completado'"
 }
 
 reserva {
@@ -154,7 +155,7 @@ reserva {
     date fecha_reserva
     int cantidad_personas
     decimal precio_total
-    string estado
+    string estado "'pendiente' | 'aceptado' | 'rechazado'"
 }
 
 recomendacion {
