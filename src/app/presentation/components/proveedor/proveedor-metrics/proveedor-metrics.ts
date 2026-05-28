@@ -24,7 +24,10 @@ export class ProveedorMetricsComponent {
   @Input() kpis: DashboardKpis | null = null;
 
   get formattedIngresos(): string {
-    if (!this.kpis) return '$0k';
-    return '$' + (this.kpis.ingresos_totales / 1000).toFixed(0) + 'k';
+    if (!this.kpis) return '$0';
+    const value = this.kpis.ingresos_totales;
+    if (value >= 1_000_000) return '$' + (value / 1_000_000).toFixed(value % 1_000_000 === 0 ? 0 : 1) + 'M';
+    if (value >= 1_000)     return '$' + (value / 1_000).toFixed(value % 1_000 === 0 ? 0 : 1) + 'k';
+    return '$' + value;
   }
 }
