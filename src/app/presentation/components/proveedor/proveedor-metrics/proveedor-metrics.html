@@ -1,50 +1,14 @@
 <div class="metrics-grid">
-  <app-metric-card
-    label="Reservas Mensuales"
-    value="1,284"
-    valueColorClass="text-primary"
-    trend="+12%"
-    trendColorClass="text-secondary"
-    [progressPercent]="75"
-    progressColorClass="bg-primary">
-  </app-metric-card>
-
-  <app-metric-card
-    label="Ingresos Totales"
-    value="$142k"
-    valueColorClass="text-secondary"
-    trend="+8.4%"
-    trendColorClass="text-secondary"
-    [progressPercent]="85"
-    progressColorClass="bg-secondary">
-  </app-metric-card>
-
-  <app-metric-card
-    label="Servicios Activos"
-    value="42"
-    icon="info"
-    iconColorClass="text-muted"
-    [progressPercent]="100"
-    progressColorClass="bg-muted"
-    [progressOpacity]="0.2">
-  </app-metric-card>
-
-  <app-metric-card
-    label="Disponibilidad"
-    value="94%"
-    trend="+4%"
-    trendColorClass="text-secondary"
-    [progressPercent]="94"
-    progressColorClass="bg-tertiary">
-  </app-metric-card>
-
-  <app-metric-card
-    label="Tasa Cancelación"
-    value="2.1%"
-    valueColorClass="text-error"
-    trend="-0.5%"
-    trendColorClass="text-error"
-    [progressPercent]="15"
-    progressColorClass="bg-error">
-  </app-metric-card>
+  @for (metric of metrics; track metric.label) {
+    <app-metric-card
+      [label]="metric.label"
+      [value]="metric.value"
+      [valueColorClass]="metric.valueColorClass || ''"
+      [trend]="metric.trend"
+      [trendColorClass]="metric.trendColorClass || ''"
+      [progressPercent]="metric.progressPercent"
+      [progressColorClass]="metric.progressColorClass"
+      [progressOpacity]="metric.progressOpacity">
+    </app-metric-card>
+  }
 </div>

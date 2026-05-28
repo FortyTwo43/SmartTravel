@@ -5,9 +5,6 @@
     @if (trend) {
       <span class="metric-trend" [ngClass]="trendColorClass">{{trend}}</span>
     }
-    @if (icon) {
-      <lucide-icon [name]="icon" class="icon-md" [ngClass]="iconColorClass"></lucide-icon>
-    }
   </div>
   <div class="progress-bar-bg">
     <div class="progress-bar-fill" [ngClass]="progressColorClass" [style.width.%]="progressPercent" [style.opacity]="progressOpacity ? progressOpacity : 1"></div>
