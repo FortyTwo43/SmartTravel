@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProveedorLayoutComponent } from '../../../layouts/proveedor/proveedor-layout/proveedor-layout';
 import { ProveedorMetricsComponent } from '../../../components/proveedor/proveedor-metrics/proveedor-metrics';
@@ -8,6 +8,7 @@ import { ProveedorInsightsComponent, TravelTypeStat } from '../../../components/
 import { ProveedorServicesComponent } from '../../../components/proveedor/proveedor-services/proveedor-services';
 import { MetricItem } from '../../../components/proveedor/proveedor-metrics/proveedor-metrics';
 import { EstablecimientoTuristico } from '../../../../domain/entities/EstablecimientoTuristico';
+import { LoadDashboardKpisUseCase } from '../../../../useCase/proveedor/LoadDashboardKpisUseCase';
 
 @Component({
   selector: 'app-proveedor-dashboard',
@@ -24,10 +25,12 @@ import { EstablecimientoTuristico } from '../../../../domain/entities/Establecim
   templateUrl: './proveedor-dashboard.html',
   styleUrl: './proveedor-dashboard.css'
 })
-export class ProveedorDashboardComponent {
+export class ProveedorDashboardComponent implements OnInit {
+  private readonly loadDashboardKpisUseCase = inject(LoadDashboardKpisUseCase);
+
   establecimiento: EstablecimientoTuristico = {
     id: '1',
-    id_proveedor: 'p1',
+    id_proveedor: '0a019e93-a3d9-4865-a073-cb720ae9ee3a',
     id_destino: 'd1',
     nombre: 'Grand Horizon Resort & Spa',
     tipo: 'hotel',
@@ -35,7 +38,7 @@ export class ProveedorDashboardComponent {
     estado: 'activo'
   };
 
-  metricsData: MetricItem[] = [
+  metricsData = signal<MetricItem[]>([
     {
       label: 'PROVIDER_DASHBOARD.METRICS.MONTHLY_RESERVATIONS',
       value: '1,284',
@@ -78,7 +81,7 @@ export class ProveedorDashboardComponent {
       progressPercent: 15,
       progressColorClass: 'bg-error'
     }
-  ];
+  ]);
 
   insightsTravelStats: TravelTypeStat[] = [
     { label: 'PROVIDER_DASHBOARD.INSIGHTS.TRAVEL_TYPES.COUPLE', percentage: 54, textColorClass: 'text-primary', bgColorClass: 'bg-primary' },
@@ -107,4 +110,57 @@ export class ProveedorDashboardComponent {
     { title: 'Tasting Menu "Solaris"', desc: '6 tiempos con maridaje.', res: 891, status: 'ALTA DEMANDA', statusClass: 'status-amber' },
     { title: 'Helicopter Island Tour', desc: 'Sobrevuelo de 45 minutos.', res: 128, status: 'OPERATIVO', statusClass: 'status-green' }
   ];
+
+  async ngOnInit() {
+    try {
+      const kpis = await this.loadDashboardKpisUseCase.execute(this.establecimiento.id_proveedor);
+      
+      this.metricsData.set([
+        {
+          label: 'PROVIDER_DASHBOARD.METRICS.MONTHLY_RESERVATIONS',
+          value: kpis.reservas_mensuales.toLocaleString(),
+          valueColorClass: 'text-primary',
+          trend: '+12%',
+          trendColorClass: 'text-secondary',
+          progressPercent: 75,
+          progressColorClass: 'bg-primary'
+        },
+        {
+          label: 'PROVIDER_DASHBOARD.METRICS.TOTAL_REVENUE',
+          value: '$' + (kpis.ingresos_totales / 1000).toFixed(0) + 'k',
+          valueColorClass: 'text-secondary',
+          trend: '+8.4%',
+          trendColorClass: 'text-secondary',
+          progressPercent: 85,
+          progressColorClass: 'bg-secondary'
+        },
+        {
+          label: 'PROVIDER_DASHBOARD.METRICS.ACTIVE_SERVICES',
+          value: kpis.servicios_activos.toString(),
+          progressPercent: 100,
+          progressColorClass: 'bg-muted',
+          progressOpacity: 0.2
+        },
+        {
+          label: 'PROVIDER_DASHBOARD.METRICS.AVAILABILITY',
+          value: kpis.disponibilidad_porcentaje + '%',
+          trend: '+4%',
+          trendColorClass: 'text-secondary',
+          progressPercent: kpis.disponibilidad_porcentaje,
+          progressColorClass: 'bg-tertiary'
+        },
+        {
+          label: 'PROVIDER_DASHBOARD.METRICS.CANCELLATION_RATE',
+          value: kpis.tasa_cancelacion + '%',
+          valueColorClass: 'text-error',
+          trend: '-0.5%',
+          trendColorClass: 'text-error',
+          progressPercent: kpis.tasa_cancelacion,
+          progressColorClass: 'bg-error'
+        }
+      ]);
+    } catch (error) {
+      console.error('Error loading Dashboard KPIs:', error);
+    }
+  }
 }

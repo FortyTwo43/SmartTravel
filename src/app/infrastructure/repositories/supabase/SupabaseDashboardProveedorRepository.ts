@@ -19,6 +19,7 @@ export class SupabaseDashboardProveedorRepository implements DashboardProveedorR
       throw buildSupabaseError('getKpis', 'rpc:get_dashboard_kpis', error);
     }
 
+    console.log(data);
     return data as DashboardKpis;
   }
 }
