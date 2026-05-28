@@ -7,8 +7,8 @@ import { ProveedorActivityComponent } from '../../../components/proveedor/provee
 import { ProveedorInsightsComponent, TravelTypeStat } from '../../../components/proveedor/proveedor-insights/proveedor-insights';
 import { ProveedorServicesComponent } from '../../../components/proveedor/proveedor-services/proveedor-services';
 import { EstablecimientoTuristico } from '../../../../domain/entities/EstablecimientoTuristico';
-import { DashboardKpis } from '../../../../domain/entities/DashboardKpis';
-import { LoadDashboardKpisUseCase } from '../../../../useCase/proveedor/LoadDashboardKpisUseCase';
+import { DashboardKpis } from '../../../../domain/dashboard/DashboardKpis';
+import { LoadDashboardKpisUseCase } from '../../../../useCase/proveedor/dashboard/LoadDashboardKpisUseCase';
 
 @Component({
   selector: 'app-proveedor-dashboard',

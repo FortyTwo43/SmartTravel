@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
-import { DashboardKpis } from '../../domain/entities/DashboardKpis';
-import { SupabaseDashboardProveedorRepository } from '../../infrastructure/repositories/supabase/SupabaseDashboardProveedorRepository';
+import { DashboardKpis } from '../../../domain/dashboard/DashboardKpis';
+import { SupabaseDashboardProveedorRepository } from '../../../infrastructure/repositories/supabase/SupabaseDashboardProveedorRepository';
 
 @Injectable({
   providedIn: 'root'
