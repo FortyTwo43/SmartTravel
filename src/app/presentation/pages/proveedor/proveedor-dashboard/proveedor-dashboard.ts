@@ -4,7 +4,7 @@ import { ProveedorLayoutComponent } from '../../../layouts/proveedor/proveedor-l
 import { ProveedorMetricsComponent } from '../../../components/proveedor/proveedor-metrics/proveedor-metrics';
 import { ProveedorChartPlaceholderComponent } from '../../../components/proveedor/proveedor-chart-placeholder/proveedor-chart-placeholder';
 import { ProveedorActivityComponent } from '../../../components/proveedor/proveedor-activity/proveedor-activity';
-import { ProveedorInsightsComponent } from '../../../components/proveedor/proveedor-insights/proveedor-insights';
+import { ProveedorInsightsComponent, TravelTypeStat } from '../../../components/proveedor/proveedor-insights/proveedor-insights';
 import { ProveedorServicesComponent } from '../../../components/proveedor/proveedor-services/proveedor-services';
 import { MetricItem } from '../../../components/proveedor/proveedor-metrics/proveedor-metrics';
 
@@ -68,4 +68,12 @@ export class ProveedorDashboardComponent {
       progressColorClass: 'bg-error'
     }
   ];
+
+  insightsTravelStats: TravelTypeStat[] = [
+    { label: 'Pareja', percentage: 54, textColorClass: 'text-primary', bgColorClass: 'bg-primary' },
+    { label: 'Familia', percentage: 32, textColorClass: 'text-secondary', bgColorClass: 'bg-secondary' },
+    { label: 'Amigos', percentage: 10, textColorClass: 'text-tertiary', bgColorClass: 'bg-tertiary' },
+    { label: 'Solo', percentage: 4, textColorClass: 'text-muted', bgColorClass: 'bg-muted' }
+  ];
+  insightsInterests = ['Gastronomía', 'Aventura', 'Bienestar', 'Cultura', 'Sostenibilidad'];
 }

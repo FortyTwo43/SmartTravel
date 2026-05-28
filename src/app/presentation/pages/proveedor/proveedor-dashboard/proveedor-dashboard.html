@@ -6,10 +6,13 @@
     <!-- Section 2: Visual Intelligence (Chart Placeholder) -->
     <app-proveedor-chart-placeholder></app-proveedor-chart-placeholder>
     
-    <!-- Section 3: Operations & Activity + Customer Insights -->
+    <!-- Section 3: Activities and Insights -->
     <div class="activity-insights-grid">
       <app-proveedor-activity class="activity-section"></app-proveedor-activity>
-      <app-proveedor-insights class="insights-section"></app-proveedor-insights>
+      <app-proveedor-insights class="insights-section"
+        [travelStats]="insightsTravelStats" 
+        [interests]="insightsInterests">
+      </app-proveedor-insights>
     </div>
     
     <!-- Section 4: Popular Services -->

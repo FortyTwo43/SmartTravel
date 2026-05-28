@@ -1,5 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+export interface TravelTypeStat {
+  label: string;
+  percentage: number;
+  textColorClass: string;
+  bgColorClass: string;
+}
 
 @Component({
   selector: 'app-proveedor-insights',
@@ -9,5 +16,6 @@ import { CommonModule } from '@angular/common';
   styleUrl: './proveedor-insights.css'
 })
 export class ProveedorInsightsComponent {
-  interests = ['Gastronomía', 'Aventura', 'Bienestar', 'Cultura', 'Sostenibilidad'];
+  @Input() travelStats: TravelTypeStat[] = [];
+  @Input() interests: string[] = [];
 }

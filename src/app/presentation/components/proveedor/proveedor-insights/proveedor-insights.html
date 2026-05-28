@@ -7,25 +7,17 @@
   <div class="insights-section">
     <p class="section-label">Tipo de Viaje</p>
     
-    <div class="travel-type-item">
-      <div class="item-header">
-        <span>Pareja</span>
-        <span class="text-primary font-bold">54%</span>
+    @for (stat of travelStats; track stat.label) {
+      <div class="travel-type-item">
+        <div class="item-header">
+          <span>{{stat.label}}</span>
+          <span class="font-bold" [ngClass]="stat.textColorClass">{{stat.percentage}}%</span>
+        </div>
+        <div class="progress-bg">
+          <div class="progress-fill" [ngClass]="stat.bgColorClass" [style.width.%]="stat.percentage"></div>
+        </div>
       </div>
-      <div class="progress-bg">
-        <div class="progress-fill bg-primary" style="width: 54%"></div>
-      </div>
-    </div>
-    
-    <div class="travel-type-item">
-      <div class="item-header">
-        <span>Familia</span>
-        <span class="text-secondary font-bold">32%</span>
-      </div>
-      <div class="progress-bg">
-        <div class="progress-fill bg-secondary" style="width: 32%"></div>
-      </div>
-    </div>
+    }
   </div>
   
   <div class="insights-section">
