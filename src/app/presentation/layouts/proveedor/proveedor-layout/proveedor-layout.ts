@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ProveedorSidebarComponent } from '../proveedor-sidebar/proveedor-sidebar';
@@ -13,4 +13,6 @@ import { Footer } from '../../footer/footer';
   styleUrl: './proveedor-layout.css'
 })
 export class ProveedorLayoutComponent {
+  @Input() establecimientoNombre: string = '';
+  @Input() establecimientoTipo: string = '';
 }

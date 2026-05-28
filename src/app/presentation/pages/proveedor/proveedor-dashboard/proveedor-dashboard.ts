@@ -7,6 +7,7 @@ import { ProveedorActivityComponent } from '../../../components/proveedor/provee
 import { ProveedorInsightsComponent, TravelTypeStat } from '../../../components/proveedor/proveedor-insights/proveedor-insights';
 import { ProveedorServicesComponent } from '../../../components/proveedor/proveedor-services/proveedor-services';
 import { MetricItem } from '../../../components/proveedor/proveedor-metrics/proveedor-metrics';
+import { EstablecimientoTuristico } from '../../../../domain/entities/EstablecimientoTuristico';
 
 @Component({
   selector: 'app-proveedor-dashboard',
@@ -24,6 +25,16 @@ import { MetricItem } from '../../../components/proveedor/proveedor-metrics/prov
   styleUrl: './proveedor-dashboard.css'
 })
 export class ProveedorDashboardComponent {
+  establecimiento: EstablecimientoTuristico = {
+    id: '1',
+    id_proveedor: 'p1',
+    id_destino: 'd1',
+    nombre: 'Grand Horizon Resort & Spa',
+    tipo: 'hotel',
+    descripcion: 'Resort de lujo',
+    estado: 'activo'
+  };
+
   metricsData: MetricItem[] = [
     {
       label: 'PROVIDER_DASHBOARD.METRICS.MONTHLY_RESERVATIONS',

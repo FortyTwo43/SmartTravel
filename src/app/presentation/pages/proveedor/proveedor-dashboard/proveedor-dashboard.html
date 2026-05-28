@@ -1,4 +1,4 @@
-<app-proveedor-layout>
+<app-proveedor-layout [establecimientoNombre]="establecimiento.nombre" [establecimientoTipo]="establecimiento.tipo">
   <div class="dashboard-container">
     <!-- Section 1: Executive Metrics -->
     <app-proveedor-metrics [metrics]="metricsData"></app-proveedor-metrics>

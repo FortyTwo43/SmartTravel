@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Star, Calendar, ChevronDown, Bell } from 'lucide-angular';
 
@@ -15,4 +15,6 @@ import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Star, Calendar, 
   styleUrl: './proveedor-header.css'
 })
 export class ProveedorHeaderComponent {
+  @Input() nombre: string = '';
+  @Input() tipo: string = '';
 }
