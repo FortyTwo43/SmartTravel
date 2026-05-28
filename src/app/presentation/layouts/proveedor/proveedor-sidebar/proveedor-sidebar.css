@@ -31,14 +31,6 @@
   font-weight: 800;
 }
 
-.brand-subtitle {
-  font-size: 0.625rem;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: var(--text-muted);
-  opacity: 0.6;
-}
-
 .sidebar-nav {
   flex: 1;
   padding: 0 0.75rem;
@@ -68,9 +60,8 @@
 }
 
 .nav-item.active {
-  background-color: rgba(2, 136, 209, 0.1);
+  background-color: var(--bg-surface-alt);
   color: var(--color-primary);
-  box-shadow: 0 0 20px rgba(2, 136, 209, 0.2);
 }
 
 .nav-item lucide-icon {
