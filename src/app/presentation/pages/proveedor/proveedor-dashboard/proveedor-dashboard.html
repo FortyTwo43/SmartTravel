@@ -8,7 +8,7 @@
     
     <!-- Section 3: Activities and Insights -->
     <div class="activity-insights-grid">
-      <app-proveedor-activity class="activity-section"></app-proveedor-activity>
+      <app-proveedor-activity class="activity-section" [activities]="activityData"></app-proveedor-activity>
       <app-proveedor-insights class="insights-section"
         [travelStats]="insightsTravelStats" 
         [interests]="insightsInterests">
@@ -16,6 +16,6 @@
     </div>
     
     <!-- Section 4: Popular Services -->
-    <app-proveedor-services></app-proveedor-services>
+    <app-proveedor-services [services]="servicesData"></app-proveedor-services>
   </div>
 </app-proveedor-layout>

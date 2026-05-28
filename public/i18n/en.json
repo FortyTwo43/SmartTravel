@@ -250,6 +250,10 @@
       "ACTIVE_SERVICES": "Active Services",
       "AVAILABILITY": "Availability",
       "CANCELLATION_RATE": "Cancellation Rate"
+    },
+    "SERVICES": {
+      "TITLE": "Most In-Demand Services",
+      "RESERVATIONS": "RESERVATIONS"
     }
   }
 }

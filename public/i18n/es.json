@@ -250,6 +250,10 @@
       "ACTIVE_SERVICES": "Servicios Activos",
       "AVAILABILITY": "Disponibilidad",
       "CANCELLATION_RATE": "Tasa Cancelación"
+    },
+    "SERVICES": {
+      "TITLE": "Servicios más demandados",
+      "RESERVATIONS": "RESERVAS"
     }
   }
 }

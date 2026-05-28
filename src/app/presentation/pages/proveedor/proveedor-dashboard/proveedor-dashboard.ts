@@ -82,4 +82,18 @@ export class ProveedorDashboardComponent {
     'PROVIDER_DASHBOARD.INSIGHTS.INTERESTS.CULTURE',
     'PROVIDER_DASHBOARD.INSIGHTS.INTERESTS.SUSTAINABILITY'
   ];
+
+  activityData = [
+    { initials: 'JD', name: 'Julian Draxler', service: 'Luxury Suite King', pax: 2, status: 'aceptado', colorClass: 'bg-primary-container' },
+    { initials: 'SK', name: 'Sophie Klein', service: 'Full Spa Ritual', pax: 1, status: 'pendiente', colorClass: 'bg-secondary-container' },
+    { initials: 'AM', name: 'Alan Miller', service: 'Airport VIP Escort', pax: 4, status: 'rechazado', colorClass: 'bg-surface-bright' },
+    { initials: 'AM', name: 'Alan Miller', service: 'Airport VIP Escort', pax: 4, status: 'rechazado', colorClass: 'bg-surface-bright' }
+  ];
+
+  servicesData = [
+    { title: 'Skyline Infinity Pool Access', desc: 'Acceso exclusivo al 24º piso.', res: 482, status: 'OPERATIVO', statusClass: 'status-green' },
+    { title: 'Balinese Massage Journey', desc: 'Tratamiento integral de 120 min.', res: 324, status: 'OPERATIVO', statusClass: 'status-green' },
+    { title: 'Tasting Menu "Solaris"', desc: '6 tiempos con maridaje.', res: 891, status: 'ALTA DEMANDA', statusClass: 'status-amber' },
+    { title: 'Helicopter Island Tour', desc: 'Sobrevuelo de 45 minutos.', res: 128, status: 'OPERATIVO', statusClass: 'status-green' }
+  ];
 }
