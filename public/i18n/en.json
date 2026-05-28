@@ -231,6 +231,19 @@
         "SUSTAINABILITY": "Sustainability"
       }
     },
+    "ACTIVITY": {
+      "TITLE": "Recent Activity",
+      "VIEW_ALL": "View all",
+      "CLIENT": "Client",
+      "SERVICE": "Service",
+      "PAX": "Pax",
+      "STATUS": "Status",
+      "STATUSES": {
+        "aceptado": "Accepted",
+        "pendiente": "Pending",
+        "rechazado": "Rejected"
+      }
+    },
     "METRICS": {
       "MONTHLY_RESERVATIONS": "Monthly Reservations",
       "TOTAL_REVENUE": "Total Revenue",

@@ -1,16 +1,16 @@
 <div class="activity-card">
   <div class="activity-header">
-    <h4 class="activity-title">Actividad Reciente</h4>
-    <button class="btn-link">Ver todo</button>
+    <h4 class="activity-title">{{ 'PROVIDER_DASHBOARD.ACTIVITY.TITLE' | translate }}</h4>
+    <button class="btn-link">{{ 'PROVIDER_DASHBOARD.ACTIVITY.VIEW_ALL' | translate }}</button>
   </div>
   <div class="table-container">
     <table class="activity-table">
       <thead>
         <tr>
-          <th>Cliente</th>
-          <th>Servicio</th>
-          <th>Pax</th>
-          <th>Estado</th>
+          <th>{{ 'PROVIDER_DASHBOARD.ACTIVITY.CLIENT' | translate }}</th>
+          <th>{{ 'PROVIDER_DASHBOARD.ACTIVITY.SERVICE' | translate }}</th>
+          <th>{{ 'PROVIDER_DASHBOARD.ACTIVITY.PAX' | translate }}</th>
+          <th>{{ 'PROVIDER_DASHBOARD.ACTIVITY.STATUS' | translate }}</th>
         </tr>
       </thead>
       <tbody>
@@ -24,9 +24,10 @@
             <td>{{item.pax}}</td>
             <td>
               <span class="status-pill" [ngClass]="{
-                'status-green': item.status === 'Confirmada' || item.status === 'Completada',
-                'status-amber': item.status === 'Pendiente'
-              }">{{item.status}}</span>
+                'status-green': item.status === 'aceptado',
+                'status-amber': item.status === 'pendiente',
+                'status-red': item.status === 'rechazado'
+              }">{{ 'PROVIDER_DASHBOARD.ACTIVITY.STATUSES.' + item.status | translate }}</span>
             </td>
           </tr>
         }
