@@ -26,7 +26,7 @@ import { MetricItem } from '../../../components/proveedor/proveedor-metrics/prov
 export class ProveedorDashboardComponent {
   metricsData: MetricItem[] = [
     {
-      label: 'Reservas Mensuales',
+      label: 'PROVIDER_DASHBOARD.METRICS.MONTHLY_RESERVATIONS',
       value: '1,284',
       valueColorClass: 'text-primary',
       trend: '+12%',
@@ -35,7 +35,7 @@ export class ProveedorDashboardComponent {
       progressColorClass: 'bg-primary'
     },
     {
-      label: 'Ingresos Totales',
+      label: 'PROVIDER_DASHBOARD.METRICS.TOTAL_REVENUE',
       value: '$142k',
       valueColorClass: 'text-secondary',
       trend: '+8.4%',
@@ -44,14 +44,14 @@ export class ProveedorDashboardComponent {
       progressColorClass: 'bg-secondary'
     },
     {
-      label: 'Servicios Activos',
+      label: 'PROVIDER_DASHBOARD.METRICS.ACTIVE_SERVICES',
       value: '42',
       progressPercent: 100,
       progressColorClass: 'bg-muted',
       progressOpacity: 0.2
     },
     {
-      label: 'Disponibilidad',
+      label: 'PROVIDER_DASHBOARD.METRICS.AVAILABILITY',
       value: '94%',
       trend: '+4%',
       trendColorClass: 'text-secondary',
@@ -59,7 +59,7 @@ export class ProveedorDashboardComponent {
       progressColorClass: 'bg-tertiary'
     },
     {
-      label: 'Tasa Cancelación',
+      label: 'PROVIDER_DASHBOARD.METRICS.CANCELLATION_RATE',
       value: '2.1%',
       valueColorClass: 'text-error',
       trend: '-0.5%',

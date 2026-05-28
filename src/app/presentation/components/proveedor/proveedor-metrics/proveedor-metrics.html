@@ -1,7 +1,7 @@
 <div class="metrics-grid">
   @for (metric of metrics; track metric.label) {
     <app-metric-card
-      [label]="metric.label"
+      [label]="metric.label | translate"
       [value]="metric.value"
       [valueColorClass]="metric.valueColorClass || ''"
       [trend]="metric.trend"

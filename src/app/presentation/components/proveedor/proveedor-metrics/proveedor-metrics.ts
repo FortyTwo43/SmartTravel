@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import { MetricCardComponent } from '../../ui/metric-card/metric-card';
 
 export interface MetricItem {
@@ -16,7 +17,7 @@ export interface MetricItem {
 @Component({
   selector: 'app-proveedor-metrics',
   standalone: true,
-  imports: [CommonModule, MetricCardComponent],
+  imports: [CommonModule, MetricCardComponent, TranslateModule],
   templateUrl: './proveedor-metrics.html',
   styleUrl: './proveedor-metrics.css'
 })

@@ -200,5 +200,14 @@
     "ERROR_VALIDATION": "Por favor completa todos los campos y selecciona al menos un interés.",
     "ERROR_SAVE": "Error al guardar la configuración. Por favor intenta de nuevo.",
     "ERROR_UNKNOWN": "Ocurrió un error desconocido. Por favor intenta de nuevo."
+  },
+  "PROVIDER_DASHBOARD": {
+    "METRICS": {
+      "MONTHLY_RESERVATIONS": "Reservas Mensuales",
+      "TOTAL_REVENUE": "Ingresos Totales",
+      "ACTIVE_SERVICES": "Servicios Activos",
+      "AVAILABILITY": "Disponibilidad",
+      "CANCELLATION_RATE": "Tasa Cancelación"
+    }
   }
 }
