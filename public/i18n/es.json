@@ -212,6 +212,25 @@
       "SETTINGS": "Configuración",
       "ROLE": "Administrador Ejecutivo"
     },
+    "INSIGHTS": {
+      "TITLE": "Insights del Cliente",
+      "SUBTITLE": "Perfil demográfico de este mes",
+      "TRAVEL_TYPE": "Tipo de Viaje",
+      "TOP_INTERESTS": "Intereses TOP",
+      "TRAVEL_TYPES": {
+        "COUPLE": "Pareja",
+        "FAMILY": "Familia",
+        "FRIENDS": "Amigos",
+        "SOLO": "Solo"
+      },
+      "INTERESTS": {
+        "GASTRONOMY": "Gastronomía",
+        "ADVENTURE": "Aventura",
+        "WELLNESS": "Bienestar",
+        "CULTURE": "Cultura",
+        "SUSTAINABILITY": "Sostenibilidad"
+      }
+    },
     "METRICS": {
       "MONTHLY_RESERVATIONS": "Reservas Mensuales",
       "TOTAL_REVENUE": "Ingresos Totales",

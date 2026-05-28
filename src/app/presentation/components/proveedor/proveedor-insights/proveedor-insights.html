@@ -1,16 +1,16 @@
 <div class="insights-card">
   <div class="insights-header">
-    <h4 class="insights-title">Insights del Cliente</h4>
-    <p class="insights-subtitle">Perfil demográfico de este mes</p>
+    <h4 class="insights-title">{{ 'PROVIDER_DASHBOARD.INSIGHTS.TITLE' | translate }}</h4>
+    <p class="insights-subtitle">{{ 'PROVIDER_DASHBOARD.INSIGHTS.SUBTITLE' | translate }}</p>
   </div>
   
   <div class="insights-section">
-    <p class="section-label">Tipo de Viaje</p>
+    <p class="section-label">{{ 'PROVIDER_DASHBOARD.INSIGHTS.TRAVEL_TYPE' | translate }}</p>
     
     @for (stat of travelStats; track stat.label) {
       <div class="travel-type-item">
         <div class="item-header">
-          <span>{{stat.label}}</span>
+          <span>{{stat.label | translate}}</span>
           <span class="font-bold" [ngClass]="stat.textColorClass">{{stat.percentage}}%</span>
         </div>
         <div class="progress-bg">
@@ -21,11 +21,11 @@
   </div>
   
   <div class="insights-section">
-    <p class="section-label">Intereses TOP</p>
+    <p class="section-label">{{ 'PROVIDER_DASHBOARD.INSIGHTS.TOP_INTERESTS' | translate }}</p>
     <div class="interests-container">
       @for (interest of interests; track interest) {
         <span class="interest-tag">
-          {{interest}}
+          {{interest | translate}}
         </span>
       }
     </div>

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 export interface TravelTypeStat {
   label: string;
@@ -11,7 +12,7 @@ export interface TravelTypeStat {
 @Component({
   selector: 'app-proveedor-insights',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './proveedor-insights.html',
   styleUrl: './proveedor-insights.css'
 })

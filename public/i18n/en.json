@@ -212,6 +212,25 @@
       "SETTINGS": "Settings",
       "ROLE": "Executive Admin"
     },
+    "INSIGHTS": {
+      "TITLE": "Customer Insights",
+      "SUBTITLE": "This month's demographic profile",
+      "TRAVEL_TYPE": "Travel Type",
+      "TOP_INTERESTS": "Top Interests",
+      "TRAVEL_TYPES": {
+        "COUPLE": "Couple",
+        "FAMILY": "Family",
+        "FRIENDS": "Friends",
+        "SOLO": "Solo"
+      },
+      "INTERESTS": {
+        "GASTRONOMY": "Gastronomy",
+        "ADVENTURE": "Adventure",
+        "WELLNESS": "Wellness",
+        "CULTURE": "Culture",
+        "SUSTAINABILITY": "Sustainability"
+      }
+    },
     "METRICS": {
       "MONTHLY_RESERVATIONS": "Monthly Reservations",
       "TOTAL_REVENUE": "Total Revenue",

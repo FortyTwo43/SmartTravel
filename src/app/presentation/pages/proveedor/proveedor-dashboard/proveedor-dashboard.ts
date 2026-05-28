@@ -70,10 +70,16 @@ export class ProveedorDashboardComponent {
   ];
 
   insightsTravelStats: TravelTypeStat[] = [
-    { label: 'Pareja', percentage: 54, textColorClass: 'text-primary', bgColorClass: 'bg-primary' },
-    { label: 'Familia', percentage: 32, textColorClass: 'text-secondary', bgColorClass: 'bg-secondary' },
-    { label: 'Amigos', percentage: 10, textColorClass: 'text-tertiary', bgColorClass: 'bg-tertiary' },
-    { label: 'Solo', percentage: 4, textColorClass: 'text-muted', bgColorClass: 'bg-muted' }
+    { label: 'PROVIDER_DASHBOARD.INSIGHTS.TRAVEL_TYPES.COUPLE', percentage: 54, textColorClass: 'text-primary', bgColorClass: 'bg-primary' },
+    { label: 'PROVIDER_DASHBOARD.INSIGHTS.TRAVEL_TYPES.FAMILY', percentage: 32, textColorClass: 'text-secondary', bgColorClass: 'bg-secondary' },
+    { label: 'PROVIDER_DASHBOARD.INSIGHTS.TRAVEL_TYPES.FRIENDS', percentage: 10, textColorClass: 'text-tertiary', bgColorClass: 'bg-tertiary' },
+    { label: 'PROVIDER_DASHBOARD.INSIGHTS.TRAVEL_TYPES.SOLO', percentage: 4, textColorClass: 'text-muted', bgColorClass: 'bg-muted' }
   ];
-  insightsInterests = ['Gastronomía', 'Aventura', 'Bienestar', 'Cultura', 'Sostenibilidad'];
+  insightsInterests = [
+    'PROVIDER_DASHBOARD.INSIGHTS.INTERESTS.GASTRONOMY',
+    'PROVIDER_DASHBOARD.INSIGHTS.INTERESTS.ADVENTURE',
+    'PROVIDER_DASHBOARD.INSIGHTS.INTERESTS.WELLNESS',
+    'PROVIDER_DASHBOARD.INSIGHTS.INTERESTS.CULTURE',
+    'PROVIDER_DASHBOARD.INSIGHTS.INTERESTS.SUSTAINABILITY'
+  ];
 }
