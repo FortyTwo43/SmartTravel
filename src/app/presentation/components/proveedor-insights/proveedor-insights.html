@@ -1,0 +1,39 @@
+<div class="insights-card">
+  <div class="insights-header">
+    <h4 class="insights-title">Insights del Cliente</h4>
+    <p class="insights-subtitle">Perfil demográfico de este mes</p>
+  </div>
+  
+  <div class="insights-section">
+    <p class="section-label">Tipo de Viaje</p>
+    
+    <div class="travel-type-item">
+      <div class="item-header">
+        <span>Pareja</span>
+        <span class="text-primary font-bold">54%</span>
+      </div>
+      <div class="progress-bg">
+        <div class="progress-fill bg-primary" style="width: 54%"></div>
+      </div>
+    </div>
+    
+    <div class="travel-type-item">
+      <div class="item-header">
+        <span>Familia</span>
+        <span class="text-secondary font-bold">32%</span>
+      </div>
+      <div class="progress-bg">
+        <div class="progress-fill bg-secondary" style="width: 32%"></div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="insights-section">
+    <p class="section-label">Intereses TOP</p>
+    <div class="interests-container">
+      <span *ngFor="let interest of interests" class="interest-tag">
+        {{interest}}
+      </span>
+    </div>
+  </div>
+</div>

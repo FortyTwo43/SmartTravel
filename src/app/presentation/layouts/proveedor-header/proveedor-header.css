@@ -1,0 +1,118 @@
+.header-container {
+  height: 6rem;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2.5rem;
+  background-color: var(--bg-surface);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.header-title {
+  font-size: 1.5rem;
+  color: var(--text-main);
+  margin-bottom: 0.25rem;
+}
+
+.status-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--color-secondary);
+}
+
+.icon-sm {
+  width: 16px;
+  height: 16px;
+}
+
+.icon-md {
+  width: 24px;
+  height: 24px;
+  color: var(--text-main);
+}
+
+.text-secondary {
+  color: var(--color-secondary);
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+.status-text {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  font-family: var(--font-headline);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.date-selector {
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-surface-alt);
+  border-radius: var(--radius-full);
+  padding: 0.25rem 1rem;
+  border: 1px solid var(--border-color);
+}
+
+.date-text {
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin: 0 0.75rem;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.notification-btn {
+  position: relative;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.notification-btn:hover {
+  background-color: var(--bg-surface-alt);
+}
+
+.notification-dot {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  width: 0.625rem;
+  height: 0.625rem;
+  background-color: #ffb4ab;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--bg-surface);
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    padding: 0 1rem;
+  }
+  .header-title {
+    font-size: 1.125rem;
+  }
+  .date-selector {
+    display: none;
+  }
+}

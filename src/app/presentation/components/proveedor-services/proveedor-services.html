@@ -1,0 +1,35 @@
+<div class="services-container">
+  <div class="services-header">
+    <h4 class="services-title">Servicios más demandados</h4>
+    <div class="header-actions">
+      <lucide-icon name="grid" class="icon-sm text-muted cursor-pointer hover-primary"></lucide-icon>
+      <lucide-icon name="list" class="icon-sm text-primary cursor-pointer"></lucide-icon>
+    </div>
+  </div>
+  
+  <div class="services-grid">
+    <div *ngFor="let s of services" class="service-card group">
+      <div class="card-header">
+        <div class="icon-container">
+          <span class="text-primary font-bold">{{ s.title.charAt(0) }}</span>
+        </div>
+        <span class="status-pill {{s.statusClass}}">{{s.status}}</span>
+      </div>
+      
+      <h5 class="service-name">{{s.title}}</h5>
+      <p class="service-desc">{{s.desc}}</p>
+      
+      <div class="card-footer">
+        <div>
+          <p class="res-label">RESERVAS</p>
+          <p class="res-value">{{s.res}}</p>
+        </div>
+        <div class="action-buttons">
+          <button class="action-btn"><lucide-icon name="edit-2" class="icon-xs"></lucide-icon></button>
+          <button class="action-btn"><lucide-icon name="line-chart" class="icon-xs"></lucide-icon></button>
+          <button class="action-btn btn-error"><lucide-icon name="power" class="icon-xs"></lucide-icon></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

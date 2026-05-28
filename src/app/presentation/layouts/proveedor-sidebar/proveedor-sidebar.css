@@ -1,0 +1,127 @@
+.sidebar-container {
+  width: 18rem;
+  background-color: var(--bg-surface);
+  backdrop-filter: blur(12px);
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  z-index: 50;
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+}
+
+@media (max-width: 768px) {
+  .sidebar-container {
+    display: none;
+  }
+}
+
+.sidebar-header {
+  padding: 2.5rem;
+}
+
+.brand-title {
+  color: var(--color-primary);
+  font-family: var(--font-headline);
+  font-size: 1.5rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.25rem;
+  font-weight: 800;
+}
+
+.brand-subtitle {
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 0 0.75rem;
+  margin-top: 1.5rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.75rem;
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-family: var(--font-body);
+  font-weight: 500;
+}
+
+.nav-item:hover {
+  background-color: var(--bg-surface-alt);
+  color: var(--text-main);
+}
+
+.nav-item.active {
+  background-color: rgba(2, 136, 209, 0.1);
+  color: var(--color-primary);
+  box-shadow: 0 0 20px rgba(2, 136, 209, 0.2);
+}
+
+.nav-item lucide-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.sidebar-footer {
+  padding: 1.5rem;
+  margin-top: auto;
+  border-top: 1px solid var(--border-color);
+}
+
+.mb-md {
+  margin-bottom: 1.5rem;
+}
+
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: var(--bg-surface-alt);
+  border-radius: var(--radius-lg);
+  padding: 0.75rem;
+}
+
+.profile-img {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+  border: 1px solid var(--color-primary);
+}
+
+.profile-info {
+  overflow: hidden;
+}
+
+.profile-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text-main);
+}
+
+.profile-role {
+  font-size: 0.625rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
