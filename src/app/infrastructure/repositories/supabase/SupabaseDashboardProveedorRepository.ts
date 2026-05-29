@@ -3,6 +3,7 @@ import { SupabaseClient } from '@supabase/supabase-js';
 import { DashboardProveedorRepository } from '../../../domain/repositories/DashboardProveedorRepository';
 import { DashboardKpis } from '../../../domain/dashboard/DashboardKpis';
 import { DashboardActividadReciente } from '../../../domain/dashboard/DashboardActividadReciente';
+import { DashboardServicioMasDemandado } from '../../../domain/dashboard/DashboardServicioMasDemandado';
 import { buildSupabaseError } from './supabaseUtils/supabase-error';
 
 @Injectable({
@@ -36,5 +37,25 @@ export class SupabaseDashboardProveedorRepository implements DashboardProveedorR
     }
 
     return (data ?? []) as DashboardActividadReciente[];
+  }
+
+  async getServiciosMasDemandados(providerId: string): Promise<DashboardServicioMasDemandado[]> {
+    const { data, error } = await this.supabase
+      .from('vw_servicios_mas_demandados')
+      .select(`
+        servicio_id,
+        nombre_servicio,
+        descripcion_servicio,
+        total_reservas_aceptadas
+      `)
+      .eq('id_proveedor', providerId)
+      .order('total_reservas_aceptadas', { ascending: false })
+      .limit(4);
+
+    if (error) {
+      throw buildSupabaseError('getServiciosMasDemandados', 'vw_servicios_mas_demandados', error);
+    }
+
+    return (data ?? []) as DashboardServicioMasDemandado[];
   }
 }
