@@ -5,12 +5,12 @@
     </div>
 
     <div class="service-content">
-      <h3 class="service-name">{{ service()!.name }}</h3>
-      <p class="service-description">{{ service()!.description }}</p>
+      <h3 class="service-name">{{ service()!.nombre }}</h3>
+      <p class="service-description">{{ service()!.descripcion }}</p>
       <div class="service-meta">
-        <span class="service-price">€{{ service()!.price }}</span>
-        <span class="service-disponible" [class.disponible]="service()!.disponible">
-          {{ service()!.disponible ? 'Disponible' : 'No disponible' }}
+        <span class="service-price">€{{ service()!.precio }}</span>
+        <span class="service-disponible" [class.disponible]="service()!.disponibilidad">
+          {{ service()!.disponibilidad ? 'Disponible' : 'No disponible' }}
         </span>
       </div>
     </div>

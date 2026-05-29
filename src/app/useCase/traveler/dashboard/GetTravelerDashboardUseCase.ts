@@ -13,34 +13,34 @@ import { ServicioReservable } from '../../../domain/entities/ServicioReservable'
  */
 export interface TripCard {
   id: string;
-  destination: string;
-  startDate: string;
-  endDate: string;
-  status: 'interes' | 'activo' | 'completado' | 'pausado';
+  destino: string;
+  fecha_inicio: string;
+  fecha_fin: string;
+  estado: 'interes' | 'activo' | 'completado' | 'pausado';
 }
 
 export interface DestinationCard {
   id: string;
-  name: string;
-  city: string;
-  country: string;
+  nombre: string;
+  ciudad: string;
+  pais: string;
   imagen: string;
-  tipoExperiencia: string;
+  tipo_experiencia: string;
 }
 
 export interface ItineraryItem {
   id: string;
-  title: string;
-  date: string;
-  status: 'interes' | 'activo' | 'completado' | 'pausado';
+  titulo: string;
+  fecha: string;
+  estado: 'interes' | 'activo' | 'completado' | 'pausado';
 }
 
 export interface ServiceCard {
   id: string;
-  name: string;
-  description: string;
-  price: number;
-  disponible: boolean;
+  nombre: string;
+  descripcion: string;
+  precio: number;
+  disponibilidad: boolean;
 }
 
 export interface DashboardStats {
@@ -146,40 +146,40 @@ export class GetTravelerDashboardUseCase {
   private mapItinerarioToTripCard(itinerario: Itinerario): TripCard {
     return {
       id: itinerario.id,
-      destination: itinerario.nombre,
-      startDate: this.formatDate(itinerario.fecha_inicio),
-      endDate: this.formatDate(itinerario.fecha_fin),
-      status: itinerario.estado
+      destino: itinerario.nombre,
+      fecha_inicio: this.formatDate(itinerario.fecha_inicio),
+      fecha_fin: this.formatDate(itinerario.fecha_fin),
+      estado: itinerario.estado
     };
   }
 
   private mapItinerarioToItineraryItem(itinerario: Itinerario): ItineraryItem {
     return {
       id: itinerario.id,
-      title: itinerario.nombre,
-      date: this.formatDate(itinerario.fecha_inicio),
-      status: itinerario.estado
+      titulo: itinerario.nombre,
+      fecha: this.formatDate(itinerario.fecha_inicio),
+      estado: itinerario.estado
     };
   }
 
   private mapDestinoToCard(destino: Destino): DestinationCard {
     return {
       id: destino.id,
-      name: destino.nombre,
-      city: destino.ciudad,
-      country: destino.pais,
+      nombre: destino.nombre,
+      ciudad: destino.ciudad,
+      pais: destino.pais,
       imagen: destino.imagen,
-      tipoExperiencia: destino.tipo_experiencia
+      tipo_experiencia: destino.tipo_experiencia
     };
   }
 
   private mapServicioToCard(servicio: ServicioReservable): ServiceCard {
     return {
       id: servicio.id,
-      name: servicio.nombre,
-      description: servicio.descripcion,
-      price: servicio.precio,
-      disponible: servicio.disponibilidad
+      nombre: servicio.nombre,
+      descripcion: servicio.descripcion,
+      precio: servicio.precio,
+      disponibilidad: servicio.disponibilidad
     };
   }
 

@@ -5,12 +5,12 @@
       <div class="trip-header">
         <div class="trip-status-top">
           <span class="airplane-icon">✈️</span>
-          <span class="status-text" [class]="trip()!.status">
-            {{ trip()!.status === 'activo' ? 'En curso' : trip()!.status === 'completado' ? 'Completado' : trip()!.status === 'interes' ? 'Interés' : 'Pausado' }}
+          <span class="status-text" [class]="trip()!.estado">
+            {{ trip()!.estado === 'activo' ? 'En curso' : trip()!.estado === 'completado' ? 'Completado' : trip()!.estado === 'interes' ? 'Interés' : 'Pausado' }}
           </span>
         </div>
-        <h3 class="trip-title">{{ trip()!.destination }}</h3>
-        <p class="trip-meta">{{ trip()!.startDate }} — {{ trip()!.endDate }}</p>
+        <h3 class="trip-title">{{ trip()!.destino }}</h3>
+        <p class="trip-meta">{{ trip()!.fecha_inicio }} — {{ trip()!.fecha_fin }}</p>
       </div>
 
       <div class="trip-footer">

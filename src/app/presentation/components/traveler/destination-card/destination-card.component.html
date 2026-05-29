@@ -2,15 +2,15 @@
   <div class="destination-card">
     @if (destination()!.imagen) {
       <div class="destination-image-container">
-        <img [src]="destination()!.imagen" [alt]="destination()!.name" class="destination-image" />
+        <img [src]="destination()!.imagen" [alt]="destination()!.nombre" class="destination-image" />
       </div>
     }
     <div class="destination-content">
       <div class="destination-tipo">
-        <span class="tipo-badge">{{ destination()!.tipoExperiencia }}</span>
+        <span class="tipo-badge">{{ destination()!.tipo_experiencia }}</span>
       </div>
-      <h3 class="destination-title">{{ destination()!.name }}</h3>
-      <p class="destination-country">{{ destination()!.city }}, {{ destination()!.country }}</p>
+      <h3 class="destination-title">{{ destination()!.nombre }}</h3>
+      <p class="destination-country">{{ destination()!.ciudad }}, {{ destination()!.pais }}</p>
     </div>
   </div>
 }
