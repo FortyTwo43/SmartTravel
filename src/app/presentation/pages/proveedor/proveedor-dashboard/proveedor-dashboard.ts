@@ -17,6 +17,7 @@ import { LoadActividadRecienteUseCase } from '../../../../useCase/proveedor/dash
 import { LoadDashboardServiciosMasDemandadosUseCase } from '../../../../useCase/proveedor/dashboard/LoadDashboardServiciosMasDemandadosUseCase';
 import { LoadDashboardTipoViajeUseCase } from '../../../../useCase/proveedor/dashboard/LoadDashboardTipoViaje';
 import { LoadDashboardGraphUseCase } from '../../../../useCase/proveedor/dashboard/LoadDashboardGraphuseCase';
+import { LoadDashboardDataUseCase } from '../../../../useCase/proveedor/dashboard/LoadDashboardDataUseCase';
 
 @Component({
   selector: 'app-proveedor-dashboard',
@@ -39,16 +40,9 @@ export class ProveedorDashboardComponent implements OnInit {
   private readonly loadServiciosMasDemandadosUseCase = inject(LoadDashboardServiciosMasDemandadosUseCase);
   private readonly loadTipoViajeUseCase = inject(LoadDashboardTipoViajeUseCase);
   private readonly loadDashboardGraphUseCase = inject(LoadDashboardGraphUseCase);
+  private readonly loadDashboardDataUseCase = inject(LoadDashboardDataUseCase);
 
-  establecimiento: EstablecimientoTuristico = {
-    id: '1',
-    id_proveedor: '0a019e93-a3d9-4865-a073-cb720ae9ee3a',
-    id_destino: 'd1',
-    nombre: 'Grand Horizon Resort & Spa',
-    tipo: 'hotel',
-    descripcion: 'Resort de lujo',
-    estado: 'activo'
-  };
+  establecimiento = signal<EstablecimientoTuristico | null>(null);
 
   kpisData = signal<DashboardKpis | null>(null);
 
@@ -62,12 +56,17 @@ export class ProveedorDashboardComponent implements OnInit {
 
   async ngOnInit() {
     try {
+      const est = await this.loadDashboardDataUseCase.execute();
+      this.establecimiento.set(est);
+
+      const idProveedor = est.id_proveedor;
+
       const [kpis, actividad, servicios, tipoViaje, graph] = await Promise.all([
-        this.loadDashboardKpisUseCase.execute(this.establecimiento.id_proveedor),
-        this.loadActividadRecienteUseCase.execute(this.establecimiento.id_proveedor),
-        this.loadServiciosMasDemandadosUseCase.execute(this.establecimiento.id_proveedor),
-        this.loadTipoViajeUseCase.execute(this.establecimiento.id_proveedor),
-        this.loadDashboardGraphUseCase.execute(this.establecimiento.id_proveedor)
+        this.loadDashboardKpisUseCase.execute(idProveedor),
+        this.loadActividadRecienteUseCase.execute(idProveedor),
+        this.loadServiciosMasDemandadosUseCase.execute(idProveedor),
+        this.loadTipoViajeUseCase.execute(idProveedor),
+        this.loadDashboardGraphUseCase.execute(idProveedor)
       ]);
       this.kpisData.set(kpis);
       this.activityData.set(actividad);

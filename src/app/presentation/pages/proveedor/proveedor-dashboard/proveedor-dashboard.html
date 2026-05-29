@@ -1,20 +1,26 @@
-<app-proveedor-layout [establecimientoNombre]="establecimiento.nombre" [establecimientoTipo]="establecimiento.tipo">
-  <div class="dashboard-container">
-    <!-- Section 1: Executive Metrics -->
-    <app-proveedor-metrics [kpis]="kpisData()"></app-proveedor-metrics>
-    
-    <!-- Section 2: Visual Intelligence (Chart Placeholder) -->
-    <app-proveedor-chart-placeholder [graphData]="graphData()"></app-proveedor-chart-placeholder>
-    
-    <!-- Section 3: Activities and Insights -->
-    <div class="activity-insights-grid">
-      <app-proveedor-activity class="activity-section" [activities]="activityData()"></app-proveedor-activity>
-      <app-proveedor-insights class="insights-section"
-        [tipoViaje]="tipoViajeData()">
-      </app-proveedor-insights>
+@if (establecimiento()) {
+  <app-proveedor-layout [establecimientoNombre]="establecimiento()!.nombre" [establecimientoTipo]="establecimiento()!.tipo">
+    <div class="dashboard-container">
+      <!-- Section 1: Executive Metrics -->
+      <app-proveedor-metrics [kpis]="kpisData()"></app-proveedor-metrics>
+      
+      <!-- Section 2: Visual Intelligence (Chart Placeholder) -->
+      <app-proveedor-chart-placeholder [graphData]="graphData()"></app-proveedor-chart-placeholder>
+      
+      <!-- Section 3: Activities and Insights -->
+      <div class="activity-insights-grid">
+        <app-proveedor-activity class="activity-section" [activities]="activityData()"></app-proveedor-activity>
+        <app-proveedor-insights class="insights-section"
+          [tipoViaje]="tipoViajeData()">
+        </app-proveedor-insights>
+      </div>
+      
+      <!-- Section 4: Popular Services -->
+      <app-proveedor-services [services]="servicesData()"></app-proveedor-services>
     </div>
-    
-    <!-- Section 4: Popular Services -->
-    <app-proveedor-services [services]="servicesData()"></app-proveedor-services>
+  </app-proveedor-layout>
+} @else {
+  <div style="display: flex; align-items: center; justify-content: center; height: 100vh;">
+    <p class="text-muted">Cargando datos del establecimiento...</p>
   </div>
-</app-proveedor-layout>
+}
