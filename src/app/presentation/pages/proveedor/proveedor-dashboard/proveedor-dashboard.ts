@@ -9,8 +9,10 @@ import { ProveedorServicesComponent } from '../../../components/proveedor/provee
 import { EstablecimientoTuristico } from '../../../../domain/entities/EstablecimientoTuristico';
 import { DashboardKpis } from '../../../../domain/dashboard/DashboardKpis';
 import { DashboardActividadReciente } from '../../../../domain/dashboard/DashboardActividadReciente';
+import { DashboardServicioMasDemandado } from '../../../../domain/dashboard/DashboardServicioMasDemandado';
 import { LoadDashboardKpisUseCase } from '../../../../useCase/proveedor/dashboard/LoadDashboardKpisUseCase';
 import { LoadActividadRecienteUseCase } from '../../../../useCase/proveedor/dashboard/LoadActividadRecienteUseCase';
+import { LoadDashboardServiciosMasDemandadosUseCase } from '../../../../useCase/proveedor/dashboard/LoadDashboardServiciosMasDemandadosUseCase';
 
 @Component({
   selector: 'app-proveedor-dashboard',
@@ -30,6 +32,7 @@ import { LoadActividadRecienteUseCase } from '../../../../useCase/proveedor/dash
 export class ProveedorDashboardComponent implements OnInit {
   private readonly loadDashboardKpisUseCase = inject(LoadDashboardKpisUseCase);
   private readonly loadActividadRecienteUseCase = inject(LoadActividadRecienteUseCase);
+  private readonly loadServiciosMasDemandadosUseCase = inject(LoadDashboardServiciosMasDemandadosUseCase);
 
   establecimiento: EstablecimientoTuristico = {
     id: '1',
@@ -59,21 +62,18 @@ export class ProveedorDashboardComponent implements OnInit {
 
   activityData = signal<DashboardActividadReciente[]>([]);
 
-  servicesData = [
-    { title: 'Skyline Infinity Pool Access', desc: 'Acceso exclusivo al 24º piso.', res: 482, status: 'OPERATIVO', statusClass: 'status-green' },
-    { title: 'Balinese Massage Journey', desc: 'Tratamiento integral de 120 min.', res: 324, status: 'OPERATIVO', statusClass: 'status-green' },
-    { title: 'Tasting Menu "Solaris"', desc: '6 tiempos con maridaje.', res: 891, status: 'ALTA DEMANDA', statusClass: 'status-amber' },
-    { title: 'Helicopter Island Tour', desc: 'Sobrevuelo de 45 minutos.', res: 128, status: 'OPERATIVO', statusClass: 'status-green' }
-  ];
+  servicesData = signal<DashboardServicioMasDemandado[]>([]);
 
   async ngOnInit() {
     try {
-      const [kpis, actividad] = await Promise.all([
+      const [kpis, actividad, servicios] = await Promise.all([
         this.loadDashboardKpisUseCase.execute(this.establecimiento.id_proveedor),
-        this.loadActividadRecienteUseCase.execute(this.establecimiento.id_proveedor)
+        this.loadActividadRecienteUseCase.execute(this.establecimiento.id_proveedor),
+        this.loadServiciosMasDemandadosUseCase.execute(this.establecimiento.id_proveedor)
       ]);
       this.kpisData.set(kpis);
       this.activityData.set(actividad);
+      this.servicesData.set(servicios);
     } catch (error) {
       console.error('Error loading Dashboard data:', error);
     }

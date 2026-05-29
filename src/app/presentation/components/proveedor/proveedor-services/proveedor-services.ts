@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Grid, List, Edit2, LineChart, Power } from 'lucide-angular';
 import { TranslateModule } from '@ngx-translate/core';
+import { DashboardServicioMasDemandado } from '../../../../domain/dashboard/DashboardServicioMasDemandado';
 
 @Component({
   selector: 'app-proveedor-services',
@@ -16,5 +17,5 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: './proveedor-services.css'
 })
 export class ProveedorServicesComponent {
-  @Input() services: any[] = [];
+  @Input() services: DashboardServicioMasDemandado[] = [];
 }

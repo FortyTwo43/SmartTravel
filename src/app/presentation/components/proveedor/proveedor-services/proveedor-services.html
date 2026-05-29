@@ -8,22 +8,22 @@
   </div>
   
   <div class="services-grid">
-    @for (s of services; track s.title) {
+    @for (s of services; track s.servicio_id) {
       <div class="service-card group">
         <div class="card-header">
           <div class="icon-container">
-            <span class="text-primary font-bold">{{ s.title.charAt(0) }}</span>
+            <span class="text-primary font-bold">{{ s.nombre_servicio.charAt(0) }}</span>
           </div>
-          <span class="status-pill {{s.statusClass}}">{{s.status}}</span>
+          <span class="availability-dot" [style.background-color]="s.disponibilidad ? 'var(--color-secondary)' : 'var(--color-tertiary)'" [title]="s.disponibilidad ? 'Disponible' : 'No disponible'"></span>
         </div>
         
-        <h5 class="service-name">{{s.title}}</h5>
-        <p class="service-desc">{{s.desc}}</p>
+        <h5 class="service-name">{{s.nombre_servicio}}</h5>
+        <p class="service-desc">{{s.descripcion_servicio}}</p>
         
         <div class="card-footer">
           <div>
             <p class="res-label">{{ 'PROVIDER_DASHBOARD.SERVICES.RESERVATIONS' | translate }}</p>
-            <p class="res-value">{{s.res}}</p>
+            <p class="res-value">{{s.total_reservas_aceptadas}}</p>
           </div>
           <div class="action-buttons">
             <button class="action-btn"><lucide-icon name="edit-2" class="icon-xs"></lucide-icon></button>

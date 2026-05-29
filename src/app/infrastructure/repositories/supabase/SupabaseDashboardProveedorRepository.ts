@@ -5,7 +5,7 @@ import { DashboardKpis } from '../../../domain/dashboard/DashboardKpis';
 import { DashboardActividadReciente } from '../../../domain/dashboard/DashboardActividadReciente';
 import { DashboardServicioMasDemandado } from '../../../domain/dashboard/DashboardServicioMasDemandado';
 import { buildSupabaseError } from './supabaseUtils/supabase-error';
-
+import { DashboardTipoViaje } from '../../../domain/dashboard/DashboardTipoViaje';
 @Injectable({
   providedIn: 'root'
 })
@@ -46,6 +46,7 @@ export class SupabaseDashboardProveedorRepository implements DashboardProveedorR
         servicio_id,
         nombre_servicio,
         descripcion_servicio,
+        disponibilidad,
         total_reservas_aceptadas
       `)
       .eq('id_proveedor', providerId)
@@ -57,5 +58,17 @@ export class SupabaseDashboardProveedorRepository implements DashboardProveedorR
     }
 
     return (data ?? []) as DashboardServicioMasDemandado[];
+  }
+
+  async getTipoViaje(providerId: string): Promise<DashboardTipoViaje> {
+    const { data, error } = await this.supabase.rpc('get_dashboard_tipo_viaje', {
+      p_provider_id: providerId
+    });
+
+    if (error) {
+      throw buildSupabaseError('getTipoViaje', 'rpc:get_dashboard_tipo_viaje', error);
+    }
+
+    return data as DashboardTipoViaje;
   }
 }
