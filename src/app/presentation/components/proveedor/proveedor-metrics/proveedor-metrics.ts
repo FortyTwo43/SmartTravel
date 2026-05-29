@@ -11,7 +11,6 @@ export interface MetricCardConfig {
   valueColorClass: string;
   progressPercent: number;
   progressColorClass: string;
-  progressOpacity?: number;
 }
 @Component({
   selector: 'app-proveedor-metrics',

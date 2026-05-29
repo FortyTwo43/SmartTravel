@@ -4,4 +4,5 @@ export interface DashboardKpis {
   servicios_activos: number;
   disponibilidad_porcentaje: number;
   tasa_cancelacion: number;
+  servicios_totales: number;
 }

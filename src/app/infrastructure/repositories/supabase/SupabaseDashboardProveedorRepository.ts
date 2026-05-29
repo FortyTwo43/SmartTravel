@@ -32,7 +32,7 @@ export class SupabaseDashboardProveedorRepository implements DashboardProveedorR
       .select('*')
       .eq('id_proveedor', providerId)
       .order('fecha_reserva', { ascending: false })
-      .limit(4);
+      .limit(3);
 
     if (error) {
       throw buildSupabaseError('getActividadReciente', 'vw_actividad_reciente', error);
