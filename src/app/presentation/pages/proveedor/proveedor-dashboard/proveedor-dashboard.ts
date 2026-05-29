@@ -11,10 +11,12 @@ import { DashboardKpis } from '../../../../domain/dashboard/DashboardKpis';
 import { DashboardActividadReciente } from '../../../../domain/dashboard/DashboardActividadReciente';
 import { DashboardServicioMasDemandado } from '../../../../domain/dashboard/DashboardServicioMasDemandado';
 import { DashboardTipoViaje } from '../../../../domain/dashboard/DashboardTipoViaje';
+import { DashboardGraph } from '../../../../domain/dashboard/DashboardGraph';
 import { LoadDashboardKpisUseCase } from '../../../../useCase/proveedor/dashboard/LoadDashboardKpisUseCase';
 import { LoadActividadRecienteUseCase } from '../../../../useCase/proveedor/dashboard/LoadActividadRecienteUseCase';
 import { LoadDashboardServiciosMasDemandadosUseCase } from '../../../../useCase/proveedor/dashboard/LoadDashboardServiciosMasDemandadosUseCase';
 import { LoadDashboardTipoViajeUseCase } from '../../../../useCase/proveedor/dashboard/LoadDashboardTipoViaje';
+import { LoadDashboardGraphUseCase } from '../../../../useCase/proveedor/dashboard/LoadDashboardGraphuseCase';
 
 @Component({
   selector: 'app-proveedor-dashboard',
@@ -36,6 +38,7 @@ export class ProveedorDashboardComponent implements OnInit {
   private readonly loadActividadRecienteUseCase = inject(LoadActividadRecienteUseCase);
   private readonly loadServiciosMasDemandadosUseCase = inject(LoadDashboardServiciosMasDemandadosUseCase);
   private readonly loadTipoViajeUseCase = inject(LoadDashboardTipoViajeUseCase);
+  private readonly loadDashboardGraphUseCase = inject(LoadDashboardGraphUseCase);
 
   establecimiento: EstablecimientoTuristico = {
     id: '1',
@@ -55,18 +58,22 @@ export class ProveedorDashboardComponent implements OnInit {
 
   servicesData = signal<DashboardServicioMasDemandado[]>([]);
 
+  graphData = signal<DashboardGraph[]>([]);
+
   async ngOnInit() {
     try {
-      const [kpis, actividad, servicios, tipoViaje] = await Promise.all([
+      const [kpis, actividad, servicios, tipoViaje, graph] = await Promise.all([
         this.loadDashboardKpisUseCase.execute(this.establecimiento.id_proveedor),
         this.loadActividadRecienteUseCase.execute(this.establecimiento.id_proveedor),
         this.loadServiciosMasDemandadosUseCase.execute(this.establecimiento.id_proveedor),
-        this.loadTipoViajeUseCase.execute(this.establecimiento.id_proveedor)
+        this.loadTipoViajeUseCase.execute(this.establecimiento.id_proveedor),
+        this.loadDashboardGraphUseCase.execute(this.establecimiento.id_proveedor)
       ]);
       this.kpisData.set(kpis);
       this.activityData.set(actividad);
       this.servicesData.set(servicios);
       this.tipoViajeData.set(tipoViaje);
+      this.graphData.set(graph);
     } catch (error) {
       console.error('Error loading Dashboard data:', error);
     }

@@ -6,6 +6,8 @@ import { DashboardActividadReciente } from '../../../domain/dashboard/DashboardA
 import { DashboardServicioMasDemandado } from '../../../domain/dashboard/DashboardServicioMasDemandado';
 import { buildSupabaseError } from './supabaseUtils/supabase-error';
 import { DashboardTipoViaje } from '../../../domain/dashboard/DashboardTipoViaje';
+import { DashboardGraph } from '../../../domain/dashboard/DashboardGraph';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -70,5 +72,19 @@ export class SupabaseDashboardProveedorRepository implements DashboardProveedorR
     }
 
     return data as DashboardTipoViaje;
+  }
+
+  async getGraphValues(providerId: string): Promise<DashboardGraph[]> {
+    const { data, error } = await this.supabase
+      .from('vw_reservas_diarias')
+      .select('*')
+      .eq('id_proveedor', providerId)
+      .order('fecha')
+
+    if (error) {
+      throw buildSupabaseError('getGraphValues', 'vw_reservas_diarias', error);
+    }
+
+    return (data ?? []) as DashboardGraph[];
   }
 }

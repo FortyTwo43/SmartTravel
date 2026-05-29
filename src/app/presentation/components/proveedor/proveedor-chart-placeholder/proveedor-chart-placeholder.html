@@ -10,28 +10,7 @@
     </div>
   </div>
   
-  <div class="chart-visuals">
-    <div class="chart-bar" style="height: 65%;">
-      <div class="chart-label">LUN</div>
-    </div>
-    <div class="chart-bar" style="height: 85%;">
-      <div class="chart-label">MAR</div>
-    </div>
-    <div class="chart-bar" style="height: 55%;">
-      <div class="chart-label">MIE</div>
-    </div>
-    <div class="chart-bar" style="height: 95%;">
-      <div class="chart-peak-label">Peak: 42 Res.</div>
-      <div class="chart-label">JUE</div>
-    </div>
-    <div class="chart-bar" style="height: 75%;">
-      <div class="chart-label">VIE</div>
-    </div>
-    <div class="chart-bar" style="height: 45%;">
-      <div class="chart-label">SAB</div>
-    </div>
-    <div class="chart-bar" style="height: 60%;">
-      <div class="chart-label">DOM</div>
-    </div>
+  <div class="chart-visuals-container">
+    <div echarts [options]="chartOptions" class="echarts-wrapper"></div>
   </div>
 </div>
