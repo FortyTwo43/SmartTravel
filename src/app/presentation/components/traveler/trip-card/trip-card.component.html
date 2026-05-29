@@ -6,7 +6,7 @@
         <div class="trip-status-top">
           <span class="airplane-icon">✈️</span>
           <span class="status-text" [class]="trip()!.status">
-            {{ trip()!.status === 'in_progress' ? 'En curso' : trip()!.status === 'completed' ? 'Completado' : 'Programado' }}
+            {{ trip()!.status === 'activo' ? 'En curso' : trip()!.status === 'completado' ? 'Completado' : trip()!.status === 'interes' ? 'Interés' : 'Pausado' }}
           </span>
         </div>
         <h3 class="trip-title">{{ trip()!.destination }}</h3>

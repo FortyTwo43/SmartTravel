@@ -16,7 +16,7 @@ export interface TripCard {
   destination: string;
   startDate: string;
   endDate: string;
-  status: 'scheduled' | 'in_progress' | 'completed';
+  status: 'interes' | 'activo' | 'completado' | 'pausado';
 }
 
 export interface DestinationCard {
@@ -32,7 +32,7 @@ export interface ItineraryItem {
   id: string;
   title: string;
   date: string;
-  status: 'scheduled' | 'in_progress' | 'completed';
+  status: 'interes' | 'activo' | 'completado' | 'pausado';
 }
 
 export interface ServiceCard {
@@ -149,7 +149,7 @@ export class GetTravelerDashboardUseCase {
       destination: itinerario.nombre,
       startDate: this.formatDate(itinerario.fecha_inicio),
       endDate: this.formatDate(itinerario.fecha_fin),
-      status: this.mapEstadoToStatus(itinerario.estado)
+      status: itinerario.estado
     };
   }
 
@@ -158,7 +158,7 @@ export class GetTravelerDashboardUseCase {
       id: itinerario.id,
       title: itinerario.nombre,
       date: this.formatDate(itinerario.fecha_inicio),
-      status: this.mapEstadoToStatus(itinerario.estado)
+      status: itinerario.estado
     };
   }
 
@@ -183,16 +183,7 @@ export class GetTravelerDashboardUseCase {
     };
   }
 
-  private mapEstadoToStatus(estado: string): 'scheduled' | 'in_progress' | 'completed' {
-    switch (estado) {
-      case 'completado': return 'completed';
-      case 'activo': return 'in_progress';
-      case 'interes':
-      case 'pausado':
-      default:
-        return 'scheduled';
-    }
-  }
+
 
   private formatDate(date: Date | string | null | undefined): string {
     if (!date) return '—';
