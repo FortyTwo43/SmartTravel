@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProveedorMetrics } from './proveedor-metrics';
+import { ProveedorMetricsComponent } from './proveedor-metrics';
 
-describe('ProveedorMetrics', () => {
-  let component: ProveedorMetrics;
-  let fixture: ComponentFixture<ProveedorMetrics>;
+describe('ProveedorMetricsComponent', () => {
+  let component: ProveedorMetricsComponent;
+  let fixture: ComponentFixture<ProveedorMetricsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProveedorMetrics],
+      imports: [ProveedorMetricsComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ProveedorMetrics);
+    fixture = TestBed.createComponent(ProveedorMetricsComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

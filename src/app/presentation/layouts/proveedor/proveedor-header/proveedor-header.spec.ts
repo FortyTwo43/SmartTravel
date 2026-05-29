@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProveedorHeader } from './proveedor-header';
+import { ProveedorHeaderComponent } from './proveedor-header';
 
-describe('ProveedorHeader', () => {
-  let component: ProveedorHeader;
-  let fixture: ComponentFixture<ProveedorHeader>;
+describe('ProveedorHeaderComponent', () => {
+  let component: ProveedorHeaderComponent;
+  let fixture: ComponentFixture<ProveedorHeaderComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProveedorHeader],
+      imports: [ProveedorHeaderComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ProveedorHeader);
+    fixture = TestBed.createComponent(ProveedorHeaderComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

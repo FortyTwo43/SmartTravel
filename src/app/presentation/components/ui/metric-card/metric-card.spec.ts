@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MetricCard } from './metric-card';
+import { MetricCardComponent } from './metric-card';
 
-describe('MetricCard', () => {
-  let component: MetricCard;
-  let fixture: ComponentFixture<MetricCard>;
+describe('MetricCardComponent', () => {
+  let component: MetricCardComponent;
+  let fixture: ComponentFixture<MetricCardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MetricCard],
+      imports: [MetricCardComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(MetricCard);
+    fixture = TestBed.createComponent(MetricCardComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

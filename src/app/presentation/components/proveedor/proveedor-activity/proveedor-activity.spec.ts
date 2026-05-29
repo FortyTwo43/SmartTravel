@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProveedorActivity } from './proveedor-activity';
+import { ProveedorActivityComponent } from './proveedor-activity';
 
-describe('ProveedorActivity', () => {
-  let component: ProveedorActivity;
-  let fixture: ComponentFixture<ProveedorActivity>;
+describe('ProveedorActivityComponent', () => {
+  let component: ProveedorActivityComponent;
+  let fixture: ComponentFixture<ProveedorActivityComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProveedorActivity],
+      imports: [ProveedorActivityComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ProveedorActivity);
+    fixture = TestBed.createComponent(ProveedorActivityComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

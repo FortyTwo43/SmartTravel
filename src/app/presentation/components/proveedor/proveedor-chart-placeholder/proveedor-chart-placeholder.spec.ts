@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProveedorChartPlaceholder } from './proveedor-chart-placeholder';
+import { ProveedorChartPlaceholderComponent } from './proveedor-chart-placeholder';
 
-describe('ProveedorChartPlaceholder', () => {
-  let component: ProveedorChartPlaceholder;
-  let fixture: ComponentFixture<ProveedorChartPlaceholder>;
+describe('ProveedorChartPlaceholderComponent', () => {
+  let component: ProveedorChartPlaceholderComponent;
+  let fixture: ComponentFixture<ProveedorChartPlaceholderComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProveedorChartPlaceholder],
+      imports: [ProveedorChartPlaceholderComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ProveedorChartPlaceholder);
+    fixture = TestBed.createComponent(ProveedorChartPlaceholderComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
