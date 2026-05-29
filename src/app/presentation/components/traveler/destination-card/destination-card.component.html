@@ -1,34 +1,19 @@
 @if (destination()) {
   <div class="destination-card">
-    <div class="destination-image">
-      <img [src]="destination()!.image" [alt]="destination()!.name" class="image" />
-      <button class="favorite-btn" type="button" aria-label="Add to favorites">
-        <lucide-icon name="Star" class="favorite-icon"></lucide-icon>
-      </button>
+    <div class="destination-image-container">
+      <img [src]="destination()!.image" [alt]="destination()!.name" class="destination-image" />
     </div>
 
     <div class="destination-content">
-      <div class="header">
-        <h3 class="destination-name">{{ destination()!.name }}</h3>
-        <p class="destination-country">{{ destination()!.country }}</p>
+      <h3 class="destination-title">{{ destination()!.name }}, {{ destination()!.country }}</h3>
+
+      <div class="destination-meta">
+        <span class="destination-price">Desde {{ destination()!.estimatedBudget | currency }}</span>
+        <span class="destination-rating">
+          <lucide-icon name="Star" class="star-icon"></lucide-icon>
+          {{ destination()!.rating }}
+        </span>
       </div>
-
-      <p class="destination-description">{{ destination()!.description }}</p>
-
-      <div class="meta">
-        <div class="rating">
-          @for (index of getStarArray(); track index) {
-            <lucide-icon
-              name="Star"
-              class="star"
-              [class.filled]="isStarFilled(index)"
-            ></lucide-icon>
-          }
-        </div>
-        <span class="budget">{{ destination()!.estimatedBudget | currency }}</span>
-      </div>
-
-      <button class="explore-btn">{{ 'COMMON.EXPLORE' | translate }}</button>
     </div>
   </div>
 }

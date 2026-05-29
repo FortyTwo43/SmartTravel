@@ -66,7 +66,7 @@ const MOCK_TRIPS: TripCard[] = [
   {
     id: '1',
     destination: 'París, Francia',
-    image: 'https://via.placeholder.com/400x250?text=Paris',
+    image: 'https://placehold.co/400x250/1e293b/ffffff?text=Paris',
     startDate: '24 Sep 2024',
     endDate: '30 Sep 2024',
     status: 'scheduled',
@@ -80,7 +80,7 @@ const MOCK_DESTINATIONS: DestinationCard[] = [
     id: '1',
     name: 'Santorini',
     country: 'Grecia',
-    image: 'https://via.placeholder.com/300x200?text=Santorini',
+    image: 'https://placehold.co/300x200/1e293b/ffffff?text=Santorini',
     description: 'Playas volcánicas y vistas al atardecer incomparables',
     estimatedBudget: 1450,
     rating: 4.9
@@ -89,7 +89,7 @@ const MOCK_DESTINATIONS: DestinationCard[] = [
     id: '2',
     name: 'Tokio',
     country: 'Japón',
-    image: 'https://via.placeholder.com/300x200?text=Tokyo',
+    image: 'https://placehold.co/300x200/1e293b/ffffff?text=Tokyo',
     description: 'Metrópolis moderna con tradición ancestral',
     estimatedBudget: 2300,
     rating: 4.8
@@ -98,7 +98,7 @@ const MOCK_DESTINATIONS: DestinationCard[] = [
     id: '3',
     name: 'Taj Mahal',
     country: 'India',
-    image: 'https://via.placeholder.com/300x200?text=Taj+Mahal',
+    image: 'https://placehold.co/300x200/1e293b/ffffff?text=Taj+Mahal',
     description: 'Monumento histórico de arquitectura mogol',
     estimatedBudget: 1900,
     rating: 4.9

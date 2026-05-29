@@ -10,7 +10,7 @@ import { TripCardComponent } from '../../../components/traveler/trip-card/trip-c
 import { DestinationCardComponent } from '../../../components/traveler/destination-card/destination-card.component';
 import { ItineraryListComponent } from '../../../components/traveler/itinerary-list/itinerary-list.component';
 import { ServiceCardComponent } from '../../../components/traveler/service-card/service-card.component';
-import { StatsCardComponent } from '../../../components/traveler/stats-card/stats-card.component';
+import { LucideAngularModule, Headset, ChevronRight, LUCIDE_ICONS, LucideIconProvider } from 'lucide-angular';
 
 @Component({
   selector: 'app-traveler-dashboard',
@@ -24,7 +24,14 @@ import { StatsCardComponent } from '../../../components/traveler/stats-card/stat
     DestinationCardComponent,
     ItineraryListComponent,
     ServiceCardComponent,
-    StatsCardComponent
+    LucideAngularModule
+  ],
+  providers: [
+    {
+      provide: LUCIDE_ICONS,
+      multi: true,
+      useValue: new LucideIconProvider({ Headset, ChevronRight })
+    }
   ],
   templateUrl: './traveler-dashboard.component.html',
   styleUrl: './traveler-dashboard.component.css'

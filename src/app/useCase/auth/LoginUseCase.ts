@@ -26,8 +26,27 @@ export class LoginUseCase {
     const authResponse = await this.authRepository.signIn(email, password);
     
     // Extract role from user metadata
-    const role = authResponse.user?.user_metadata?.rol as 'viajero' | 'proveedor' | 'admin' || null;
+    let role = authResponse.user?.user_metadata?.rol as 'viajero' | 'proveedor' | 'admin' || null;
     const userId = authResponse.user?.id;
+
+    if (!role && userId) {
+      try {
+        const { data: perfil } = await this.authRepository['supabase']?.from('perfil').select('rol').eq('id', userId).single();
+        if (perfil) {
+          role = perfil.rol;
+        }
+      } catch (e) {
+        console.error('Could not fetch role from perfil table', e);
+      }
+    }
+    
+    // Normalize role string just in case
+    if (role) {
+      role = role.toLowerCase() as any;
+    }
+
+    console.log('Detected role:', role);
+
 
     // For travelers, redirect to dashboard
     let redirect: string | undefined = undefined;

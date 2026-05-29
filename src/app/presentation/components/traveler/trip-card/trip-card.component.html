@@ -1,32 +1,26 @@
 @if (trip()) {
   <div class="trip-card">
-    <div class="trip-image">
-      <img [src]="trip()!.image" [alt]="trip()!.destination" class="image" />
-      <span class="status-badge" [class]="trip()!.status">
-        {{ 'TRAVELER_DASHBOARD.STATUS_' + trip()!.status | translate }}
-      </span>
+    <div class="trip-image-container">
+      <img [src]="trip()!.image" [alt]="trip()!.destination" class="trip-image" />
+      <span class="status-badge">En 12 días</span>
     </div>
 
     <div class="trip-content">
-      <h3 class="trip-title">{{ trip()!.destination }}</h3>
-
-      <div class="trip-meta">
-        <div class="meta-item">
-          <lucide-icon name="Calendar" class="meta-icon"></lucide-icon>
-          <span class="meta-text">{{ trip()!.startDate }} - {{ trip()!.endDate }}</span>
+      <div class="trip-header">
+        <div class="trip-status-top">
+          <span class="airplane-icon">✈️</span>
+          <span class="status-text">Vuelo Confirmado</span>
         </div>
-
-        <div class="meta-item">
-          <lucide-icon name="Users" class="meta-icon"></lucide-icon>
-          <span class="meta-text">{{ trip()!.people }} {{ 'COMMON.PEOPLE' | translate }}</span>
-        </div>
+        <h3 class="trip-title">{{ trip()!.destination }}</h3>
+        <p class="trip-meta">{{ trip()!.startDate }} - {{ trip()!.endDate }} • {{ trip()!.people }} Adultos</p>
       </div>
 
-      <p class="trip-description">{{ trip()!.description }}</p>
-
       <div class="trip-footer">
-        <button class="view-btn">{{ 'COMMON.VIEW_DETAILS' | translate }}</button>
-        <button class="share-btn">{{ 'COMMON.SHARE' | translate }}</button>
+        <div class="avatars">
+          <div class="avatar avatar-1"></div>
+          <div class="avatar avatar-2"></div>
+        </div>
+        <button class="details-btn">Detalles</button>
       </div>
     </div>
   </div>

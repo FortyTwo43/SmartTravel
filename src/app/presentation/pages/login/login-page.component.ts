@@ -55,7 +55,7 @@ export class LoginPageComponent {
     try {
       const { email, password } = this.loginForm.value;
       const result = await this.loginUseCase.execute(email, password);
-      console.log('Login exitoso');
+      console.log('Login exitoso. Result:', result);
       
       // Redirect based on user role and onboarding status
       if (result.role === 'viajero' && result.redirect) {

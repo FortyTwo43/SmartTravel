@@ -5,7 +5,7 @@
   <!-- Main Content -->
   <div class="dashboard-container">
     <!-- Header -->
-    <app-traveler-header [userName]="dashboardData()?.userName || 'Viajero'"></app-traveler-header>
+    <app-traveler-header [userName]="dashboardData()?.userName || 'Alex'"></app-traveler-header>
 
     <!-- Content -->
     @if (isLoading()) {
@@ -27,8 +27,8 @@
           <!-- Left: Trip Card -->
           <div class="trip-column">
             <div class="section-header">
-              <h2 class="section-title">{{ 'TRAVELER_DASHBOARD.UPCOMING_TRIPS' | translate }}</h2>
-              <a href="#" class="see-all">{{ 'COMMON.SEE_ALL' | translate }}</a>
+              <h2 class="section-title">Próximos Viajes</h2>
+              <a href="#" class="see-all">Ver todos</a>
             </div>
             @if (dashboardData()!.proximosViajes.length > 0) {
               <app-trip-card [trip]="dashboardData()!.proximosViajes[0]"></app-trip-card>
@@ -45,29 +45,31 @@
               <div class="info-card credits-card">
                 <div class="card-header">
                   <span class="card-icon">💳</span>
-                  <span class="card-label">{{ 'TRAVELER_DASHBOARD.TRAVEL_CREDITS' | translate }}</span>
+                  <span class="card-label">CRÉDITOS DE VIAJE</span>
                 </div>
-                <div class="card-value">${{ dashboardData()?.estadisticas?.presupuesto_restante || '0' }}</div>
+                <div class="card-value">$1,240.00</div>
               </div>
 
               <!-- Miles Card -->
               <div class="info-card miles-card">
                 <div class="card-header">
-                  <span class="card-icon">✈️</span>
-                  <span class="card-label">{{ 'TRAVELER_DASHBOARD.ACCUMULATED_MILES' | translate }}</span>
+                  <span class="card-icon">🛡️</span>
+                  <span class="card-label">MILLAS ACUMULADAS</span>
                 </div>
-                <div class="card-value">{{ dashboardData()?.estadisticas?.destinos_visitados || '0' }}k</div>
+                <div class="card-value">42.5k</div>
               </div>
             </div>
 
             <!-- Assistance Card -->
             <div class="info-card assistance-card">
-              <div class="assistance-icon">📞</div>
-              <div class="assistance-content">
-                <h3>{{ 'TRAVELER_DASHBOARD.ASSISTANCE_24' | translate }}</h3>
-                <p>{{ 'TRAVELER_DASHBOARD.ASSISTANCE_DESC' | translate }}</p>
+              <div class="assistance-icon-container">
+                <lucide-icon name="Headset" class="assistance-icon"></lucide-icon>
               </div>
-              <div class="arrow-icon">→</div>
+              <div class="assistance-content">
+                <h3>Asistencia 24/7</h3>
+                <p>Chat premium activado</p>
+              </div>
+              <lucide-icon name="ChevronRight" class="arrow-icon"></lucide-icon>
             </div>
           </div>
         </div>
@@ -75,8 +77,11 @@
         <!-- Destinos Recomendados -->
         <section class="section">
           <div class="section-header">
-            <h2 class="section-title">{{ 'TRAVELER_DASHBOARD.RECOMMENDED_DESTINATIONS' | translate }}</h2>
-            <a href="#" class="see-all">{{ 'COMMON.SEE_ALL' | translate }}</a>
+            <h2 class="section-title">Destinos Recomendados</h2>
+            <div class="nav-arrows">
+              <button class="nav-arrow">&lt;</button>
+              <button class="nav-arrow">&gt;</button>
+            </div>
           </div>
 
           <div class="destinations-grid">
@@ -86,28 +91,28 @@
           </div>
         </section>
 
-        <!-- Itinerarios Recientes -->
-        <section class="section">
-          <div class="section-header">
-            <h2 class="section-title">{{ 'TRAVELER_DASHBOARD.RECENT_ITINERARIES' | translate }}</h2>
-            <a href="#" class="see-all">{{ 'COMMON.SEE_ALL' | translate }}</a>
-          </div>
+        <!-- Bottom Layout -->
+        <div class="bottom-layout">
+          <!-- Itinerarios Recientes -->
+          <section class="section bottom-left">
+            <div class="section-header">
+              <h2 class="section-title">Itinerarios recientes</h2>
+            </div>
+            <app-itinerary-list [itineraries]="dashboardData()!.itinerariosRecientes"></app-itinerary-list>
+          </section>
 
-          <app-itinerary-list [itineraries]="dashboardData()!.itinerariosRecientes"></app-itinerary-list>
-        </section>
-
-        <!-- Servicios Sugeridos -->
-        <section class="section">
-          <div class="section-header">
-            <h2 class="section-title">{{ 'TRAVELER_DASHBOARD.SUGGESTED_SERVICES' | translate }}</h2>
-          </div>
-
-          <div class="services-grid">
-            @for (service of dashboardData()!.serviciosSugeridos; track service.id) {
-              <app-service-card [service]="service"></app-service-card>
-            }
-          </div>
-        </section>
+          <!-- Servicios Sugeridos -->
+          <section class="section bottom-right">
+            <div class="section-header">
+              <h2 class="section-title">Servicios sugeridos</h2>
+            </div>
+            <div class="services-grid">
+              @for (service of dashboardData()!.serviciosSugeridos; track service.id) {
+                <app-service-card [service]="service"></app-service-card>
+              }
+            </div>
+          </section>
+        </div>
       </main>
     }
   </div>

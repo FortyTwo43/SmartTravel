@@ -7,10 +7,10 @@ import { createSupabaseClient } from './app/infrastructure/database/supabase.cli
 function createMockSupabaseClient() {
   return {
     auth: {
-      getUser: async () => ({ data: { user: null }, error: null }),
-      getSession: async () => ({ data: { session: null }, error: null }),
-      signUp: async () => ({ data: {}, error: null }),
-      signInWithPassword: async () => ({ data: {}, error: null }),
+      getUser: async () => ({ data: { user: { id: 'mock-user-id', email: 'mock@example.com', user_metadata: { rol: 'viajero' } } }, error: null }),
+      getSession: async () => ({ data: { session: { access_token: 'mock-token' } }, error: null }),
+      signUp: async () => ({ data: { user: { id: 'mock-user-id', email: 'mock@example.com', user_metadata: { rol: 'viajero' } }, session: { access_token: 'mock-token' } }, error: null }),
+      signInWithPassword: async () => ({ data: { user: { id: 'mock-user-id', email: 'mock@example.com', user_metadata: { rol: 'viajero' } }, session: { access_token: 'mock-token' } }, error: null }),
     },
   };
 }
