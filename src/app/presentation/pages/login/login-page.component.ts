@@ -57,11 +57,12 @@ export class LoginPageComponent {
       const result = await this.loginUseCase.execute(email, password);
       console.log('Login exitoso');
       
-      // Redirect based on user role
-      if (result.role === 'viajero') {
-        this.router.navigate(['/traveler-onboarding']);
+      // Redirect based on user role and onboarding status
+      if (result.role === 'viajero' && result.redirect) {
+        // For travelers, use the redirect determined by LoginUseCase (onboarding status check)
+        this.router.navigate([result.redirect]);
       } else if (result.role === 'proveedor') {
-        // Future: proveedor dashboard
+        // Provider dashboard
         this.router.navigate(['/provider-dashboard']);
       } else {
         // Default redirect for other roles

@@ -127,7 +127,7 @@ export class TravelerOnboardingComponent implements OnInit {
       });
 
       if (result.success) {
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/traveler/dashboard']);
       } else {
         this.errorMessage.set(result.message || 'TRAVELER_ONBOARDING.ERROR_SAVE');
       }

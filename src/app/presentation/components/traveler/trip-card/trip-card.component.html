@@ -1,0 +1,33 @@
+@if (trip()) {
+  <div class="trip-card">
+    <div class="trip-image">
+      <img [src]="trip()!.image" [alt]="trip()!.destination" class="image" />
+      <span class="status-badge" [class]="trip()!.status">
+        {{ 'TRAVELER_DASHBOARD.STATUS_' + trip()!.status | translate }}
+      </span>
+    </div>
+
+    <div class="trip-content">
+      <h3 class="trip-title">{{ trip()!.destination }}</h3>
+
+      <div class="trip-meta">
+        <div class="meta-item">
+          <lucide-icon name="Calendar" class="meta-icon"></lucide-icon>
+          <span class="meta-text">{{ trip()!.startDate }} - {{ trip()!.endDate }}</span>
+        </div>
+
+        <div class="meta-item">
+          <lucide-icon name="Users" class="meta-icon"></lucide-icon>
+          <span class="meta-text">{{ trip()!.people }} {{ 'COMMON.PEOPLE' | translate }}</span>
+        </div>
+      </div>
+
+      <p class="trip-description">{{ trip()!.description }}</p>
+
+      <div class="trip-footer">
+        <button class="view-btn">{{ 'COMMON.VIEW_DETAILS' | translate }}</button>
+        <button class="share-btn">{{ 'COMMON.SHARE' | translate }}</button>
+      </div>
+    </div>
+  </div>
+}

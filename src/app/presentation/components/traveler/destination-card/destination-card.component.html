@@ -1,0 +1,34 @@
+@if (destination()) {
+  <div class="destination-card">
+    <div class="destination-image">
+      <img [src]="destination()!.image" [alt]="destination()!.name" class="image" />
+      <button class="favorite-btn" type="button" aria-label="Add to favorites">
+        <lucide-icon name="Star" class="favorite-icon"></lucide-icon>
+      </button>
+    </div>
+
+    <div class="destination-content">
+      <div class="header">
+        <h3 class="destination-name">{{ destination()!.name }}</h3>
+        <p class="destination-country">{{ destination()!.country }}</p>
+      </div>
+
+      <p class="destination-description">{{ destination()!.description }}</p>
+
+      <div class="meta">
+        <div class="rating">
+          @for (index of getStarArray(); track index) {
+            <lucide-icon
+              name="Star"
+              class="star"
+              [class.filled]="isStarFilled(index)"
+            ></lucide-icon>
+          }
+        </div>
+        <span class="budget">{{ destination()!.estimatedBudget | currency }}</span>
+      </div>
+
+      <button class="explore-btn">{{ 'COMMON.EXPLORE' | translate }}</button>
+    </div>
+  </div>
+}

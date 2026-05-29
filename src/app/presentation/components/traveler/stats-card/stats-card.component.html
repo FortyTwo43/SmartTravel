@@ -1,0 +1,15 @@
+@if (stats()) {
+  <div class="stats-grid">
+    @for (entry of Object.entries(stats()!); track entry[0]) {
+      <div class="stat-item">
+        <div class="stat-icon">
+          <lucide-icon [name]="getStatIcon(entry[0])" class="icon"></lucide-icon>
+        </div>
+        <div class="stat-info">
+          <p class="stat-label">{{ getStatLabel(entry[0]) | translate }}</p>
+          <p class="stat-value">{{ entry[1] }}</p>
+        </div>
+      </div>
+    }
+  </div>
+}

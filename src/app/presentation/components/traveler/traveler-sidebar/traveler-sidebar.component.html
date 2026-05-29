@@ -1,0 +1,51 @@
+<aside class="traveler-sidebar">
+  <div class="sidebar-header">
+    <h1 class="sidebar-title">SmartTravel</h1>
+  </div>
+
+  <nav class="sidebar-nav">
+    @for (item of navItems; track item.id) {
+      <button
+        class="nav-item"
+        [class.active]="isActiveRoute(item.route)"
+        (click)="navigate(item.route)"
+        type="button"
+      >
+        <lucide-icon [name]="item.icon" class="nav-icon"></lucide-icon>
+        <span class="nav-label">{{ item.label | translate }}</span>
+      </button>
+    }
+  </nav>
+
+  <div class="sidebar-footer">
+    <button
+      class="settings-btn nav-item"
+      (click)="navigate('/traveler/settings')"
+      type="button"
+      title="Settings"
+    >
+      <lucide-icon name="Settings" class="nav-icon"></lucide-icon>
+      <span class="nav-label">{{ 'COMMON.SETTINGS' | translate }}</span>
+    </button>
+
+    <button
+      class="logout-btn nav-item"
+      (click)="logout()"
+      type="button"
+      title="Logout"
+    >
+      <lucide-icon name="LogOut" class="nav-icon"></lucide-icon>
+      <span class="nav-label">{{ 'COMMON.LOGOUT' | translate }}</span>
+    </button>
+  </div>
+
+  <div class="sidebar-profile">
+    <div class="profile-avatar">
+      <span>TV</span>
+    </div>
+    <div class="profile-info">
+      <p class="profile-name">Viajero</p>
+      <p class="profile-role">{{ 'TRAVELER_SIDEBAR.TRAVELER' | translate }}</p>
+    </div>
+  </div>
+</aside>

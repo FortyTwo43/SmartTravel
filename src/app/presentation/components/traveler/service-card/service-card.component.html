@@ -1,0 +1,20 @@
+@if (service()) {
+  <div class="service-card">
+    <div class="service-icon">
+      <lucide-icon [name]="getIconName()" class="icon"></lucide-icon>
+    </div>
+
+    <div class="service-content">
+      <div class="service-type">{{ getTypeLabel() | translate }}</div>
+      <h3 class="service-name">{{ service()!.name }}</h3>
+      <p class="service-description">{{ service()!.description }}</p>
+
+      <div class="service-meta">
+        <span class="price">{{ service()!.price | currency }}</span>
+        <span class="rating">⭐ {{ service()!.rating }}</span>
+      </div>
+
+      <button class="view-btn">{{ 'COMMON.VIEW_DETAILS' | translate }}</button>
+    </div>
+  </div>
+}
