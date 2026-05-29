@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TranslateModule } from '@ngx-translate/core';
+import { provideRouter } from '@angular/router';
 import { ProveedorSidebarComponent } from './proveedor-sidebar';
 
 describe('ProveedorSidebarComponent', () => {
@@ -8,7 +9,8 @@ describe('ProveedorSidebarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProveedorSidebarComponent],
+      imports: [ProveedorSidebarComponent, TranslateModule.forRoot()],
+      providers: [provideRouter([])]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ProveedorSidebarComponent);

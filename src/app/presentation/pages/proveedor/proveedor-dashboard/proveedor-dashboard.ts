@@ -16,7 +16,7 @@ import { LoadDashboardKpisUseCase } from '../../../../useCase/proveedor/dashboar
 import { LoadActividadRecienteUseCase } from '../../../../useCase/proveedor/dashboard/LoadActividadRecienteUseCase';
 import { LoadDashboardServiciosMasDemandadosUseCase } from '../../../../useCase/proveedor/dashboard/LoadDashboardServiciosMasDemandadosUseCase';
 import { LoadDashboardTipoViajeUseCase } from '../../../../useCase/proveedor/dashboard/LoadDashboardTipoViaje';
-import { LoadDashboardGraphUseCase } from '../../../../useCase/proveedor/dashboard/LoadDashboardGraphuseCase';
+import { LoadDashboardGraphUseCase } from '../../../../useCase/proveedor/dashboard/LoadDashboardGraphUseCase';
 import { LoadDashboardDataUseCase } from '../../../../useCase/proveedor/dashboard/LoadDashboardDataUseCase';
 
 @Component({

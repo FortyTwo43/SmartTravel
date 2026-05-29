@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TranslateModule } from '@ngx-translate/core';
+import { provideRouter } from '@angular/router';
 import { ProveedorHeaderComponent } from './proveedor-header';
 
 describe('ProveedorHeaderComponent', () => {
@@ -8,7 +9,8 @@ describe('ProveedorHeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProveedorHeaderComponent],
+      imports: [ProveedorHeaderComponent, TranslateModule.forRoot()],
+      providers: [provideRouter([])]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ProveedorHeaderComponent);

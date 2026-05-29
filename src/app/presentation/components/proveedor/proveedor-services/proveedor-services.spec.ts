@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TranslateModule } from '@ngx-translate/core';
 import { ProveedorServicesComponent } from './proveedor-services';
 
 describe('ProveedorServicesComponent', () => {
@@ -8,7 +8,7 @@ describe('ProveedorServicesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProveedorServicesComponent],
+      imports: [ProveedorServicesComponent, TranslateModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ProveedorServicesComponent);
