@@ -5,13 +5,6 @@ import { MetricCardComponent } from '../../ui/metric-card/metric-card';
 
 import { DashboardKpis } from '../../../../domain/dashboard/DashboardKpis';
 
-export interface MetricCardConfig {
-  label: string;
-  value: string;
-  valueColorClass: string;
-  progressPercent: number;
-  progressColorClass: string;
-}
 @Component({
   selector: 'app-proveedor-metrics',
   standalone: true,
