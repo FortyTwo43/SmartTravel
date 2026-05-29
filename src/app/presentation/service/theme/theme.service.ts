@@ -32,7 +32,7 @@ export class ThemeService {
     const savedTheme = localStorage.getItem(this.THEME_KEY) as Theme;
     if (savedTheme) return savedTheme;
     
-    // Default to light theme for the new UI redesign
-    return 'light';
+    // Check system preference
+    return globalThis.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   }
 }
