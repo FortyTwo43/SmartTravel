@@ -52,8 +52,7 @@
   font-weight: 700;
 }
 
-.text-primary { color: var(--color-primary); }
-.text-secondary { color: var(--color-secondary); }
+
 
 .progress-bg {
   height: 0.25rem;
@@ -65,21 +64,4 @@
 .progress-fill {
   height: 100%;
   border-radius: var(--radius-full);
-}
-
-.bg-primary { background-color: var(--color-primary); }
-.bg-secondary { background-color: var(--color-secondary); }
-
-.interests-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.interest-tag {
-  background-color: var(--bg-surface-alt);
-  border: 1px solid var(--border-color);
-  padding: 0.25rem 0.5rem;
-  border-radius: var(--radius-sm);
-  font-size: 0.6875rem;
 }

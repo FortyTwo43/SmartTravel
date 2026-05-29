@@ -7,27 +7,48 @@
   <div class="insights-section">
     <p class="section-label">{{ 'PROVIDER_DASHBOARD.INSIGHTS.TRAVEL_TYPE' | translate }}</p>
     
-    @for (stat of travelStats; track stat.label) {
-      <div class="travel-type-item">
-        <div class="item-header">
-          <span>{{stat.label | translate}}</span>
-          <span class="font-bold" [ngClass]="stat.textColorClass">{{stat.percentage}}%</span>
-        </div>
-        <div class="progress-bg">
-          <div class="progress-fill" [ngClass]="stat.bgColorClass" [style.width.%]="stat.percentage"></div>
-        </div>
+    <!-- Pareja -->
+    <div class="travel-type-item">
+      <div class="item-header">
+        <span>{{ 'PROVIDER_DASHBOARD.INSIGHTS.TRAVEL_TYPES.COUPLE' | translate }}</span>
+        <span class="font-bold" style="color: var(--color-primary)">{{ pct(tipoViaje?.pareja ?? 0) }}%</span>
       </div>
-    }
-  </div>
-  
-  <div class="insights-section">
-    <p class="section-label">{{ 'PROVIDER_DASHBOARD.INSIGHTS.TOP_INTERESTS' | translate }}</p>
-    <div class="interests-container">
-      @for (interest of interests; track interest) {
-        <span class="interest-tag">
-          {{interest | translate}}
-        </span>
-      }
+      <div class="progress-bg">
+        <div class="progress-fill" style="background-color: var(--color-primary)" [style.width.%]="pct(tipoViaje?.pareja ?? 0)"></div>
+      </div>
+    </div>
+
+    <!-- Familia -->
+    <div class="travel-type-item">
+      <div class="item-header">
+        <span>{{ 'PROVIDER_DASHBOARD.INSIGHTS.TRAVEL_TYPES.FAMILY' | translate }}</span>
+        <span class="font-bold" style="color: var(--color-secondary)">{{ pct(tipoViaje?.familia ?? 0) }}%</span>
+      </div>
+      <div class="progress-bg">
+        <div class="progress-fill" style="background-color: var(--color-secondary)" [style.width.%]="pct(tipoViaje?.familia ?? 0)"></div>
+      </div>
+    </div>
+
+    <!-- Amigos -->
+    <div class="travel-type-item">
+      <div class="item-header">
+        <span>{{ 'PROVIDER_DASHBOARD.INSIGHTS.TRAVEL_TYPES.FRIENDS' | translate }}</span>
+        <span class="font-bold" style="color: var(--color-tertiary)">{{ pct(tipoViaje?.amigos ?? 0) }}%</span>
+      </div>
+      <div class="progress-bg">
+        <div class="progress-fill" style="background-color: var(--color-tertiary)" [style.width.%]="pct(tipoViaje?.amigos ?? 0)"></div>
+      </div>
+    </div>
+
+    <!-- Solo -->
+    <div class="travel-type-item">
+      <div class="item-header">
+        <span>{{ 'PROVIDER_DASHBOARD.INSIGHTS.TRAVEL_TYPES.SOLO' | translate }}</span>
+        <span class="font-bold" style="color: var(--color-negative)">{{ pct(tipoViaje?.solo ?? 0) }}%</span>
+      </div>
+      <div class="progress-bg">
+        <div class="progress-fill" style="background-color: var(--color-negative)" [style.width.%]="pct(tipoViaje?.solo ?? 0)"></div>
+      </div>
     </div>
   </div>
 </div>
