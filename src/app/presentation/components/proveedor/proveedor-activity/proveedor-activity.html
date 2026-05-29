@@ -14,20 +14,22 @@
         </tr>
       </thead>
       <tbody>
-        @for (item of activities; track item.name) {
+        @for (item of activities; track item.nombre_cliente) {
           <tr>
             <td class="client-cell">
-              <div class="avatar" [ngClass]="item.colorClass">{{item.initials}}</div>
-              <span>{{item.name}}</span>
+              <div class="avatar">
+                <lucide-icon name="user-round" class="avatar-icon"></lucide-icon>
+              </div>
+              <span>{{item.nombre_cliente}}</span>
             </td>
-            <td class="text-muted">{{item.service}}</td>
+            <td class="text-muted">{{item.nombre_servicio}}</td>
             <td>{{item.pax}}</td>
             <td>
               <span class="status-pill" [ngClass]="{
-                'status-green': item.status === 'aceptado',
-                'status-amber': item.status === 'pendiente',
-                'status-red': item.status === 'rechazado'
-              }">{{ 'PROVIDER_DASHBOARD.ACTIVITY.STATUSES.' + item.status | translate }}</span>
+                'status-green': item.estado === 'aceptado',
+                'status-amber': item.estado === 'pendiente',
+                'status-red': item.estado === 'rechazado'
+              }">{{ 'PROVIDER_DASHBOARD.ACTIVITY.STATUSES.' + item.estado | translate }}</span>
             </td>
           </tr>
         }

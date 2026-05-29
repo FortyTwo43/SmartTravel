@@ -8,7 +8,9 @@ import { ProveedorInsightsComponent, TravelTypeStat } from '../../../components/
 import { ProveedorServicesComponent } from '../../../components/proveedor/proveedor-services/proveedor-services';
 import { EstablecimientoTuristico } from '../../../../domain/entities/EstablecimientoTuristico';
 import { DashboardKpis } from '../../../../domain/dashboard/DashboardKpis';
+import { DashboardActividadReciente } from '../../../../domain/dashboard/DashboardActividadReciente';
 import { LoadDashboardKpisUseCase } from '../../../../useCase/proveedor/dashboard/LoadDashboardKpisUseCase';
+import { LoadActividadRecienteUseCase } from '../../../../useCase/proveedor/dashboard/LoadActividadRecienteUseCase';
 
 @Component({
   selector: 'app-proveedor-dashboard',
@@ -27,6 +29,7 @@ import { LoadDashboardKpisUseCase } from '../../../../useCase/proveedor/dashboar
 })
 export class ProveedorDashboardComponent implements OnInit {
   private readonly loadDashboardKpisUseCase = inject(LoadDashboardKpisUseCase);
+  private readonly loadActividadRecienteUseCase = inject(LoadActividadRecienteUseCase);
 
   establecimiento: EstablecimientoTuristico = {
     id: '1',
@@ -54,12 +57,7 @@ export class ProveedorDashboardComponent implements OnInit {
     'PROVIDER_DASHBOARD.INSIGHTS.INTERESTS.SUSTAINABILITY'
   ];
 
-  activityData = [
-    { initials: 'JD', name: 'Julian Draxler', service: 'Luxury Suite King', pax: 2, status: 'aceptado', colorClass: 'bg-primary-container' },
-    { initials: 'SK', name: 'Sophie Klein', service: 'Full Spa Ritual', pax: 1, status: 'pendiente', colorClass: 'bg-secondary-container' },
-    { initials: 'AM', name: 'Alan Miller', service: 'Airport VIP Escort', pax: 4, status: 'rechazado', colorClass: 'bg-surface-bright' },
-    { initials: 'AM', name: 'Alan Miller', service: 'Airport VIP Escort', pax: 4, status: 'rechazado', colorClass: 'bg-surface-bright' }
-  ];
+  activityData = signal<DashboardActividadReciente[]>([]);
 
   servicesData = [
     { title: 'Skyline Infinity Pool Access', desc: 'Acceso exclusivo al 24º piso.', res: 482, status: 'OPERATIVO', statusClass: 'status-green' },
@@ -70,10 +68,14 @@ export class ProveedorDashboardComponent implements OnInit {
 
   async ngOnInit() {
     try {
-      const kpis = await this.loadDashboardKpisUseCase.execute(this.establecimiento.id_proveedor);
+      const [kpis, actividad] = await Promise.all([
+        this.loadDashboardKpisUseCase.execute(this.establecimiento.id_proveedor),
+        this.loadActividadRecienteUseCase.execute(this.establecimiento.id_proveedor)
+      ]);
       this.kpisData.set(kpis);
+      this.activityData.set(actividad);
     } catch (error) {
-      console.error('Error loading Dashboard KPIs:', error);
+      console.error('Error loading Dashboard data:', error);
     }
   }
 }

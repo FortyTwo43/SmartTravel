@@ -80,14 +80,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
-  font-size: 0.75rem;
-  color: var(--bg-surface);
+  background-color: var(--bg-surface-alt);
+  color: var(--text-muted);
+  flex-shrink: 0;
 }
 
-.bg-primary-container { background-color: var(--color-primary); }
-.bg-secondary-container { background-color: var(--color-secondary); }
-.bg-surface-bright { background-color: var(--color-tertiary); }
+.avatar-icon {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
 
 .text-muted { color: var(--text-muted); }
 
