@@ -41,22 +41,22 @@
           <div class="right-column">
             <!-- Top Cards: Credits & Miles -->
             <div class="cards-row">
-              <!-- Credits Card -->
+              <!-- Viajes completados -->
               <div class="info-card credits-card">
                 <div class="card-header">
-                  <span class="card-icon">💳</span>
-                  <span class="card-label">CRÉDITOS DE VIAJE</span>
+                  <span class="card-icon">✅</span>
+                  <span class="card-label">VIAJES COMPLETADOS</span>
                 </div>
-                <div class="card-value">$1,240.00</div>
+                <div class="card-value">{{ dashboardData()!.estadisticas.viajes_completados }}</div>
               </div>
 
-              <!-- Miles Card -->
+              <!-- Presupuesto -->
               <div class="info-card miles-card">
                 <div class="card-header">
-                  <span class="card-icon">🛡️</span>
-                  <span class="card-label">MILLAS ACUMULADAS</span>
+                  <span class="card-icon">💶</span>
+                  <span class="card-label">PRESUPUESTO</span>
                 </div>
-                <div class="card-value">42.5k</div>
+                <div class="card-value">€{{ dashboardData()!.estadisticas.presupuesto | number }}</div>
               </div>
             </div>
 

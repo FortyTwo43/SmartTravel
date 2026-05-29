@@ -1,12 +1,18 @@
 @if (service()) {
   <div class="service-card">
-    <div class="service-icon-container" [class]="service()!.type">
-      <lucide-icon [name]="getIconName()" class="icon"></lucide-icon>
+    <div class="service-icon-container">
+      <lucide-icon name="Briefcase" class="icon"></lucide-icon>
     </div>
 
     <div class="service-content">
       <h3 class="service-name">{{ service()!.name }}</h3>
       <p class="service-description">{{ service()!.description }}</p>
+      <div class="service-meta">
+        <span class="service-price">€{{ service()!.price }}</span>
+        <span class="service-disponible" [class.disponible]="service()!.disponible">
+          {{ service()!.disponible ? 'Disponible' : 'No disponible' }}
+        </span>
+      </div>
     </div>
   </div>
 }

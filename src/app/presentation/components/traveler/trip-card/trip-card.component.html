@@ -1,25 +1,19 @@
 @if (trip()) {
   <div class="trip-card">
-    <div class="trip-image-container">
-      <img [src]="trip()!.image" [alt]="trip()!.destination" class="trip-image" />
-      <span class="status-badge">En 12 días</span>
-    </div>
-
+    <!-- Status header -->
     <div class="trip-content">
       <div class="trip-header">
         <div class="trip-status-top">
           <span class="airplane-icon">✈️</span>
-          <span class="status-text">Vuelo Confirmado</span>
+          <span class="status-text" [class]="trip()!.status">
+            {{ trip()!.status === 'in_progress' ? 'En curso' : trip()!.status === 'completed' ? 'Completado' : 'Programado' }}
+          </span>
         </div>
         <h3 class="trip-title">{{ trip()!.destination }}</h3>
-        <p class="trip-meta">{{ trip()!.startDate }} - {{ trip()!.endDate }} • {{ trip()!.people }} Adultos</p>
+        <p class="trip-meta">{{ trip()!.startDate }} — {{ trip()!.endDate }}</p>
       </div>
 
       <div class="trip-footer">
-        <div class="avatars">
-          <div class="avatar avatar-1"></div>
-          <div class="avatar avatar-2"></div>
-        </div>
         <button class="details-btn">Detalles</button>
       </div>
     </div>

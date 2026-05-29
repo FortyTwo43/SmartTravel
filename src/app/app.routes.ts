@@ -18,7 +18,7 @@ export const routes: Routes = [
     children: [
       {
         path: 'dashboard',
-        loadComponent: () => import('./presentation/pages/traveler/dashboard/traveler-dashboard.component').then(m => m.TravelerDashboardComponent)
+        loadComponent: () => import('./presentation/pages/viajero/dashboard/traveler-dashboard.component').then(m => m.TravelerDashboardComponent)
       }
     ]
   },

@@ -1,7 +1,7 @@
 import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Hotel, UtensilsCrossed, Compass, Navigation } from 'lucide-angular';
+import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Briefcase } from 'lucide-angular';
 import { ServiceCard } from '../../../../useCase/traveler/dashboard/GetTravelerDashboardUseCase';
 
 @Component({
@@ -12,7 +12,7 @@ import { ServiceCard } from '../../../../useCase/traveler/dashboard/GetTravelerD
     {
       provide: LUCIDE_ICONS,
       multi: true,
-      useValue: new LucideIconProvider({ Hotel, UtensilsCrossed, Compass, Navigation })
+      useValue: new LucideIconProvider({ Briefcase })
     }
   ],
   templateUrl: './service-card.component.html',
@@ -20,23 +20,4 @@ import { ServiceCard } from '../../../../useCase/traveler/dashboard/GetTravelerD
 })
 export class ServiceCardComponent {
   service = input<ServiceCard | null>(null);
-
-  getIconName(): string {
-    switch (this.service()?.type) {
-      case 'hotel':
-        return 'Hotel';
-      case 'restaurant':
-        return 'UtensilsCrossed';
-      case 'tour':
-        return 'Compass';
-      case 'transport':
-        return 'Navigation';
-      default:
-        return 'Hotel';
-    }
-  }
-
-  getTypeLabel(): string {
-    return `TRAVELER_DASHBOARD.SERVICE_${this.service()?.type.toUpperCase()}`;
-  }
 }
