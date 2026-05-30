@@ -10,4 +10,5 @@ export * from './SupabaseReservaRepository';
 export * from './SupabaseRecomendacionRepository';
 export * from './SupabaseNotificacionRepository';
 export * from './SupabaseSolicitudProveedorRepository';
+export * from './SupabaseDashboardProveedorRepository';
 export * from './auth/SupabaseAuthRepository';

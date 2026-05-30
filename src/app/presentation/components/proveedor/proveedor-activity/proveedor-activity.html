@@ -1,0 +1,39 @@
+<div class="activity-card">
+  <div class="activity-header">
+    <h4 class="activity-title">{{ 'PROVIDER_DASHBOARD.ACTIVITY.TITLE' | translate }}</h4>
+    <button class="btn-link">{{ 'PROVIDER_DASHBOARD.ACTIVITY.VIEW_ALL' | translate }}</button>
+  </div>
+  <div class="table-container">
+    <table class="activity-table">
+      <thead>
+        <tr>
+          <th>{{ 'PROVIDER_DASHBOARD.ACTIVITY.CLIENT' | translate }}</th>
+          <th>{{ 'PROVIDER_DASHBOARD.ACTIVITY.SERVICE' | translate }}</th>
+          <th>{{ 'PROVIDER_DASHBOARD.ACTIVITY.PAX' | translate }}</th>
+          <th>{{ 'PROVIDER_DASHBOARD.ACTIVITY.STATUS' | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of activities; track item.nombre_cliente) {
+          <tr>
+            <td class="client-cell">
+              <div class="avatar">
+                <lucide-icon name="user-round" class="avatar-icon"></lucide-icon>
+              </div>
+              <span>{{item.nombre_cliente}}</span>
+            </td>
+            <td class="text-muted">{{item.nombre_servicio}}</td>
+            <td>{{item.pax}}</td>
+            <td>
+              <span class="status-pill" [ngClass]="{
+                'status-green': item.estado === 'aceptado',
+                'status-amber': item.estado === 'pendiente',
+                'status-red': item.estado === 'rechazado'
+              }">{{ 'PROVIDER_DASHBOARD.ACTIVITY.STATUSES.' + item.estado | translate }}</span>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

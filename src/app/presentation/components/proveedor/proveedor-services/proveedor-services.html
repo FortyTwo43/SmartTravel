@@ -1,0 +1,37 @@
+<div class="services-container">
+  <div class="services-header">
+    <h4 class="services-title">{{ 'PROVIDER_DASHBOARD.SERVICES.TITLE' | translate }}</h4>
+    <div class="header-actions">
+      <lucide-icon name="grid" class="icon-sm text-muted cursor-pointer hover-primary"></lucide-icon>
+      <lucide-icon name="list" class="icon-sm text-primary cursor-pointer"></lucide-icon>
+    </div>
+  </div>
+  
+  <div class="services-grid">
+    @for (s of services; track s.servicio_id) {
+      <div class="service-card group">
+        <div class="card-header">
+          <div class="icon-container">
+            <span class="text-primary font-bold">{{ s.nombre_servicio.charAt(0) }}</span>
+          </div>
+          <span class="availability-dot" [style.background-color]="s.disponibilidad ? 'var(--color-secondary)' : 'var(--color-tertiary)'" [title]="s.disponibilidad ? 'Disponible' : 'No disponible'"></span>
+        </div>
+        
+        <h5 class="service-name">{{s.nombre_servicio}}</h5>
+        <p class="service-desc">{{s.descripcion_servicio}}</p>
+        
+        <div class="card-footer">
+          <div>
+            <p class="res-label">{{ 'PROVIDER_DASHBOARD.SERVICES.RESERVATIONS' | translate }}</p>
+            <p class="res-value">{{s.total_reservas_aceptadas}}</p>
+          </div>
+          <div class="action-buttons">
+            <button class="action-btn"><lucide-icon name="edit-2" class="icon-xs"></lucide-icon></button>
+            <button class="action-btn"><lucide-icon name="line-chart" class="icon-xs"></lucide-icon></button>
+            <button class="action-btn btn-error"><lucide-icon name="power" class="icon-xs"></lucide-icon></button>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

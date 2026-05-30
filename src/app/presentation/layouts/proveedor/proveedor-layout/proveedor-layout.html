@@ -1,0 +1,15 @@
+<div class="layout-wrapper">
+  <!-- Sidebar -->
+  <app-proveedor-sidebar></app-proveedor-sidebar>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <app-proveedor-header [nombre]="establecimientoNombre" [tipo]="establecimientoTipo"></app-proveedor-header>
+    
+    <div class="content-area">
+      <ng-content></ng-content>
+    </div>
+    
+    <app-footer></app-footer>
+  </main>
+</div>

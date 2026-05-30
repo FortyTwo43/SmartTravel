@@ -201,6 +201,60 @@
     "ERROR_SAVE": "Error al guardar la configuración. Por favor intenta de nuevo.",
     "ERROR_UNKNOWN": "Ocurrió un error desconocido. Por favor intenta de nuevo."
   },
+  "PROVIDER_DASHBOARD": {
+    "SIDEBAR": {
+      "DASHBOARD": "Dashboard",
+      "RESERVATIONS": "Reservas",
+      "SERVICES": "Servicios",
+      "CLIENTS": "Clientes",
+      "STATISTICS": "Estadísticas",
+      "NOTIFICATIONS": "Notificaciones",
+      "SETTINGS": "Configuración",
+      "ROLE": "Administrador Ejecutivo"
+    },
+    "INSIGHTS": {
+      "TITLE": "Insights del Cliente",
+      "SUBTITLE": "Perfil demográfico de este mes",
+      "TRAVEL_TYPE": "Tipo de Viaje",
+      "TOP_INTERESTS": "Intereses TOP",
+      "TRAVEL_TYPES": {
+        "COUPLE": "Pareja",
+        "FAMILY": "Familia",
+        "FRIENDS": "Amigos",
+        "SOLO": "Solo"
+      },
+      "INTERESTS": {
+        "GASTRONOMY": "Gastronomía",
+        "ADVENTURE": "Aventura",
+        "WELLNESS": "Bienestar",
+        "CULTURE": "Cultura",
+        "SUSTAINABILITY": "Sostenibilidad"
+      }
+    },
+    "ACTIVITY": {
+      "TITLE": "Actividad Reciente",
+      "VIEW_ALL": "Ver todo",
+      "CLIENT": "Cliente",
+      "SERVICE": "Servicio",
+      "PAX": "Pax",
+      "STATUS": "Estado",
+      "STATUSES": {
+        "aceptado": "Aceptado",
+        "pendiente": "Pendiente",
+        "rechazado": "Rechazado"
+      }
+    },
+    "METRICS": {
+      "MONTHLY_RESERVATIONS": "Reservas Mensuales",
+      "TOTAL_REVENUE": "Ingresos Totales",
+      "ACTIVE_SERVICES": "Servicios Activos",
+      "AVAILABILITY": "Disponibilidad",
+      "CANCELLATION_RATE": "Tasa Cancelación"
+    },
+    "SERVICES": {
+      "TITLE": "Servicios más demandados",
+      "RESERVATIONS": "RESERVAS"
+    }
   "TRAVELER_DASHBOARD": {
     "HELLO": "Hola",
     "CURIOSITY": "¿A dónde te llevará tu curiosidad hoy?",
