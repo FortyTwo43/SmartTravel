@@ -7,11 +7,11 @@ import { ProveedorActivityComponent } from '../../../components/proveedor/dashbo
 import { ProveedorInsightsComponent } from '../../../components/proveedor/dashboard/proveedor-insights/proveedor-insights';
 import { ProveedorServicesComponent } from '../../../components/proveedor/dashboard/proveedor-services/proveedor-services';
 import { EstablecimientoTuristico } from '../../../../domain/entities/EstablecimientoTuristico';
-import { DashboardKpis } from '../../../../domain/dashboard/DashboardKpis';
-import { DashboardActividadReciente } from '../../../../domain/dashboard/DashboardActividadReciente';
-import { DashboardServicioMasDemandado } from '../../../../domain/dashboard/DashboardServicioMasDemandado';
-import { DashboardTipoViaje } from '../../../../domain/dashboard/DashboardTipoViaje';
-import { DashboardGraph } from '../../../../domain/dashboard/DashboardGraph';
+import { DashboardKpis } from '../../../../domain/ui/proveedor/dashboard/DashboardKpis';
+import { DashboardActividadReciente } from '../../../../domain/ui/proveedor/dashboard/DashboardActividadReciente';
+import { DashboardServicioMasDemandado } from '../../../../domain/ui/proveedor/dashboard/DashboardServicioMasDemandado';
+import { DashboardTipoViaje } from '../../../../domain/ui/proveedor/dashboard/DashboardTipoViaje';
+import { DashboardGraph } from '../../../../domain/ui/proveedor/dashboard/DashboardGraph';
 import { LoadDashboardKpisUseCase } from '../../../../useCase/proveedor/dashboard/LoadDashboardKpisUseCase';
 import { LoadActividadRecienteUseCase } from '../../../../useCase/proveedor/dashboard/LoadActividadRecienteUseCase';
 import { LoadDashboardServiciosMasDemandadosUseCase } from '../../../../useCase/proveedor/dashboard/LoadDashboardServiciosMasDemandadosUseCase';

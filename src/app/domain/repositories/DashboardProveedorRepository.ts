@@ -1,8 +1,8 @@
-import { DashboardKpis } from '../dashboard/DashboardKpis';
-import { DashboardActividadReciente } from '../dashboard/DashboardActividadReciente';
-import { DashboardServicioMasDemandado } from '../dashboard/DashboardServicioMasDemandado';
-import { DashboardTipoViaje } from '../dashboard/DashboardTipoViaje';
-import { DashboardGraph } from '../dashboard/DashboardGraph';
+import { DashboardKpis } from '../ui/proveedor/dashboard/DashboardKpis';
+import { DashboardActividadReciente } from '../ui/proveedor/dashboard/DashboardActividadReciente';
+import { DashboardServicioMasDemandado } from '../ui/proveedor/dashboard/DashboardServicioMasDemandado';
+import { DashboardTipoViaje } from '../ui/proveedor/dashboard/DashboardTipoViaje';
+import { DashboardGraph } from '../ui/proveedor/dashboard/DashboardGraph';
 
 export interface DashboardProveedorRepository {
   getKpis(providerId: string): Promise<DashboardKpis>;

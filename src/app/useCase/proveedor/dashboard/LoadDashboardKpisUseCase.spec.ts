@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { LoadDashboardKpisUseCase } from './LoadDashboardKpisUseCase';
 import { SupabaseDashboardProveedorRepository } from '../../../infrastructure/repositories/supabase/SupabaseDashboardProveedorRepository';
-import { DashboardKpis } from '../../../domain/dashboard/DashboardKpis';
+import { DashboardKpis } from '../../../domain/ui/proveedor/dashboard/DashboardKpis';
 
 describe('LoadDashboardKpisUseCase', () => {
   let useCase: LoadDashboardKpisUseCase;
@@ -31,9 +31,9 @@ describe('LoadDashboardKpisUseCase', () => {
     const providerId = '123';
     const mockKpis = {} as DashboardKpis;
     mockRepository.getKpis.mockResolvedValue(mockKpis);
-    
+
     const result = await useCase.execute(providerId);
-    
+
     expect(mockRepository.getKpis).toHaveBeenCalledWith(providerId);
     expect(result).toBe(mockKpis);
   });

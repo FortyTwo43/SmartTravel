@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { MetricCardComponent } from '../../../ui/metric-card/metric-card';
 
-import { DashboardKpis } from '../../../../../domain/dashboard/DashboardKpis';
+import { DashboardKpis } from '../../../../../domain/ui/proveedor/dashboard/DashboardKpis';
 
 @Component({
   selector: 'app-proveedor-metrics',

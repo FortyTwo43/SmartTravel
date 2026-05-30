@@ -2,7 +2,7 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxEchartsDirective } from 'ngx-echarts';
 import type { EChartsOption } from 'echarts';
-import { DashboardGraph } from '../../../../../domain/dashboard/DashboardGraph';
+import { DashboardGraph } from '../../../../../domain/ui/proveedor/dashboard/DashboardGraph';
 
 @Component({
   selector: 'app-proveedor-chart-placeholder',

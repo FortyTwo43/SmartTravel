@@ -7,56 +7,12 @@ import { SupabaseServicioReservableRepository } from '../../../infrastructure/re
 import { Itinerario } from '../../../domain/entities/Itinerario';
 import { Destino } from '../../../domain/entities/Destino';
 import { ServicioReservable } from '../../../domain/entities/ServicioReservable';
-
-/**
- * Interfaces del dashboard — solo campos que existen en la base de datos
- */
-export interface TripCard {
-  id: string;
-  destino: string;
-  fecha_inicio: string;
-  fecha_fin: string;
-  estado: 'interes' | 'activo' | 'completado' | 'pausado';
-}
-
-export interface DestinationCard {
-  id: string;
-  nombre: string;
-  ciudad: string;
-  pais: string;
-  imagen: string;
-  tipo_experiencia: string;
-}
-
-export interface ItineraryItem {
-  id: string;
-  titulo: string;
-  fecha: string;
-  estado: 'interes' | 'activo' | 'completado' | 'pausado';
-}
-
-export interface ServiceCard {
-  id: string;
-  nombre: string;
-  descripcion: string;
-  precio: number;
-  disponibilidad: boolean;
-}
-
-export interface DashboardStats {
-  viajes_completados: number;
-  destinos_visitados: number;
-  presupuesto: number;
-}
-
-export interface DashboardData {
-  proximosViajes: TripCard[];
-  destinosRecomendados: DestinationCard[];
-  itinerariosRecientes: ItineraryItem[];
-  serviciosSugeridos: ServiceCard[];
-  estadisticas: DashboardStats;
-  userName: string;
-}
+import { DashboardData } from '../../../domain/ui/viajero/dashboard/DashboardData';
+import { DashboardStats } from '../../../domain/ui/viajero/dashboard/DashboardStats';
+import { TripCard } from '../../../domain/ui/viajero/dashboard/TripCard';
+import { ItineraryItem } from '../../../domain/ui/viajero/dashboard/ItineraryItem';
+import { DestinationCard } from '../../../domain/ui/viajero/dashboard/DestinationCard';
+import { ServiceCard } from '../../../domain/ui/viajero/dashboard/ServiceCard';
 
 @Injectable({
   providedIn: 'root'

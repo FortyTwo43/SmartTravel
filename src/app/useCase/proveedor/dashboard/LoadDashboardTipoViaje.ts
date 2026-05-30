@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { DashboardTipoViaje } from '../../../domain/dashboard/DashboardTipoViaje';
+import { DashboardTipoViaje } from '../../../domain/ui/proveedor/dashboard/DashboardTipoViaje';
 import { SupabaseDashboardProveedorRepository } from '../../../infrastructure/repositories/supabase/SupabaseDashboardProveedorRepository';
 
 @Injectable({

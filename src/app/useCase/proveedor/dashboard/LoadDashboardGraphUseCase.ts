@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { DashboardGraph } from '../../../domain/dashboard/DashboardGraph';
+import { DashboardGraph } from '../../../domain/ui/proveedor/dashboard/DashboardGraph';
 import { SupabaseDashboardProveedorRepository } from '../../../infrastructure/repositories/supabase/SupabaseDashboardProveedorRepository';
 
 @Injectable({

@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { SupabaseClient } from '@supabase/supabase-js';
 import { DashboardProveedorRepository } from '../../../domain/repositories/DashboardProveedorRepository';
-import { DashboardKpis } from '../../../domain/dashboard/DashboardKpis';
-import { DashboardActividadReciente } from '../../../domain/dashboard/DashboardActividadReciente';
-import { DashboardServicioMasDemandado } from '../../../domain/dashboard/DashboardServicioMasDemandado';
+import { DashboardKpis } from '../../../domain/ui/proveedor/dashboard/DashboardKpis';
+import { DashboardActividadReciente } from '../../../domain/ui/proveedor/dashboard/DashboardActividadReciente';
+import { DashboardServicioMasDemandado } from '../../../domain/ui/proveedor/dashboard/DashboardServicioMasDemandado';
 import { buildSupabaseError } from './supabaseUtils/supabase-error';
-import { DashboardTipoViaje } from '../../../domain/dashboard/DashboardTipoViaje';
-import { DashboardGraph } from '../../../domain/dashboard/DashboardGraph';
+import { DashboardTipoViaje } from '../../../domain/ui/proveedor/dashboard/DashboardTipoViaje';
+import { DashboardGraph } from '../../../domain/ui/proveedor/dashboard/DashboardGraph';
 
 @Injectable({
   providedIn: 'root'
