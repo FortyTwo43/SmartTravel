@@ -1,13 +1,24 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TravelerOnboardingComponent } from './traveler-onboarding.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { provideRouter } from '@angular/router';
+import { vi } from 'vitest';
+import { InitializePerfilViajeroUseCase } from '../../../../useCase/traveler/InitializePerfilViajeroUseCase';
 
 describe('TravelerOnboardingComponent', () => {
   let component: TravelerOnboardingComponent;
   let fixture: ComponentFixture<TravelerOnboardingComponent>;
+  let mockInitializeUseCase: { execute: ReturnType<typeof vi.fn> };
 
   beforeEach(async () => {
+    mockInitializeUseCase = { execute: vi.fn() };
+
     await TestBed.configureTestingModule({
-      imports: [TravelerOnboardingComponent],
+      imports: [TravelerOnboardingComponent, TranslateModule.forRoot()],
+      providers: [
+        provideRouter([]),
+        { provide: InitializePerfilViajeroUseCase, useValue: mockInitializeUseCase }
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(TravelerOnboardingComponent);
@@ -22,10 +33,10 @@ describe('TravelerOnboardingComponent', () => {
   it('should toggle interest when clicked', () => {
     const interest = 'deportes';
     expect(component.isInterestSelected(interest)).toBeFalsy();
-    
+
     component.toggleInterest(interest);
     expect(component.isInterestSelected(interest)).toBeTruthy();
-    
+
     component.toggleInterest(interest);
     expect(component.isInterestSelected(interest)).toBeFalsy();
   });
@@ -33,7 +44,7 @@ describe('TravelerOnboardingComponent', () => {
   it('should set travel type', () => {
     component.setTravelType('solo');
     expect(component.selectedTravelType()).toBe('solo');
-    
+
     component.setTravelType('familia');
     expect(component.selectedTravelType()).toBe('familia');
   });

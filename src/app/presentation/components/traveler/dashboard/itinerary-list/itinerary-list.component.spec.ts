@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ItineraryListComponent } from './itinerary-list.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('ItineraryListComponent', () => {
   let component: ItineraryListComponent;
@@ -7,7 +8,7 @@ describe('ItineraryListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ItineraryListComponent]
+      imports: [ItineraryListComponent, TranslateModule.forRoot()]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ItineraryListComponent);

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TravelerSidebarComponent } from './traveler-sidebar.component';
-import { RouterTestingModule } from '@angular/router/testing';
+import { TranslateModule } from '@ngx-translate/core';
+import { provideRouter } from '@angular/router';
 
 describe('TravelerSidebarComponent', () => {
   let component: TravelerSidebarComponent;
@@ -8,7 +9,8 @@ describe('TravelerSidebarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TravelerSidebarComponent, RouterTestingModule]
+      imports: [TravelerSidebarComponent, TranslateModule.forRoot()],
+      providers: [provideRouter([])]
     }).compileComponents();
 
     fixture = TestBed.createComponent(TravelerSidebarComponent);

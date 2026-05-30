@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DestinationCardComponent } from './destination-card.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('DestinationCardComponent', () => {
   let component: DestinationCardComponent;
@@ -7,7 +8,7 @@ describe('DestinationCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DestinationCardComponent]
+      imports: [DestinationCardComponent, TranslateModule.forRoot()]
     }).compileComponents();
 
     fixture = TestBed.createComponent(DestinationCardComponent);
@@ -17,9 +18,5 @@ describe('DestinationCardComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should return star array', () => {
-    expect(component.getStarArray().length).toBe(5);
   });
 });

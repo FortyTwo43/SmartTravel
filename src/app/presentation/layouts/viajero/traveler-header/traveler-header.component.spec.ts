@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TravelerHeaderComponent } from './traveler-header.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('TravelerHeaderComponent', () => {
   let component: TravelerHeaderComponent;
@@ -7,7 +8,7 @@ describe('TravelerHeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TravelerHeaderComponent]
+      imports: [TravelerHeaderComponent, TranslateModule.forRoot()]
     }).compileComponents();
 
     fixture = TestBed.createComponent(TravelerHeaderComponent);

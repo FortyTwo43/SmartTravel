@@ -7,6 +7,12 @@ import { SupabaseServicioReservableRepository } from '../../../infrastructure/re
 import { Itinerario } from '../../../domain/entities/Itinerario';
 import { Destino } from '../../../domain/entities/Destino';
 import { ServicioReservable } from '../../../domain/entities/ServicioReservable';
+export type { DashboardData } from '../../../domain/ui/viajero/dashboard/DashboardData';
+export type { DashboardStats } from '../../../domain/ui/viajero/dashboard/DashboardStats';
+export type { TripCard } from '../../../domain/ui/viajero/dashboard/TripCard';
+export type { ItineraryItem } from '../../../domain/ui/viajero/dashboard/ItineraryItem';
+export type { DestinationCard } from '../../../domain/ui/viajero/dashboard/DestinationCard';
+export type { ServiceCard } from '../../../domain/ui/viajero/dashboard/ServiceCard';
 import { DashboardData } from '../../../domain/ui/viajero/dashboard/DashboardData';
 import { DashboardStats } from '../../../domain/ui/viajero/dashboard/DashboardStats';
 import { TripCard } from '../../../domain/ui/viajero/dashboard/TripCard';

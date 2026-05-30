@@ -99,6 +99,13 @@ export class TravelerOnboardingComponent implements OnInit {
   }
 
   /**
+   * Check if an interest is selected
+   */
+  isInterestSelected(id: string): boolean {
+    return this.selectedInterests().includes(id);
+  }
+
+  /**
    * Set travel type
    */
   setTravelType(type: string): void {
