@@ -2,9 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { InitializePerfilViajeroUseCase } from './InitializePerfilViajeroUseCase';
 import { SupabasePerfilViajeroRepository } from '../../infrastructure/repositories/supabase/SupabasePerfilViajeroRepository';
 import { SupabaseAuthRepository } from '../../infrastructure/repositories/supabase/auth/SupabaseAuthRepository';
-/// <reference types="jasmine" />
-
-declare const jasmine: any;
+import { vi } from 'vitest';
 
 describe('InitializePerfilViajeroUseCase', () => {
   let useCase: InitializePerfilViajeroUseCase;
@@ -12,8 +10,8 @@ describe('InitializePerfilViajeroUseCase', () => {
   let authRepository: any;
 
   beforeEach(() => {
-    const perfilSpy = jasmine.createSpyObj('SupabasePerfilViajeroRepository', ['createWithId']);
-    const authSpy = jasmine.createSpyObj('SupabaseAuthRepository', ['getCurrentUser']);
+    const perfilSpy = { update: vi.fn() };
+    const authSpy = { getCurrentUser: vi.fn() };
 
     TestBed.configureTestingModule({
       providers: [
@@ -33,7 +31,7 @@ describe('InitializePerfilViajeroUseCase', () => {
   });
 
   it('should return error if user is not authenticated', async () => {
-    authRepository.getCurrentUser.and.returnValue(Promise.resolve({ data: { user: null }, error: null }));
+    authRepository.getCurrentUser.mockResolvedValue({ data: { user: null }, error: null });
 
     const result = await useCase.execute({
       intereses: 'deportes,cultura',
@@ -46,12 +44,10 @@ describe('InitializePerfilViajeroUseCase', () => {
 
   it('should successfully initialize traveler profile', async () => {
     const userId = 'test-user-id';
-    authRepository.getCurrentUser.and.returnValue(
-      Promise.resolve({
+    authRepository.getCurrentUser.mockResolvedValue({
         data: { user: { id: userId } },
-        error: null,
-      })
-    );
+        error: null
+      });
 
     const mockProfile = {
       id: userId,
@@ -60,7 +56,7 @@ describe('InitializePerfilViajeroUseCase', () => {
       idioma: 'es',
     };
 
-    perfilViajeroRepository.createWithId.and.returnValue(Promise.resolve(mockProfile));
+    perfilViajeroRepository.update.mockResolvedValue(mockProfile);
 
     const result = await useCase.execute({
       intereses: 'deportes,cultura',

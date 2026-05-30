@@ -8,6 +8,16 @@ import { LoadDashboardServiciosMasDemandadosUseCase } from '../../../../useCase/
 import { LoadDashboardTipoViajeUseCase } from '../../../../useCase/proveedor/dashboard/LoadDashboardTipoViaje';
 import { LoadDashboardGraphUseCase } from '../../../../useCase/proveedor/dashboard/LoadDashboardGraphUseCase';
 import { LoadDashboardDataUseCase } from '../../../../useCase/proveedor/dashboard/LoadDashboardDataUseCase';
+import { provideEchartsCore } from 'ngx-echarts';
+
+// Polyfill for ResizeObserver
+if (typeof window !== 'undefined' && !window.ResizeObserver) {
+  (window as any).ResizeObserver = class ResizeObserver {
+    observe() {}
+    unobserve() {}
+    disconnect() {}
+  };
+}
 
 describe('ProveedorDashboardComponent', () => {
   let component: ProveedorDashboardComponent;
@@ -18,6 +28,7 @@ describe('ProveedorDashboardComponent', () => {
       imports: [ProveedorDashboardComponent, TranslateModule.forRoot()],
       providers: [
         provideRouter([]),
+        provideEchartsCore({ echarts: () => import('echarts') }),
         { provide: LoadDashboardKpisUseCase, useValue: { execute: () => Promise.resolve() } },
         { provide: LoadActividadRecienteUseCase, useValue: { execute: () => Promise.resolve() } },
         { provide: LoadDashboardServiciosMasDemandadosUseCase, useValue: { execute: () => Promise.resolve() } },
