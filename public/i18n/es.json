@@ -29,7 +29,17 @@
     "SAVE": "Guardar",
     "CANCEL": "Cancelar",
     "DELETE": "Eliminar",
-    "EDIT": "Editar"
+    "EDIT": "Editar",
+    "LOADING": "Cargando...",
+    "RETRY": "Reintentar",
+    "SEARCH": "Buscar",
+    "SETTINGS": "Configuración",
+    "LOGOUT": "Cerrar Sesión",
+    "VIEW_DETAILS": "Ver Detalles",
+    "EXPLORE": "Explorar",
+    "SHARE": "Compartir",
+    "SEE_ALL": "Ver Todos",
+    "PEOPLE": "personas"
   },
   "NAVBAR": {
     "TITLE": "Smart Travel AI",
@@ -255,6 +265,7 @@
       "TITLE": "Servicios más demandados",
       "RESERVATIONS": "RESERVAS"
     }
+  },
   "TRAVELER_DASHBOARD": {
     "HELLO": "Hola",
     "CURIOSITY": "¿A dónde te llevará tu curiosidad hoy?",
@@ -292,21 +303,5 @@
     "FAVORITES": "Favoritos",
     "PROFILE": "Mi Perfil",
     "TRAVELER": "Viajero"
-  },
-  "COMMON": {
-    "SAVE": "Guardar",
-    "CANCEL": "Cancelar",
-    "DELETE": "Eliminar",
-    "EDIT": "Editar",
-    "LOADING": "Cargando...",
-    "RETRY": "Reintentar",
-    "SEARCH": "Buscar",
-    "SETTINGS": "Configuración",
-    "LOGOUT": "Cerrar Sesión",
-    "VIEW_DETAILS": "Ver Detalles",
-    "EXPLORE": "Explorar",
-    "SHARE": "Compartir",
-    "SEE_ALL": "Ver Todos",
-    "PEOPLE": "personas"
   }
 }

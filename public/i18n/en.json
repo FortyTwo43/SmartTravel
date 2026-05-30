@@ -29,7 +29,17 @@
     "SAVE": "Save",
     "CANCEL": "Cancel",
     "DELETE": "Delete",
-    "EDIT": "Edit"
+    "EDIT": "Edit",
+    "LOADING": "Loading...",
+    "RETRY": "Retry",
+    "SEARCH": "Search",
+    "SETTINGS": "Settings",
+    "LOGOUT": "Logout",
+    "VIEW_DETAILS": "View Details",
+    "EXPLORE": "Explore",
+    "SHARE": "Share",
+    "SEE_ALL": "See All",
+    "PEOPLE": "people"
   },
   "NAVBAR": {
     "TITLE": "Smart Travel AI",
@@ -255,6 +265,7 @@
       "TITLE": "Most In-Demand Services",
       "RESERVATIONS": "RESERVATIONS"
     }
+  },
   "TRAVELER_DASHBOARD": {
     "HELLO": "Hello",
     "CURIOSITY": "Where will your curiosity lead you today?",
@@ -292,21 +303,5 @@
     "FAVORITES": "Favorites",
     "PROFILE": "My Profile",
     "TRAVELER": "Traveler"
-  },
-  "COMMON": {
-    "SAVE": "Save",
-    "CANCEL": "Cancel",
-    "DELETE": "Delete",
-    "EDIT": "Edit",
-    "LOADING": "Loading...",
-    "RETRY": "Retry",
-    "SEARCH": "Search",
-    "SETTINGS": "Settings",
-    "LOGOUT": "Logout",
-    "VIEW_DETAILS": "View Details",
-    "EXPLORE": "Explore",
-    "SHARE": "Share",
-    "SEE_ALL": "See All",
-    "PEOPLE": "people"
   }
 }
