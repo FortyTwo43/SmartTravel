@@ -48,6 +48,7 @@ src/app/useCase/
 
 
 ### Explicacion de contenido de Application
+SI UN CASO DE USO NO ES PARA UN SOLO USUARIO ESPECIFICO ENTONCES COLOCARLO FUERA LAS CARPETAS DE USUARIO
 Los casos de uso estan organizados por tipo de usuario.
 Los casos de uso de organizan agrupando por la page que los usa. Por ejemplo DashboardUseCase.ts va en useCase/proveedor/dashboard.
 Cada caso de uso tiene la forma ExecuteUseCase.ts
@@ -116,6 +117,7 @@ presentation/
     admin/
 ```
 ### Explicacion de contenido de Presentation
+SI UN COMPONENTE O ARCHIVO NO ES PARA UN SOLO USUARIO ESPECIFICO ENTONCES COLOCARLO FUERA LAS CARPETAS DE USUARIO
 Los componentes estan organizados por tipo de usuario. 
 Los componentes se organizan agrupando por la page que los usa. Por ejemplo DashboardCardComponent.ts va en presentation/components/proveedor/dashboard/dashboard-card/.
 Cada componente tiene la forma component-name.component.html, component-name.component.ts, component-name.component.scss y component-name.component.spec.ts.
