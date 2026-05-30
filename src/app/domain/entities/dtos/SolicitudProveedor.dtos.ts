@@ -3,7 +3,6 @@
  */
 
 export interface CreateSolicitudProveedorDto {
-  id?: string;
   id_perfil: string;
   nombre_negocio: string;
   tipo_negocio: 'restaurante' | 'hotel' | 'tour';

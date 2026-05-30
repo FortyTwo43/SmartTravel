@@ -1,0 +1,46 @@
+<div class="metrics-grid">
+  <!-- 1. Reservas mensuales -->
+  <app-metric-card
+    [label]="'PROVIDER_DASHBOARD.METRICS.MONTHLY_RESERVATIONS' | translate"
+    [value]="kpis ? kpis.reservas_mensuales.toLocaleString() : '0'"
+    valueColorClass="text-primary"
+    [progressPercent]="100"
+    progressColorClass="bg-primary">
+  </app-metric-card>
+
+  <!-- 2. Ingresos mensuales -->
+  <app-metric-card
+    [label]="'PROVIDER_DASHBOARD.METRICS.TOTAL_REVENUE' | translate"
+    [value]="formattedIngresos"
+    valueColorClass="text-secondary"
+    [progressPercent]="100"
+    progressColorClass="bg-secondary">
+  </app-metric-card>
+
+  <!-- 3. Servicios Activos -->
+  <app-metric-card
+    [label]="'PROVIDER_DASHBOARD.METRICS.ACTIVE_SERVICES' | translate"
+    [value]="kpis ? kpis.servicios_activos.toString() : '0'"
+    valueColorClass=""
+    [progressPercent]="(kpis ? kpis.servicios_activos / kpis.servicios_totales * 100 : 0 )"
+    progressColorClass="bg-tertiary">
+  </app-metric-card>
+
+  <!-- 4. Disponibilidad -->
+  <app-metric-card
+    [label]="'PROVIDER_DASHBOARD.METRICS.AVAILABILITY' | translate"
+    [value]="(kpis?.disponibilidad_porcentaje || 0) + '%'"
+    valueColorClass=""
+    [progressPercent]="kpis?.disponibilidad_porcentaje || 0"
+    progressColorClass="bg-tertiary">
+  </app-metric-card>
+
+  <!-- 5. Tasa de cancelación -->
+  <app-metric-card
+    [label]="'PROVIDER_DASHBOARD.METRICS.CANCELLATION_RATE' | translate"
+    [value]="(kpis?.tasa_cancelacion || 0) + '%'"
+    valueColorClass="text-error"
+    [progressPercent]="kpis?.tasa_cancelacion || 0"
+    progressColorClass="bg-error">
+  </app-metric-card>
+</div>

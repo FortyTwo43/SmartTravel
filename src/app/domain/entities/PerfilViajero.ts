@@ -3,4 +3,5 @@ export interface PerfilViajero {
   intereses: string;
   presupuesto: number;
   idioma: string;
+  tipo_viaje: 'solo' | 'pareja' | 'familia' | 'amigos';
 }

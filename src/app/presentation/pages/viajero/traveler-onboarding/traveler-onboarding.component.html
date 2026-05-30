@@ -1,0 +1,82 @@
+<div class="onboarding-wrapper">
+  <!-- Header -->
+  <app-onboarding-header />
+
+  <!-- Main Content -->
+  <main class="onboarding-main">
+    <div class="onboarding-container">
+      <!-- Left Section: Form -->
+      <section class="form-section">
+        <!-- Page Title -->
+        <div class="page-header">
+          <h1 class="page-title">{{ 'TRAVELER_ONBOARDING.TITLE' | translate }}</h1>
+          <p class="page-subtitle">{{ 'TRAVELER_ONBOARDING.SUBTITLE' | translate }}</p>
+        </div>
+
+        <!-- Interests Section -->
+        <app-interests-selector
+          [interests]="INTERESTS()"
+          [selectedInterests]="selectedInterests()"
+          (interestToggled)="toggleInterest($event)"
+        />
+
+        <!-- Travel Type & Budget Row -->
+        <app-travel-preferences
+          [travelTypes]="TRAVEL_TYPES()"
+          [selectedTravelType]="selectedTravelType()"
+          [form]="form"
+          [budgetFormatted]="budgetFormatted()"
+          (travelTypeChanged)="setTravelType($event)"
+        />
+
+        <!-- Finalize Button -->
+        <div class="finalize-button-container">
+          <app-ui-button
+            type="button"
+            variant="primary"
+            [disabled]="isLoading()"
+            (buttonClicked)="onFinalize()"
+            class="finalize-button"
+          >
+            @if (!isLoading()) {
+              {{ 'TRAVELER_ONBOARDING.FINALIZE_BUTTON' | translate }}
+            } @else {
+              {{ 'TRAVELER_ONBOARDING.LOADING' | translate }}
+            }
+          </app-ui-button>
+        </div>
+
+        <!-- Error Message -->
+        @if (errorMessage()) {
+          <div class="error-box">
+            {{ errorMessage() | translate }}
+          </div>
+        }
+      </section>
+
+      <!-- Right Section: Sidebar -->
+      <aside class="sidebar">
+        <!-- Profile Card -->
+        <div class="sidebar-card profile-card">
+          <div class="profile-header">
+            <span class="info-icon">
+              <lucide-icon name="info"></lucide-icon>
+            </span>
+            <h3 class="profile-title">{{ 'TRAVELER_ONBOARDING.YOUR_PROFILE' | translate }}</h3>
+          </div>
+          <p class="profile-description">{{ 'TRAVELER_ONBOARDING.PROFILE_DESCRIPTION' | translate }}</p>
+        </div>
+
+        <!-- Explore Card -->
+        <app-explore-card
+          [imageUrl]="'assets/explorar.png'"
+          [title]="'TRAVELER_ONBOARDING.READY_TO_EXPLORE' | translate"
+          [subtitle]="'TRAVELER_ONBOARDING.NEXT_ADVENTURE' | translate"
+        />
+      </aside>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <app-footer></app-footer>
+</div>

@@ -29,7 +29,17 @@
     "SAVE": "Save",
     "CANCEL": "Cancel",
     "DELETE": "Delete",
-    "EDIT": "Edit"
+    "EDIT": "Edit",
+    "LOADING": "Loading...",
+    "RETRY": "Retry",
+    "SEARCH": "Search",
+    "SETTINGS": "Settings",
+    "LOGOUT": "Logout",
+    "VIEW_DETAILS": "View Details",
+    "EXPLORE": "Explore",
+    "SHARE": "Share",
+    "SEE_ALL": "See All",
+    "PEOPLE": "people"
   },
   "NAVBAR": {
     "TITLE": "Smart Travel AI",
@@ -164,5 +174,134 @@
     "ERROR_CREATE_PROFILE": "Error creating profile. Please try again.",
     "ERROR_SUBMIT_REQUEST": "Error submitting request. Please try again.",
     "ERROR_UNEXPECTED": "An unexpected error occurred. Please try again."
+  },
+  "TRAVELER_ONBOARDING": {
+    "TITLE": "Personalize your experience",
+    "SUBTITLE": "Select your interests to offer you the best recommendations and design the trip of your dreams.",
+    "INTERESTS_HEADING": "What are you passionate about?",
+    "INTERESTS": {
+      "SPORTS": "Sports",
+      "CUISINE": "Cuisine",
+      "CULTURE": "Culture",
+      "NATURE": "Nature",
+      "BEACH": "Beach",
+      "MOUNTAIN": "Mountain",
+      "HISTORY": "History",
+      "TECHNOLOGY": "Technology",
+      "GASTRONOMY": "Gastronomy",
+      "PHOTOGRAPHY": "Photography",
+      "ECOTOURISM": "Ecotourism"
+    },
+    "TRAVEL_TYPE_HEADING": "Travel type",
+    "TRAVEL_TYPE": {
+      "SOLO": "Solo",
+      "COUPLE": "Couple",
+      "FAMILY": "Family",
+      "FRIENDS": "Friends"
+    },
+    "BUDGET_HEADING": "Planning",
+    "ESTIMATED_BUDGET": "Estimated budget",
+    "YOUR_PROFILE": "Your current profile",
+    "PROFILE_DESCRIPTION": "You are configuring an experience for a trip as a Couple with main interests in Cuisine and Nature.",
+    "FINALIZE_BUTTON": "Finalize configuration",
+    "READY_TO_EXPLORE": "Ready to explore?",
+    "NEXT_ADVENTURE": "Your next adventure begins here.",
+    "LOADING": "...",
+    "ERROR_VALIDATION": "Please complete all fields and select at least one interest.",
+    "ERROR_SAVE": "Error saving configuration. Please try again.",
+    "ERROR_UNKNOWN": "An unknown error occurred. Please try again."
+  },
+  "PROVIDER_DASHBOARD": {
+    "SIDEBAR": {
+      "DASHBOARD": "Dashboard",
+      "RESERVATIONS": "Reservations",
+      "SERVICES": "Services",
+      "CLIENTS": "Clients",
+      "STATISTICS": "Statistics",
+      "NOTIFICATIONS": "Notifications",
+      "SETTINGS": "Settings",
+      "ROLE": "Executive Admin"
+    },
+    "INSIGHTS": {
+      "TITLE": "Customer Insights",
+      "SUBTITLE": "This month's demographic profile",
+      "TRAVEL_TYPE": "Travel Type",
+      "TOP_INTERESTS": "Top Interests",
+      "TRAVEL_TYPES": {
+        "COUPLE": "Couple",
+        "FAMILY": "Family",
+        "FRIENDS": "Friends",
+        "SOLO": "Solo"
+      },
+      "INTERESTS": {
+        "GASTRONOMY": "Gastronomy",
+        "ADVENTURE": "Adventure",
+        "WELLNESS": "Wellness",
+        "CULTURE": "Culture",
+        "SUSTAINABILITY": "Sustainability"
+      }
+    },
+    "ACTIVITY": {
+      "TITLE": "Recent Activity",
+      "VIEW_ALL": "View all",
+      "CLIENT": "Client",
+      "SERVICE": "Service",
+      "PAX": "Pax",
+      "STATUS": "Status",
+      "STATUSES": {
+        "aceptado": "Accepted",
+        "pendiente": "Pending",
+        "rechazado": "Rejected"
+      }
+    },
+    "METRICS": {
+      "MONTHLY_RESERVATIONS": "Monthly Reservations",
+      "TOTAL_REVENUE": "Total Revenue",
+      "ACTIVE_SERVICES": "Active Services",
+      "AVAILABILITY": "Availability",
+      "CANCELLATION_RATE": "Cancellation Rate"
+    },
+    "SERVICES": {
+      "TITLE": "Most In-Demand Services",
+      "RESERVATIONS": "RESERVATIONS"
+    }
+  },
+  "TRAVELER_DASHBOARD": {
+    "HELLO": "Hello",
+    "CURIOSITY": "Where will your curiosity lead you today?",
+    "UPCOMING_TRIPS": "Upcoming Trips",
+    "RECOMMENDED_DESTINATIONS": "Recommended Destinations",
+    "RECENT_ITINERARIES": "Recent Itineraries",
+    "SUGGESTED_SERVICES": "Suggested Services",
+    "STATISTICS": "Your Statistics",
+    "NO_TRIPS": "You have no scheduled trips. Start planning one!",
+    "NO_ITINERARIES": "No itineraries available.",
+    "STATUS_SCHEDULED": "Scheduled",
+    "STATUS_IN_PROGRESS": "In Progress",
+    "STATUS_COMPLETED": "Completed",
+    "ITINERARY_SCHEDULED": "Scheduled",
+    "ITINERARY_IN_PROGRESS": "In Progress",
+    "ITINERARY_COMPLETED": "Completed",
+    "SERVICE_HOTEL": "Hotel",
+    "SERVICE_RESTAURANT": "Restaurant",
+    "SERVICE_TOUR": "Tour",
+    "SERVICE_TRANSPORT": "Transport",
+    "STAT_VIAJES_COMPLETADOS": "Completed Trips",
+    "STAT_DESTINOS_VISITADOS": "Destinations Visited",
+    "STAT_FAVORITOS": "Favorites",
+    "STAT_PRESUPUESTO_RESTANTE": "Remaining Budget",
+    "TRAVEL_CREDITS": "TRAVEL CREDITS",
+    "ACCUMULATED_MILES": "ACCUMULATED MILES",
+    "ASSISTANCE_24": "24/7 Assistance",
+    "ASSISTANCE_DESC": "Premium chat and articulated support"
+  },
+  "TRAVELER_SIDEBAR": {
+    "DASHBOARD": "Dashboard",
+    "EXPLORE": "Explore Destinations",
+    "MY_TRIPS": "My Trips",
+    "ITINERARIES": "Itineraries",
+    "FAVORITES": "Favorites",
+    "PROFILE": "My Profile",
+    "TRAVELER": "Traveler"
   }
 }

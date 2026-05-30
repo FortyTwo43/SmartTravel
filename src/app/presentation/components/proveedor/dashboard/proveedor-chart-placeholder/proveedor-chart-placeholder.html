@@ -1,0 +1,16 @@
+<div class="chart-section">
+  <div class="chart-header">
+    <div>
+      <h4 class="chart-title">Reservas Semanales</h4>
+      <p class="chart-subtitle">Seguimiento de volumen de reservas por semana</p>
+    </div>
+    <div class="chart-actions">
+      <button class="btn btn-outlined">Exportar PDF</button>
+      <button class="btn btn-outlined">Configurar</button>
+    </div>
+  </div>
+  
+  <div class="chart-visuals-container">
+    <div echarts [options]="chartOptions" class="echarts-wrapper"></div>
+  </div>
+</div>

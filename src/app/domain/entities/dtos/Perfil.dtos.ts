@@ -3,7 +3,6 @@
  */
 
 export interface CreatePerfilDto {
-  id?: string;
   nombre: string;
   apellido: string;
   rol: 'viajero' | 'proveedor' | 'admin';

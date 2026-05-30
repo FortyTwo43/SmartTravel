@@ -1,0 +1,54 @@
+<div class="insights-card">
+  <div class="insights-header">
+    <h4 class="insights-title">{{ 'PROVIDER_DASHBOARD.INSIGHTS.TITLE' | translate }}</h4>
+    <p class="insights-subtitle">{{ 'PROVIDER_DASHBOARD.INSIGHTS.SUBTITLE' | translate }}</p>
+  </div>
+  
+  <div class="insights-section">
+    <p class="section-label">{{ 'PROVIDER_DASHBOARD.INSIGHTS.TRAVEL_TYPE' | translate }}</p>
+    
+    <!-- Pareja -->
+    <div class="travel-type-item">
+      <div class="item-header">
+        <span>{{ 'PROVIDER_DASHBOARD.INSIGHTS.TRAVEL_TYPES.COUPLE' | translate }}</span>
+        <span class="font-bold" style="color: var(--color-primary)">{{ pct(tipoViaje?.pareja ?? 0) }}%</span>
+      </div>
+      <div class="progress-bg">
+        <div class="progress-fill" style="background-color: var(--color-primary)" [style.width.%]="pct(tipoViaje?.pareja ?? 0)"></div>
+      </div>
+    </div>
+
+    <!-- Familia -->
+    <div class="travel-type-item">
+      <div class="item-header">
+        <span>{{ 'PROVIDER_DASHBOARD.INSIGHTS.TRAVEL_TYPES.FAMILY' | translate }}</span>
+        <span class="font-bold" style="color: var(--color-secondary)">{{ pct(tipoViaje?.familia ?? 0) }}%</span>
+      </div>
+      <div class="progress-bg">
+        <div class="progress-fill" style="background-color: var(--color-secondary)" [style.width.%]="pct(tipoViaje?.familia ?? 0)"></div>
+      </div>
+    </div>
+
+    <!-- Amigos -->
+    <div class="travel-type-item">
+      <div class="item-header">
+        <span>{{ 'PROVIDER_DASHBOARD.INSIGHTS.TRAVEL_TYPES.FRIENDS' | translate }}</span>
+        <span class="font-bold" style="color: var(--color-tertiary)">{{ pct(tipoViaje?.amigos ?? 0) }}%</span>
+      </div>
+      <div class="progress-bg">
+        <div class="progress-fill" style="background-color: var(--color-tertiary)" [style.width.%]="pct(tipoViaje?.amigos ?? 0)"></div>
+      </div>
+    </div>
+
+    <!-- Solo -->
+    <div class="travel-type-item">
+      <div class="item-header">
+        <span>{{ 'PROVIDER_DASHBOARD.INSIGHTS.TRAVEL_TYPES.SOLO' | translate }}</span>
+        <span class="font-bold" style="color: var(--color-negative)">{{ pct(tipoViaje?.solo ?? 0) }}%</span>
+      </div>
+      <div class="progress-bg">
+        <div class="progress-fill" style="background-color: var(--color-negative)" [style.width.%]="pct(tipoViaje?.solo ?? 0)"></div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -29,7 +29,17 @@
     "SAVE": "Guardar",
     "CANCEL": "Cancelar",
     "DELETE": "Eliminar",
-    "EDIT": "Editar"
+    "EDIT": "Editar",
+    "LOADING": "Cargando...",
+    "RETRY": "Reintentar",
+    "SEARCH": "Buscar",
+    "SETTINGS": "Configuración",
+    "LOGOUT": "Cerrar Sesión",
+    "VIEW_DETAILS": "Ver Detalles",
+    "EXPLORE": "Explorar",
+    "SHARE": "Compartir",
+    "SEE_ALL": "Ver Todos",
+    "PEOPLE": "personas"
   },
   "NAVBAR": {
     "TITLE": "Smart Travel AI",
@@ -164,5 +174,134 @@
     "ERROR_CREATE_PROFILE": "Error al crear el perfil. Por favor intenta de nuevo.",
     "ERROR_SUBMIT_REQUEST": "Error al enviar la solicitud. Por favor intenta de nuevo.",
     "ERROR_UNEXPECTED": "Ocurrió un error inesperado. Por favor intenta de nuevo."
+  },
+  "TRAVELER_ONBOARDING": {
+    "TITLE": "Personaliza tu experiencia",
+    "SUBTITLE": "Selecciona tus intereses para ofrecerte las mejores recomendaciones y diseñar el viaje de tus sueños.",
+    "INTERESTS_HEADING": "¿Qué te apasiona?",
+    "INTERESTS": {
+      "SPORTS": "Deportes",
+      "CUISINE": "Cocina",
+      "CULTURE": "Cultura",
+      "NATURE": "Naturaleza",
+      "BEACH": "Playa",
+      "MOUNTAIN": "Montaña",
+      "HISTORY": "Historia",
+      "TECHNOLOGY": "Tecnología",
+      "GASTRONOMY": "Gastronomía",
+      "PHOTOGRAPHY": "Fotografía",
+      "ECOTOURISM": "Ecoturismo"
+    },
+    "TRAVEL_TYPE_HEADING": "Tipo de viaje",
+    "TRAVEL_TYPE": {
+      "SOLO": "Solo",
+      "COUPLE": "Pareja",
+      "FAMILY": "Familia",
+      "FRIENDS": "Amigos"
+    },
+    "BUDGET_HEADING": "Planificación",
+    "ESTIMATED_BUDGET": "Presupuesto estimado",
+    "YOUR_PROFILE": "Tu perfil actual",
+    "PROFILE_DESCRIPTION": "Está configurando una experiencia para un viaje en Pareja con intereses principales en Cocina y Naturaleza.",
+    "FINALIZE_BUTTON": "Finalizar configuración",
+    "READY_TO_EXPLORE": "¿Listo para explorar?",
+    "NEXT_ADVENTURE": "Tu próxima aventura comienza aquí.",
+    "LOADING": "...",
+    "ERROR_VALIDATION": "Por favor completa todos los campos y selecciona al menos un interés.",
+    "ERROR_SAVE": "Error al guardar la configuración. Por favor intenta de nuevo.",
+    "ERROR_UNKNOWN": "Ocurrió un error desconocido. Por favor intenta de nuevo."
+  },
+  "PROVIDER_DASHBOARD": {
+    "SIDEBAR": {
+      "DASHBOARD": "Dashboard",
+      "RESERVATIONS": "Reservas",
+      "SERVICES": "Servicios",
+      "CLIENTS": "Clientes",
+      "STATISTICS": "Estadísticas",
+      "NOTIFICATIONS": "Notificaciones",
+      "SETTINGS": "Configuración",
+      "ROLE": "Administrador Ejecutivo"
+    },
+    "INSIGHTS": {
+      "TITLE": "Insights del Cliente",
+      "SUBTITLE": "Perfil demográfico de este mes",
+      "TRAVEL_TYPE": "Tipo de Viaje",
+      "TOP_INTERESTS": "Intereses TOP",
+      "TRAVEL_TYPES": {
+        "COUPLE": "Pareja",
+        "FAMILY": "Familia",
+        "FRIENDS": "Amigos",
+        "SOLO": "Solo"
+      },
+      "INTERESTS": {
+        "GASTRONOMY": "Gastronomía",
+        "ADVENTURE": "Aventura",
+        "WELLNESS": "Bienestar",
+        "CULTURE": "Cultura",
+        "SUSTAINABILITY": "Sostenibilidad"
+      }
+    },
+    "ACTIVITY": {
+      "TITLE": "Actividad Reciente",
+      "VIEW_ALL": "Ver todo",
+      "CLIENT": "Cliente",
+      "SERVICE": "Servicio",
+      "PAX": "Pax",
+      "STATUS": "Estado",
+      "STATUSES": {
+        "aceptado": "Aceptado",
+        "pendiente": "Pendiente",
+        "rechazado": "Rechazado"
+      }
+    },
+    "METRICS": {
+      "MONTHLY_RESERVATIONS": "Reservas Mensuales",
+      "TOTAL_REVENUE": "Ingresos Totales",
+      "ACTIVE_SERVICES": "Servicios Activos",
+      "AVAILABILITY": "Disponibilidad",
+      "CANCELLATION_RATE": "Tasa Cancelación"
+    },
+    "SERVICES": {
+      "TITLE": "Servicios más demandados",
+      "RESERVATIONS": "RESERVAS"
+    }
+  },
+  "TRAVELER_DASHBOARD": {
+    "HELLO": "Hola",
+    "CURIOSITY": "¿A dónde te llevará tu curiosidad hoy?",
+    "UPCOMING_TRIPS": "Próximos Viajes",
+    "RECOMMENDED_DESTINATIONS": "Destinos Recomendados",
+    "RECENT_ITINERARIES": "Itinerarios Recientes",
+    "SUGGESTED_SERVICES": "Servicios Sugeridos",
+    "STATISTICS": "Tus Estadísticas",
+    "NO_TRIPS": "No tienes viajes programados. ¡Comienza a planificar uno!",
+    "NO_ITINERARIES": "No hay itinerarios disponibles.",
+    "STATUS_SCHEDULED": "Programado",
+    "STATUS_IN_PROGRESS": "En Curso",
+    "STATUS_COMPLETED": "Completado",
+    "ITINERARY_SCHEDULED": "Programado",
+    "ITINERARY_IN_PROGRESS": "En Curso",
+    "ITINERARY_COMPLETED": "Completado",
+    "SERVICE_HOTEL": "Hotel",
+    "SERVICE_RESTAURANT": "Restaurante",
+    "SERVICE_TOUR": "Tour",
+    "SERVICE_TRANSPORT": "Transporte",
+    "STAT_VIAJES_COMPLETADOS": "Viajes Completados",
+    "STAT_DESTINOS_VISITADOS": "Destinos Visitados",
+    "STAT_FAVORITOS": "Favoritos",
+    "STAT_PRESUPUESTO_RESTANTE": "Presupuesto Restante",
+    "TRAVEL_CREDITS": "CRÉDITOS DE VIAJE",
+    "ACCUMULATED_MILES": "MILLAS ACUMULADAS",
+    "ASSISTANCE_24": "Asistencia 24/7",
+    "ASSISTANCE_DESC": "Chat y soporte premium articulado"
+  },
+  "TRAVELER_SIDEBAR": {
+    "DASHBOARD": "Dashboard",
+    "EXPLORE": "Explorar Destinos",
+    "MY_TRIPS": "Mis Viajes",
+    "ITINERARIES": "Itinerarios",
+    "FAVORITES": "Favoritos",
+    "PROFILE": "Mi Perfil",
+    "TRAVELER": "Viajero"
   }
 }

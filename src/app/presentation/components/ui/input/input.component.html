@@ -5,7 +5,7 @@
   
   <div class="input-wrapper" [class.has-icon]="icon()">
     @if (icon()) {
-      <lucide-icon [name]="icon()!" class="prefix-icon" [size]="16"></lucide-icon>
+      <lucide-icon [name]="icon()!" class="prefix-icon"></lucide-icon>
     }
     
     <input 
@@ -21,7 +21,7 @@
 
     @if (type() === 'password') {
       <button type="button" class="toggle-password" (click)="togglePassword()">
-        <lucide-icon [name]="showPassword() ? 'eye-off' : 'eye'" [size]="16"></lucide-icon>
+        <lucide-icon [name]="showPassword() ? 'eye-off' : 'eye'"></lucide-icon>
       </button>
     }
   </div>

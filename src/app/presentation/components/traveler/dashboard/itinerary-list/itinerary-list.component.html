@@ -1,0 +1,20 @@
+<div class="itinerary-list">
+  @if (itineraries().length > 0) {
+    <ul class="list">
+      @for (item of itineraries(); track item.id) {
+        <li class="list-item">
+          <div class="item-icon-container">
+            <span class="clock-icon">🕙</span>
+          </div>
+          <div class="item-info">
+            <h4 class="item-title">{{ item.titulo }}</h4>
+            <p class="item-meta">{{ item.fecha }} • 5 días</p>
+          </div>
+          <button class="more-options-btn">⋮</button>
+        </li>
+      }
+    </ul>
+  } @else {
+    <p class="empty-state">{{ 'TRAVELER_DASHBOARD.NO_ITINERARIES' | translate }}</p>
+  }
+</div>

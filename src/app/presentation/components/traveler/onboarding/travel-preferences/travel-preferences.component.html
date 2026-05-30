@@ -1,0 +1,43 @@
+<div class="form-row">
+  <!-- Travel Type -->
+  <div class="form-card">
+    <h3 class="card-subtitle">{{ 'TRAVELER_ONBOARDING.TRAVEL_TYPE_HEADING' | translate }}</h3>
+    <div class="travel-type-buttons">
+      @for (type of travelTypes(); track type.id) {
+        <button
+          type="button"
+          class="travel-type-button"
+          [class.active]="selectedTravelType() === type.id"
+          (click)="select(type.id)"
+        >
+          {{ type.label | translate }}
+        </button>
+      }
+    </div>
+  </div>
+
+  <!-- Budget Card -->
+  <div class="form-card" [formGroup]="form()">
+    <h3 class="card-subtitle">{{ 'TRAVELER_ONBOARDING.BUDGET_HEADING' | translate }}</h3>
+
+    <div class="budget-container">
+      <label class="budget-label">{{ 'TRAVELER_ONBOARDING.ESTIMATED_BUDGET' | translate }}</label>
+
+      <div class="slider-container">
+        <input
+          type="range"
+          class="budget-slider"
+          min="500"
+          max="10000"
+          step="100"
+          formControlName="presupuesto"
+        />
+        <div class="slider-labels">
+          <span>€500</span>
+          <span class="current-value">{{ budgetFormatted() }}</span>
+          <span>€10,000+</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

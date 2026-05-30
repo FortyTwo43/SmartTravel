@@ -1,0 +1,30 @@
+<div class="form-card">
+  <h2 class="card-title">{{ 'TRAVELER_ONBOARDING.INTERESTS_HEADING' | translate }}</h2>
+  <div class="interests-grid">
+    @for (interest of interests(); track interest.id) {
+      <label
+        class="interest-item"
+        [class.selected]="isSelected(interest.id)"
+      >
+        <input
+          type="checkbox"
+          class="interest-checkbox"
+          [checked]="isSelected(interest.id)"
+          (change)="toggle(interest.id)"
+          hidden
+        />
+        <span class="interest-icon">
+          <lucide-icon [name]="interest.icon"></lucide-icon>
+        </span>
+        <span class="interest-label">{{ interest.label | translate }}</span>
+        @if (isSelected(interest.id)) {
+          <span class="interest-check">
+            <svg class="check-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+            </svg>
+          </span>
+        }
+      </label>
+    }
+  </div>
+</div>

@@ -1,0 +1,21 @@
+@if (trip()) {
+  <div class="trip-card">
+    <!-- Status header -->
+    <div class="trip-content">
+      <div class="trip-header">
+        <div class="trip-status-top">
+          <span class="airplane-icon">✈️</span>
+          <span class="status-text" [class]="trip()!.estado">
+            {{ trip()!.estado === 'activo' ? 'En curso' : trip()!.estado === 'completado' ? 'Completado' : trip()!.estado === 'interes' ? 'Interés' : 'Pausado' }}
+          </span>
+        </div>
+        <h3 class="trip-title">{{ trip()!.destino }}</h3>
+        <p class="trip-meta">{{ trip()!.fecha_inicio }} — {{ trip()!.fecha_fin }}</p>
+      </div>
+
+      <div class="trip-footer">
+        <button class="details-btn">Detalles</button>
+      </div>
+    </div>
+  </div>
+}

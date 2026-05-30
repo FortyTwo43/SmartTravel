@@ -10,4 +10,5 @@ export * from './ReservaRepository';
 export * from './RecomendacionRepository';
 export * from './NotificacionRepository';
 export * from './SolicitudProveedorRepository';
+export * from './DashboardProveedorRepository';
 export * from './auth/AuthRepository';
