@@ -4,8 +4,8 @@ import { signal } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { GetTravelerDashboardUseCase, DashboardData } from '../../../../useCase/traveler/dashboard/GetTravelerDashboardUseCase';
-import { TravelerSidebarComponent } from '../../../components/traveler/dashboard/traveler-sidebar/traveler-sidebar.component';
-import { TravelerHeaderComponent } from '../../../components/traveler/dashboard/traveler-header/traveler-header.component';
+import { TravelerSidebarComponent } from '../../../layouts/viajero/traveler-sidebar/traveler-sidebar.component';
+import { TravelerHeaderComponent } from '../../../layouts/viajero/traveler-header/traveler-header.component';
 import { TripCardComponent } from '../../../components/traveler/dashboard/trip-card/trip-card.component';
 import { DestinationCardComponent } from '../../../components/traveler/dashboard/destination-card/destination-card.component';
 import { ItineraryListComponent } from '../../../components/traveler/dashboard/itinerary-list/itinerary-list.component';
