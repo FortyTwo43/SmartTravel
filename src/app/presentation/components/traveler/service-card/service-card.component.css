@@ -1,0 +1,67 @@
+.service-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--bg-surface-alt);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+  padding: 2rem 1.5rem;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.service-icon-container {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f1f5f9;
+}
+
+.service-icon-container.hotel {
+  background-color: #8cf690;
+}
+
+.service-icon-container.restaurant {
+  background-color: #fed7aa;
+}
+
+.service-icon-container.tour {
+  background-color: #bae6fd;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  color: #111;
+}
+
+.service-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.service-name {
+  font-family: var(--font-headline);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0;
+}
+
+.service-description {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin: 0;
+}

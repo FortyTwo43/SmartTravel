@@ -3,13 +3,17 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Check, ChevronRight, Activity, Utensils, Landmark, Leaf, Umbrella, Mountain, BookOpen, Monitor, Coffee, Camera, Compass, Info } from 'lucide-angular';
+import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Info } from 'lucide-angular';
 
 import { InitializePerfilViajeroUseCase } from '../../../../useCase/traveler/InitializePerfilViajeroUseCase';
 import { ButtonComponent } from '../../../components/ui/button/button.component';
 import { Footer } from '../../../layouts/footer/footer';
 import { INTERESTS } from '../../../constants/interests.constant';
 import { TRAVEL_TYPES } from '../../../constants/travel-types.constant';
+import { OnboardingHeaderComponent } from '../../../components/onboarding/onboarding-header/onboarding-header.component';
+import { InterestsSelectorComponent } from '../../../components/onboarding/interests-selector/interests-selector.component';
+import { TravelPreferencesComponent } from '../../../components/onboarding/travel-preferences/travel-preferences.component';
+import { ExploreCardComponent } from '../../../components/onboarding/explore-card/explore-card.component';
 
 @Component({
   selector: 'app-traveler-onboarding',
@@ -20,13 +24,17 @@ import { TRAVEL_TYPES } from '../../../constants/travel-types.constant';
     TranslateModule,
     LucideAngularModule,
     ButtonComponent,
-    Footer
+    Footer,
+    OnboardingHeaderComponent,
+    InterestsSelectorComponent,
+    TravelPreferencesComponent,
+    ExploreCardComponent
   ],
   providers: [
     {
       provide: LUCIDE_ICONS,
       multi: true,
-      useValue: new LucideIconProvider({ Check, ChevronRight, Activity, Utensils, Landmark, Leaf, Umbrella, Mountain, BookOpen, Monitor, Coffee, Camera, Compass, Info })
+      useValue: new LucideIconProvider({ Info })
     }
   ],
   templateUrl: './traveler-onboarding.component.html',
@@ -51,7 +59,6 @@ export class TravelerOnboardingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Usar Promise.resolve() para ejecutar en el siguiente microtask
     Promise.resolve().then(() => {
       this.cdr.markForCheck();
       this.cdr.detectChanges();
@@ -92,13 +99,6 @@ export class TravelerOnboardingComponent implements OnInit {
   }
 
   /**
-   * Check if interest is selected
-   */
-  isInterestSelected(id: string): boolean {
-    return this.selectedInterests().includes(id);
-  }
-
-  /**
    * Set travel type
    */
   setTravelType(type: string): void {
@@ -127,8 +127,7 @@ export class TravelerOnboardingComponent implements OnInit {
       });
 
       if (result.success) {
-        // Redirect to traveler dashboard/home
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/traveler/dashboard']);
       } else {
         this.errorMessage.set(result.message || 'TRAVELER_ONBOARDING.ERROR_SAVE');
       }

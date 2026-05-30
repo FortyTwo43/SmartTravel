@@ -5,4 +5,6 @@ import { createSupabaseClient } from './app/infrastructure/database/supabase.cli
 
 createSupabaseClient()
   .then((supabase) => bootstrapApplication(App, createAppConfig(supabase)))
-  .catch((err) => console.error(err));
+  .catch((err) => {
+    console.error('Supabase initialization failed', err);
+  });

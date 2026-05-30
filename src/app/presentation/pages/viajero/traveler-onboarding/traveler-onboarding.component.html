@@ -1,13 +1,6 @@
 <div class="onboarding-wrapper">
-  <!-- Header/Navbar -->
-  <header class="onboarding-header">
-    <div class="header-container">
-      <div class="header-brand">
-        <img src="assets/smart_travel_logo.png" alt="SmartTravel" class="logo" />
-        <span class="brand-title">SmartTravel</span>
-      </div>
-    </div>
-  </header>
+  <!-- Header -->
+  <app-onboarding-header />
 
   <!-- Main Content -->
   <main class="onboarding-main">
@@ -21,81 +14,20 @@
         </div>
 
         <!-- Interests Section -->
-        <div class="form-card">
-          <h2 class="card-title">{{ 'TRAVELER_ONBOARDING.INTERESTS_HEADING' | translate }}</h2>
-          <div class="interests-grid">
-            @for (interest of INTERESTS(); track interest.id) {
-              <label 
-                class="interest-item"
-                [class.selected]="isInterestSelected(interest.id)"
-              >
-                <input 
-                  type="checkbox" 
-                  class="interest-checkbox"
-                  [checked]="isInterestSelected(interest.id)"
-                  (change)="toggleInterest(interest.id)"
-                  hidden
-                />
-                <span class="interest-icon">
-                  <lucide-icon [name]="interest.icon"></lucide-icon>
-                </span>
-                <span class="interest-label">{{ interest.label | translate }}</span>
-                @if (isInterestSelected(interest.id)) {
-                  <span class="interest-check">
-                    <svg class="check-icon" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                    </svg>
-                  </span>
-                }
-              </label>
-            }
-          </div>
-        </div>
+        <app-interests-selector
+          [interests]="INTERESTS()"
+          [selectedInterests]="selectedInterests()"
+          (interestToggled)="toggleInterest($event)"
+        />
 
         <!-- Travel Type & Budget Row -->
-        <div class="form-row">
-          <!-- Travel Type -->
-          <div class="form-card">
-            <h3 class="card-subtitle">{{ 'TRAVELER_ONBOARDING.TRAVEL_TYPE_HEADING' | translate }}</h3>
-            <div class="travel-type-buttons">
-              @for (type of TRAVEL_TYPES(); track type.id) {
-                <button
-                  type="button"
-                  class="travel-type-button"
-                  [class.active]="selectedTravelType() === type.id"
-                  (click)="setTravelType(type.id)"
-                >
-                  {{ type.label | translate }}
-                </button>
-              }
-            </div>
-          </div>
-
-          <!-- Budget Card -->
-          <div class="form-card" [formGroup]="form">
-            <h3 class="card-subtitle">{{ 'TRAVELER_ONBOARDING.BUDGET_HEADING' | translate }}</h3>
-            
-            <div class="budget-container">
-              <label class="budget-label">{{ 'TRAVELER_ONBOARDING.ESTIMATED_BUDGET' | translate }}</label>
-              
-              <div class="slider-container">
-                <input
-                  type="range"
-                  class="budget-slider"
-                  min="500"
-                  max="10000"
-                  step="100"
-                  formControlName="presupuesto"
-                />
-                <div class="slider-labels">
-                  <span>€500</span>
-                  <span class="current-value">{{ budgetFormatted() }}</span>
-                  <span>€10,000+</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <app-travel-preferences
+          [travelTypes]="TRAVEL_TYPES()"
+          [selectedTravelType]="selectedTravelType()"
+          [form]="form"
+          [budgetFormatted]="budgetFormatted()"
+          (travelTypeChanged)="setTravelType($event)"
+        />
 
         <!-- Finalize Button -->
         <div class="finalize-button-container">
@@ -135,14 +67,12 @@
           <p class="profile-description">{{ 'TRAVELER_ONBOARDING.PROFILE_DESCRIPTION' | translate }}</p>
         </div>
 
-        <!-- Explore Card with Image -->
-        <div class="explore-card">
-          <img src="assets/explorar.png" alt="Ready to explore" class="explore-image" />
-          <div class="explore-overlay">
-            <h3 class="explore-title">{{ 'TRAVELER_ONBOARDING.READY_TO_EXPLORE' | translate }}</h3>
-            <p class="explore-subtitle">{{ 'TRAVELER_ONBOARDING.NEXT_ADVENTURE' | translate }}</p>
-          </div>
-        </div>
+        <!-- Explore Card -->
+        <app-explore-card
+          [imageUrl]="'assets/explorar.png'"
+          [title]="'TRAVELER_ONBOARDING.READY_TO_EXPLORE' | translate"
+          [subtitle]="'TRAVELER_ONBOARDING.NEXT_ADVENTURE' | translate"
+        />
       </aside>
     </div>
   </main>

@@ -14,6 +14,15 @@ export const routes: Routes = [
     loadComponent: () => import('./presentation/pages/viajero/traveler-onboarding/traveler-onboarding.component').then(m => m.TravelerOnboardingComponent)
   },
   {
+    path: 'traveler',
+    children: [
+      {
+        path: 'dashboard',
+        loadComponent: () => import('./presentation/pages/viajero/dashboard/traveler-dashboard.component').then(m => m.TravelerDashboardComponent)
+      }
+    ]
+  },
+  {
     path: 'home',
     loadComponent: () => import('./presentation/pages/home/home').then(m => m.Home)
   },

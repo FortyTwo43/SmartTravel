@@ -13,5 +13,5 @@ export interface UpdatePerfilViajeroDto {
   intereses?: string;
   presupuesto?: number;
   idioma?: string;
-  tipo_viaje?: 'solo' | 'pareja' | 'familia' | 'amigos'
+  tipo_viaje?: 'solo' | 'pareja' | 'familia' | 'amigos';
 }

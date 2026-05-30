@@ -1,0 +1,16 @@
+@if (destination()) {
+  <div class="destination-card">
+    @if (destination()!.imagen) {
+      <div class="destination-image-container">
+        <img [src]="destination()!.imagen" [alt]="destination()!.name" class="destination-image" />
+      </div>
+    }
+    <div class="destination-content">
+      <div class="destination-tipo">
+        <span class="tipo-badge">{{ destination()!.tipoExperiencia }}</span>
+      </div>
+      <h3 class="destination-title">{{ destination()!.name }}</h3>
+      <p class="destination-country">{{ destination()!.city }}, {{ destination()!.country }}</p>
+    </div>
+  </div>
+}
