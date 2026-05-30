@@ -1,9 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, LayoutDashboard, MapPin, Compass, Map, Heart, BookOpen, Settings, LogOut } from 'lucide-angular';
-import { signal, computed } from '@angular/core';
+
 
 interface NavItem {
   id: string;

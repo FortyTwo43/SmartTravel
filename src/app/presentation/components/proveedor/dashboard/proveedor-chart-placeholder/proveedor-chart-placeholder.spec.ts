@@ -4,11 +4,11 @@ import { ProveedorChartPlaceholderComponent } from './proveedor-chart-placeholde
 import { provideEchartsCore } from 'ngx-echarts';
 
 // Polyfill for ResizeObserver
-if (typeof window !== 'undefined' && !window.ResizeObserver) {
-  (window as any).ResizeObserver = class ResizeObserver {
-    observe() {}
-    unobserve() {}
-    disconnect() {}
+if (typeof globalThis !== 'undefined' && !globalThis.ResizeObserver) {
+  (globalThis as any).ResizeObserver = class ResizeObserver {
+    observe(): void {}
+    unobserve(): void {}
+    disconnect(): void {}
   };
 }
 

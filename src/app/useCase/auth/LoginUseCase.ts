@@ -31,9 +31,12 @@ export class LoginUseCase {
 
     if (!role && userId) {
       try {
-        const { data: perfil } = await this.authRepository['supabase']?.from('perfil').select('rol').eq('id', userId).single();
-        if (perfil) {
-          role = perfil.rol;
+        const supabase = (this.authRepository as any)['supabase'];
+        if (supabase) {
+          const { data: perfil } = await supabase.from('perfil').select('rol').eq('id', userId).single();
+          if (perfil) {
+            role = perfil.rol;
+          }
         }
       } catch (e) {
         console.error('Could not fetch role from perfil table', e);

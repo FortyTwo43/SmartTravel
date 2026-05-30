@@ -1,6 +1,5 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { signal } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { GetTravelerDashboardUseCase, DashboardData } from '../../../../useCase/traveler/dashboard/GetTravelerDashboardUseCase';

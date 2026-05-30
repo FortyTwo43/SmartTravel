@@ -150,7 +150,7 @@ export class GetTravelerDashboardUseCase {
   private formatDate(date: Date | string | null | undefined): string {
     if (!date) return '—';
     const d = date instanceof Date ? date : new Date(date);
-    if (isNaN(d.getTime())) return '—';
+    if (Number.isNaN(d.getTime())) return '—';
     return d.toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' });
   }
 
