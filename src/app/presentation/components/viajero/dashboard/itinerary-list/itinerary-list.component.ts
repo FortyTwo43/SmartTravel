@@ -2,7 +2,7 @@ import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Calendar, MapPin, CheckCircle } from 'lucide-angular';
-import { ItineraryItem } from '../../../../../useCase/traveler/dashboard/GetTravelerDashboardUseCase';
+import { ItineraryItem } from '../../../../../useCase/viajero/dashboard/GetTravelerDashboardUseCase';
 
 @Component({
   selector: 'app-itinerary-list',

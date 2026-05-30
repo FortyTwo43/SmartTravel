@@ -42,7 +42,7 @@ src/app/useCase/
             ├── proveedor/
             |  ├── dashboard/
             |  |    ├── DasboardUseCase.ts
-            ├── traveler/
+            ├── viajero/
             └── admin/
 ```
 

@@ -1,7 +1,7 @@
 import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { DestinationCard } from '../../../../../useCase/traveler/dashboard/GetTravelerDashboardUseCase';
+import { DestinationCard } from '../../../../../useCase/viajero/dashboard/GetTravelerDashboardUseCase';
 
 @Component({
   selector: 'app-destination-card',

@@ -5,15 +5,15 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 import { TranslateModule } from '@ngx-translate/core';
 import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Info } from 'lucide-angular';
 
-import { InitializePerfilViajeroUseCase } from '../../../../useCase/traveler/InitializePerfilViajeroUseCase';
+import { InitializePerfilViajeroUseCase } from '../../../../useCase/viajero/InitializePerfilViajeroUseCase';
 import { ButtonComponent } from '../../../components/ui/button/button.component';
 import { Footer } from '../../../layouts/footer/footer';
 import { INTERESTS } from '../../../constants/interests.constant';
 import { TRAVEL_TYPES } from '../../../constants/travel-types.constant';
-import { OnboardingHeaderComponent } from '../../../components/traveler/onboarding/onboarding-header/onboarding-header.component';
-import { InterestsSelectorComponent } from '../../../components/traveler/onboarding/interests-selector/interests-selector.component';
-import { TravelPreferencesComponent } from '../../../components/traveler/onboarding/travel-preferences/travel-preferences.component';
-import { ExploreCardComponent } from '../../../components/traveler/onboarding/explore-card/explore-card.component';
+import { OnboardingHeaderComponent } from '../../../components/viajero/onboarding/onboarding-header/onboarding-header.component';
+import { InterestsSelectorComponent } from '../../../components/viajero/onboarding/interests-selector/interests-selector.component';
+import { TravelPreferencesComponent } from '../../../components/viajero/onboarding/travel-preferences/travel-preferences.component';
+import { ExploreCardComponent } from '../../../components/viajero/onboarding/explore-card/explore-card.component';
 
 @Component({
   selector: 'app-traveler-onboarding',

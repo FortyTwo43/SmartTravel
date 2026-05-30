@@ -3,7 +3,7 @@ import { TravelerOnboardingComponent } from './traveler-onboarding.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { provideRouter } from '@angular/router';
 import { vi } from 'vitest';
-import { InitializePerfilViajeroUseCase } from '../../../../useCase/traveler/InitializePerfilViajeroUseCase';
+import { InitializePerfilViajeroUseCase } from '../../../../useCase/viajero/InitializePerfilViajeroUseCase';
 
 describe('TravelerOnboardingComponent', () => {
   let component: TravelerOnboardingComponent;

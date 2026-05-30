@@ -2,7 +2,7 @@ import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, MapPin, TrendingUp, Heart, Wallet } from 'lucide-angular';
-import { DashboardStats } from '../../../../../useCase/traveler/dashboard/GetTravelerDashboardUseCase';
+import { DashboardStats } from '../../../../../useCase/viajero/dashboard/GetTravelerDashboardUseCase';
 
 @Component({
   selector: 'app-stats-card',
@@ -21,7 +21,7 @@ import { DashboardStats } from '../../../../../useCase/traveler/dashboard/GetTra
 )
 export class StatsCardComponent {
   stats = input<DashboardStats | null>(null);
-  
+
   // Expose Object for template
   Object = Object;
 

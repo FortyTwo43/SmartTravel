@@ -2,7 +2,7 @@ import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Briefcase } from 'lucide-angular';
-import { ServiceCard } from '../../../../../useCase/traveler/dashboard/GetTravelerDashboardUseCase';
+import { ServiceCard } from '../../../../../useCase/viajero/dashboard/GetTravelerDashboardUseCase';
 
 @Component({
   selector: 'app-service-card',

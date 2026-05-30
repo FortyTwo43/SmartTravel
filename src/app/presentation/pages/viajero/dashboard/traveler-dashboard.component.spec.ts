@@ -3,7 +3,7 @@ import { TravelerDashboardComponent } from './traveler-dashboard.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { provideRouter } from '@angular/router';
 import { vi } from 'vitest';
-import { GetTravelerDashboardUseCase, DashboardData } from '../../../../useCase/traveler/dashboard/GetTravelerDashboardUseCase';
+import { GetTravelerDashboardUseCase, DashboardData } from '../../../../useCase/viajero/dashboard/GetTravelerDashboardUseCase';
 
 const mockDashboardData: DashboardData = {
   userName: 'TestUser',
