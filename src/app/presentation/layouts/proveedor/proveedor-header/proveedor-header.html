@@ -1,0 +1,22 @@
+<header class="header-container">
+  <div class="header-left">
+    <h2 class="header-title">{{ nombre }}</h2>
+    <div class="status-badge">
+      <lucide-icon name="star" class="icon-sm text-secondary"></lucide-icon>
+      <span class="status-text">{{ tipo }}</span>
+    </div>
+  </div>
+  
+  <div class="header-actions">
+    <div class="date-selector">
+      <lucide-icon name="calendar" class="icon-sm text-muted"></lucide-icon>
+      <span class="date-text">Oct 1 - Oct 31, 2024</span>
+      <lucide-icon name="chevron-down" class="icon-sm text-muted cursor-pointer"></lucide-icon>
+    </div>
+    
+    <div class="notification-btn">
+      <lucide-icon name="bell" class="icon-md" [size]="24"></lucide-icon>
+      <div class="notification-dot"></div>
+    </div>
+  </div>
+</header>

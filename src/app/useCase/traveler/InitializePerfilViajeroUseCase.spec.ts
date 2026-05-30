@@ -39,7 +39,6 @@ describe('InitializePerfilViajeroUseCase', () => {
       intereses: 'deportes,cultura',
       tipoViaje: 'pareja',
       presupuesto: 5000,
-      idioma: 'es',
     });
 
     expect(result.success).toBeFalsy();
@@ -67,7 +66,6 @@ describe('InitializePerfilViajeroUseCase', () => {
       intereses: 'deportes,cultura',
       tipoViaje: 'pareja',
       presupuesto: 5000,
-      idioma: 'es',
     });
 
     expect(result.success).toBeTruthy();

@@ -6,6 +6,7 @@
   --color-secondary: #4CAF50;
   --color-tertiary: #C26C02;
   --color-neutral: #73777D;
+  --color-negative: #f46e60;
 
   /* Light Theme */
   --bg-main: #E9ECEF;
@@ -41,6 +42,8 @@
 }
 
 [data-theme='dark'] {
+
+  --color-negative: #ffb4ab;
   /* Dark Theme Palette */
   --bg-main: #0F172A;
   --bg-surface: #1E293B;

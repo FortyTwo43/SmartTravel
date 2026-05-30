@@ -10,3 +10,4 @@ export * from './Recomendacion';
 export * from './Notificacion';
 export * from './SolicitudProveedor';
 export * from './dtos';
+export * from '../dashboard/DashboardKpis';

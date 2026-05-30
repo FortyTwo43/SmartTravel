@@ -201,6 +201,60 @@
     "ERROR_SAVE": "Error saving configuration. Please try again.",
     "ERROR_UNKNOWN": "An unknown error occurred. Please try again."
   },
+  "PROVIDER_DASHBOARD": {
+    "SIDEBAR": {
+      "DASHBOARD": "Dashboard",
+      "RESERVATIONS": "Reservations",
+      "SERVICES": "Services",
+      "CLIENTS": "Clients",
+      "STATISTICS": "Statistics",
+      "NOTIFICATIONS": "Notifications",
+      "SETTINGS": "Settings",
+      "ROLE": "Executive Admin"
+    },
+    "INSIGHTS": {
+      "TITLE": "Customer Insights",
+      "SUBTITLE": "This month's demographic profile",
+      "TRAVEL_TYPE": "Travel Type",
+      "TOP_INTERESTS": "Top Interests",
+      "TRAVEL_TYPES": {
+        "COUPLE": "Couple",
+        "FAMILY": "Family",
+        "FRIENDS": "Friends",
+        "SOLO": "Solo"
+      },
+      "INTERESTS": {
+        "GASTRONOMY": "Gastronomy",
+        "ADVENTURE": "Adventure",
+        "WELLNESS": "Wellness",
+        "CULTURE": "Culture",
+        "SUSTAINABILITY": "Sustainability"
+      }
+    },
+    "ACTIVITY": {
+      "TITLE": "Recent Activity",
+      "VIEW_ALL": "View all",
+      "CLIENT": "Client",
+      "SERVICE": "Service",
+      "PAX": "Pax",
+      "STATUS": "Status",
+      "STATUSES": {
+        "aceptado": "Accepted",
+        "pendiente": "Pending",
+        "rechazado": "Rejected"
+      }
+    },
+    "METRICS": {
+      "MONTHLY_RESERVATIONS": "Monthly Reservations",
+      "TOTAL_REVENUE": "Total Revenue",
+      "ACTIVE_SERVICES": "Active Services",
+      "AVAILABILITY": "Availability",
+      "CANCELLATION_RATE": "Cancellation Rate"
+    },
+    "SERVICES": {
+      "TITLE": "Most In-Demand Services",
+      "RESERVATIONS": "RESERVATIONS"
+    }
   "TRAVELER_DASHBOARD": {
     "HELLO": "Hello",
     "CURIOSITY": "Where will your curiosity lead you today?",
