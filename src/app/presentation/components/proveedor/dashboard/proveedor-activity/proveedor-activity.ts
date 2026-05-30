@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { DashboardActividadReciente } from '../../../../domain/dashboard/DashboardActividadReciente';
+import { DashboardActividadReciente } from '../../../../../domain/dashboard/DashboardActividadReciente';
 import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, UserRound } from 'lucide-angular';
 
 @Component({

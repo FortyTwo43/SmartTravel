@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { DashboardTipoViaje } from '../../../../domain/dashboard/DashboardTipoViaje';
+import { DashboardTipoViaje } from '../../../../../domain/dashboard/DashboardTipoViaje';
 
 @Component({
   selector: 'app-proveedor-insights',

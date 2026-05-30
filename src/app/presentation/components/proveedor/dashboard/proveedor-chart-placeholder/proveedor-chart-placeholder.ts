@@ -2,7 +2,7 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxEchartsDirective } from 'ngx-echarts';
 import type { EChartsOption } from 'echarts';
-import { DashboardGraph } from '../../../../domain/dashboard/DashboardGraph';
+import { DashboardGraph } from '../../../../../domain/dashboard/DashboardGraph';
 
 @Component({
   selector: 'app-proveedor-chart-placeholder',
@@ -13,7 +13,7 @@ import { DashboardGraph } from '../../../../domain/dashboard/DashboardGraph';
 })
 export class ProveedorChartPlaceholderComponent implements OnChanges {
   @Input() graphData: DashboardGraph[] | null = null;
-  
+
   chartOptions: EChartsOption = {};
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -30,7 +30,7 @@ export class ProveedorChartPlaceholderComponent implements OnChanges {
       }
       return d.fecha;
     });
-    
+
     const values = this.graphData!.map(d => d.total_reservas);
 
     this.chartOptions = {

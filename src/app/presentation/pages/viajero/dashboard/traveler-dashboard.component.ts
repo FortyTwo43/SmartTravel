@@ -4,12 +4,12 @@ import { signal } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { GetTravelerDashboardUseCase, DashboardData } from '../../../../useCase/traveler/dashboard/GetTravelerDashboardUseCase';
-import { TravelerSidebarComponent } from '../../../components/traveler/traveler-sidebar/traveler-sidebar.component';
-import { TravelerHeaderComponent } from '../../../components/traveler/traveler-header/traveler-header.component';
-import { TripCardComponent } from '../../../components/traveler/trip-card/trip-card.component';
-import { DestinationCardComponent } from '../../../components/traveler/destination-card/destination-card.component';
-import { ItineraryListComponent } from '../../../components/traveler/itinerary-list/itinerary-list.component';
-import { ServiceCardComponent } from '../../../components/traveler/service-card/service-card.component';
+import { TravelerSidebarComponent } from '../../../components/traveler/dashboard/traveler-sidebar/traveler-sidebar.component';
+import { TravelerHeaderComponent } from '../../../components/traveler/dashboard/traveler-header/traveler-header.component';
+import { TripCardComponent } from '../../../components/traveler/dashboard/trip-card/trip-card.component';
+import { DestinationCardComponent } from '../../../components/traveler/dashboard/destination-card/destination-card.component';
+import { ItineraryListComponent } from '../../../components/traveler/dashboard/itinerary-list/itinerary-list.component';
+import { ServiceCardComponent } from '../../../components/traveler/dashboard/service-card/service-card.component';
 import { LucideAngularModule, Headset, ChevronRight, LUCIDE_ICONS, LucideIconProvider } from 'lucide-angular';
 
 @Component({

@@ -1,7 +1,7 @@
 import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { TripCard } from '../../../../useCase/traveler/dashboard/GetTravelerDashboardUseCase';
+import { TripCard } from '../../../../../useCase/traveler/dashboard/GetTravelerDashboardUseCase';
 
 @Component({
   selector: 'app-trip-card',

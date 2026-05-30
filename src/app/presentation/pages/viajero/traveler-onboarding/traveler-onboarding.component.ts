@@ -10,10 +10,10 @@ import { ButtonComponent } from '../../../components/ui/button/button.component'
 import { Footer } from '../../../layouts/footer/footer';
 import { INTERESTS } from '../../../constants/interests.constant';
 import { TRAVEL_TYPES } from '../../../constants/travel-types.constant';
-import { OnboardingHeaderComponent } from '../../../components/onboarding/onboarding-header/onboarding-header.component';
-import { InterestsSelectorComponent } from '../../../components/onboarding/interests-selector/interests-selector.component';
-import { TravelPreferencesComponent } from '../../../components/onboarding/travel-preferences/travel-preferences.component';
-import { ExploreCardComponent } from '../../../components/onboarding/explore-card/explore-card.component';
+import { OnboardingHeaderComponent } from '../../../components/traveler/onboarding/onboarding-header/onboarding-header.component';
+import { InterestsSelectorComponent } from '../../../components/traveler/onboarding/interests-selector/interests-selector.component';
+import { TravelPreferencesComponent } from '../../../components/traveler/onboarding/travel-preferences/travel-preferences.component';
+import { ExploreCardComponent } from '../../../components/traveler/onboarding/explore-card/explore-card.component';
 
 @Component({
   selector: 'app-traveler-onboarding',

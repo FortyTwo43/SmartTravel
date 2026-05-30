@@ -1,11 +1,11 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProveedorLayoutComponent } from '../../../layouts/proveedor/proveedor-layout/proveedor-layout';
-import { ProveedorMetricsComponent } from '../../../components/proveedor/proveedor-metrics/proveedor-metrics';
-import { ProveedorChartPlaceholderComponent } from '../../../components/proveedor/proveedor-chart-placeholder/proveedor-chart-placeholder';
-import { ProveedorActivityComponent } from '../../../components/proveedor/proveedor-activity/proveedor-activity';
-import { ProveedorInsightsComponent } from '../../../components/proveedor/proveedor-insights/proveedor-insights';
-import { ProveedorServicesComponent } from '../../../components/proveedor/proveedor-services/proveedor-services';
+import { ProveedorMetricsComponent } from '../../../components/proveedor/dashboard/proveedor-metrics/proveedor-metrics';
+import { ProveedorChartPlaceholderComponent } from '../../../components/proveedor/dashboard/proveedor-chart-placeholder/proveedor-chart-placeholder';
+import { ProveedorActivityComponent } from '../../../components/proveedor/dashboard/proveedor-activity/proveedor-activity';
+import { ProveedorInsightsComponent } from '../../../components/proveedor/dashboard/proveedor-insights/proveedor-insights';
+import { ProveedorServicesComponent } from '../../../components/proveedor/dashboard/proveedor-services/proveedor-services';
 import { EstablecimientoTuristico } from '../../../../domain/entities/EstablecimientoTuristico';
 import { DashboardKpis } from '../../../../domain/dashboard/DashboardKpis';
 import { DashboardActividadReciente } from '../../../../domain/dashboard/DashboardActividadReciente';
