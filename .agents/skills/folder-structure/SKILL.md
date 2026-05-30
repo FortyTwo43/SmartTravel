@@ -1,5 +1,5 @@
 ---
-name: "Folder Structure Skill"
+name: "folder-structure"
 description: "Usa esta habilidad cuando necesites crear, modificar o mover un archivo en el proyecto. Explica las reglas de capas de arquitectura para crear carpetas y archivos correctamente"
 ---
 

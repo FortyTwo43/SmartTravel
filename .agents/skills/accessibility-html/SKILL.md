@@ -1,5 +1,5 @@
 ---
-name: "Accessibility HTML Skill"
+name: "accessibility-html"
 description: "Esta habilidad te proporciona conocimientos de HTML accesible siguiendo el principio de priorizar la semántica antes que ARIA. Usalo cuando necesites generar HTML, por ejemplo en componentes de Angular"
 ---
 

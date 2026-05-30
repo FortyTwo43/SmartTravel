@@ -1,5 +1,5 @@
 ---
-name: "Project Architecture Skill"
+name: "project-architecture"
 description: "Usa esta habilidad cuando necesites crear, modificar o mover un archivo en el proyecto. Explica Clean Architecture layers y responsibilidades"
 ---
 

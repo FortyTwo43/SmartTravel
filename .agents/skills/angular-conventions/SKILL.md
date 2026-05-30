@@ -1,5 +1,5 @@
 ---
-name: Angular Conventions Skill
+name: angular-conventions
 description: Esta habilidad te proporciona conocimientos de convenciones de Angular. Usala cuando necesites generar código en Angular
 ---
 
