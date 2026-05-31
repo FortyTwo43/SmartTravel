@@ -22,9 +22,6 @@ export class App {
   constructor() {
     this.translate.addLangs(['es', 'en']);
     this.translate.setDefaultLang('es');
-    
-    const browserLang = this.translate.getBrowserLang();
-    this.translate.use(browserLang?.match(/en|es/) ? browserLang : 'es');
   }
 
   changeLanguage(lang: string) {

@@ -12,11 +12,11 @@ export class LanguageService {
   private readonly LANGUAGE_KEY = 'smart-travel-language';
   private translateService = inject(TranslateService);
 
-  // Signal to track current language
+  // Signal to track current language (loaded lazily via initializer)
   currentLanguage = signal<LanguageCode>(this.getInitialLanguage());
 
-  constructor() {
-    // Apply language changes to TranslateService
+  // Public init method called by APP_INITIALIZER at app bootstrap
+  init(): void {
     this.applyLanguageChange(this.currentLanguage());
   }
 
