@@ -1,6 +1,7 @@
-import { Component, input } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
+import { SharedTravelerDataService } from '../../../service/shared/shared-traveler-data.service';
 
 @Component({
   selector: 'app-traveler-header',
@@ -10,5 +11,10 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: './traveler-header.component.css'
 })
 export class TravelerHeaderComponent {
-  userName = input<string>('Viajero');
+  private sharedTravelerData = inject(SharedTravelerDataService);
+  protected dashboardData = this.sharedTravelerData.dashboardData;
+
+  getUserName(): string {
+    return this.sharedTravelerData.getUserName();
+  }
 }

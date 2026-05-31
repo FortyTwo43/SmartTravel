@@ -8,6 +8,7 @@ import { DestinationCardComponent } from '../../../components/viajero/dashboard/
 import { ItineraryListComponent } from '../../../components/viajero/dashboard/itinerary-list/itinerary-list.component';
 import { ServiceCardComponent } from '../../../components/viajero/dashboard/service-card/service-card.component';
 import { LucideAngularModule, Headset, ChevronRight, LUCIDE_ICONS, LucideIconProvider } from 'lucide-angular';
+import { SharedTravelerDataService } from '../../../service/shared/shared-traveler-data.service';
 
 @Component({
   selector: 'app-traveler-dashboard',
@@ -33,6 +34,7 @@ import { LucideAngularModule, Headset, ChevronRight, LUCIDE_ICONS, LucideIconPro
 })
 export class TravelerDashboardComponent implements OnInit {
   private readonly dashboardUseCase = inject(GetTravelerDashboardUseCase);
+  private readonly sharedTravelerData = inject(SharedTravelerDataService);
 
   dashboardData = signal<DashboardData | null>(null);
   isLoading = signal(false);
@@ -49,6 +51,7 @@ export class TravelerDashboardComponent implements OnInit {
     try {
       const data = await this.dashboardUseCase.execute();
       this.dashboardData.set(data);
+      this.sharedTravelerData.setDashboardData(data);
     } catch (err: any) {
       console.error('Error loading dashboard:', err);
       this.error.set(err?.message || 'Error al cargar el dashboard');
