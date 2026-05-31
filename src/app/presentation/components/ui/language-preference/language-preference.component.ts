@@ -2,9 +2,7 @@ import { Component, input, output, ChangeDetectionStrategy } from '@angular/core
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Settings } from 'lucide-angular';
-import { LANGUAGE_OPTIONS } from '../../../constants/languages.constant';
-
-export type LanguageCode = 'es' | 'en';
+import { LanguageCode, LANGUAGE_OPTIONS } from '../../../constants/languages.constant';
 
 @Component({
   selector: 'app-language-preference',

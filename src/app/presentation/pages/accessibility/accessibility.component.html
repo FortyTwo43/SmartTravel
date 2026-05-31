@@ -26,14 +26,6 @@
     (fontSizeChanged)="onFontSizeChange($event)"
   ></app-typography>
 
-  <!-- Adjustments Component -->
-  <app-adjustments-row
-    [adjustments]="adjustments()"
-    (highContrastChanged)="onHighContrastChange($event)"
-    (reduceMotionChanged)="onReduceMotionChange($event)"
-    (screenReaderChanged)="onScreenReaderChange($event)"
-  ></app-adjustments-row>
-
   <!-- Language Preference Component -->
   <app-language-preference
     [selectedLanguage]="selectedLanguage()"
