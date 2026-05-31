@@ -1,6 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { AVAILABLE_LANGUAGE_CODES, DEFAULT_LANGUAGE, LanguageCode } from './presentation/constants/languages.constant';
 import { ThemeService } from './presentation/service/theme/theme.service';
 import { FontSizeService } from './presentation/service/font-size/font-size.service';
 
@@ -20,11 +21,11 @@ export class App {
   protected readonly fontSizeService = inject(FontSizeService);
 
   constructor() {
-    this.translate.addLangs(['es', 'en']);
-    this.translate.setDefaultLang('es');
+    this.translate.addLangs(AVAILABLE_LANGUAGE_CODES);
+    this.translate.setFallbackLang(DEFAULT_LANGUAGE);
   }
 
-  changeLanguage(lang: string) {
+  changeLanguage(lang: LanguageCode) {
     this.translate.use(lang);
   }
 

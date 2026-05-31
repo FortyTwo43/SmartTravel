@@ -1,6 +1,6 @@
 import { Injectable, signal, inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { LANGUAGE_OPTIONS, LanguageCode } from '../../constants/languages.constant';
+import { DEFAULT_LANGUAGE, LANGUAGE_OPTIONS, LanguageCode } from '../../constants/languages.constant';
 
 // Re-export for backward compatibility
 export type { LanguageCode };
@@ -25,7 +25,7 @@ export class LanguageService {
    */
   private getInitialLanguage(): LanguageCode {
     const saved = localStorage.getItem(this.LANGUAGE_KEY) as LanguageCode | null;
-    return (saved && this.isValidLanguage(saved)) ? saved : 'es';
+    return (saved && this.isValidLanguage(saved)) ? saved : DEFAULT_LANGUAGE;
   }
 
   /**
