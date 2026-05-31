@@ -1,0 +1,49 @@
+<section class="provider-services-page">
+  <header class="provider-services-page__header">
+    <div>
+      <p class="provider-services-page__eyebrow">{{ 'PROVIDER_SERVICES.EYEBROW' | translate }}</p>
+      <h1 class="provider-services-page__title">{{ 'PROVIDER_SERVICES.TITLE' | translate }}</h1>
+      <p class="provider-services-page__subtitle">{{ 'PROVIDER_SERVICES.SUBTITLE' | translate }}</p>
+    </div>
+
+    <button type="button" class="add-service-btn" [attr.aria-label]="'PROVIDER_SERVICES.ADD_SERVICE' | translate">
+      <lucide-icon name="Plus"></lucide-icon>
+      <span>{{ 'PROVIDER_SERVICES.ADD_SERVICE' | translate }}</span>
+    </button>
+  </header>
+
+  @if (loading()) {
+    <div class="provider-services-page__state">
+      <p>{{ 'COMMON.LOADING' | translate }}</p>
+    </div>
+  } @else if (loadError()) {
+    <div class="provider-services-page__state provider-services-page__state--error">
+      <p>{{ loadError() }}</p>
+      <button type="button" class="retry-btn" (click)="loadServices()">{{ 'COMMON.RETRY' | translate }}</button>
+    </div>
+  } @else if (services().length === 0) {
+    <div class="provider-services-page__state">
+      <p class="provider-services-page__empty-title">{{ 'PROVIDER_SERVICES.EMPTY_TITLE' | translate }}</p>
+      <p class="provider-services-page__empty-text">{{ 'PROVIDER_SERVICES.EMPTY_DESCRIPTION' | translate }}</p>
+    </div>
+  } @else {
+    @if (actionError()) {
+      <div class="provider-services-page__alert">
+        <p>{{ actionError() }}</p>
+      </div>
+    }
+
+    <div class="provider-services-page__summary">
+      <span>{{ totalServices() }} {{ 'PROVIDER_SERVICES.TOTAL' | translate }}</span>
+    </div>
+
+    <div class="provider-services-grid">
+      @for (service of services(); track service.id) {
+        <app-proveedor-service-card
+          [service]="service"
+          (availabilityChanged)="onToggleAvailability(service.id, $event)"
+        ></app-proveedor-service-card>
+      }
+    </div>
+  }
+</section>

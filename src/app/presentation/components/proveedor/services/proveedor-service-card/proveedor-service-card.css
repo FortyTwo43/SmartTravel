@@ -1,0 +1,165 @@
+.service-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.25rem;
+  border: 0.0625rem solid var(--border-color);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, var(--bg-surface) 0%, var(--bg-surface-alt) 100%);
+  box-shadow: var(--shadow-md);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-0.125rem);
+  border-color: color-mix(in srgb, var(--color-primary) 30%, var(--border-color));
+}
+
+.service-card__header,
+.service-card__identity,
+.service-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.service-card__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999rem;
+  background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+  color: var(--text-main);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.service-card__status-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999rem;
+  background: var(--text-muted);
+}
+
+.service-card__status-dot--active {
+  background: var(--color-secondary);
+}
+
+.icon-btn,
+.service-card__toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 0.0625rem solid var(--border-color);
+  border-radius: 999rem;
+  background: transparent;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.icon-btn {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.icon-btn:hover,
+.service-card__toggle:hover {
+  background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+  border-color: color-mix(in srgb, var(--color-primary) 30%, var(--border-color));
+}
+
+.service-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.service-card__establishment {
+  margin: 0 0 0.25rem;
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.service-card__title {
+  margin: 0;
+  font-family: var(--font-headline);
+  font-size: 1.15rem;
+  line-height: 1.2;
+}
+
+.service-card__price {
+  margin: 0;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.service-card__price-value {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.service-card__price-currency {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.service-card__description {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.service-card__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.service-card__chip {
+  padding: 0.35rem 0.65rem;
+  border-radius: 999rem;
+  background: var(--bg-main);
+  color: var(--text-main);
+  font-size: 0.8125rem;
+}
+
+.service-card__establishment-name {
+  padding-top: 0.25rem;
+  border-top: 0.0625rem solid var(--border-color);
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.service-card__toggle {
+  padding: 0.7rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.service-card--available .service-card__toggle {
+  border-color: color-mix(in srgb, var(--color-secondary) 35%, var(--border-color));
+  color: var(--color-secondary);
+}
+
+@media (max-width: 48rem) {
+  .service-card {
+    padding: 1rem;
+  }
+
+  .service-card__identity,
+  .service-card__footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .service-card__price {
+    text-align: left;
+  }
+}

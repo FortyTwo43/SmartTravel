@@ -266,6 +266,24 @@
       "RESERVATIONS": "RESERVATIONS"
     }
   },
+  "PROVIDER_SERVICES": {
+    "EYEBROW": "Service management",
+    "TITLE": "Provider services",
+    "SUBTITLE": "Review and manage the real services associated with your establishments.",
+    "ADD_SERVICE": "Add service",
+    "TOTAL": "registered services",
+    "EMPTY_TITLE": "You do not have any registered services yet",
+    "EMPTY_DESCRIPTION": "When you create reservable services, they will appear here as individual cards.",
+    "CARD": {
+      "SERVICE": "Service",
+      "ESTABLISHMENT": "Establishment",
+      "PRICE_LABEL": "price",
+      "EDIT": "Edit service",
+      "TOGGLE_AVAILABILITY": "Toggle availability",
+      "AVAILABLE": "Available",
+      "UNAVAILABLE": "Unavailable"
+    }
+  },
   "TRAVELER_DASHBOARD": {
     "HELLO": "Hello",
     "CURIOSITY": "Where will your curiosity lead you today?",
