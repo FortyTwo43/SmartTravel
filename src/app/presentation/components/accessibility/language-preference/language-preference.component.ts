@@ -1,5 +1,6 @@
 import { Component, input, output, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Settings } from 'lucide-angular';
 import { LanguageCode, LANGUAGE_OPTIONS } from '../../../constants/languages.constant';
@@ -7,7 +8,7 @@ import { LanguageCode, LANGUAGE_OPTIONS } from '../../../constants/languages.con
 @Component({
   selector: 'app-language-preference',
   standalone: true,
-  imports: [CommonModule, TranslateModule, LucideAngularModule],
+  imports: [CommonModule, FormsModule, TranslateModule, LucideAngularModule],
   providers: [{
     provide: LUCIDE_ICONS,
     multi: true,
@@ -23,8 +24,7 @@ export class LanguagePreferenceComponent {
 
   readonly languages = LANGUAGE_OPTIONS;
 
-  onLanguageChange(event: Event): void {
-    const value = (event.target as HTMLSelectElement).value as LanguageCode;
-    this.languageChanged.emit(value);
+  onLanguageChange(language: LanguageCode): void {
+    this.languageChanged.emit(language);
   }
 }

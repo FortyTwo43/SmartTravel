@@ -10,8 +10,8 @@
     </label>
     <select
       id="language-select"
-      [value]="selectedLanguage()"
-      (change)="onLanguageChange($event)"
+      [ngModel]="selectedLanguage()"
+      (ngModelChange)="onLanguageChange($event)"
       class="language-select"
     >
       <option *ngFor="let lang of languages" [value]="lang.code">
