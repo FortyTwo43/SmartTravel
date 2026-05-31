@@ -6,9 +6,9 @@ import { FontSizeLevel } from '../../service/font-size/font-size.service';
 import { LanguageCode } from '../../constants/languages.constant';
 import { ThemeMode } from '../../constants/themes.constant';
 import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, RotateCcw } from 'lucide-angular';
-import { VisualThemeComponent } from '../../components/ui/visual-theme/visual-theme.component';
-import { TypographyComponent } from '../../components/ui/typography/typography.component';
-import { LanguagePreferenceComponent } from '../../components/ui/language-preference/language-preference.component';
+import { VisualThemeComponent } from '../../components/accessibility/visual-theme/visual-theme.component';
+import { TypographyComponent } from '../../components/accessibility/typography/typography.component';
+import { LanguagePreferenceComponent } from '../../components/accessibility/language-preference/language-preference.component';
 import {
   ChangeThemeUseCase,
   ChangeFontSizeUseCase,
