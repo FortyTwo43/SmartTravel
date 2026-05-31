@@ -30,7 +30,6 @@ export class FontSizeService {
       const level = this.currentLevel();
       const scale = this.fontSizeMap[level].scale;
       document.documentElement.style.setProperty('--font-scale', scale.toString());
-      localStorage.setItem(this.FONT_SIZE_KEY, level);
     });
   }
 
@@ -63,6 +62,11 @@ export class FontSizeService {
    */
   setFontSize(level: FontSizeLevel): void {
     this.currentLevel.set(level);
+  }
+
+  commitFontSize(level: FontSizeLevel): void {
+    this.currentLevel.set(level);
+    localStorage.setItem(this.FONT_SIZE_KEY, level);
   }
 
   /**

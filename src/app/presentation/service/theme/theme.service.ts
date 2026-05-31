@@ -20,7 +20,6 @@ export class ThemeService {
       const currentTheme = this.theme();
       const resolvedTheme = currentTheme === 'system' ? resolveSystemTheme() : currentTheme;
       document.documentElement.dataset['theme'] = resolvedTheme;
-      localStorage.setItem(this.THEME_KEY, currentTheme);
     });
   }
 
@@ -30,6 +29,11 @@ export class ThemeService {
 
   setTheme(newTheme: ThemeMode) {
     this.theme.set(newTheme);
+  }
+
+  commitTheme(newTheme: ThemeMode): void {
+    this.theme.set(newTheme);
+    localStorage.setItem(this.THEME_KEY, newTheme);
   }
 
   private getInitialTheme(): ThemeMode {

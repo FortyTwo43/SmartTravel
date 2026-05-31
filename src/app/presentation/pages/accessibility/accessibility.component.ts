@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, inject, effect } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { signal, computed } from '@angular/core';
@@ -38,7 +38,7 @@ import {
   styleUrl: './accessibility.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AccessibilityComponent implements OnInit {
+export class AccessibilityComponent implements OnInit, OnDestroy {
     // Use Cases
     private changeThemeUseCase = inject(ChangeThemeUseCase);
     private changeFontSizeUseCase = inject(ChangeFontSizeUseCase);
@@ -108,6 +108,22 @@ export class AccessibilityComponent implements OnInit {
         });
     }
 
+    ngOnDestroy(): void {
+        if (!this.hasChanges()) {
+            return;
+        }
+
+        const committed = this.initialState();
+
+        this.changeThemeUseCase.execute(committed.theme);
+        this.changeFontSizeUseCase.execute(committed.fontSize);
+        this.changeLanguageUseCase.execute(committed.language);
+
+        this.selectedTheme.set(committed.theme);
+        this.selectedFontSize.set(committed.fontSize);
+        this.selectedLanguage.set(committed.language);
+    }
+
     resetPreferences(): void {
         // Reset to defaults using use case
         const preferences = this.resetPreferencesUseCase.execute();
@@ -116,6 +132,11 @@ export class AccessibilityComponent implements OnInit {
         this.selectedTheme.set(preferences.theme);
         this.selectedFontSize.set(preferences.fontSize);
         this.selectedLanguage.set(preferences.language);
+
+        // Apply preview immediately without persisting until save
+        this.changeThemeUseCase.execute(preferences.theme);
+        this.changeFontSizeUseCase.execute(preferences.fontSize);
+        this.changeLanguageUseCase.execute(preferences.language);
     }
 
     // Event handlers from child components

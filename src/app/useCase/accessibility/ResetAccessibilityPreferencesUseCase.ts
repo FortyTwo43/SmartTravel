@@ -1,12 +1,10 @@
 import { Injectable, inject } from '@angular/core';
-import { SaveAccessibilityPreferencesUseCase, AccessibilityPreferences } from './SaveAccessibilityPreferencesUseCase';
+import { AccessibilityPreferences } from './SaveAccessibilityPreferencesUseCase';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ResetAccessibilityPreferencesUseCase {
-  private savePreferencesUseCase = inject(SaveAccessibilityPreferencesUseCase);
-
   private readonly DEFAULT_PREFERENCES: AccessibilityPreferences = {
     theme: 'system',
     fontSize: 'normal',
@@ -18,7 +16,6 @@ export class ResetAccessibilityPreferencesUseCase {
    * @returns The default accessibility preferences
    */
   execute(): AccessibilityPreferences {
-    this.savePreferencesUseCase.execute(this.DEFAULT_PREFERENCES);
     return this.DEFAULT_PREFERENCES;
   }
 }

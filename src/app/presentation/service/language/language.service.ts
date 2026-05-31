@@ -53,9 +53,19 @@ export class LanguageService {
    * Set the current language
    */
   setLanguage(language: LanguageCode): void {
+    this.commitLanguage(language);
+  }
+
+  applyLanguage(language: LanguageCode): void {
     if (this.isValidLanguage(language)) {
       this.currentLanguage.set(language);
       this.applyLanguageChange(language);
+    }
+  }
+
+  commitLanguage(language: LanguageCode): void {
+    if (this.isValidLanguage(language)) {
+      this.applyLanguage(language);
       localStorage.setItem(this.LANGUAGE_KEY, language);
     }
   }

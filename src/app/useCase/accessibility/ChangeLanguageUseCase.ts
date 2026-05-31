@@ -12,6 +12,6 @@ export class ChangeLanguageUseCase {
    * @param language The language code to apply
    */
   execute(language: LanguageCode): void {
-    this.languageService.setLanguage(language);
+    this.languageService.applyLanguage(language);
   }
 }

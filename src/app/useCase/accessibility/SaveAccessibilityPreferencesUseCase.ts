@@ -22,8 +22,8 @@ export class SaveAccessibilityPreferencesUseCase {
    * @param preferences The accessibility preferences to save
    */
   execute(preferences: AccessibilityPreferences): void {
-    this.themeService.setTheme(preferences.theme);
-    this.fontSizeService.setFontSize(preferences.fontSize);
-    this.languageService.setLanguage(preferences.language);
+    this.themeService.commitTheme(preferences.theme);
+    this.fontSizeService.commitFontSize(preferences.fontSize);
+    this.languageService.commitLanguage(preferences.language);
   }
 }
