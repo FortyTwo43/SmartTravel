@@ -2,15 +2,13 @@ import { Injectable, inject } from '@angular/core';
 import { ThemeService } from '../../presentation/service/theme/theme.service';
 import { FontSizeService, FontSizeLevel } from '../../presentation/service/font-size/font-size.service';
 import { LanguageService, LanguageCode } from '../../presentation/service/language/language.service';
-
-export type ThemeMode = 'light' | 'dark';
+import { ThemeMode } from '../../presentation/constants/themes.constant';
 
 export interface AccessibilityPreferences {
   theme: ThemeMode;
   fontSize: FontSizeLevel;
   language: LanguageCode;
 }
-
 @Injectable({
   providedIn: 'root'
 })

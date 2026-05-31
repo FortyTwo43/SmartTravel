@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { signal, computed } from '@angular/core';
 import { FontSizeLevel } from '../../service/font-size/font-size.service';
-import { LanguageCode } from '../../service/language/language.service';
+import { LanguageCode } from '../../constants/languages.constant';
+import { ThemeMode } from '../../constants/themes.constant';
 import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, RotateCcw } from 'lucide-angular';
 import { VisualThemeComponent } from '../../components/ui/visual-theme/visual-theme.component';
 import { TypographyComponent } from '../../components/ui/typography/typography.component';
 import { LanguagePreferenceComponent } from '../../components/ui/language-preference/language-preference.component';
 import {
   ChangeThemeUseCase,
-  ThemeMode,
   ChangeFontSizeUseCase,
   ChangeLanguageUseCase,
   SaveAccessibilityPreferencesUseCase,
@@ -48,13 +48,13 @@ export class AccessibilityComponent implements OnInit {
     private resetPreferencesUseCase = inject(ResetAccessibilityPreferencesUseCase);
 
     // Current state signals
-    selectedTheme = signal<ThemeMode>('light');
+    selectedTheme = signal<ThemeMode>('system');
     selectedFontSize = signal<FontSizeLevel>('normal');
     selectedLanguage = signal<LanguageCode>('es');
 
     // Initial state for change detection
     private initialState = signal({
-        theme: 'light' as ThemeMode,
+        theme: 'system' as ThemeMode,
         fontSize: 'normal' as FontSizeLevel,
         language: 'es' as LanguageCode
     });

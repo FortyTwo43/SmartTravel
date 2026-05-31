@@ -8,7 +8,7 @@ export class ResetAccessibilityPreferencesUseCase {
   private savePreferencesUseCase = inject(SaveAccessibilityPreferencesUseCase);
 
   private readonly DEFAULT_PREFERENCES: AccessibilityPreferences = {
-    theme: 'light',
+    theme: 'system',
     fontSize: 'normal',
     language: 'es'
   };

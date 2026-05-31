@@ -2,8 +2,7 @@ import { Component, input, output, ChangeDetectionStrategy } from '@angular/core
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Settings } from 'lucide-angular';
-
-type ThemeMode = 'light' | 'dark';
+import { ThemeMode, THEME_OPTIONS } from '../../../constants/themes.constant';
 
 @Component({
   selector: 'app-visual-theme',
@@ -19,10 +18,13 @@ type ThemeMode = 'light' | 'dark';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class VisualThemeComponent {
-  selectedTheme = input<ThemeMode>('light');
+  selectedTheme = input<ThemeMode>('system');
   themeChanged = output<ThemeMode>();
+
+  readonly themes = THEME_OPTIONS;
 
   onThemeChange(theme: ThemeMode): void {
     this.themeChanged.emit(theme);
   }
 }
+
