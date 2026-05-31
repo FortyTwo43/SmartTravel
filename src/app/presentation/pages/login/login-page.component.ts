@@ -63,7 +63,7 @@ export class LoginPageComponent {
         this.router.navigate([result.redirect]);
       } else if (result.role === 'proveedor') {
         // Provider dashboard
-        this.router.navigate(['/provider-dashboard']);
+        this.router.navigate(['/provider/dashboard']);
       } else {
         // Default redirect for other roles
         this.router.navigate(['/home']);

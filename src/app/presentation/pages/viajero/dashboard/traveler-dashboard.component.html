@@ -1,119 +1,110 @@
-<div class="dashboard-wrapper">
-  <!-- Sidebar -->
-  <app-traveler-sidebar></app-traveler-sidebar>
-
-  <!-- Main Content -->
+<!-- Content -->
+@if (isLoading()) {
+  <div class="loading-container">
+    <div class="spinner"></div>
+    <p>{{ 'COMMON.LOADING' | translate }}</p>
+  </div>
+} @else if (error()) {
+  <div class="error-container">
+    <p>{{ error() }}</p>
+    <button (click)="reloadDashboard()" class="reload-btn">
+      {{ 'COMMON.RETRY' | translate }}
+    </button>
+  </div>
+} @else if (dashboardData()) {
   <div class="dashboard-container">
-    <!-- Header -->
-    <app-traveler-header [userName]="dashboardData()?.userName || 'Alex'"></app-traveler-header>
+    <main class="dashboard-content">
+      <!-- Top Section: 3 Columns Layout -->
+      <div class="top-section">
+        <!-- Left: Trip Card -->
+        <div class="trip-column">
+          <div class="section-header">
+            <h2 class="section-title">Próximos Viajes</h2>
+            <a href="#" class="see-all">Ver todos</a>
+          </div>
+          @if (dashboardData()!.proximosViajes.length > 0) {
+            <app-trip-card [trip]="dashboardData()!.proximosViajes[0]"></app-trip-card>
+          } @else {
+            <p class="empty-state">{{ 'TRAVELER_DASHBOARD.NO_TRIPS' | translate }}</p>
+          }
+        </div>
 
-    <!-- Content -->
-    @if (isLoading()) {
-      <div class="loading-container">
-        <div class="spinner"></div>
-        <p>{{ 'COMMON.LOADING' | translate }}</p>
-      </div>
-    } @else if (error()) {
-      <div class="error-container">
-        <p>{{ error() }}</p>
-        <button (click)="reloadDashboard()" class="reload-btn">
-          {{ 'COMMON.RETRY' | translate }}
-        </button>
-      </div>
-    } @else if (dashboardData()) {
-      <main class="dashboard-content">
-        <!-- Top Section: 3 Columns Layout -->
-        <div class="top-section">
-          <!-- Left: Trip Card -->
-          <div class="trip-column">
-            <div class="section-header">
-              <h2 class="section-title">Próximos Viajes</h2>
-              <a href="#" class="see-all">Ver todos</a>
+        <!-- Right: Stats & Assistance -->
+        <div class="right-column">
+          <!-- Top Cards: Credits & Miles -->
+          <div class="cards-row">
+            <!-- Viajes completados -->
+            <div class="info-card credits-card">
+              <div class="card-header">
+                <span class="card-icon">✅</span>
+                <span class="card-label">VIAJES COMPLETADOS</span>
+              </div>
+              <div class="card-value">{{ dashboardData()!.estadisticas.viajes_completados }}</div>
             </div>
-            @if (dashboardData()!.proximosViajes.length > 0) {
-              <app-trip-card [trip]="dashboardData()!.proximosViajes[0]"></app-trip-card>
-            } @else {
-              <p class="empty-state">{{ 'TRAVELER_DASHBOARD.NO_TRIPS' | translate }}</p>
-            }
+
+            <!-- Presupuesto -->
+            <div class="info-card miles-card">
+              <div class="card-header">
+                <span class="card-icon">💶</span>
+                <span class="card-label">PRESUPUESTO</span>
+              </div>
+              <div class="card-value">€{{ dashboardData()!.estadisticas.presupuesto | number }}</div>
+            </div>
           </div>
 
-          <!-- Right: Stats & Assistance -->
-          <div class="right-column">
-            <!-- Top Cards: Credits & Miles -->
-            <div class="cards-row">
-              <!-- Viajes completados -->
-              <div class="info-card credits-card">
-                <div class="card-header">
-                  <span class="card-icon">✅</span>
-                  <span class="card-label">VIAJES COMPLETADOS</span>
-                </div>
-                <div class="card-value">{{ dashboardData()!.estadisticas.viajes_completados }}</div>
-              </div>
-
-              <!-- Presupuesto -->
-              <div class="info-card miles-card">
-                <div class="card-header">
-                  <span class="card-icon">💶</span>
-                  <span class="card-label">PRESUPUESTO</span>
-                </div>
-                <div class="card-value">€{{ dashboardData()!.estadisticas.presupuesto | number }}</div>
-              </div>
+          <!-- Assistance Card -->
+          <div class="info-card assistance-card">
+            <div class="assistance-icon-container">
+              <lucide-icon name="Headset" class="assistance-icon"></lucide-icon>
             </div>
-
-            <!-- Assistance Card -->
-            <div class="info-card assistance-card">
-              <div class="assistance-icon-container">
-                <lucide-icon name="Headset" class="assistance-icon"></lucide-icon>
-              </div>
-              <div class="assistance-content">
-                <h3>Asistencia 24/7</h3>
-                <p>Chat premium activado</p>
-              </div>
-              <lucide-icon name="ChevronRight" class="arrow-icon"></lucide-icon>
+            <div class="assistance-content">
+              <h3>Asistencia 24/7</h3>
+              <p>Chat premium activado</p>
             </div>
+            <lucide-icon name="ChevronRight" class="arrow-icon"></lucide-icon>
+          </div>
+        </div>
+      </div>
+
+      <!-- Destinos Recomendados -->
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">Destinos Recomendados</h2>
+          <div class="nav-arrows">
+            <button class="nav-arrow">&lt;</button>
+            <button class="nav-arrow">&gt;</button>
           </div>
         </div>
 
-        <!-- Destinos Recomendados -->
-        <section class="section">
-          <div class="section-header">
-            <h2 class="section-title">Destinos Recomendados</h2>
-            <div class="nav-arrows">
-              <button class="nav-arrow">&lt;</button>
-              <button class="nav-arrow">&gt;</button>
-            </div>
-          </div>
+        <div class="destinations-grid">
+          @for (destination of dashboardData()!.destinosRecomendados; track destination.id) {
+            <app-destination-card [destination]="destination"></app-destination-card>
+          }
+        </div>
+      </section>
 
-          <div class="destinations-grid">
-            @for (destination of dashboardData()!.destinosRecomendados; track destination.id) {
-              <app-destination-card [destination]="destination"></app-destination-card>
+      <!-- Bottom Layout -->
+      <div class="bottom-layout">
+        <!-- Itinerarios Recientes -->
+        <section class="section bottom-left">
+          <div class="section-header">
+            <h2 class="section-title">Itinerarios recientes</h2>
+          </div>
+          <app-itinerary-list [itineraries]="dashboardData()!.itinerariosRecientes"></app-itinerary-list>
+        </section>
+
+        <!-- Servicios Sugeridos -->
+        <section class="section bottom-right">
+          <div class="section-header">
+            <h2 class="section-title">Servicios sugeridos</h2>
+          </div>
+          <div class="services-grid">
+            @for (service of dashboardData()!.serviciosSugeridos; track service.id) {
+              <app-service-card [service]="service"></app-service-card>
             }
           </div>
         </section>
-
-        <!-- Bottom Layout -->
-        <div class="bottom-layout">
-          <!-- Itinerarios Recientes -->
-          <section class="section bottom-left">
-            <div class="section-header">
-              <h2 class="section-title">Itinerarios recientes</h2>
-            </div>
-            <app-itinerary-list [itineraries]="dashboardData()!.itinerariosRecientes"></app-itinerary-list>
-          </section>
-
-          <!-- Servicios Sugeridos -->
-          <section class="section bottom-right">
-            <div class="section-header">
-              <h2 class="section-title">Servicios sugeridos</h2>
-            </div>
-            <div class="services-grid">
-              @for (service of dashboardData()!.serviciosSugeridos; track service.id) {
-                <app-service-card [service]="service"></app-service-card>
-              }
-            </div>
-          </section>
-        </div>
-      </main>
-    }
+      </div>
+    </main>
   </div>
-</div>
+}

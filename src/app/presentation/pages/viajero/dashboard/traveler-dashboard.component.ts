@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { GetTravelerDashboardUseCase, DashboardData } from '../../../../useCase/viajero/dashboard/GetTravelerDashboardUseCase';
-import { TravelerSidebarComponent } from '../../../layouts/viajero/traveler-sidebar/traveler-sidebar.component';
-import { TravelerHeaderComponent } from '../../../layouts/viajero/traveler-header/traveler-header.component';
 import { TripCardComponent } from '../../../components/viajero/dashboard/trip-card/trip-card.component';
 import { DestinationCardComponent } from '../../../components/viajero/dashboard/destination-card/destination-card.component';
 import { ItineraryListComponent } from '../../../components/viajero/dashboard/itinerary-list/itinerary-list.component';
@@ -17,8 +15,6 @@ import { LucideAngularModule, Headset, ChevronRight, LUCIDE_ICONS, LucideIconPro
   imports: [
     CommonModule,
     TranslateModule,
-    TravelerSidebarComponent,
-    TravelerHeaderComponent,
     TripCardComponent,
     DestinationCardComponent,
     ItineraryListComponent,
@@ -66,3 +62,4 @@ export class TravelerDashboardComponent implements OnInit {
     this.loadDashboard();
   }
 }
+

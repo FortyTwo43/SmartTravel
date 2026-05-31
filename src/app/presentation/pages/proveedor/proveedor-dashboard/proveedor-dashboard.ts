@@ -1,6 +1,5 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProveedorLayoutComponent } from '../../../layouts/proveedor/proveedor-layout/proveedor-layout';
 import { ProveedorMetricsComponent } from '../../../components/proveedor/dashboard/proveedor-metrics/proveedor-metrics';
 import { ProveedorChartPlaceholderComponent } from '../../../components/proveedor/dashboard/proveedor-chart-placeholder/proveedor-chart-placeholder';
 import { ProveedorActivityComponent } from '../../../components/proveedor/dashboard/proveedor-activity/proveedor-activity';
@@ -24,7 +23,6 @@ import { LoadDashboardDataUseCase } from '../../../../useCase/proveedor/dashboar
   standalone: true,
   imports: [
     CommonModule,
-    ProveedorLayoutComponent,
     ProveedorMetricsComponent,
     ProveedorChartPlaceholderComponent,
     ProveedorActivityComponent,
