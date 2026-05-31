@@ -1,0 +1,39 @@
+<div class="filters">
+  <h3>{{ 'TRAVELER_SIDEBAR.EXPLORE' | translate }}</h3>
+
+  <div class="filter-group">
+    <label>Rango de precio</label>
+    <div class="price-inputs">
+      <input type="number" placeholder="Min" (change)="setPrice($any($event.target).valueAsNumber, maxPrice())" />
+      <input type="number" placeholder="Max" (change)="setPrice(minPrice(), $any($event.target).valueAsNumber)" />
+    </div>
+  </div>
+
+  <div class="filter-group">
+    <label>Categoría</label>
+    <div class="cats">
+      <button (click)="toggleCategoria('playa')">Playa</button>
+      <button (click)="toggleCategoria('montana')">Montaña</button>
+      <button (click)="toggleCategoria('ciudad')">Ciudad</button>
+      <button (click)="toggleCategoria('rural')">Rural</button>
+    </div>
+  </div>
+
+  <div class="filter-group">
+    <label>Calificación</label>
+    <div class="rating">
+      <button (click)="emitFilters()">5 ★</button>
+      <button (click)="emitFilters()">4+ ★</button>
+    </div>
+  </div>
+
+  <div class="filter-group">
+    <label>Experiencia</label>
+    <div class="exps">
+      <button (click)="setExperiencia('relajante')">Relajante</button>
+      <button (click)="setExperiencia('aventura')">Aventura</button>
+      <button (click)="setExperiencia('familiar')">Familiar</button>
+      <button (click)="setExperiencia('lujo')">Lujo</button>
+    </div>
+  </div>
+</div>

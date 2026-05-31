@@ -1,0 +1,33 @@
+.page-wrapper {
+  display: flex;
+}
+
+.page-container {
+  flex: 1;
+  padding: 1rem 1.5rem;
+}
+
+.content-area {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.filters-column {
+  width: 18rem;
+  flex-shrink: 0;
+}
+
+.results-column {
+  flex: 1;
+}
+
+.loading, .error {
+  padding: 2rem;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .content-area { flex-direction: column; }
+  .filters-column { width: 100%; }
+}

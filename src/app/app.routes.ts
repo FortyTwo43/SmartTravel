@@ -20,6 +20,11 @@ export const routes: Routes = [
         path: 'dashboard',
         loadComponent: () => import('./presentation/pages/viajero/dashboard/traveler-dashboard.component').then(m => m.TravelerDashboardComponent)
       }
+      ,
+      {
+        path: 'explorar-destinos',
+        loadComponent: () => import('./presentation/pages/viajero/explorar-destinos/explorar-destinos.component').then(m => m.ExplorarDestinosComponent)
+      }
     ]
   },
   {

@@ -1,0 +1,15 @@
+@if (destination()) {
+  <div class="explore-card">
+    @if (destination()!.imagen) {
+      <div class="image-wrap"><img [src]="destination()!.imagen" [alt]="destination()!.nombre" /></div>
+    }
+    <div class="card-body">
+      <h4>{{ destination()!.nombre }}</h4>
+      <p class="meta">{{ destination()!.ciudad }}, {{ destination()!.pais }}</p>
+      <div class="card-footer">
+        <div class="price">${{ destination()!.precioMinimo ?? '—' }}</div>
+        <button class="btn-primary">{{ 'COMMON.VIEW_DETAILS' | translate }}</button>
+      </div>
+    </div>
+  </div>
+}

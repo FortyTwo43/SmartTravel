@@ -1,0 +1,4 @@
+.filters { background: var(--bg-surface-alt); padding:1rem; border-radius:var(--radius-md); }
+.filter-group { margin-bottom:1rem; }
+.cats button, .exps button, .rating button { display:inline-block; margin:0.25rem; padding:0.45rem 0.6rem; border-radius:0.5rem; border:1px solid var(--border-color); background:transparent; }
+.price-inputs input { width:48%; padding:0.4rem; border-radius:0.4rem; border:1px solid var(--border-color); }

@@ -1,0 +1,11 @@
+.search-header {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  background: var(--bg-surface-alt);
+  padding: 0.75rem;
+  border-radius: var(--radius-lg);
+}
+.search-fields { display:flex; gap:0.5rem; flex:1; }
+.search-fields input { padding:0.5rem; border-radius:0.5rem; border:1px solid var(--border-color); }
+.search-btn { background:var(--color-primary); color:var(--text-on-primary); padding:0.5rem 1rem; border-radius:0.5rem; }
