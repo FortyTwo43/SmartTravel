@@ -1,39 +1,62 @@
 <div class="filters">
-  <h3>{{ 'TRAVELER_SIDEBAR.EXPLORE' | translate }}</h3>
+  <h2 class="filters-title">Filtros</h2>
 
   <div class="filter-group">
-    <label>Rango de precio</label>
-    <div class="price-inputs">
-      <input type="number" placeholder="Min" (change)="setPrice($any($event.target).valueAsNumber, maxPrice())" />
-      <input type="number" placeholder="Max" (change)="setPrice(minPrice(), $any($event.target).valueAsNumber)" />
+    <label class="filter-label">Rango de precio (por noche)</label>
+    <div class="price-slider">
+      <div class="slider-track"></div>
+      <div class="slider-thumb" style="left: 40%;"></div>
     </div>
+    <div class="price-labels">
+      <span>$0</span>
+      <span>$1,000+</span>
+    </div>
+    <hr class="divider" />
   </div>
 
   <div class="filter-group">
-    <label>Categoría</label>
-    <div class="cats">
-      <button (click)="toggleCategoria('playa')">Playa</button>
-      <button (click)="toggleCategoria('montana')">Montaña</button>
-      <button (click)="toggleCategoria('ciudad')">Ciudad</button>
-      <button (click)="toggleCategoria('rural')">Rural</button>
+    <label class="filter-label">Categoría</label>
+    <div class="cats-grid">
+      <button class="cat-btn" (click)="toggleCategoria('playa')">
+        <lucide-icon name="umbrella"></lucide-icon>
+        <span>Playa</span>
+      </button>
+      <button class="cat-btn" (click)="toggleCategoria('montana')">
+        <lucide-icon name="mountain"></lucide-icon>
+        <span>Montaña</span>
+      </button>
+      <button class="cat-btn" (click)="toggleCategoria('ciudad')">
+        <lucide-icon name="building"></lucide-icon>
+        <span>Ciudad</span>
+      </button>
+      <button class="cat-btn" (click)="toggleCategoria('rural')">
+        <lucide-icon name="home"></lucide-icon>
+        <span>Rural</span>
+      </button>
     </div>
+    <hr class="divider" />
   </div>
 
   <div class="filter-group">
-    <label>Calificación</label>
-    <div class="rating">
-      <button (click)="emitFilters()">5 ★</button>
-      <button (click)="emitFilters()">4+ ★</button>
+    <label class="filter-label">Calificación</label>
+    <div class="rating-checkboxes">
+      <label class="checkbox-label">
+        <input type="checkbox" (change)="emitFilters()" /> 5 <span>☆</span>
+      </label>
+      <label class="checkbox-label">
+        <input type="checkbox" (change)="emitFilters()" /> 4+ <span>☆</span>
+      </label>
     </div>
+    <hr class="divider" />
   </div>
 
   <div class="filter-group">
-    <label>Experiencia</label>
-    <div class="exps">
-      <button (click)="setExperiencia('relajante')">Relajante</button>
-      <button (click)="setExperiencia('aventura')">Aventura</button>
-      <button (click)="setExperiencia('familiar')">Familiar</button>
-      <button (click)="setExperiencia('lujo')">Lujo</button>
+    <label class="filter-label">Experiencia</label>
+    <div class="exps-pills">
+      <button class="pill-btn" (click)="setExperiencia('relajante')">Relajante</button>
+      <button class="pill-btn" (click)="setExperiencia('aventura')">Aventura</button>
+      <button class="pill-btn" (click)="setExperiencia('familiar')">Familiar</button>
+      <button class="pill-btn" (click)="setExperiencia('lujo')">Lujo</button>
     </div>
   </div>
 </div>

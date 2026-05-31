@@ -1,4 +1,14 @@
 @if (destinos() && destinos()!.length > 0) {
+  <div class="results-header">
+    <div class="results-count"><strong>{{ destinos()!.length }}</strong> destinos encontrados</div>
+    <div class="sort-by">
+      <label>Ordenar por:</label>
+      <select>
+        <option>Recomendados</option>
+        <option>Precio</option>
+      </select>
+    </div>
+  </div>
   <div class="grid">
     @for (d of destinos()!; track d.id) {
       <app-explore-destination-card [destination]="d"></app-explore-destination-card>

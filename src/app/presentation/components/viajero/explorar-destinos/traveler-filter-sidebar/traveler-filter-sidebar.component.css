@@ -1,4 +1,131 @@
-.filters { background: var(--bg-surface-alt); padding:1rem; border-radius:var(--radius-md); }
-.filter-group { margin-bottom:1rem; }
-.cats button, .exps button, .rating button { display:inline-block; margin:0.25rem; padding:0.45rem 0.6rem; border-radius:0.5rem; border:1px solid var(--border-color); background:transparent; }
-.price-inputs input { width:48%; padding:0.4rem; border-radius:0.4rem; border:1px solid var(--border-color); }
+.filters { 
+  background: var(--bg-surface); 
+  padding: 1.5rem; 
+  border-radius: var(--radius-md); 
+  color: var(--text-main);
+}
+.filters-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: var(--text-main);
+}
+.filter-group { margin-bottom: 1.5rem; }
+.filter-label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+/* Slider (Visual Fake for now) */
+.price-slider {
+  position: relative;
+  height: 4px;
+  background: var(--border-color);
+  border-radius: 2px;
+  margin: 1rem 0;
+}
+.slider-track {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 40%;
+  background: var(--color-primary);
+  border-radius: 2px;
+}
+.slider-thumb {
+  position: absolute;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+.price-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* Category Grid */
+.cats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+.cat-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0.5rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  color: var(--text-main);
+  transition: all 0.2s;
+}
+.cat-btn lucide-icon {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 0.5rem;
+  color: var(--text-main);
+}
+.cat-btn:hover {
+  border-color: var(--color-primary);
+  background: var(--bg-surface-alt);
+}
+
+/* Checkboxes */
+.rating-checkboxes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+.checkbox-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--color-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+}
+
+/* Pills */
+.exps-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.pill-btn {
+  background: var(--bg-main);
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.pill-btn:hover {
+  background: var(--border-color);
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin-top: 1.5rem;
+  opacity: 0.5;
+}

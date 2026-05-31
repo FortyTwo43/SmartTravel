@@ -1,14 +1,28 @@
 @if (destination()) {
   <div class="explore-card">
-    @if (destination()!.imagen) {
-      <div class="image-wrap"><img [src]="destination()!.imagen" [alt]="destination()!.nombre" /></div>
-    }
+    <div class="image-wrap">
+      @if (destination()!.imagen) {
+        <img [src]="destination()!.imagen" [alt]="destination()!.nombre" />
+      } @else {
+        <div class="placeholder-img"></div>
+      }
+      <button class="favorite-btn"><lucide-icon name="heart"></lucide-icon></button>
+    </div>
     <div class="card-body">
-      <h4>{{ destination()!.nombre }}</h4>
-      <p class="meta">{{ destination()!.ciudad }}, {{ destination()!.pais }}</p>
+      <div class="card-header">
+        <h4 class="card-title">{{ destination()!.nombre }}</h4>
+        <div class="rating">☆ 4.9</div>
+      </div>
+      <p class="description">{{ destination()!.ciudad }}, {{ destination()!.pais }}</p>
+      
+      <hr class="card-divider" />
+      
       <div class="card-footer">
-        <div class="price">${{ destination()!.precioMinimo ?? '—' }}</div>
-        <button class="btn-primary">{{ 'COMMON.VIEW_DETAILS' | translate }}</button>
+        <div class="price-container">
+          <span class="price-val">${{ destination()!.precioMinimo ?? '—' }}</span>
+          <span class="price-unit">/noche</span>
+        </div>
+        <button class="btn-primary">Ver detalles</button>
       </div>
     </div>
   </div>
