@@ -1,0 +1,31 @@
+<section class="visual-theme-section">
+  <fieldset class="theme-fieldset">
+    <legend class="section-title">
+      <lucide-icon name="Settings" size="24"></lucide-icon>
+      {{ 'ACCESSIBILITY.VISUAL_THEME' | translate }}
+    </legend>
+    <div class="theme-options">
+      <label class="radio-option">
+        <input
+          type="radio"
+          name="theme"
+          value="light"
+          [checked]="selectedTheme() === 'light'"
+          (change)="onThemeChange('light')"
+        />
+        <span class="radio-label">{{ 'ACCESSIBILITY.LIGHT_MODE' | translate }}</span>
+      </label>
+      
+      <label class="radio-option">
+        <input
+          type="radio"
+          name="theme"
+          value="dark"
+          [checked]="selectedTheme() === 'dark'"
+          (change)="onThemeChange('dark')"
+        />
+        <span class="radio-label">{{ 'ACCESSIBILITY.DARK_MODE' | translate }}</span>
+      </label>
+    </div>
+  </fieldset>
+</section>

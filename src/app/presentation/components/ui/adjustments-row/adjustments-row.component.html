@@ -1,0 +1,52 @@
+<section class="adjustments-section">
+  <fieldset class="adjustments-fieldset">
+    <legend class="section-title">
+      <lucide-icon name="Settings" size="24"></lucide-icon>
+      {{ 'ACCESSIBILITY.DETAILED_ADJUSTMENTS' | translate }}
+    </legend>
+
+    <div class="toggles-container">
+      <!-- High Contrast Toggle -->
+      <label class="toggle-option">
+        <input
+          type="checkbox"
+          [checked]="adjustments().highContrast"
+          (change)="onHighContrastChange($event)"
+          class="toggle-input"
+        />
+        <div class="toggle-label-text">
+          <span class="toggle-title">{{ 'ACCESSIBILITY.HIGH_CONTRAST' | translate }}</span>
+          <span class="toggle-desc">{{ 'ACCESSIBILITY.HIGH_CONTRAST_DESC' | translate }}</span>
+        </div>
+      </label>
+
+      <!-- Reduce Motion Toggle -->
+      <label class="toggle-option">
+        <input
+          type="checkbox"
+          [checked]="adjustments().reduceMotion"
+          (change)="onReduceMotionChange($event)"
+          class="toggle-input"
+        />
+        <div class="toggle-label-text">
+          <span class="toggle-title">{{ 'ACCESSIBILITY.REDUCE_MOTION' | translate }}</span>
+          <span class="toggle-desc">{{ 'ACCESSIBILITY.REDUCE_MOTION_DESC' | translate }}</span>
+        </div>
+      </label>
+
+      <!-- Screen Reader Toggle -->
+      <label class="toggle-option">
+        <input
+          type="checkbox"
+          [checked]="adjustments().screenReaderEnabled"
+          (change)="onScreenReaderChange($event)"
+          class="toggle-input"
+        />
+        <div class="toggle-label-text">
+          <span class="toggle-title">{{ 'ACCESSIBILITY.SCREEN_READER' | translate }}</span>
+          <span class="toggle-desc">{{ 'ACCESSIBILITY.SCREEN_READER_DESC' | translate }}</span>
+        </div>
+      </label>
+    </div>
+  </fieldset>
+</section>

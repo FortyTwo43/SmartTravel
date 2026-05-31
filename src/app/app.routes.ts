@@ -23,6 +23,10 @@ export const routes: Routes = [
     ]
   },
   {
+    path: 'accessibility',
+    loadComponent: ()=> import('./presentation/pages/accessibility/accessibility.component'). then(m => m.AccessibilityComponent)
+  },
+  {
     path: 'home',
     loadComponent: () => import('./presentation/pages/home/home').then(m => m.Home)
   },

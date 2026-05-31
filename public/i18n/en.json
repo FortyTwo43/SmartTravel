@@ -303,5 +303,32 @@
     "FAVORITES": "Favorites",
     "PROFILE": "My Profile",
     "TRAVELER": "Traveler"
+  },
+  "ACCESSIBILITY": {
+    "TITLE": "Accessibility Settings",
+    "DESCRIPTION": "Customize your navigation experience to perfectly suit your visual and operational needs.",
+    "RESET_PREFERENCES": "Reset preferences",
+    "SAVE_CHANGES": "Save changes",
+    "CHANGES_SAVED": "Changes saved successfully",
+    "VISUAL_THEME": "Visual Theme",
+    "LIGHT_MODE": "Light Mode",
+    "DARK_MODE": "Dark Mode",
+    "SYSTEM_MODE": "System",
+    "TYPOGRAPHY": "Typography",
+    "SMALL": "Small",
+    "NORMAL": "Normal",
+    "LARGE": "Large",
+    "EXTRA_LARGE": "Extra Large",
+    "PREVIEW_TEXT": "Technological precision is the core of Smart Travel AI",
+    "DETAILED_ADJUSTMENTS": "Detailed Adjustments",
+    "HIGH_CONTRAST": "High Contrast",
+    "HIGH_CONTRAST_DESC": "Maximize visual readability by increasing color contrast.",
+    "REDUCE_MOTION": "Reduce Motion",
+    "REDUCE_MOTION_DESC": "Disables smooth animations and complex transition effects.",
+    "SCREEN_READER": "Screen Reader",
+    "SCREEN_READER_DESC": "Speech output optimization for NVDA and VoiceOver.",
+    "LANGUAGE_PREFERENCE": "Language Preference",
+    "SPANISH_CASTILIAN": "Spanish (Castilian)",
+    "ENGLISH": "English"
   }
 }

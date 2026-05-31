@@ -1,0 +1,36 @@
+<section class="typography-section">
+  <fieldset class="typography-fieldset">
+    <legend class="section-title">
+      <lucide-icon name="Settings" size="24"></lucide-icon>
+      {{ 'ACCESSIBILITY.TYPOGRAPHY' | translate }}
+    </legend>
+    
+    <div class="font-size-controls">
+      <div class="font-size-slider">
+        <label for="font-size-input" class="slider-label">
+          {{ 'ACCESSIBILITY.TYPOGRAPHY' | translate }}
+        </label>
+        <input
+          id="font-size-input"
+          type="range"
+          min="0"
+          max="3"
+          [value]="['small', 'normal', 'large', 'extra-large'].indexOf(selectedFontSize())"
+          (change)="onFontSizeChange($event)"
+          class="slider"
+          aria-label="Font size slider"
+        />
+        <div class="font-size-labels">
+          <span>{{ 'ACCESSIBILITY.SMALL' | translate }}</span>
+          <span>{{ 'ACCESSIBILITY.NORMAL' | translate }}</span>
+          <span>{{ 'ACCESSIBILITY.LARGE' | translate }}</span>
+          <span>{{ 'ACCESSIBILITY.EXTRA_LARGE' | translate }}</span>
+        </div>
+      </div>
+
+      <div class="font-preview">
+        <p class="preview-text">{{ 'ACCESSIBILITY.PREVIEW_TEXT' | translate }}</p>
+      </div>
+    </div>
+  </fieldset>
+</section>

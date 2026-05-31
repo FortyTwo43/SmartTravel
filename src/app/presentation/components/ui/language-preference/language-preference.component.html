@@ -1,0 +1,22 @@
+<section class="language-section">
+  <fieldset class="language-fieldset">
+    <legend class="section-title">
+      <lucide-icon name="Settings" size="24"></lucide-icon>
+      {{ 'ACCESSIBILITY.LANGUAGE_PREFERENCE' | translate }}
+    </legend>
+
+    <label for="language-select" class="language-label">
+      {{ 'ACCESSIBILITY.LANGUAGE_PREFERENCE' | translate }}
+    </label>
+    <select
+      id="language-select"
+      [value]="selectedLanguage()"
+      (change)="onLanguageChange($event)"
+      class="language-select"
+    >
+      <option *ngFor="let lang of languages" [value]="lang.code">
+        {{ lang.label | translate }}
+      </option>
+    </select>
+  </fieldset>
+</section>
