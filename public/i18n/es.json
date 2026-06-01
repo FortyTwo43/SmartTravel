@@ -275,10 +275,10 @@
     "EMPTY_TITLE": "Aún no tienes servicios registrados",
     "EMPTY_DESCRIPTION": "Cuando crees servicios reservables aparecerán aquí como tarjetas individuales.",
     "CARD": {
-      "SERVICE": "Servicio",
-      "ESTABLISHMENT": "Establecimiento",
-      "PRICE_LABEL": "precio",
       "EDIT": "Editar servicio",
+      "DELETE": "Eliminar servicio",
+      "ENABLE": "Habilitar",
+      "DISABLE": "Deshabilitar",
       "TOGGLE_AVAILABILITY": "Cambiar disponibilidad",
       "AVAILABLE": "Disponible",
       "UNAVAILABLE": "No disponible"

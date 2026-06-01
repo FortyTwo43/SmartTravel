@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Edit2, Power } from 'lucide-angular';
+import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Edit2, Power, Trash2 } from 'lucide-angular';
 import { ProveedorServiceItem } from '../../../../../domain/ui/proveedor/services/ProveedorServiceItem';
 
 @Component({
@@ -11,7 +11,7 @@ import { ProveedorServiceItem } from '../../../../../domain/ui/proveedor/service
   providers: [{
     provide: LUCIDE_ICONS,
     multi: true,
-    useValue: new LucideIconProvider({ Edit2, Power })
+    useValue: new LucideIconProvider({ Edit2, Power, Trash2 })
   }],
   templateUrl: './proveedor-service-card.html',
   styleUrl: './proveedor-service-card.css',
@@ -31,5 +31,9 @@ export class ProveedorServiceCardComponent {
 
   toggleAvailability(): void {
     this.availabilityChanged.emit(!this.service().disponibilidad);
+  }
+
+  deleteService(): void {
+    void 0;
   }
 }

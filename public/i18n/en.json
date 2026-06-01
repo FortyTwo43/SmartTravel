@@ -275,10 +275,10 @@
     "EMPTY_TITLE": "You do not have any registered services yet",
     "EMPTY_DESCRIPTION": "When you create reservable services, they will appear here as individual cards.",
     "CARD": {
-      "SERVICE": "Service",
-      "ESTABLISHMENT": "Establishment",
-      "PRICE_LABEL": "price",
       "EDIT": "Edit service",
+      "DELETE": "Delete service",
+      "ENABLE": "Enable",
+      "DISABLE": "Disable",
       "TOGGLE_AVAILABILITY": "Toggle availability",
       "AVAILABLE": "Available",
       "UNAVAILABLE": "Unavailable"
