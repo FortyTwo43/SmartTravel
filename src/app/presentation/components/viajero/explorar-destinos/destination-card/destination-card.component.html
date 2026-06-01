@@ -11,17 +11,19 @@
     <div class="card-body">
       <div class="card-header">
         <h4 class="card-title">{{ destination()!.nombre }}</h4>
-        <div class="rating">☆ 4.9</div>
+        <div class="rating">
+          @if (destination()!.ratingPromedio != null) {
+            ☆ {{ (destination()!.ratingPromedio | number: '1.1-1') }}
+          } @else {
+            <span class="no-rating">Sin calificación</span>
+          }
+        </div>
       </div>
       <p class="description">{{ destination()!.ciudad }}, {{ destination()!.pais }}</p>
       
       <hr class="card-divider" />
       
       <div class="card-footer">
-        <div class="price-container">
-          <span class="price-val">${{ destination()!.precioMinimo ?? '—' }}</span>
-          <span class="price-unit">/noche</span>
-        </div>
         <button class="btn-primary">Ver detalles</button>
       </div>
     </div>

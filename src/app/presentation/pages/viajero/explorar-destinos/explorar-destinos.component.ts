@@ -35,7 +35,6 @@ export class ExplorarDestinosComponent implements OnInit {
 
   // filtros simples como ejemplo
   filtroCategorias = signal<string[]>([]);
-  filtroPrecio = signal<[number, number] | null>(null);
 
   async ngOnInit(): Promise<void> {
     await this.loadDestinos();
@@ -56,8 +55,19 @@ export class ExplorarDestinosComponent implements OnInit {
   }
 
   onApplyFilters(filters: any): void {
-    // Para esta iteración usamos el useCase con filtros simples
     this.isLoading.set(true);
-    this.useCase.execute(filters).then(res => this.destinos.set(res)).finally(() => this.isLoading.set(false));
+    this.error.set(null);
+    this.useCase.execute(filters)
+      .then(res => {
+        this.destinos.set(res);
+        if (res.length === 0) {
+          this.error.set('No se encontraron destinos con esos filtros.');
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        this.error.set(err?.message || 'Error al aplicar filtros');
+      })
+      .finally(() => this.isLoading.set(false));
   }
 }

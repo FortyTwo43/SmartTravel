@@ -2,7 +2,6 @@ import { Injectable, inject } from '@angular/core';
 import { Destino } from '../../../domain/entities/Destino';
 import { SupabaseDestinoRepository } from '../../../infrastructure/repositories/supabase/SupabaseDestinoRepository';
 import { SupabaseEstablecimientoTuristicoRepository } from '../../../infrastructure/repositories/supabase/SupabaseEstablecimientoTuristicoRepository';
-import { SupabaseServicioReservableRepository } from '../../../infrastructure/repositories/supabase/SupabaseServicioReservableRepository';
 
 /**
  * Use case: obtiene destinos reales desde Supabase aplicando filtros básicos
@@ -11,20 +10,20 @@ import { SupabaseServicioReservableRepository } from '../../../infrastructure/re
 
 export interface ExploreFilter {
   experiencia?: Destino['tipo_experiencia'];
-  categorias?: string[]; // se mapeará a establecimiento.tipo si aplica
-  minPrice?: number;
-  maxPrice?: number;
+  categorias?: string[]; // Búsqueda textual en descripcion, nombre o tipo_experiencia
+  paises?: string[];
+  ratingMin?: number; // 3-1 estrellas (ratingMin=1, ratingMax=3)
+  ratingMax?: number; // 4-5 estrellas (ratingMin=4, ratingMax=5)
 }
 
 export interface ExploreDestination extends Destino {
-  readonly precioMinimo?: number | null;
+  readonly ratingPromedio?: number | null;
 }
 
 @Injectable({ providedIn: 'root' })
 export class GetExplorarDestinosUseCase {
   private readonly destinoRepo = inject(SupabaseDestinoRepository);
   private readonly establecimientoRepo = inject(SupabaseEstablecimientoTuristicoRepository);
-  private readonly servicioRepo = inject(SupabaseServicioReservableRepository);
 
   /**
    * Ejecuta la búsqueda con filtros y paginación.
@@ -50,18 +49,15 @@ export class GetExplorarDestinosUseCase {
       sb = sb.eq('tipo_experiencia', filter.experiencia);
     }
 
-    // Si hay filtro de categoría (ej. hotel, tour), resolución: buscar destinos que tengan establecimientos de esos tipos
-    if (filter?.categorias && filter.categorias.length > 0) {
-      // buscar establecimientos que coincidan y obtener id_destino distinct
-      const { data: ests, error: estError } = await (this.establecimientoRepo as any).supabase
-        .from('establecimiento_turistico')
-        .select('id_destino')
-        .in('tipo', filter.categorias);
+    if (filter?.paises && filter.paises.length > 0) {
+      sb = sb.in('pais', filter.paises);
+    }
 
-      if (estError) throw estError;
-      const destinoIds = (ests ?? []).map((r: any) => r.id_destino).filter(Boolean);
-      if (destinoIds.length === 0) return [];
-      sb = sb.in('id', destinoIds);
+    if (filter?.categorias && filter.categorias.length > 0) {
+      const orConditions = filter.categorias.map(cat => 
+        `tipo_experiencia.ilike.%${cat}%,descripcion.ilike.%${cat}%,nombre.ilike.%${cat}%`
+      ).join(',');
+      sb = sb.or(orConditions);
     }
 
     if (typeof offset === 'number' && typeof limit === 'number') {
@@ -75,32 +71,38 @@ export class GetExplorarDestinosUseCase {
 
     const destinos: ExploreDestination[] = (destinosRows ?? []).map((r: any) => ({ ...r }));
 
-    // 2) Para cada destino obtener el precio mínimo entre servicios de sus establecimientos
+    // 2) Para cada destino obtener el rating promedio
     await Promise.all(destinos.map(async (d, idx) => {
       try {
         const establecimientos = await this.establecimientoRepo.findByDestinoId(d.id);
-        let minPrice: number | null = null;
+        let totalRating = 0;
+        let countRating = 0;
+
         for (const est of establecimientos) {
-          const servicios = await this.servicioRepo.findByEstablecimientoId(est.id);
-          for (const s of servicios) {
-            if (s.precio != null && (minPrice === null || s.precio < minPrice)) {
-              minPrice = s.precio;
-            }
+          // Calcular rating promedio
+          if (est.rating != null) {
+            totalRating += est.rating;
+            countRating++;
           }
         }
-        destinos[idx] = { ...d, precioMinimo: minPrice };
+
+        const ratingPromedio = countRating > 0 ? totalRating / countRating : null;
+        destinos[idx] = { ...d, ratingPromedio };
       } catch (e) {
-        destinos[idx] = { ...d, precioMinimo: null };
+        destinos[idx] = { ...d, ratingPromedio: null };
       }
     }));
 
-    // 3) Aplicar filtros de precio en memoria (porque no siempre hay relación directa en la tabla destino)
+    // 3) Aplicar filtros de rating en memoria
     let filtered = destinos;
-    if (filter?.minPrice != null) {
-      filtered = filtered.filter(x => (x.precioMinimo ?? Number.POSITIVE_INFINITY) >= filter!.minPrice!);
-    }
-    if (filter?.maxPrice != null) {
-      filtered = filtered.filter(x => (x.precioMinimo ?? Number.POSITIVE_INFINITY) <= filter!.maxPrice!);
+
+    if (filter?.ratingMin != null || filter?.ratingMax != null) {
+      filtered = filtered.filter(x => {
+        const r = x.ratingPromedio ?? 0;
+        const minOk = filter?.ratingMin == null || r >= filter.ratingMin;
+        const maxOk = filter?.ratingMax == null || r <= filter.ratingMax;
+        return minOk && maxOk;
+      });
     }
 
     return filtered;

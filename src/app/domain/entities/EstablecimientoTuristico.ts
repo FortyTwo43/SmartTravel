@@ -6,4 +6,5 @@ export interface EstablecimientoTuristico {
   tipo: 'restaurante' | 'hotel' | 'tour';
   descripcion: string;
   estado: 'activo' | 'inactivo';
+  rating?: number; // de 1 a 5 estrellas
 }

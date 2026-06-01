@@ -19,17 +19,18 @@ ON CONFLICT (id) DO NOTHING;
 -- ====================================================================
 -- 2. ESTABLECIMIENTOS TURÍSTICOS (Proveedores variados)
 -- Proveedores usados: Sofia (e00dc6ff...), Marcos (794098e5...), Mateo (feb472b5...), Carlos (d3bf7fb3...), Cristian (ee9580d8...), Antonia (2bb5d03d...), Joan (ab0b028b...), José (0a019e93...)
+-- Rating: valores entre 1 y 5 (estrellas)
 -- ====================================================================
-INSERT INTO public.establecimiento_turistico (id, id_proveedor, id_destino, nombre, tipo, descripcion, estado)
+INSERT INTO public.establecimiento_turistico (id, id_proveedor, id_destino, nombre, tipo, descripcion, estado, rating)
 VALUES 
-    ('22222222-2222-4222-a222-222222222221', 'e00dc6ff-d6df-4790-a510-66252a8896e3', '11111111-1111-4111-a111-111111111111', 'Hotel Iguana', 'hotel', 'Hotel cerca del mar', 'activo'),
-    ('22222222-2222-4222-a222-222222222222', '794098e5-b270-4d35-9b14-46b0f5996612', '11111111-1111-4111-a111-111111111112', 'Restaurante Panecillo', 'restaurante', 'Comida ecuatoriana', 'activo'),
-    ('22222222-2222-4222-a222-222222222223', 'feb472b5-0a07-4aa9-9a6b-89bef334c382', '11111111-1111-4111-a111-111111111113', 'Tour Cajas Magico', 'tour', 'Guianza en el Cajas', 'activo'),
-    ('22222222-2222-4222-a222-222222222224', 'd3bf7fb3-c5bf-4fa8-9780-314f10247b9b', '11111111-1111-4111-a111-111111111114', 'Hostal del Surf', 'hotel', 'Para surfistas', 'activo'),
-    ('22222222-2222-4222-a222-222222222225', 'ee9580d8-7416-447f-89ad-bea85dabbc50', '11111111-1111-4111-a111-111111111115', 'Refugio Cotopaxi', 'hotel', 'Dormir en el volcán', 'activo'),
-    ('22222222-2222-4222-a222-222222222226', '2bb5d03d-580d-45f9-b26b-7a85192a9ef7', '11111111-1111-4111-a111-111111111116', 'Mirador Quilotoa', 'restaurante', 'Almuerzo con vista', 'activo'),
-    ('22222222-2222-4222-a222-222222222227', 'ab0b028b-55f9-42a4-829a-e5546917bb28', '11111111-1111-4111-a111-111111111117', 'Cascadas Tour', 'tour', 'Ruta de las cascadas', 'activo'),
-    ('22222222-2222-4222-a222-222222222228', '0a019e93-a3d9-4865-a073-cb720ae9ee3a', '11111111-1111-4111-a111-111111111118', 'Museo Ingapirca', 'tour', 'Tour por las ruinas', 'activo')
+    ('22222222-2222-4222-a222-222222222221', 'e00dc6ff-d6df-4790-a510-66252a8896e3', '11111111-1111-4111-a111-111111111111', 'Hotel Iguana', 'hotel', 'Hotel cerca del mar', 'activo', 4.8),
+    ('22222222-2222-4222-a222-222222222222', '794098e5-b270-4d35-9b14-46b0f5996612', '11111111-1111-4111-a111-111111111112', 'Restaurante Panecillo', 'restaurante', 'Comida ecuatoriana', 'activo', 4.5),
+    ('22222222-2222-4222-a222-222222222223', 'feb472b5-0a07-4aa9-9a6b-89bef334c382', '11111111-1111-4111-a111-111111111113', 'Tour Cajas Magico', 'tour', 'Guianza en el Cajas', 'activo', 3.9),
+    ('22222222-2222-4222-a222-222222222224', 'd3bf7fb3-c5bf-4fa8-9780-314f10247b9b', '11111111-1111-4111-a111-111111111114', 'Hostal del Surf', 'hotel', 'Para surfistas', 'activo', 4.2),
+    ('22222222-2222-4222-a222-222222222225', 'ee9580d8-7416-447f-89ad-bea85dabbc50', '11111111-1111-4111-a111-111111111115', 'Refugio Cotopaxi', 'hotel', 'Dormir en el volcán', 'activo', 2.8),
+    ('22222222-2222-4222-a222-222222222226', '2bb5d03d-580d-45f9-b26b-7a85192a9ef7', '11111111-1111-4111-a111-111111111116', 'Mirador Quilotoa', 'restaurante', 'Almuerzo con vista', 'activo', 4.7),
+    ('22222222-2222-4222-a222-222222222227', 'ab0b028b-55f9-42a4-829a-e5546917bb28', '11111111-1111-4111-a111-111111111117', 'Cascadas Tour', 'tour', 'Ruta de las cascadas', 'activo', 1.5),
+    ('22222222-2222-4222-a222-222222222228', '0a019e93-a3d9-4865-a073-cb720ae9ee3a', '11111111-1111-4111-a111-111111111118', 'Museo Ingapirca', 'tour', 'Tour por las ruinas', 'activo', 4.1)
 ON CONFLICT (id) DO NOTHING;
 
 -- ====================================================================
