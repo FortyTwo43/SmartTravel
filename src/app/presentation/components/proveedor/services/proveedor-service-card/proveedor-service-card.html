@@ -42,6 +42,7 @@
 
     <div class="service-card__actions">
       <button type="button" class="service-card__action-btn service-card__action-btn--primary"
+        [routerLink]="['/provider/services/edit', service().id]"
         [attr.aria-label]="'COMMON.EDIT' | translate">
         <lucide-icon name="Edit2"></lucide-icon>
         <span>{{ 'COMMON.EDIT' | translate }}</span>

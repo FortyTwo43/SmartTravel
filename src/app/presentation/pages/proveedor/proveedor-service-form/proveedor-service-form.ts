@@ -1,13 +1,15 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormArray, ReactiveFormsModule, Validators, AbstractControl } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { Router, RouterLink, ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, ArrowLeft, Save, Plus, Trash2 } from 'lucide-angular';
 import { CreateProveedorServiceUseCase } from '../../../../useCase/proveedor/services/CreateProveedorServiceUseCase';
+import { UpdateProveedorServiceUseCase } from '../../../../useCase/proveedor/services/UpdateProveedorServiceUseCase';
+import { GetProveedorServiceUseCase } from '../../../../useCase/proveedor/services/GetProveedorServiceUseCase';
 import { LoadEstablecimientosUseCase } from '../../../../useCase/proveedor/services/LoadEstablecimientosUseCase';
 import { EstablecimientoTuristico } from '../../../../domain/entities/EstablecimientoTuristico';
-import { CreateServicioReservableDto } from '../../../../domain/entities/dtos';
+import { CreateServicioReservableDto, UpdateServicioReservableDto } from '../../../../domain/entities/dtos';
 
 @Component({
   selector: 'app-proveedor-service-form',
@@ -26,7 +28,10 @@ import { CreateServicioReservableDto } from '../../../../domain/entities/dtos';
 export class ProveedorServiceFormComponent implements OnInit {
   private readonly fb = inject(FormBuilder);
   private readonly router = inject(Router);
+  private readonly route = inject(ActivatedRoute);
   private readonly createServiceUseCase = inject(CreateProveedorServiceUseCase);
+  private readonly updateServiceUseCase = inject(UpdateProveedorServiceUseCase);
+  private readonly getServiceUseCase = inject(GetProveedorServiceUseCase);
   private readonly loadEstablecimientosUseCase = inject(LoadEstablecimientosUseCase);
 
   public serviceForm!: FormGroup;
@@ -34,10 +39,14 @@ export class ProveedorServiceFormComponent implements OnInit {
   public loading = signal<boolean>(false);
   public loadingEstablecimientos = signal<boolean>(true);
   public error = signal<string | null>(null);
+  public isEditMode = signal<boolean>(false);
+  private editId: string | null = null;
 
   ngOnInit(): void {
+    this.editId = this.route.snapshot.paramMap.get('id');
+    this.isEditMode.set(!!this.editId);
     this.initForm();
-    this.loadEstablecimientos();
+    void this.loadEstablecimientos();
   }
 
   private initForm(): void {
@@ -72,12 +81,48 @@ export class ProveedorServiceFormComponent implements OnInit {
       if (data.length === 1) {
         this.serviceForm.patchValue({ id_establecimiento: data[0].id });
       }
+
+      if (this.editId) {
+        await this.loadServiceForEdit(this.editId);
+      }
     } catch (err) {
       console.error(err);
       this.error.set('PROVIDER_SERVICES.FORM.ERROR');
     } finally {
       this.loadingEstablecimientos.set(false);
     }
+  }
+
+  private async loadServiceForEdit(id: string): Promise<void> {
+    const service = await this.getServiceUseCase.execute(id);
+    if (!service) {
+      this.error.set('PROVIDER_SERVICES.FORM.ERROR');
+      return;
+    }
+
+    // Parse comodidades into individual controls
+    const comodidades = service.comodidades_adicionales
+      .split(',')
+      .map(c => c.trim())
+      .filter(c => c.length > 0);
+
+    const array = this.comodidadesArray;
+    // Clear the default empty control
+    while (array.length > 0) array.removeAt(0);
+    // Add one control per comodidad, or at least one empty
+    if (comodidades.length > 0) {
+      comodidades.forEach(c => array.push(this.fb.control(c)));
+    } else {
+      array.push(this.fb.control(''));
+    }
+
+    this.serviceForm.patchValue({
+      nombre: service.nombre,
+      precio: service.precio,
+      descripcion: service.descripcion,
+      disponibilidad: service.disponibilidad,
+      id_establecimiento: service.id_establecimiento
+    });
   }
 
   public async onSubmit(): Promise<void> {
@@ -89,20 +134,27 @@ export class ProveedorServiceFormComponent implements OnInit {
     try {
       this.loading.set(true);
       this.error.set(null);
-      
+
       const rawValue = this.serviceForm.value;
       const comodidades = (rawValue.comodidades_adicionales as string[])
         .map(c => c.trim())
         .filter(c => c.length > 0)
         .join(', ');
 
-      const dto: CreateServicioReservableDto = {
-        ...rawValue,
-        comodidades_adicionales: comodidades
-      };
-      
-      await this.createServiceUseCase.execute(dto);
-      
+      if (this.isEditMode() && this.editId) {
+        const dto: UpdateServicioReservableDto = {
+          ...rawValue,
+          comodidades_adicionales: comodidades
+        };
+        await this.updateServiceUseCase.execute(this.editId, dto);
+      } else {
+        const dto: CreateServicioReservableDto = {
+          ...rawValue,
+          comodidades_adicionales: comodidades
+        };
+        await this.createServiceUseCase.execute(dto);
+      }
+
       this.router.navigate(['/provider/services']);
     } catch (err) {
       console.error(err);

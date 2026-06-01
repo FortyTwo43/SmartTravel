@@ -4,8 +4,12 @@
       <lucide-icon name="arrow-left" [size]="20"></lucide-icon>
     </button>
     <div>
-      <h1 class="provider-service-form-page__title">{{ 'PROVIDER_SERVICES.FORM.TITLE' | translate }}</h1>
-      <p class="provider-service-form-page__subtitle">{{ 'PROVIDER_SERVICES.FORM.SUBTITLE' | translate }}</p>
+      <h1 class="provider-service-form-page__title">
+        {{ (isEditMode() ? 'PROVIDER_SERVICES.FORM.TITLE_EDIT' : 'PROVIDER_SERVICES.FORM.TITLE') | translate }}
+      </h1>
+      <p class="provider-service-form-page__subtitle">
+        {{ (isEditMode() ? 'PROVIDER_SERVICES.FORM.SUBTITLE_EDIT' : 'PROVIDER_SERVICES.FORM.SUBTITLE') | translate }}
+      </p>
     </div>
   </header>
 
@@ -124,7 +128,7 @@
             {{ 'COMMON.LOADING' | translate }}
           } @else {
             <lucide-icon name="save" [size]="18"></lucide-icon>
-            <span>{{ 'PROVIDER_SERVICES.FORM.SUBMIT' | translate }}</span>
+            <span>{{ (isEditMode() ? 'PROVIDER_SERVICES.FORM.SUBMIT_EDIT' : 'PROVIDER_SERVICES.FORM.SUBMIT') | translate }}</span>
           }
         </button>
       </div>

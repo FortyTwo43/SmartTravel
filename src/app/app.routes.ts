@@ -50,6 +50,10 @@ export const routes: Routes = [
         loadComponent: () => import('./presentation/pages/proveedor/proveedor-service-form/proveedor-service-form').then(m => m.ProveedorServiceFormComponent)
       },
       {
+        path: 'services/edit/:id',
+        loadComponent: () => import('./presentation/pages/proveedor/proveedor-service-form/proveedor-service-form').then(m => m.ProveedorServiceFormComponent)
+      },
+      {
         path: 'accessibility',
         loadComponent: ()=> import('./presentation/pages/accessibility/accessibility.component').then(m => m.AccessibilityComponent)
       }

@@ -285,7 +285,9 @@
     },
     "FORM": {
       "TITLE": "Crear nuevo servicio",
+      "TITLE_EDIT": "Editar servicio",
       "SUBTITLE": "Añade un nuevo servicio reservable a tu catálogo",
+      "SUBTITLE_EDIT": "Modifica los datos del servicio",
       "NAME": "Nombre del servicio",
       "NAME_PLACEHOLDER": "Ej. Habitación Doble, Paseo en bote...",
       "PRICE": "Precio",
@@ -298,6 +300,7 @@
       "ESTABLISHMENT_PLACEHOLDER": "Selecciona un establecimiento",
       "AVAILABILITY": "Disponibilidad inmediata",
       "SUBMIT": "Crear servicio",
+      "SUBMIT_EDIT": "Guardar cambios",
       "SUCCESS": "Servicio creado exitosamente",
       "ERROR": "Ocurrió un error al crear el servicio",
       "BACK": "Volver a servicios",

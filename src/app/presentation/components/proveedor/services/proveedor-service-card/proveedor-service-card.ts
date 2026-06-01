@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Edit2, Power, Trash2 } from 'lucide-angular';
 import { ProveedorServiceItem } from '../../../../../domain/ui/proveedor/services/ProveedorServiceItem';
@@ -7,7 +8,7 @@ import { ProveedorServiceItem } from '../../../../../domain/ui/proveedor/service
 @Component({
   selector: 'app-proveedor-service-card',
   standalone: true,
-  imports: [CommonModule, TranslateModule, LucideAngularModule],
+  imports: [CommonModule, TranslateModule, LucideAngularModule, RouterLink],
   providers: [{
     provide: LUCIDE_ICONS,
     multi: true,
