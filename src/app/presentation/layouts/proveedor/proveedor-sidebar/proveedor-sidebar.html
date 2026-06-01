@@ -4,7 +4,7 @@
   </div>
   
   <nav class="sidebar-nav">
-    <a class="nav-item active" href="/provider/dashboard">
+    <a class="nav-item" routerLink="/provider/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
       <lucide-icon name="layout-dashboard"></lucide-icon>
       <span>{{ 'PROVIDER_DASHBOARD.SIDEBAR.DASHBOARD' | translate }}</span>
     </a>
@@ -12,7 +12,7 @@
       <lucide-icon name="calendar"></lucide-icon>
       <span>{{ 'PROVIDER_DASHBOARD.SIDEBAR.RESERVATIONS' | translate }}</span>
     </a>
-    <a class="nav-item" href="#">
+    <a class="nav-item" routerLink="/provider/services" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
       <lucide-icon name="concierge-bell"></lucide-icon>
       <span>{{ 'PROVIDER_DASHBOARD.SIDEBAR.SERVICES' | translate }}</span>
     </a>

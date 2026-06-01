@@ -266,6 +266,48 @@
       "RESERVATIONS": "RESERVATIONS"
     }
   },
+  "PROVIDER_SERVICES": {
+    "EYEBROW": "Service management",
+    "TITLE": "Provider services",
+    "SUBTITLE": "Review and manage the real services associated with your establishments.",
+    "ADD_SERVICE": "Add service",
+    "TOTAL": "registered services",
+    "EMPTY_TITLE": "You do not have any registered services yet",
+    "EMPTY_DESCRIPTION": "When you create reservable services, they will appear here as individual cards.",
+    "CARD": {
+      "EDIT": "Edit service",
+      "DELETE": "Delete service",
+      "ENABLE": "Enable",
+      "DISABLE": "Disable",
+      "TOGGLE_AVAILABILITY": "Toggle availability",
+      "AVAILABLE": "Available",
+      "UNAVAILABLE": "Unavailable"
+    },
+    "FORM": {
+      "TITLE": "Create new service",
+      "TITLE_EDIT": "Edit service",
+      "SUBTITLE": "Add a new reservable service to your catalog",
+      "SUBTITLE_EDIT": "Modify the service details",
+      "NAME": "Service name",
+      "NAME_PLACEHOLDER": "E.g. Double Room, Boat ride...",
+      "PRICE": "Price",
+      "PRICE_PLACEHOLDER": "0.00",
+      "DESCRIPTION": "Description",
+      "DESCRIPTION_PLACEHOLDER": "Describe the details of the service...",
+      "AMENITIES": "Additional amenities",
+      "AMENITIES_PLACEHOLDER": "E.g. Wi-Fi",
+      "ESTABLISHMENT": "Establishment",
+      "ESTABLISHMENT_PLACEHOLDER": "Select an establishment",
+      "AVAILABILITY": "Immediate availability",
+      "SUBMIT": "Create service",
+      "SUBMIT_EDIT": "Save changes",
+      "SUCCESS": "Service created successfully",
+      "ERROR": "An error occurred while creating the service",
+      "BACK": "Back to services",
+      "ADD_AMENITY": "Add amenity",
+      "ERROR_PRICE_GREATER_THAN_ZERO": "Price must be greater than 0"
+    }
+  },
   "TRAVELER_DASHBOARD": {
     "HELLO": "Hello",
     "CURIOSITY": "Where will your curiosity lead you today?",

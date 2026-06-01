@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, LayoutDashboard, Calendar, ConciergeBell, Users, BarChart, Bell, Settings } from 'lucide-angular';
@@ -7,7 +7,7 @@ import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, LayoutDashboard,
 @Component({
   selector: 'app-proveedor-sidebar',
   standalone: true,
-  imports: [CommonModule, RouterLink, LucideAngularModule, TranslateModule],
+  imports: [CommonModule, RouterLink, RouterLinkActive, LucideAngularModule, TranslateModule],
   providers: [{
     provide: LUCIDE_ICONS,
     multi: true,

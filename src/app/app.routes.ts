@@ -42,6 +42,18 @@ export const routes: Routes = [
         loadComponent: () => import('./presentation/pages/proveedor/proveedor-dashboard/proveedor-dashboard').then(m => m.ProveedorDashboardComponent)
       },
       {
+        path: 'services',
+        loadComponent: () => import('./presentation/pages/proveedor/proveedor-services/proveedor-services').then(m => m.ProveedorServicesPageComponent)
+      },
+      {
+        path: 'services/new',
+        loadComponent: () => import('./presentation/pages/proveedor/proveedor-service-form/proveedor-service-form').then(m => m.ProveedorServiceFormComponent)
+      },
+      {
+        path: 'services/edit/:id',
+        loadComponent: () => import('./presentation/pages/proveedor/proveedor-service-form/proveedor-service-form').then(m => m.ProveedorServiceFormComponent)
+      },
+      {
         path: 'accessibility',
         loadComponent: ()=> import('./presentation/pages/accessibility/accessibility.component').then(m => m.AccessibilityComponent)
       }
