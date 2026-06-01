@@ -2,7 +2,8 @@
   <header class="service-card__header">
     <div class="service-card__badge">
       <span class="service-card__status-dot" [class.service-card__status-dot--active]="service().disponibilidad"></span>
-      <span>{{ service().disponibilidad ? ('PROVIDER_SERVICES.CARD.AVAILABLE' | translate) : ('PROVIDER_SERVICES.CARD.UNAVAILABLE' | translate) }}</span>
+      <span>{{ service().disponibilidad ? ('PROVIDER_SERVICES.CARD.AVAILABLE' | translate) :
+        ('PROVIDER_SERVICES.CARD.UNAVAILABLE' | translate) }}</span>
     </div>
   </header>
 
@@ -19,11 +20,11 @@
     <p class="service-card__description">{{ service().descripcion }}</p>
 
     @if (amenities.length > 0) {
-      <div class="service-card__chips" aria-label="Comodidades adicionales">
-        @for (amenity of amenities; track amenity) {
-          <span class="service-card__chip">{{ amenity }}</span>
-        }
-      </div>
+    <div class="service-card__chips" aria-label="Comodidades adicionales">
+      @for (amenity of amenities; track amenity) {
+      <span class="service-card__chip">{{ amenity }}</span>
+      }
+    </div>
     }
 
     <div class="service-card__establishment-name">
@@ -32,18 +33,22 @@
   </div>
 
   <footer class="service-card__footer">
-    <button type="button" class="service-card__toggle" (click)="toggleAvailability()" [attr.aria-pressed]="service().disponibilidad">
+    <button type="button" class="service-card__toggle" (click)="toggleAvailability()"
+      [attr.aria-pressed]="service().disponibilidad">
       <lucide-icon name="Power"></lucide-icon>
-      <span>{{ service().disponibilidad ? ('PROVIDER_SERVICES.CARD.DISABLE' | translate) : ('PROVIDER_SERVICES.CARD.ENABLE' | translate) }}</span>
+      <span>{{ service().disponibilidad ? ('PROVIDER_SERVICES.CARD.DISABLE' | translate) :
+        ('PROVIDER_SERVICES.CARD.ENABLE' | translate) }}</span>
     </button>
 
     <div class="service-card__actions">
-      <button type="button" class="service-card__action-btn service-card__action-btn--primary" [attr.aria-label]="'COMMON.EDIT' | translate">
+      <button type="button" class="service-card__action-btn service-card__action-btn--primary"
+        [attr.aria-label]="'COMMON.EDIT' | translate">
         <lucide-icon name="Edit2"></lucide-icon>
         <span>{{ 'COMMON.EDIT' | translate }}</span>
       </button>
 
-      <button type="button" class="service-card__action-btn service-card__action-btn--danger" [attr.aria-label]="'PROVIDER_SERVICES.CARD.DELETE' | translate">
+      <button type="button" class="service-card__action-btn service-card__action-btn--danger"
+        [attr.aria-label]="'PROVIDER_SERVICES.CARD.DELETE' | translate">
         <lucide-icon name="Trash2"></lucide-icon>
       </button>
     </div>
