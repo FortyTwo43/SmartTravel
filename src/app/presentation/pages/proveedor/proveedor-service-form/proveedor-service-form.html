@@ -1,0 +1,133 @@
+<section class="provider-service-form-page">
+  <header class="provider-service-form-page__header">
+    <button class="back-button" routerLink="/provider/services" [attr.aria-label]="'PROVIDER_SERVICES.FORM.BACK' | translate">
+      <lucide-icon name="arrow-left" [size]="20"></lucide-icon>
+    </button>
+    <div>
+      <h1 class="provider-service-form-page__title">{{ 'PROVIDER_SERVICES.FORM.TITLE' | translate }}</h1>
+      <p class="provider-service-form-page__subtitle">{{ 'PROVIDER_SERVICES.FORM.SUBTITLE' | translate }}</p>
+    </div>
+  </header>
+
+  <main class="provider-service-form-page__content">
+    @if (error()) {
+      <div class="alert alert--error" role="alert">
+        {{ error() | translate }}
+      </div>
+    }
+
+    <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()" class="service-form">
+      <div class="form-group">
+        <label for="nombre">{{ 'PROVIDER_SERVICES.FORM.NAME' | translate }}</label>
+        <input 
+          type="text" 
+          id="nombre" 
+          formControlName="nombre" 
+          class="form-input"
+          [placeholder]="'PROVIDER_SERVICES.FORM.NAME_PLACEHOLDER' | translate"
+        />
+      </div>
+
+      <div class="form-group form-group--inline">
+        <div class="form-field">
+          <label for="precio">{{ 'PROVIDER_SERVICES.FORM.PRICE' | translate }}</label>
+          <div class="input-with-icon">
+            <span class="currency-symbol">$</span>
+            <input 
+              type="number" 
+              id="precio" 
+              formControlName="precio" 
+              class="form-input"
+              [placeholder]="'PROVIDER_SERVICES.FORM.PRICE_PLACEHOLDER' | translate"
+              min="0.01"
+              step="0.01"
+            />
+          </div>
+          @if (serviceForm.get('precio')?.hasError('greaterThanZero') && serviceForm.get('precio')?.touched) {
+            <span class="error-text">{{ 'PROVIDER_SERVICES.FORM.ERROR_PRICE_GREATER_THAN_ZERO' | translate }}</span>
+          }
+        </div>
+
+        @if (establecimientos().length > 1) {
+          <div class="form-field">
+            <label for="id_establecimiento">{{ 'PROVIDER_SERVICES.FORM.ESTABLISHMENT' | translate }}</label>
+            <select id="id_establecimiento" formControlName="id_establecimiento" class="form-input form-select">
+              <option value="" disabled>{{ 'PROVIDER_SERVICES.FORM.ESTABLISHMENT_PLACEHOLDER' | translate }}</option>
+              @for (est of establecimientos(); track est.id) {
+                <option [value]="est.id">{{ est.nombre }}</option>
+              }
+            </select>
+          </div>
+        } @else if (establecimientos().length === 1) {
+          <div class="form-field">
+            <label>{{ 'PROVIDER_SERVICES.FORM.ESTABLISHMENT' | translate }}</label>
+            <div class="readonly-field">{{ establecimientos()[0].nombre }}</div>
+          </div>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="descripcion">{{ 'PROVIDER_SERVICES.FORM.DESCRIPTION' | translate }}</label>
+        <textarea 
+          id="descripcion" 
+          formControlName="descripcion" 
+          class="form-input form-textarea"
+          [placeholder]="'PROVIDER_SERVICES.FORM.DESCRIPTION_PLACEHOLDER' | translate"
+          rows="4"
+        ></textarea>
+      </div>
+
+      <div class="form-group" formArrayName="comodidades_adicionales">
+        <label>{{ 'PROVIDER_SERVICES.FORM.AMENITIES' | translate }}</label>
+        
+        <div class="amenities-list">
+          @for (control of comodidadesArray.controls; track $index) {
+            <div class="amenity-item">
+              <input 
+                type="text" 
+                [formControlName]="$index" 
+                class="form-input"
+                [placeholder]="'PROVIDER_SERVICES.FORM.AMENITIES_PLACEHOLDER' | translate"
+              />
+              @if (comodidadesArray.length > 1) {
+                <button type="button" class="btn-icon btn-icon--danger" (click)="removeComodidad($index)" aria-label="Eliminar comodidad">
+                  <lucide-icon name="trash-2" [size]="18"></lucide-icon>
+                </button>
+              }
+            </div>
+          }
+        </div>
+
+        <button type="button" class="btn-add-amenity" (click)="addComodidad()">
+          <lucide-icon name="plus" [size]="16"></lucide-icon>
+          <span>{{ 'PROVIDER_SERVICES.FORM.ADD_AMENITY' | translate }}</span>
+        </button>
+      </div>
+
+      <div class="form-group form-group--checkbox">
+        <input 
+          type="checkbox" 
+          id="disponibilidad" 
+          formControlName="disponibilidad" 
+          class="form-checkbox"
+        />
+        <label for="disponibilidad">{{ 'PROVIDER_SERVICES.FORM.AVAILABILITY' | translate }}</label>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn-cancel" routerLink="/provider/services">
+          {{ 'COMMON.CANCEL' | translate }}
+        </button>
+        <button type="submit" class="btn-submit" [disabled]="serviceForm.invalid || loading()">
+          @if (loading()) {
+            <span class="spinner"></span>
+            {{ 'COMMON.LOADING' | translate }}
+          } @else {
+            <lucide-icon name="save" [size]="18"></lucide-icon>
+            <span>{{ 'PROVIDER_SERVICES.FORM.SUBMIT' | translate }}</span>
+          }
+        </button>
+      </div>
+    </form>
+  </main>
+</section>

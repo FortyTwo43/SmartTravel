@@ -282,6 +282,27 @@
       "TOGGLE_AVAILABILITY": "Cambiar disponibilidad",
       "AVAILABLE": "Disponible",
       "UNAVAILABLE": "No disponible"
+    },
+    "FORM": {
+      "TITLE": "Crear nuevo servicio",
+      "SUBTITLE": "Añade un nuevo servicio reservable a tu catálogo",
+      "NAME": "Nombre del servicio",
+      "NAME_PLACEHOLDER": "Ej. Habitación Doble, Paseo en bote...",
+      "PRICE": "Precio",
+      "PRICE_PLACEHOLDER": "0.00",
+      "DESCRIPTION": "Descripción",
+      "DESCRIPTION_PLACEHOLDER": "Describe los detalles del servicio...",
+      "AMENITIES": "Comodidades adicionales",
+      "AMENITIES_PLACEHOLDER": "Ej. Wi-Fi",
+      "ESTABLISHMENT": "Establecimiento",
+      "ESTABLISHMENT_PLACEHOLDER": "Selecciona un establecimiento",
+      "AVAILABILITY": "Disponibilidad inmediata",
+      "SUBMIT": "Crear servicio",
+      "SUCCESS": "Servicio creado exitosamente",
+      "ERROR": "Ocurrió un error al crear el servicio",
+      "BACK": "Volver a servicios",
+      "ADD_AMENITY": "Agregar comodidad",
+      "ERROR_PRICE_GREATER_THAN_ZERO": "El precio debe ser mayor a 0"
     }
   },
   "TRAVELER_DASHBOARD": {

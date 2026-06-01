@@ -29,6 +29,16 @@ export class ProveedorServiceCardComponent {
       .filter((item) => item.length > 0);
   }
 
+  get truncatedDescription(): string {
+    const desc = this.service().descripcion;
+    if (desc.length <= 270) return desc;
+
+    const slice = desc.slice(0, 270);
+    const lastSpace = slice.lastIndexOf(' ');
+    const cutAt = lastSpace > 0 ? lastSpace : 270;
+    return desc.slice(0, cutAt) + '...';
+  }
+
   toggleAvailability(): void {
     this.availabilityChanged.emit(!this.service().disponibilidad);
   }

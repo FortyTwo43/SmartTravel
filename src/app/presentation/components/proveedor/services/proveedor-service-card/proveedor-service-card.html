@@ -17,7 +17,7 @@
       </p>
     </div>
 
-    <p class="service-card__description">{{ service().descripcion }}</p>
+    <p class="service-card__description">{{ truncatedDescription }}</p>
 
     @if (amenities.length > 0) {
     <div class="service-card__chips" aria-label="Comodidades adicionales">

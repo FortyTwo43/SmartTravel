@@ -5,10 +5,10 @@
       <h1 class="provider-services-page__title">{{ 'PROVIDER_SERVICES.TITLE' | translate }}</h1>
       <p class="provider-services-page__subtitle">{{ 'PROVIDER_SERVICES.SUBTITLE' | translate }}</p>
     </div>
-
-    <button type="button" class="add-service-btn" [attr.aria-label]="'PROVIDER_SERVICES.ADD_SERVICE' | translate">
+    <button type="button" class="add-service-btn" routerLink="/provider/services/new" [attr.aria-label]="'PROVIDER_SERVICES.ADD_SERVICE' | translate">
       <lucide-icon name="Plus"></lucide-icon>
       <span>{{ 'PROVIDER_SERVICES.ADD_SERVICE' | translate }}</span>
+
     </button>
   </header>
 

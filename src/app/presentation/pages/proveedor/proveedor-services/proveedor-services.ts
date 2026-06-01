@@ -5,11 +5,12 @@ import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Plus } from 'luc
 import { ProveedorServiceCardComponent } from '../../../components/proveedor/services/proveedor-service-card/proveedor-service-card';
 import { ProveedorServiceItem } from '../../../../domain/ui/proveedor/services/ProveedorServiceItem';
 import { LoadProveedorServicesUseCase, ToggleServicioDisponibilidadUseCase } from '../../../../useCase/proveedor/services';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-proveedor-services-page',
   standalone: true,
-  imports: [CommonModule, TranslateModule, LucideAngularModule, ProveedorServiceCardComponent],
+  imports: [CommonModule, TranslateModule, LucideAngularModule, ProveedorServiceCardComponent, RouterLink],
   providers: [{
     provide: LUCIDE_ICONS,
     multi: true,
