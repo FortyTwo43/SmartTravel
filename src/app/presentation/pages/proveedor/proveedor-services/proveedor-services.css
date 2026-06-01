@@ -37,19 +37,27 @@
 .add-service-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
-  padding: 0.8rem 1rem;
-  border: 0.0625rem solid var(--border-color);
-  border-radius: 999rem;
-  background: var(--bg-surface);
-  color: var(--text-main);
-  box-shadow: var(--shadow-sm);
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-md);
+  background-color: var(--color-primary);
+  color: var(--text-on-primary);
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .add-service-btn:hover {
-  border-color: color-mix(in srgb, var(--color-primary) 28%, var(--border-color));
-  background: color-mix(in srgb, var(--color-primary) 6%, var(--bg-surface));
+  background-color: color-mix(in srgb, var(--color-primary) 90%, black);
+  box-shadow: var(--shadow-md);
+}
+
+.add-service-btn:active {
+  transform: scale(0.98);
 }
 
 .provider-services-page__summary {
