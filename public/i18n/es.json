@@ -23,7 +23,8 @@
     "NO_ACCOUNT": "¿No tienes una cuenta?",
     "REGISTER_FREE": "Regístrate gratis",
     "PLACEHOLDER_EMAIL": "nombre@ejemplo.com",
-    "PLACEHOLDER_PASSWORD": "contraseña"
+    "PLACEHOLDER_PASSWORD": "contraseña",
+    "LOGO_ALT": "SmartTravel, plataforma de viajes inteligentes"
   },
   "COMMON": {
     "SAVE": "Guardar",
@@ -74,7 +75,9 @@
       "PROVIDER_BADGE": "PROVEEDOR",
       "PROVIDER_TITLE": "Impulsa tu negocio",
       "PROVIDER_DESC": "Llega a los viajeros perfectos mediante nuestro motor de recomendación predictiva.",
-      "REGISTER_COMPANY": "Registrar mi empresa"
+      "REGISTER_COMPANY": "Registrar mi empresa",
+      "TRAVELER_IMG_ALT": "Viajero con mochila contemplando un paisaje montañoso",
+      "PROVIDER_IMG_ALT": "Personal de hotel atendiendo en un lobby de lujo"
     },
     "DESTINATIONS": {
       "TITLE": "Destinos Populares",
@@ -173,7 +176,10 @@
     "ERROR_WEAK_PASSWORD": "La contraseña no cumple los requisitos mínimos.",
     "ERROR_CREATE_PROFILE": "Error al crear el perfil. Por favor intenta de nuevo.",
     "ERROR_SUBMIT_REQUEST": "Error al enviar la solicitud. Por favor intenta de nuevo.",
-    "ERROR_UNEXPECTED": "Ocurrió un error inesperado. Por favor intenta de nuevo."
+    "ERROR_UNEXPECTED": "Ocurrió un error inesperado. Por favor intenta de nuevo.",
+    "SHOW_PASSWORD": "Mostrar contraseña",
+    "HIDE_PASSWORD": "Ocultar contraseña",
+    "REMOVE_FILE": "Eliminar archivo adjunto"
   },
   "TRAVELER_ONBOARDING": {
     "TITLE": "Personaliza tu experiencia",

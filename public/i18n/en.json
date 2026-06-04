@@ -23,7 +23,8 @@
     "NO_ACCOUNT": "Don't have an account?",
     "REGISTER_FREE": "Register for free",
     "PLACEHOLDER_EMAIL": "name@example.com",
-    "PLACEHOLDER_PASSWORD": "password"
+    "PLACEHOLDER_PASSWORD": "password",
+    "LOGO_ALT": "SmartTravel, smart travel platform"
   },
   "COMMON": {
     "SAVE": "Save",
@@ -74,7 +75,9 @@
       "PROVIDER_BADGE": "PROVIDER",
       "PROVIDER_TITLE": "Boost your business",
       "PROVIDER_DESC": "Reach the perfect travelers through our predictive recommendation engine.",
-      "REGISTER_COMPANY": "Register my company"
+      "REGISTER_COMPANY": "Register my company",
+      "TRAVELER_IMG_ALT": "Traveler with a backpack overlooking a mountain landscape",
+      "PROVIDER_IMG_ALT": "Hotel staff welcoming guests in a luxury lobby"
     },
     "DESTINATIONS": {
       "TITLE": "Popular Destinations",
@@ -173,7 +176,10 @@
     "ERROR_WEAK_PASSWORD": "Password does not meet minimum requirements.",
     "ERROR_CREATE_PROFILE": "Error creating profile. Please try again.",
     "ERROR_SUBMIT_REQUEST": "Error submitting request. Please try again.",
-    "ERROR_UNEXPECTED": "An unexpected error occurred. Please try again."
+    "ERROR_UNEXPECTED": "An unexpected error occurred. Please try again.",
+    "SHOW_PASSWORD": "Show password",
+    "HIDE_PASSWORD": "Hide password",
+    "REMOVE_FILE": "Remove attached file"
   },
   "TRAVELER_ONBOARDING": {
     "TITLE": "Personalize your experience",

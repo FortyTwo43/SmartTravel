@@ -79,8 +79,9 @@
                     <input [type]="passwordVisible() ? 'text' : 'password'" class="form-input"
                       [class.ng-invalid-custom]="passwordInvalid" placeholder="••••••••" [(ngModel)]="password"
                       name="password" />
-                    <button type="button" (click)="togglePasswordVisibility()" class="password-toggle">
-                      <lucide-icon [name]="passwordVisible() ? 'eye_off' : 'eye'"></lucide-icon>
+                    <button type="button" (click)="togglePasswordVisibility()" class="password-toggle"
+                      [attr.aria-label]="(passwordVisible() ? 'REGISTER.HIDE_PASSWORD' : 'REGISTER.SHOW_PASSWORD') | translate">
+                      <lucide-icon [name]="passwordVisible() ? 'eye_off' : 'eye'" aria-hidden="true"></lucide-icon>
                     </button>
                   </div>
                   @if (passwordInvalid) {
@@ -93,8 +94,9 @@
                     <input [type]="confirmPasswordVisible() ? 'text' : 'password'" class="form-input"
                       [class.ng-invalid-custom]="passwordsMismatch" placeholder="••••••••" [(ngModel)]="confirmPassword"
                       name="confirmPassword" />
-                    <button type="button" (click)="toggleConfirmPasswordVisibility()" class="password-toggle">
-                      <lucide-icon [name]="confirmPasswordVisible() ? 'eye_off' : 'eye'"></lucide-icon>
+                    <button type="button" (click)="toggleConfirmPasswordVisibility()" class="password-toggle"
+                      [attr.aria-label]="(confirmPasswordVisible() ? 'REGISTER.HIDE_PASSWORD' : 'REGISTER.SHOW_PASSWORD') | translate">
+                      <lucide-icon [name]="confirmPasswordVisible() ? 'eye_off' : 'eye'" aria-hidden="true"></lucide-icon>
                     </button>
                   </div>
                   @if (passwordsMismatch) {
@@ -201,8 +203,9 @@
                       }}</span>
                   </div>
                   <button type="button" class="remove-file-btn" (click)="removeFile()"
+                    [attr.aria-label]="'REGISTER.REMOVE_FILE' | translate"
                     style="background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #ef4444; padding: 0.25rem;">
-                    <lucide-icon name="x" [size]="20"></lucide-icon>
+                    <lucide-icon name="x" [size]="20" aria-hidden="true"></lucide-icon>
                   </button>
                 </div>
                 }
