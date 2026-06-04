@@ -21,7 +21,7 @@ describe('ExplorarDestinosComponent', () => {
       imports: [ExplorarDestinosComponent, TranslateModule.forRoot()],
       providers: [
         { provide: GetExplorarDestinosUseCase, useValue: mockUseCase },
-        provideRouter([]) // Needed for sidebar/header routing
+        provideRouter([])
       ]
     }).compileComponents();
 

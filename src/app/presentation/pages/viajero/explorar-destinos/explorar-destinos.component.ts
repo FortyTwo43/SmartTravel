@@ -2,9 +2,6 @@ import { Component, OnInit, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { TravelerSidebarComponent } from '../../../layouts/viajero/traveler-sidebar/traveler-sidebar.component';
-import { TravelerHeaderComponent } from '../../../layouts/viajero/traveler-header/traveler-header.component';
-
 import { GetExplorarDestinosUseCase, ExploreDestination } from '../../../../useCase/viajero/explorar-destinos/GetExplorarDestinosUseCase';
 
 
@@ -17,8 +14,6 @@ import { DestinationGridComponent } from '../../../components/viajero/explorar-d
   imports: [
     CommonModule,
     TranslateModule,
-    TravelerSidebarComponent,
-    TravelerHeaderComponent,
     TravelerFilterSidebarComponent,
     DestinationGridComponent
   ],

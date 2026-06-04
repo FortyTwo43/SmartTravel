@@ -1,23 +1,17 @@
-<div class="page-wrapper">
-  <app-traveler-sidebar></app-traveler-sidebar>
+<div class="explorar-destinos-page">
+  <div class="content-area">
+    <aside class="filters-column">
+      <app-traveler-filter-sidebar (applyFilters)="onApplyFilters($event)"></app-traveler-filter-sidebar>
+    </aside>
 
-  <div class="page-container">
-    <app-traveler-header></app-traveler-header>
-
-    <div class="content-area">
-      <aside class="filters-column">
-        <app-traveler-filter-sidebar (applyFilters)="onApplyFilters($event)"></app-traveler-filter-sidebar>
-      </aside>
-
-      <section class="results-column">
-        @if (isLoading()) {
-          <div class="loading">{{ 'COMMON.LOADING' | translate }}</div>
-        } @else if (error()) {
-          <div class="error">{{ error() }}</div>
-        } @else {
-          <app-destination-grid [destinos]="destinos()"></app-destination-grid>
-        }
-      </section>
-    </div>
+    <section class="results-column">
+      @if (isLoading()) {
+        <div class="loading">{{ 'COMMON.LOADING' | translate }}</div>
+      } @else if (error()) {
+        <div class="error">{{ error() }}</div>
+      } @else {
+        <app-destination-grid [destinos]="destinos()"></app-destination-grid>
+      }
+    </section>
   </div>
 </div>

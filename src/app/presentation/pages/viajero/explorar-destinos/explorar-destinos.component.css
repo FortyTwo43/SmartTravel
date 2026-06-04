@@ -1,16 +1,10 @@
-.page-wrapper {
-  display: flex;
-}
-
-.page-container {
-  flex: 1;
+.explorar-destinos-page {
   padding: 1rem 1.5rem;
 }
 
 .content-area {
   display: flex;
   gap: 1.5rem;
-  margin-top: 1rem;
 }
 
 .filters-column {
