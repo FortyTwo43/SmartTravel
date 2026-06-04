@@ -1,9 +1,9 @@
 <header class="header-container">
   <div class="header-left">
-    <h2 class="header-title">{{ nombre }}</h2>
+    <h2 class="header-title">{{ establishment()?.nombre }}</h2>
     <div class="status-badge">
       <lucide-icon name="star" class="icon-sm text-secondary"></lucide-icon>
-      <span class="status-text">{{ tipo }}</span>
+      <span class="status-text">{{ establishment()?.tipo }}</span>
     </div>
   </div>
   

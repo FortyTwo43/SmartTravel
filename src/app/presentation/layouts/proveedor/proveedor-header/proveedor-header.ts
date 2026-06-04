@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Star, Calendar, ChevronDown, Bell } from 'lucide-angular';
+import { SharedEstablishmentService } from '../../../service/shared/shared-establishment.service';
 
 @Component({
   selector: 'app-proveedor-header',
@@ -15,6 +16,6 @@ import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Star, Calendar, 
   styleUrl: './proveedor-header.css'
 })
 export class ProveedorHeaderComponent {
-  @Input() nombre: string = '';
-  @Input() tipo: string = '';
+  private sharedEstablishment = inject(SharedEstablishmentService);
+  protected establishment = this.sharedEstablishment.establishment;
 }

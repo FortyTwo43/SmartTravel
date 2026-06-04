@@ -1,0 +1,22 @@
+<section class="visual-theme-section">
+  <fieldset class="theme-fieldset">
+    <legend class="section-title">
+      <lucide-icon name="Settings" size="24"></lucide-icon>
+      {{ 'ACCESSIBILITY.VISUAL_THEME' | translate }}
+    </legend>
+    <div class="theme-options">
+      @for (theme of themes; track theme.code) {
+        <label class="radio-option">
+          <input
+            type="radio"
+            name="theme"
+            [value]="theme.code"
+            [checked]="selectedTheme() === theme.code"
+            (change)="onThemeChange(theme.code)"
+          />
+          <span class="radio-label">{{ theme.label | translate }}</span>
+        </label>
+      }
+    </div>
+  </fieldset>
+</section>

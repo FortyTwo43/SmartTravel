@@ -1,6 +1,5 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProveedorLayoutComponent } from '../../../layouts/proveedor/proveedor-layout/proveedor-layout';
 import { ProveedorMetricsComponent } from '../../../components/proveedor/dashboard/proveedor-metrics/proveedor-metrics';
 import { ProveedorChartPlaceholderComponent } from '../../../components/proveedor/dashboard/proveedor-chart-placeholder/proveedor-chart-placeholder';
 import { ProveedorActivityComponent } from '../../../components/proveedor/dashboard/proveedor-activity/proveedor-activity';
@@ -18,13 +17,13 @@ import { LoadDashboardServiciosMasDemandadosUseCase } from '../../../../useCase/
 import { LoadDashboardTipoViajeUseCase } from '../../../../useCase/proveedor/dashboard/LoadDashboardTipoViaje';
 import { LoadDashboardGraphUseCase } from '../../../../useCase/proveedor/dashboard/LoadDashboardGraphUseCase';
 import { LoadDashboardDataUseCase } from '../../../../useCase/proveedor/dashboard/LoadDashboardDataUseCase';
+import { SharedEstablishmentService } from '../../../service/shared/shared-establishment.service';
 
 @Component({
   selector: 'app-proveedor-dashboard',
   standalone: true,
   imports: [
     CommonModule,
-    ProveedorLayoutComponent,
     ProveedorMetricsComponent,
     ProveedorChartPlaceholderComponent,
     ProveedorActivityComponent,
@@ -41,6 +40,7 @@ export class ProveedorDashboardComponent implements OnInit {
   private readonly loadTipoViajeUseCase = inject(LoadDashboardTipoViajeUseCase);
   private readonly loadDashboardGraphUseCase = inject(LoadDashboardGraphUseCase);
   private readonly loadDashboardDataUseCase = inject(LoadDashboardDataUseCase);
+  private readonly sharedEstablishment = inject(SharedEstablishmentService);
 
   establecimiento = signal<EstablecimientoTuristico | null>(null);
 
@@ -58,6 +58,7 @@ export class ProveedorDashboardComponent implements OnInit {
     try {
       const est = await this.loadDashboardDataUseCase.execute();
       this.establecimiento.set(est);
+      this.sharedEstablishment.setEstablishment(est);
 
       const idProveedor = est.id_proveedor;
 

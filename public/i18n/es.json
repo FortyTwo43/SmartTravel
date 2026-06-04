@@ -266,6 +266,48 @@
       "RESERVATIONS": "RESERVAS"
     }
   },
+  "PROVIDER_SERVICES": {
+    "EYEBROW": "Gestión de servicios",
+    "TITLE": "Servicios del proveedor",
+    "SUBTITLE": "Consulta y administra los servicios reales asociados a tus establecimientos.",
+    "ADD_SERVICE": "Agregar servicio",
+    "TOTAL": "servicios registrados",
+    "EMPTY_TITLE": "Aún no tienes servicios registrados",
+    "EMPTY_DESCRIPTION": "Cuando crees servicios reservables aparecerán aquí como tarjetas individuales.",
+    "CARD": {
+      "EDIT": "Editar servicio",
+      "DELETE": "Eliminar servicio",
+      "ENABLE": "Habilitar",
+      "DISABLE": "Deshabilitar",
+      "TOGGLE_AVAILABILITY": "Cambiar disponibilidad",
+      "AVAILABLE": "Disponible",
+      "UNAVAILABLE": "No disponible"
+    },
+    "FORM": {
+      "TITLE": "Crear nuevo servicio",
+      "TITLE_EDIT": "Editar servicio",
+      "SUBTITLE": "Añade un nuevo servicio reservable a tu catálogo",
+      "SUBTITLE_EDIT": "Modifica los datos del servicio",
+      "NAME": "Nombre del servicio",
+      "NAME_PLACEHOLDER": "Ej. Habitación Doble, Paseo en bote...",
+      "PRICE": "Precio",
+      "PRICE_PLACEHOLDER": "0.00",
+      "DESCRIPTION": "Descripción",
+      "DESCRIPTION_PLACEHOLDER": "Describe los detalles del servicio...",
+      "AMENITIES": "Comodidades adicionales",
+      "AMENITIES_PLACEHOLDER": "Ej. Wi-Fi",
+      "ESTABLISHMENT": "Establecimiento",
+      "ESTABLISHMENT_PLACEHOLDER": "Selecciona un establecimiento",
+      "AVAILABILITY": "Disponibilidad inmediata",
+      "SUBMIT": "Crear servicio",
+      "SUBMIT_EDIT": "Guardar cambios",
+      "SUCCESS": "Servicio creado exitosamente",
+      "ERROR": "Ocurrió un error al crear el servicio",
+      "BACK": "Volver a servicios",
+      "ADD_AMENITY": "Agregar comodidad",
+      "ERROR_PRICE_GREATER_THAN_ZERO": "El precio debe ser mayor a 0"
+    }
+  },
   "TRAVELER_DASHBOARD": {
     "HELLO": "Hola",
     "CURIOSITY": "¿A dónde te llevará tu curiosidad hoy?",
@@ -303,5 +345,32 @@
     "FAVORITES": "Favoritos",
     "PROFILE": "Mi Perfil",
     "TRAVELER": "Viajero"
+  },
+  "ACCESSIBILITY": {
+    "TITLE": "Configuración de Accesibilidad",
+    "DESCRIPTION": "Personaliza tu experiencia de navegación para adaptarse perfectamente a tus necesidades visuales y operativas.",
+    "RESET_PREFERENCES": "Restablecer preferencias",
+    "SAVE_CHANGES": "Guardar cambios",
+    "CHANGES_SAVED": "Cambios guardados exitosamente",
+    "VISUAL_THEME": "Tema Visual",
+    "LIGHT_MODE": "Modo Claro",
+    "DARK_MODE": "Modo Oscuro",
+    "SYSTEM_MODE": "Sistema",
+    "TYPOGRAPHY": "Tipografía",
+    "SMALL": "Pequeño",
+    "NORMAL": "Normal",
+    "LARGE": "Grande",
+    "EXTRA_LARGE": "Extra Grande",
+    "PREVIEW_TEXT": "Aquí puedes ver una previsualización de tamaño de fuente",
+    "DETAILED_ADJUSTMENTS": "Ajustes Detallados",
+    "HIGH_CONTRAST": "Contraste Alto",
+    "HIGH_CONTRAST_DESC": "Maximiza la legibilidad visual aumentando el contraste de colores.",
+    "REDUCE_MOTION": "Reducir Movimiento",
+    "REDUCE_MOTION_DESC": "Desactiva animaciones fluidas y efectos de transición complejos.",
+    "SCREEN_READER": "Lector de Pantalla",
+    "SCREEN_READER_DESC": "Optimización de salida de voz para NVDA y VoiceOver.",
+    "LANGUAGE_PREFERENCE": "Preferencia de Idioma",
+    "SPANISH_CASTILIAN": "Español (Castellano)",
+    "ENGLISH": "Inglés"
   }
 }

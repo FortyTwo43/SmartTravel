@@ -1,0 +1,46 @@
+<main class="accessibility-container">
+  <section class="accessibility-header">
+    <h1>{{ 'ACCESSIBILITY.TITLE' | translate }}</h1>
+    <p class="description">{{ 'ACCESSIBILITY.DESCRIPTION' | translate }}</p>
+    <div class="header-actions">
+      <button 
+        class="reset-btn"
+        (click)="resetPreferences()"
+        [attr.aria-label]="'ACCESSIBILITY.RESET_PREFERENCES' | translate"
+      >
+        <lucide-icon name="RotateCcw" size="20"></lucide-icon>
+        {{ 'ACCESSIBILITY.RESET_PREFERENCES' | translate }}
+      </button>
+    </div>
+  </section>
+
+  <!-- Visual Theme Component -->
+  <app-visual-theme
+    [selectedTheme]="selectedTheme()"
+    (themeChanged)="onThemeChange($event)"
+  ></app-visual-theme>
+
+  <!-- Typography Component -->
+  <app-typography
+    [selectedFontSize]="selectedFontSize()"
+    (fontSizeChanged)="onFontSizeChange($event)"
+  ></app-typography>
+
+  <!-- Language Preference Component -->
+  <app-language-preference
+    [selectedLanguage]="selectedLanguage()"
+    (languageChanged)="onLanguageChange($event)"
+  ></app-language-preference>
+
+  <!-- Action Buttons -->
+  <section class="accessibility-actions">
+    <button
+      class="save-btn"
+      [disabled]="isSaveDisabled()"
+      (click)="saveChanges()"
+      [attr.aria-label]="'ACCESSIBILITY.SAVE_CHANGES' | translate"
+    >
+      {{ 'ACCESSIBILITY.SAVE_CHANGES' | translate }}
+    </button>
+  </section>
+</main>

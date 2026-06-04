@@ -1,6 +1,12 @@
 import { Routes } from '@angular/router';
+import { TravelerLayoutComponent } from './presentation/layouts/viajero/traveler-layout/traveler-layout.component';
+import { ProveedorLayoutComponent } from './presentation/layouts/proveedor/proveedor-layout/proveedor-layout';
 
 export const routes: Routes = [
+  {
+    path: 'home',
+    loadComponent: () => import('./presentation/pages/home/home').then(m => m.Home)
+  },
   {
     path: 'login',
     loadComponent: () => import('./presentation/pages/login/login-page.component').then(m => m.LoginPageComponent)
@@ -15,20 +21,43 @@ export const routes: Routes = [
   },
   {
     path: 'traveler',
+    component: TravelerLayoutComponent,
     children: [
       {
         path: 'dashboard',
         loadComponent: () => import('./presentation/pages/viajero/dashboard/traveler-dashboard.component').then(m => m.TravelerDashboardComponent)
+      },
+      {
+        path: 'accessibility',
+        loadComponent: ()=> import('./presentation/pages/accessibility/accessibility.component').then(m => m.AccessibilityComponent)
       }
     ]
   },
   {
-    path: 'home',
-    loadComponent: () => import('./presentation/pages/home/home').then(m => m.Home)
-  },
-  {
-    path: 'provider-dashboard',
-    loadComponent: () => import('./presentation/pages/proveedor/proveedor-dashboard/proveedor-dashboard').then(m => m.ProveedorDashboardComponent)
+    path: 'provider',
+    component: ProveedorLayoutComponent,
+    children: [
+      {
+        path: 'dashboard',
+        loadComponent: () => import('./presentation/pages/proveedor/proveedor-dashboard/proveedor-dashboard').then(m => m.ProveedorDashboardComponent)
+      },
+      {
+        path: 'services',
+        loadComponent: () => import('./presentation/pages/proveedor/proveedor-services/proveedor-services').then(m => m.ProveedorServicesPageComponent)
+      },
+      {
+        path: 'services/new',
+        loadComponent: () => import('./presentation/pages/proveedor/proveedor-service-form/proveedor-service-form').then(m => m.ProveedorServiceFormComponent)
+      },
+      {
+        path: 'services/edit/:id',
+        loadComponent: () => import('./presentation/pages/proveedor/proveedor-service-form/proveedor-service-form').then(m => m.ProveedorServiceFormComponent)
+      },
+      {
+        path: 'accessibility',
+        loadComponent: ()=> import('./presentation/pages/accessibility/accessibility.component').then(m => m.AccessibilityComponent)
+      }
+    ]
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];

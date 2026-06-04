@@ -4,10 +4,10 @@
 
   <!-- Main Content -->
   <main class="main-content">
-    <app-proveedor-header [nombre]="establecimientoNombre" [tipo]="establecimientoTipo"></app-proveedor-header>
+    <app-proveedor-header></app-proveedor-header>
     
     <div class="content-area">
-      <ng-content></ng-content>
+      <router-outlet></router-outlet>
     </div>
     
     <app-footer></app-footer>

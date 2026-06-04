@@ -1,6 +1,9 @@
 import { Injectable, signal, effect } from '@angular/core';
+import { ThemeMode, resolveSystemTheme } from '../../constants/themes.constant';
 
-export type Theme = 'light' | 'dark';
+// Re-export for backward compatibility
+export type { ThemeMode };
+export type Theme = ThemeMode;
 
 @Injectable({
   providedIn: 'root'
@@ -9,30 +12,39 @@ export class ThemeService {
   private readonly THEME_KEY = 'smart-travel-theme';
   
   // Use a signal for reactive theme management
-  theme = signal<Theme>(this.getInitialTheme());
+  theme = signal<ThemeMode>(this.getInitialTheme());
 
   constructor() {
     // Automatically apply theme changes to document element
     effect(() => {
       const currentTheme = this.theme();
-      document.documentElement.dataset['theme'] = currentTheme;
-      localStorage.setItem(this.THEME_KEY, currentTheme);
+      const resolvedTheme = currentTheme === 'system' ? resolveSystemTheme() : currentTheme;
+      document.documentElement.dataset['theme'] = resolvedTheme;
     });
   }
 
   toggleTheme() {
-    this.theme.update(prev => prev === 'light' ? 'dark' : 'light');
+    this.theme.update(prev => prev === 'light' ? 'dark' : prev === 'dark' ? 'system' : 'light');
   }
 
-  setTheme(newTheme: Theme) {
+  setTheme(newTheme: ThemeMode) {
     this.theme.set(newTheme);
   }
 
-  private getInitialTheme(): Theme {
-    const savedTheme = localStorage.getItem(this.THEME_KEY) as Theme;
-    if (savedTheme) return savedTheme;
+  commitTheme(newTheme: ThemeMode): void {
+    this.theme.set(newTheme);
+    localStorage.setItem(this.THEME_KEY, newTheme);
+  }
+
+  private getInitialTheme(): ThemeMode {
+    const savedTheme = localStorage.getItem(this.THEME_KEY) as ThemeMode | null;
+    if (savedTheme && this.isValidTheme(savedTheme)) return savedTheme;
     
-    // Check system preference
-    return globalThis.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    // Default to system preference
+    return 'system';
+  }
+
+  private isValidTheme(theme: string): theme is ThemeMode {
+    return theme === 'light' || theme === 'dark' || theme === 'system';
   }
 }

@@ -3,13 +3,12 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { GetTravelerDashboardUseCase, DashboardData } from '../../../../useCase/viajero/dashboard/GetTravelerDashboardUseCase';
-import { TravelerSidebarComponent } from '../../../layouts/viajero/traveler-sidebar/traveler-sidebar.component';
-import { TravelerHeaderComponent } from '../../../layouts/viajero/traveler-header/traveler-header.component';
 import { TripCardComponent } from '../../../components/viajero/dashboard/trip-card/trip-card.component';
 import { DestinationCardComponent } from '../../../components/viajero/dashboard/destination-card/destination-card.component';
 import { ItineraryListComponent } from '../../../components/viajero/dashboard/itinerary-list/itinerary-list.component';
 import { ServiceCardComponent } from '../../../components/viajero/dashboard/service-card/service-card.component';
 import { LucideAngularModule, Headset, ChevronRight, LUCIDE_ICONS, LucideIconProvider } from 'lucide-angular';
+import { SharedTravelerDataService } from '../../../service/shared/shared-traveler-data.service';
 
 @Component({
   selector: 'app-traveler-dashboard',
@@ -17,8 +16,6 @@ import { LucideAngularModule, Headset, ChevronRight, LUCIDE_ICONS, LucideIconPro
   imports: [
     CommonModule,
     TranslateModule,
-    TravelerSidebarComponent,
-    TravelerHeaderComponent,
     TripCardComponent,
     DestinationCardComponent,
     ItineraryListComponent,
@@ -37,6 +34,7 @@ import { LucideAngularModule, Headset, ChevronRight, LUCIDE_ICONS, LucideIconPro
 })
 export class TravelerDashboardComponent implements OnInit {
   private readonly dashboardUseCase = inject(GetTravelerDashboardUseCase);
+  private readonly sharedTravelerData = inject(SharedTravelerDataService);
 
   dashboardData = signal<DashboardData | null>(null);
   isLoading = signal(false);
@@ -53,6 +51,7 @@ export class TravelerDashboardComponent implements OnInit {
     try {
       const data = await this.dashboardUseCase.execute();
       this.dashboardData.set(data);
+      this.sharedTravelerData.setDashboardData(data);
     } catch (err: any) {
       console.error('Error loading dashboard:', err);
       this.error.set(err?.message || 'Error al cargar el dashboard');
@@ -66,3 +65,4 @@ export class TravelerDashboardComponent implements OnInit {
     this.loadDashboard();
   }
 }
+
