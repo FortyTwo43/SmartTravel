@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { VisualThemeComponent } from './visual-theme.component';
+import { describe, it, expect } from 'vitest';
 
 describe('VisualThemeComponent', () => {
   let component: VisualThemeComponent;
@@ -20,12 +21,13 @@ describe('VisualThemeComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should emit themeChanged when theme is selected', (done) => {
+  it('should emit themeChanged when theme is selected', () => {
+    let emittedTheme = null;
     component.themeChanged.subscribe(theme => {
-      expect(theme).toBe('dark');
-      done();
+      emittedTheme = theme;
     });
 
     component.onThemeChange('dark');
+    expect(emittedTheme).toBe('dark');
   });
 });

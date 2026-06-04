@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { LanguagePreferenceComponent } from './language-preference.component';
+import { describe, it, expect } from 'vitest';
 
 describe('LanguagePreferenceComponent', () => {
   let component: LanguagePreferenceComponent;
@@ -20,13 +21,14 @@ describe('LanguagePreferenceComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should emit languageChanged when language is selected', (done) => {
+  it('should emit languageChanged when language is selected', () => {
+    let emittedLanguage = null;
     component.languageChanged.subscribe(language => {
-      expect(language).toBe('en');
-      done();
+      emittedLanguage = language;
     });
 
     component.onLanguageChange('en');
+    expect(emittedLanguage).toBe('en');
   });
 
   it('should have language options', () => {

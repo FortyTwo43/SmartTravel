@@ -1,30 +1,63 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { AccessibilityComponent } from './accessibility.component';
-import { FontSizeService } from '../../service/font-size/font-size.service';
-import { ThemeService } from '../../service/theme/theme.service';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { signal } from '@angular/core';
+
+import {
+  ChangeThemeUseCase,
+  ChangeFontSizeUseCase,
+  ChangeLanguageUseCase,
+  SaveAccessibilityPreferencesUseCase,
+  LoadAccessibilityPreferencesUseCase,
+  ResetAccessibilityPreferencesUseCase
+} from '../../../useCase/accessibility';
 
 describe('AccessibilityComponent', () => {
   let component: AccessibilityComponent;
   let fixture: ComponentFixture<AccessibilityComponent>;
-  let fontSizeService: FontSizeService;
-  let themeService: ThemeService;
+  let mockChangeThemeUseCase: any;
+  let mockChangeFontSizeUseCase: any;
+  let mockChangeLanguageUseCase: any;
+  let mockSavePreferencesUseCase: any;
+  let mockLoadPreferencesUseCase: any;
+  let mockResetPreferencesUseCase: any;
 
   beforeEach(async () => {
+    mockChangeThemeUseCase = { execute: vi.fn() };
+    mockChangeFontSizeUseCase = { execute: vi.fn() };
+    mockChangeLanguageUseCase = { execute: vi.fn() };
+    mockSavePreferencesUseCase = { execute: vi.fn() };
+    mockLoadPreferencesUseCase = { 
+      execute: vi.fn().mockReturnValue({
+        theme: 'system',
+        fontSize: 'normal',
+        language: 'es'
+      })
+    };
+    mockResetPreferencesUseCase = { 
+      execute: vi.fn().mockReturnValue({
+        theme: 'system',
+        fontSize: 'normal',
+        language: 'es'
+      })
+    };
+
     await TestBed.configureTestingModule({
       imports: [AccessibilityComponent, TranslateModule.forRoot()],
-      providers: [FontSizeService, ThemeService]
+      providers: [
+        { provide: ChangeThemeUseCase, useValue: mockChangeThemeUseCase },
+        { provide: ChangeFontSizeUseCase, useValue: mockChangeFontSizeUseCase },
+        { provide: ChangeLanguageUseCase, useValue: mockChangeLanguageUseCase },
+        { provide: SaveAccessibilityPreferencesUseCase, useValue: mockSavePreferencesUseCase },
+        { provide: LoadAccessibilityPreferencesUseCase, useValue: mockLoadPreferencesUseCase },
+        { provide: ResetAccessibilityPreferencesUseCase, useValue: mockResetPreferencesUseCase }
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(AccessibilityComponent);
     component = fixture.componentInstance;
-    fontSizeService = TestBed.inject(FontSizeService);
-    themeService = TestBed.inject(ThemeService);
-    
-    // Clear localStorage before each test
-    localStorage.clear();
-    
-    fixture.detectChanges();
+    fixture.detectChanges(); // calls ngOnInit
   });
 
   it('should create', () => {
@@ -32,100 +65,70 @@ describe('AccessibilityComponent', () => {
   });
 
   it('should load initial state on init', () => {
-    expect(component.selectedTheme()).toBeDefined();
-    expect(component.selectedFontSize()).toBeDefined();
-    expect(component.selectedLanguage()).toBeDefined();
+    expect(mockLoadPreferencesUseCase.execute).toHaveBeenCalled();
+    expect(component.selectedTheme()).toBe('system');
+    expect(component.selectedFontSize()).toBe('normal');
+    expect(component.selectedLanguage()).toBe('es');
   });
 
   it('should detect changes when theme is modified', () => {
-    const initialTheme = component.selectedTheme();
-    component.onThemeChange(initialTheme === 'light' ? 'dark' : 'light');
-    
-    expect(component.hasChanges()).toBe(true);
-  });
-
-  it('should disable save button when there are no changes', () => {
-    expect(component.isSaveDisabled()).toBe(true);
-  });
-
-  it('should enable save button when there are changes', () => {
-    component.onThemeChange(component.selectedTheme() === 'light' ? 'dark' : 'light');
-    
+    component.onThemeChange('dark');
+    expect(component.selectedTheme()).toBe('dark');
+    expect(mockChangeThemeUseCase.execute).toHaveBeenCalledWith('dark');
     expect(component.hasChanges()).toBe(true);
     expect(component.isSaveDisabled()).toBe(false);
   });
 
-  it('should change font size level', () => {
+  it('should detect changes when font size is modified', () => {
     component.onFontSizeChange('large');
     expect(component.selectedFontSize()).toBe('large');
-
-    component.onFontSizeChange('small');
-    expect(component.selectedFontSize()).toBe('small');
+    expect(mockChangeFontSizeUseCase.execute).toHaveBeenCalledWith('large');
+    expect(component.hasChanges()).toBe(true);
   });
 
-  it('should toggle high contrast setting', () => {
-    const adj = component.adjustments();
-    component.onHighContrastChange(!adj.highContrast);
-    
-    expect(component.adjustments().highContrast).toBe(!adj.highContrast);
-  });
-
-  it('should toggle reduce motion setting', () => {
-    const adj = component.adjustments();
-    component.onReduceMotionChange(!adj.reduceMotion);
-    
-    expect(component.adjustments().reduceMotion).toBe(!adj.reduceMotion);
-  });
-
-  it('should toggle screen reader setting', () => {
-    const adj = component.adjustments();
-    component.onScreenReaderChange(!adj.screenReaderEnabled);
-    
-    expect(component.adjustments().screenReaderEnabled).toBe(!adj.screenReaderEnabled);
-  });
-
-  it('should change language preference', () => {
+  it('should detect changes when language is modified', () => {
     component.onLanguageChange('en');
     expect(component.selectedLanguage()).toBe('en');
-
-    component.onLanguageChange('es');
-    expect(component.selectedLanguage()).toBe('es');
+    expect(mockChangeLanguageUseCase.execute).toHaveBeenCalledWith('en');
+    expect(component.hasChanges()).toBe(true);
   });
 
-  it('should save changes to localStorage', () => {
+  it('should not have changes initially', () => {
+    expect(component.hasChanges()).toBe(false);
+    expect(component.isSaveDisabled()).toBe(true);
+  });
+
+  it('should save changes and reset hasChanges', () => {
     component.onThemeChange('dark');
-    component.onLanguageChange('en');
-    component.onHighContrastChange(true);
+    expect(component.hasChanges()).toBe(true);
     
     component.saveChanges();
     
-    expect(localStorage.getItem('smart-travel-theme')).toBe('dark');
-    expect(localStorage.getItem('smart-travel-language')).toBe('en');
-    expect(localStorage.getItem('smart-travel-high-contrast')).toBe('true');
+    expect(mockSavePreferencesUseCase.execute).toHaveBeenCalledWith({
+      theme: 'dark',
+      fontSize: 'normal',
+      language: 'es'
+    });
+    
+    expect(component.hasChanges()).toBe(false);
   });
 
-  it('should reset preferences to initial state', () => {
-    const initialTheme = component.selectedTheme();
-    const initialLanguage = component.selectedLanguage();
-    
-    component.onThemeChange(initialTheme === 'light' ? 'dark' : 'light');
-    component.onLanguageChange(initialLanguage === 'es' ? 'en' : 'es');
-    
-    expect(component.hasChanges()).toBe(true);
+  it('should reset preferences to default values', () => {
+    component.onThemeChange('dark');
     
     component.resetPreferences();
     
-    expect(component.selectedTheme()).toBe(initialTheme);
-    expect(component.selectedLanguage()).toBe(initialLanguage);
-    expect(component.hasChanges()).toBe(false);
+    expect(mockResetPreferencesUseCase.execute).toHaveBeenCalled();
+    expect(component.selectedTheme()).toBe('system');
+    expect(mockChangeThemeUseCase.execute).toHaveBeenCalledWith('system');
   });
 
-  it('should have hasChanges return false after saving', () => {
-    component.onThemeChange(component.selectedTheme() === 'light' ? 'dark' : 'light');
-    expect(component.hasChanges()).toBe(true);
+  it('should revert changes on destroy if not saved', () => {
+    component.onThemeChange('dark');
     
-    component.saveChanges();
+    component.ngOnDestroy();
     
-    expect(component.hasChanges()).toBe(false);
+    expect(mockChangeThemeUseCase.execute).toHaveBeenCalledWith('system');
+    expect(component.selectedTheme()).toBe('system');
   });
 });

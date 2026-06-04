@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { TypographyComponent } from './typography.component';
 import { FontSizeService } from '../../../service/font-size/font-size.service';
+import { describe, it, expect, vi } from 'vitest';
 
 describe('TypographyComponent', () => {
   let component: TypographyComponent;
@@ -22,13 +23,16 @@ describe('TypographyComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should emit fontSizeChanged when font size is changed', (done) => {
+  it('should emit fontSizeChanged when font size is changed', () => {
+    let emittedSize = null;
     component.fontSizeChanged.subscribe(size => {
-      expect(size).toBe('large');
-      done();
+      emittedSize = size;
     });
 
-    component.onFontSizeChange('2');
+    component.onFontSizeChange({ target: { value: '2' } } as unknown as Event);
+    
+    // sizes[2] is 'large'
+    expect(emittedSize).toBe('large');
   });
 
   it('should get available font size levels', () => {
