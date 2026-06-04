@@ -34,7 +34,7 @@ export class TravelerSidebarComponent {
 
   navItems: NavItem[] = [
     { id: 'dashboard', label: 'TRAVELER_SIDEBAR.DASHBOARD', icon: 'LayoutDashboard', route: '/traveler/dashboard' },
-    { id: 'explore', label: 'TRAVELER_SIDEBAR.EXPLORE', icon: 'Compass', route: '/traveler/explore' },
+    { id: 'explore', label: 'TRAVELER_SIDEBAR.EXPLORE', icon: 'Compass', route: '/traveler/explorar-destinos' },
     { id: 'trips', label: 'TRAVELER_SIDEBAR.MY_TRIPS', icon: 'MapPin', route: '/traveler/trips' },
     { id: 'itineraries', label: 'TRAVELER_SIDEBAR.ITINERARIES', icon: 'Map', route: '/traveler/itineraries' },
     { id: 'favorites', label: 'TRAVELER_SIDEBAR.FAVORITES', icon: 'Heart', route: '/traveler/favorites' },

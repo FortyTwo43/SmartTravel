@@ -11,3 +11,5 @@ export const INTERESTS = [
   { id: 'fotografia', label: 'TRAVELER_ONBOARDING.INTERESTS.PHOTOGRAPHY', icon: 'camera' },
   { id: 'ecoturismo', label: 'TRAVELER_ONBOARDING.INTERESTS.ECOTOURISM', icon: 'compass' },
 ];
+
+export type TipoExperiencia = typeof INTERESTS[number]['id'];

@@ -1,0 +1,8 @@
+<div class="search-header">
+  <div class="search-fields">
+    <input type="text" placeholder="{{ 'COMMON.SEARCH' | translate }}" [ngModel]="destino()" (ngModelChange)="destino.set($event)" />
+    <input type="text" placeholder="Fechas" [ngModel]="fechas()" (ngModelChange)="fechas.set($event)" />
+    <input type="number" min="1" [ngModel]="viajeros()" (ngModelChange)="viajeros.set($event)" />
+  </div>
+  <button class="search-btn" (click)="onSearch()">{{ 'COMMON.SEARCH' | translate }}</button>
+</div>

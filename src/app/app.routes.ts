@@ -31,6 +31,11 @@ export const routes: Routes = [
         path: 'accessibility',
         loadComponent: ()=> import('./presentation/pages/accessibility/accessibility.component').then(m => m.AccessibilityComponent)
       }
+      ,
+      {
+        path: 'explorar-destinos',
+        loadComponent: () => import('./presentation/pages/viajero/explorar-destinos/explorar-destinos.component').then(m => m.ExplorarDestinosComponent)
+      }
     ]
   },
   {

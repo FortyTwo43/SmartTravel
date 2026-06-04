@@ -373,4 +373,11 @@
     "SPANISH_CASTILIAN": "Español (Castellano)",
     "ENGLISH": "Inglés"
   }
+  ,
+  "TRAVELER_EXPLORAR": {
+    "TITLE": "Explorar Destinos",
+    "FILTERS": "Filtros",
+    "LOAD_MORE": "Cargar más destinos",
+    "NO_RESULTS": "No se encontraron destinos"
+  }
 }

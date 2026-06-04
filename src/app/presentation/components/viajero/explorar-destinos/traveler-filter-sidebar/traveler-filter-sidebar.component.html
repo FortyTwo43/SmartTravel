@@ -1,0 +1,127 @@
+<div class="filters">
+  <h2 class="filters-title">Filtros</h2>
+
+  <div class="filter-group">
+    <label class="filter-label">Países</label>
+    <div class="exps-pills">
+      <button 
+        class="pill-btn" 
+        [class.active]="paises().includes('Ecuador')"
+        (click)="togglePais('Ecuador')"
+      >
+        Ecuador
+      </button>
+      <button 
+        class="pill-btn" 
+        [class.active]="paises().includes('Italia')"
+        (click)="togglePais('Italia')"
+      >
+        Italia
+      </button>
+      <button 
+        class="pill-btn" 
+        [class.active]="paises().includes('España')"
+        (click)="togglePais('España')"
+      >
+        España
+      </button>
+      <button 
+        class="pill-btn" 
+        [class.active]="paises().includes('Japón')"
+        (click)="togglePais('Japón')"
+      >
+        Japón
+      </button>
+    </div>
+    <hr class="divider" />
+  </div>
+
+  <div class="filter-group">
+    <label class="filter-label">Intereses</label>
+    <div class="interests-grid">
+      @for (interest of visibleIntereses(); track interest.id) {
+        <button 
+          class="interest-btn" 
+          [class.active]="intereses().includes(interest.id)"
+          (click)="toggleIntereses(interest.id)"
+          [attr.aria-label]="interest.label | translate"
+        >
+          <lucide-icon [name]="interest.icon" size="20"></lucide-icon>
+          <span>{{ interest.label | translate }}</span>
+        </button>
+      }
+    </div>
+    
+    @if (!isExpandedIntereses() && hiddenInteresesCount() > 0) {
+      <button class="btn-view-more" (click)="toggleExpandIntereses()">
+        Ver más (+{{ hiddenInteresesCount() }})
+      </button>
+    } @else if (isExpandedIntereses()) {
+      <button class="btn-view-less" (click)="toggleExpandIntereses()">
+        Ver menos
+      </button>
+    }
+    <hr class="divider" />
+  </div>
+
+  <div class="filter-group">
+    <label class="filter-label">Calificación</label>
+    <div class="rating-buttons">
+      <button 
+        class="rating-btn" 
+        [class.active]="ratingFilter() === '4-5'"
+        (click)="setRating('4-5')"
+      >
+        <lucide-icon name="star" size="16"></lucide-icon>
+        4+ ★
+      </button>
+      <button 
+        class="rating-btn" 
+        [class.active]="ratingFilter() === '3-1'"
+        (click)="setRating('3-1')"
+      >
+        <lucide-icon name="star" size="16"></lucide-icon>
+        3- ★
+      </button>
+    </div>
+    <hr class="divider" />
+  </div>
+
+  <div class="filter-group">
+    <label class="filter-label">Experiencia</label>
+    <div class="exps-pills">
+      <button 
+        class="pill-btn" 
+        [class.active]="experiencia() === 'relajante'"
+        (click)="setExperiencia('relajante')"
+      >
+        Relajante
+      </button>
+      <button 
+        class="pill-btn" 
+        [class.active]="experiencia() === 'aventura'"
+        (click)="setExperiencia('aventura')"
+      >
+        Aventura
+      </button>
+      <button 
+        class="pill-btn" 
+        [class.active]="experiencia() === 'familiar'"
+        (click)="setExperiencia('familiar')"
+      >
+        Familiar
+      </button>
+      <button 
+        class="pill-btn" 
+        [class.active]="experiencia() === 'lujo'"
+        (click)="setExperiencia('lujo')"
+      >
+        Lujo
+      </button>
+    </div>
+  </div>
+
+  <button class="btn-clear-filters" (click)="clearFilters()">
+    Limpiar filtros
+  </button>
+</div>
