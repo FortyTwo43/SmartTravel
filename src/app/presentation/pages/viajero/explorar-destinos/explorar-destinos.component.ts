@@ -7,7 +7,7 @@ import { TravelerHeaderComponent } from '../../../layouts/viajero/traveler-heade
 
 import { GetExplorarDestinosUseCase, ExploreDestination } from '../../../../useCase/viajero/explorar-destinos/GetExplorarDestinosUseCase';
 
-import { TravelerSearchHeaderComponent } from '../../../components/viajero/explorar-destinos/traveler-search-header/traveler-search-header.component';
+
 import { TravelerFilterSidebarComponent } from '../../../components/viajero/explorar-destinos/traveler-filter-sidebar/traveler-filter-sidebar.component';
 import { DestinationGridComponent } from '../../../components/viajero/explorar-destinos/destination-grid/destination-grid.component';
 
@@ -19,7 +19,6 @@ import { DestinationGridComponent } from '../../../components/viajero/explorar-d
     TranslateModule,
     TravelerSidebarComponent,
     TravelerHeaderComponent,
-    TravelerSearchHeaderComponent,
     TravelerFilterSidebarComponent,
     DestinationGridComponent
   ],
