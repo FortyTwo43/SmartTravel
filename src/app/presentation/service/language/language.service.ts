@@ -78,9 +78,10 @@ export class LanguageService {
   }
 
   /**
-   * Apply language change to TranslateService
+   * Apply language change to TranslateService and document lang attribute (WCAG 3.1.1)
    */
   private applyLanguageChange(language: LanguageCode): void {
     this.translateService.use(language);
+    document.documentElement.lang = language;
   }
 }
