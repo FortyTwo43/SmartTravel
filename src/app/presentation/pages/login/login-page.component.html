@@ -49,9 +49,14 @@
     </div>
   </div>
 
-  <!-- Panel Derecho: imagen decorativa de fondo; el mensaje está en el texto -->
+  <!-- Panel Derecho: imagen hero -->
   <div class="hero-panel">
-    <div class="hero-overlay"></div>
+    <img
+      class="hero-image"
+      src="assets/imagen_login.avif"
+      [attr.alt]="'AUTH.HERO_IMAGE_ALT' | translate"
+    />
+    <div class="hero-overlay" aria-hidden="true"></div>
     <div class="hero-content">
       <h2 class="hero-title">Descubre el mundo con inteligencia.</h2>
       <p class="hero-description">

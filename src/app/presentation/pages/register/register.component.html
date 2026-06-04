@@ -241,8 +241,14 @@
 
   <!-- RIGHT SIDE: Branding (40%) -->
   <div class="branding-panel">
-    <div class="brand-background"></div>
-    <div class="brand-overlay"></div>
+    <div class="brand-background">
+      <img
+        class="brand-image"
+        src="assets/imagen_registro.png"
+        [attr.alt]="'REGISTER.BRAND_IMAGE_ALT' | translate"
+      />
+    </div>
+    <div class="brand-overlay" aria-hidden="true"></div>
     <div class="brand-content">
       <div class="glass-panel">
         <h3>{{ 'REGISTER.DISCOVER_WORLD' | translate }}</h3>

@@ -138,9 +138,7 @@
   display: none;
   flex: 1.2;
   position: relative;
-  background-image: url('/assets/imagen_login.avif');
-  background-size: cover;
-  background-position: center;
+  overflow: hidden;
 }
 
 @media (min-width: 1024px) {
@@ -179,6 +177,15 @@
   .login-form {
     gap: 2rem;
   }
+}
+
+.hero-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .hero-overlay {

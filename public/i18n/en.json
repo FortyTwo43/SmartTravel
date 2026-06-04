@@ -24,7 +24,8 @@
     "REGISTER_FREE": "Register for free",
     "PLACEHOLDER_EMAIL": "name@example.com",
     "PLACEHOLDER_PASSWORD": "password",
-    "LOGO_ALT": "SmartTravel, smart travel platform"
+    "LOGO_ALT": "SmartTravel, smart travel platform",
+    "HERO_IMAGE_ALT": "Panoramic view of a travel destination with mountains and clear sky"
   },
   "COMMON": {
     "SAVE": "Save",
@@ -161,6 +162,7 @@
     "SIGN_IN_LINK": "Sign in",
     "DISCOVER_WORLD": "DISCOVER THE WORLD",
     "BRAND_DESCRIPTION": "Personalized experience designed for the modern traveler. Manage your adventures with the precision of luxury logistics.",
+    "BRAND_IMAGE_ALT": "Travel destination landscape with crystal-clear water and sunset horizon",
     "DESTINATIONS": "Destinations",
     "SUPPORT": "Support",
     "SECURE": "Secure",
