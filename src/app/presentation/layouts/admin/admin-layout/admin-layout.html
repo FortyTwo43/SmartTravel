@@ -1,0 +1,17 @@
+<div class="admin-layout-wrapper">
+  <!-- Sidebar -->
+  <app-admin-sidebar></app-admin-sidebar>
+
+  <!-- Main Content with Router Outlet -->
+  <main class="admin-layout-container">
+    <!-- Header -->
+    <app-admin-header></app-admin-header>
+
+    <!-- Content - Routes rendered here -->
+    <div class="admin-content-area">
+      <router-outlet></router-outlet>
+    </div>
+
+    <app-footer></app-footer>
+  </main>
+</div>

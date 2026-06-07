@@ -1,0 +1,128 @@
+@if (isLoading()) {
+  <div class="loading-container">
+    <div class="spinner"></div>
+    <p>Cargando datos del sistema...</p>
+  </div>
+} @else if (error()) {
+  <div class="error-container">
+    <p>{{ error() }}</p>
+    <button (click)="loadData()" class="btn-primary">Reintentar</button>
+  </div>
+} @else if (data()) {
+  <div class="dashboard-container">
+    <div class="dashboard-header">
+      <h1 class="page-title">Visión General del Sistema</h1>
+      <p class="page-subtitle">Métricas y actividad reciente en SmartTravel</p>
+    </div>
+
+    <!-- KPIs Section -->
+    <div class="kpi-grid">
+      <!-- Viajeros -->
+      <div class="kpi-card">
+        <div class="kpi-icon-container blue">
+          <lucide-icon name="Users" class="kpi-icon"></lucide-icon>
+        </div>
+        <div class="kpi-info">
+          <span class="kpi-label">Total Viajeros</span>
+          <span class="kpi-value">{{ data()!.stats.viajerosCount }}</span>
+        </div>
+      </div>
+
+      <!-- Proveedores -->
+      <div class="kpi-card">
+        <div class="kpi-icon-container purple">
+          <lucide-icon name="Store" class="kpi-icon"></lucide-icon>
+        </div>
+        <div class="kpi-info">
+          <span class="kpi-label">Proveedores</span>
+          <span class="kpi-value">{{ data()!.stats.proveedoresCount }}</span>
+        </div>
+      </div>
+
+      <!-- Establecimientos -->
+      <div class="kpi-card">
+        <div class="kpi-icon-container orange">
+          <lucide-icon name="Building2" class="kpi-icon"></lucide-icon>
+        </div>
+        <div class="kpi-info">
+          <span class="kpi-label">Establecimientos</span>
+          <span class="kpi-value">{{ data()!.stats.establecimientosCount }}</span>
+        </div>
+      </div>
+
+      <!-- Reservas -->
+      <div class="kpi-card">
+        <div class="kpi-icon-container green">
+          <lucide-icon name="CalendarCheck" class="kpi-icon"></lucide-icon>
+        </div>
+        <div class="kpi-info">
+          <span class="kpi-label">Total Reservas</span>
+          <span class="kpi-value">{{ data()!.stats.reservasCount }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lists Section -->
+    <div class="lists-grid">
+      <!-- Últimas Solicitudes -->
+      <div class="list-card">
+        <div class="card-header">
+          <h2 class="card-title">Solicitudes Pendientes</h2>
+          <lucide-icon name="Clock" class="header-icon text-warning"></lucide-icon>
+        </div>
+        
+        <div class="list-content">
+          @if (data()!.latestRequests.length > 0) {
+            <ul class="item-list">
+              @for (req of data()!.latestRequests; track req.id) {
+                <li class="list-item">
+                  <div class="item-main">
+                    <span class="item-title">{{ req.nombre_negocio }}</span>
+                    <span class="item-subtitle">{{ req.tipo_negocio }}</span>
+                  </div>
+                  <div class="item-status badge-warning">
+                    Pendiente
+                  </div>
+                </li>
+              }
+            </ul>
+          } @else {
+            <div class="empty-state">
+              <p>No hay solicitudes pendientes.</p>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Últimos Servicios -->
+      <div class="list-card">
+        <div class="card-header">
+          <h2 class="card-title">Últimos Servicios Creados</h2>
+          <lucide-icon name="PackagePlus" class="header-icon text-primary"></lucide-icon>
+        </div>
+        
+        <div class="list-content">
+          @if (data()!.latestServices.length > 0) {
+            <ul class="item-list">
+              @for (serv of data()!.latestServices; track serv.id) {
+                <li class="list-item">
+                  <div class="item-main">
+                    <span class="item-title">{{ serv.nombre }}</span>
+                    <span class="item-subtitle">${{ serv.precio }}</span>
+                  </div>
+                  <div class="item-meta">
+                    {{ serv.created_at | date:'shortDate' }}
+                  </div>
+                </li>
+              }
+            </ul>
+          } @else {
+            <div class="empty-state">
+              <p>No hay servicios registrados.</p>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+}

@@ -1,0 +1,50 @@
+<aside class="sidebar-container">
+  <div class="sidebar-header">
+    <div class="logo-container">
+      <h2 class="sidebar-title">SmartTravel</h2>
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a routerLink="/admin/dashboard" routerLinkActive="active" class="nav-item">
+      <lucide-icon name="LayoutDashboard" class="nav-icon"></lucide-icon>
+      <span class="nav-label">Dashboard</span>
+    </a>
+    <a routerLink="/admin/solicitudes" routerLinkActive="active" class="nav-item">
+      <lucide-icon name="Inbox" class="nav-icon"></lucide-icon>
+      <span class="nav-label">Solicitudes</span>
+    </a>
+    <a routerLink="/admin/destinos" routerLinkActive="active" class="nav-item">
+      <lucide-icon name="MapPin" class="nav-icon"></lucide-icon>
+      <span class="nav-label">Destinos</span>
+    </a>
+    <a routerLink="/admin/servicios" routerLinkActive="active" class="nav-item">
+      <lucide-icon name="Package" class="nav-icon"></lucide-icon>
+      <span class="nav-label">Servicios</span>
+    </a>
+    <a routerLink="/admin/estadistica" routerLinkActive="active" class="nav-item">
+      <lucide-icon name="BarChart" class="nav-icon"></lucide-icon>
+      <span class="nav-label">Estadística</span>
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <a routerLink="/admin/accessibility" routerLinkActive="active" class="nav-item settings-btn" title="Configuración">
+      <lucide-icon name="Settings" class="nav-icon"></lucide-icon>
+      <span class="nav-label">Configuración</span>
+    </a>
+
+    <button class="nav-item logout-btn" (click)="logout()">
+      <lucide-icon name="LogOut" class="nav-icon"></lucide-icon>
+      <span class="nav-label">Cerrar Sesión</span>
+    </button>
+
+    <div class="sidebar-profile">
+      <div class="profile-avatar">AD</div>
+      <div class="profile-info">
+        <p class="profile-name">Administrador</p>
+        <p class="profile-role">Admin</p>
+      </div>
+    </div>
+  </div>
+</aside>
