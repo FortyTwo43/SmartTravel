@@ -3,11 +3,13 @@
   <app-traveler-sidebar></app-traveler-sidebar>
 
   <!-- Main Content with Router Outlet -->
-  <div class="traveler-layout-container">
+  <main class="traveler-layout-container">
     <!-- Header -->
     <app-traveler-header></app-traveler-header>
 
     <!-- Content - Routes rendered here -->
-    <router-outlet></router-outlet>
-  </div>
+    <div class="traveler-content-area">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
 </div>
