@@ -30,7 +30,7 @@ export const routes: Routes = [
       },
       {
         path: 'accessibility',
-        loadComponent: ()=> import('./presentation/pages/accessibility/accessibility.component').then(m => m.AccessibilityComponent)
+        loadComponent: () => import('./presentation/pages/accessibility/accessibility.component').then(m => m.AccessibilityComponent)
       }
       ,
       {
@@ -61,7 +61,7 @@ export const routes: Routes = [
       },
       {
         path: 'accessibility',
-        loadComponent: ()=> import('./presentation/pages/accessibility/accessibility.component').then(m => m.AccessibilityComponent)
+        loadComponent: () => import('./presentation/pages/accessibility/accessibility.component').then(m => m.AccessibilityComponent)
       }
     ]
   },
@@ -71,11 +71,11 @@ export const routes: Routes = [
     children: [
       {
         path: 'dashboard',
-        loadComponent: () => import('./presentation/pages/admin/dashboard/admin-dashboard/admin-dashboard').then(m => m.AdminDashboardComponent)
+        loadComponent: () => import('./presentation/pages/admin/admin-dashboard/admin-dashboard').then(m => m.AdminDashboardComponent)
       },
       {
         path: 'accessibility',
-        loadComponent: ()=> import('./presentation/pages/accessibility/accessibility.component').then(m => m.AccessibilityComponent)
+        loadComponent: () => import('./presentation/pages/accessibility/accessibility.component').then(m => m.AccessibilityComponent)
       }
     ]
   },

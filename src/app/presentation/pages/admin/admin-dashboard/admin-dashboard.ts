@@ -1,6 +1,6 @@
 import { Component, inject, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GetAdminDashboardStatsUseCase, AdminDashboardData } from '../../../../../useCase/admin/dashboard/GetAdminDashboardStatsUseCase';
+import { GetAdminDashboardStatsUseCase, AdminDashboardData } from '../../../../useCase/admin/dashboard/GetAdminDashboardStatsUseCase';
 import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Users, Store, Building2, CalendarCheck, Clock, PackagePlus } from 'lucide-angular';
 
 @Component({
@@ -17,7 +17,7 @@ import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Users, Store, Bu
 })
 export class AdminDashboardComponent implements OnInit {
   private readonly getDashboardStats = inject(GetAdminDashboardStatsUseCase);
-  
+
   data = signal<AdminDashboardData | null>(null);
   isLoading = signal<boolean>(true);
   error = signal<string | null>(null);
