@@ -5,6 +5,7 @@ import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Plus, Search } f
 import { DestinoCardComponent } from '../../../components/admin/destinos/destino-card/destino-card';
 import { SupabaseDestinoRepository } from '../../../../infrastructure/repositories/supabase/SupabaseDestinoRepository';
 import { Destino } from '../../../../domain/entities/Destino';
+import { GetImageUrlUseCase } from '../../../../useCase/upload/GetImageUrlUseCase';
 
 @Component({
   selector: 'app-admin-destinos',
@@ -20,6 +21,7 @@ import { Destino } from '../../../../domain/entities/Destino';
 })
 export class AdminDestinosComponent implements OnInit {
   private readonly destinoRepository = inject(SupabaseDestinoRepository);
+  private readonly getImageUrlUseCase = inject(GetImageUrlUseCase);
 
   destinos = signal<Destino[]>([]);
   isLoading = signal<boolean>(true);
@@ -32,7 +34,15 @@ export class AdminDestinosComponent implements OnInit {
     try {
       this.isLoading.set(true);
       const data = await this.destinoRepository.getAll();
-      this.destinos.set(data);
+      
+      const destinosWithImages = await Promise.all(
+        data.map(async (destino) => ({
+          ...destino,
+          imagen: await this.getImageUrlUseCase.execute(destino.imagen)
+        }))
+      );
+
+      this.destinos.set(destinosWithImages);
     } catch (error) {
       console.error('Error loading destinations', error);
     } finally {

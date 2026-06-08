@@ -397,5 +397,23 @@
     "EXPERIENCE": "Experiencia",
     "EMPTY_TITLE": "No hay destinos registrados",
     "EMPTY_DESC": "Comienza agregando un nuevo destino al sistema."
+  },
+  "ADMIN_DESTINO_FORM": {
+    "TITLE": "Crear Destino",
+    "SUBTITLE": "Añade un nuevo destino a la plataforma",
+    "NAME": "Nombre del destino",
+    "NAME_PLACEHOLDER": "Ej. París",
+    "CITY": "Ciudad",
+    "CITY_PLACEHOLDER": "Ej. París",
+    "COUNTRY": "País",
+    "COUNTRY_PLACEHOLDER": "Ej. Francia",
+    "DESCRIPTION": "Descripción",
+    "DESCRIPTION_PLACEHOLDER": "Describe el destino de forma atractiva...",
+    "EXPERIENCE": "Tipo de experiencia",
+    "EXPERIENCE_PLACEHOLDER": "Selecciona el tipo principal de experiencia",
+    "IMAGE": "Imagen del destino",
+    "SUBMIT": "Crear Destino",
+    "SUCCESS": "Destino creado exitosamente",
+    "ERROR": "Error al crear el destino"
   }
 }

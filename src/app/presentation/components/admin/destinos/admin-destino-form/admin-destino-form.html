@@ -1,0 +1,112 @@
+@if (error()) {
+  <div class="alert alert--error" role="alert">
+    {{ error() | translate }}
+  </div>
+}
+
+<form [formGroup]="destinoForm" (ngSubmit)="onSubmit()" class="service-form">
+  <div class="form-group">
+    <label for="nombre">{{ 'ADMIN_DESTINO_FORM.NAME' | translate }}</label>
+    <input 
+      type="text" 
+      id="nombre" 
+      formControlName="nombre" 
+      class="form-input"
+      [placeholder]="'ADMIN_DESTINO_FORM.NAME_PLACEHOLDER' | translate"
+    />
+  </div>
+
+  <div class="form-group form-group--inline">
+    <div class="form-field">
+      <label for="ciudad">{{ 'ADMIN_DESTINO_FORM.CITY' | translate }}</label>
+      <input 
+        type="text" 
+        id="ciudad" 
+        formControlName="ciudad" 
+        class="form-input"
+        [placeholder]="'ADMIN_DESTINO_FORM.CITY_PLACEHOLDER' | translate"
+      />
+    </div>
+
+    <div class="form-field">
+      <label for="pais">{{ 'ADMIN_DESTINO_FORM.COUNTRY' | translate }}</label>
+      <input 
+        type="text" 
+        id="pais" 
+        formControlName="pais" 
+        class="form-input"
+        [placeholder]="'ADMIN_DESTINO_FORM.COUNTRY_PLACEHOLDER' | translate"
+      />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="descripcion">{{ 'ADMIN_DESTINO_FORM.DESCRIPTION' | translate }}</label>
+    <textarea 
+      id="descripcion" 
+      formControlName="descripcion" 
+      class="form-input form-textarea"
+      [placeholder]="'ADMIN_DESTINO_FORM.DESCRIPTION_PLACEHOLDER' | translate"
+      rows="4"
+    ></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="tipo_experiencia">{{ 'ADMIN_DESTINO_FORM.EXPERIENCE' | translate }}</label>
+    <select id="tipo_experiencia" formControlName="tipo_experiencia" class="form-input form-select">
+      <option value="" disabled>{{ 'ADMIN_DESTINO_FORM.EXPERIENCE_PLACEHOLDER' | translate }}</option>
+      @for (interest of interests; track interest.id) {
+        <option [value]="interest.id">{{ interest.label | translate }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="form-group">
+    <span class="form-label" id="image-upload-label">{{ 'ADMIN_DESTINO_FORM.IMAGE' | translate }}</span>
+
+    @if (!selectedFile()) {
+      <label 
+        class="file-upload-area" 
+        [class.dragging]="isDragging()" 
+        (dragover)="onDragOver($event)"
+        (dragleave)="onDragLeave($event)" 
+        (drop)="onDrop($event)"
+        aria-labelledby="image-upload-label">
+        <input 
+          type="file" 
+          class="hidden-file-input" 
+          accept="image/png, image/jpeg"
+          (change)="onFileSelected($event)" 
+        />
+        <lucide-icon name="cloud-upload"></lucide-icon>
+        <p><span class="file-upload-highlight">{{ 'REGISTER.UPLOAD_FILES' | translate }}</span> {{ 'REGISTER.OR_DRAG_DROP' | translate }}</p>
+        <p class="file-upload-hint">{{ 'REGISTER.FILE_HINT' | translate }} (Max 5MB)</p>
+      </label>
+    } @else {
+      <div class="selected-file-area">
+        <div class="file-info">
+          <lucide-icon name="image" [size]="20"></lucide-icon>
+          <span>{{ selectedFile()?.name }}</span>
+        </div>
+        <button type="button" class="remove-file-btn" (click)="removeFile()" [attr.aria-label]="'REGISTER.REMOVE_FILE' | translate">
+          <lucide-icon name="x" [size]="20" aria-hidden="true"></lucide-icon>
+        </button>
+      </div>
+    }
+  </div>
+
+  <div class="form-actions">
+    <button type="button" class="btn-cancel" routerLink="/admin/destinos">
+      {{ 'COMMON.CANCEL' | translate }}
+    </button>
+    <button type="submit" class="btn-submit" [disabled]="destinoForm.invalid || !selectedFile() || loading()">
+      @if (loading()) {
+        <span class="spinner"></span>
+        {{ 'COMMON.LOADING' | translate }}
+      } @else {
+        <lucide-icon name="save" [size]="18"></lucide-icon>
+        <span>{{ 'ADMIN_DESTINO_FORM.SUBMIT' | translate }}</span>
+      }
+    </button>
+  </div>
+</form>

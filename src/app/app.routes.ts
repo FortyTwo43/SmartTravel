@@ -80,6 +80,10 @@ export const routes: Routes = [
       {
         path: 'destinos',
         loadComponent: () => import('./presentation/pages/admin/admin-destinos/admin-destinos').then(m => m.AdminDestinosComponent)
+      },
+      {
+        path: 'destinos/new',
+        loadComponent: () => import('./presentation/pages/admin/admin-destino-create/admin-destino-create').then(m => m.AdminDestinoCreateComponent)
       }
     ]
   },
