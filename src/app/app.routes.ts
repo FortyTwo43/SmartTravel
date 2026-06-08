@@ -76,6 +76,10 @@ export const routes: Routes = [
       {
         path: 'accessibility',
         loadComponent: () => import('./presentation/pages/accessibility/accessibility.component').then(m => m.AccessibilityComponent)
+      },
+      {
+        path: 'destinos',
+        loadComponent: () => import('./presentation/pages/admin/admin-destinos/admin-destinos').then(m => m.AdminDestinosComponent)
       }
     ]
   },
