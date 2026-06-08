@@ -1,0 +1,44 @@
+<div class="admin-page-container">
+  <header class="page-header">
+    <div class="header-content">
+      <h1 class="page-title">{{ 'ADMIN_DESTINATIONS.TITLE' | translate }}</h1>
+      <p class="page-subtitle">{{ 'ADMIN_DESTINATIONS.SUBTITLE' | translate }}</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn btn-primary">
+        <lucide-icon name="plus" class="btn-icon"></lucide-icon>
+        {{ 'ADMIN_DESTINATIONS.NEW_DESTINATION' | translate }}
+      </button>
+    </div>
+  </header>
+
+  <div class="page-content">
+    <div class="search-bar">
+      <lucide-icon name="search" class="search-icon"></lucide-icon>
+      <input type="text" [placeholder]="'ADMIN_DESTINATIONS.SEARCH_PLACEHOLDER' | translate" class="search-input" />
+    </div>
+
+    @if (isLoading()) {
+      <div class="loading-state">
+        <div class="spinner"></div>
+        <p>{{ 'COMMON.LOADING' | translate }}</p>
+      </div>
+    } @else {
+      @if (destinos().length > 0) {
+        <div class="destinos-grid">
+          @for (destino of destinos(); track destino.id) {
+            <app-destino-card [destino]="destino"></app-destino-card>
+          }
+        </div>
+      } @else {
+        <div class="empty-state">
+          <div class="empty-icon-container">
+            <lucide-icon name="search" class="empty-icon"></lucide-icon>
+          </div>
+          <h3>{{ 'ADMIN_DESTINATIONS.EMPTY_TITLE' | translate }}</h3>
+          <p>{{ 'ADMIN_DESTINATIONS.EMPTY_DESC' | translate }}</p>
+        </div>
+      }
+    }
+  </div>
+</div>

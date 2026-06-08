@@ -387,5 +387,15 @@
     "FILTERS": "Filters",
     "LOAD_MORE": "Load more destinations",
     "NO_RESULTS": "No destinations found"
+  },
+  "ADMIN_DESTINATIONS": {
+    "TITLE": "Destinations",
+    "SUBTITLE": "Manage all available destinations in the system",
+    "NEW_DESTINATION": "New destination",
+    "SEARCH_PLACEHOLDER": "Search destination...",
+    "LOCATION": "Location",
+    "EXPERIENCE": "Experience",
+    "EMPTY_TITLE": "No destinations registered",
+    "EMPTY_DESC": "Start by adding a new destination to the system."
   }
 }

@@ -1,0 +1,23 @@
+<article class="destino-card">
+  <div class="card-image-container">
+    @if (destino().imagen) {
+      <img [ngSrc]="destino().imagen" [alt]="destino().nombre" fill class="card-image" priority />
+    } @else {
+      <div class="image-placeholder"></div>
+    }
+  </div>
+  <div class="card-content">
+    <h3 class="card-title">{{ destino().nombre }}</h3>
+    
+    <div class="card-info">
+      <div class="info-item">
+        <lucide-icon name="map-pin" class="icon"></lucide-icon>
+        <span>{{ destino().ciudad }}, {{ destino().pais }}</span>
+      </div>
+      <div class="info-item">
+        <lucide-icon name="compass" class="icon"></lucide-icon>
+        <span class="experience-badge">{{ destino().tipo_experiencia | translate }}</span>
+      </div>
+    </div>
+  </div>
+</article>
