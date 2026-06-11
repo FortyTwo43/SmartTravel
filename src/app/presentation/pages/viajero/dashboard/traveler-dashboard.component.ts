@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { GetTravelerDashboardUseCase, DashboardData } from '../../../../useCase/viajero/dashboard/GetTravelerDashboardUseCase';
+import { GetImageUrlUseCase } from '../../../../useCase/upload/GetImageUrlUseCase';
 import { TripCardComponent } from '../../../components/viajero/dashboard/trip-card/trip-card.component';
 import { DestinationCardComponent } from '../../../components/viajero/dashboard/destination-card/destination-card.component';
 import { ItineraryListComponent } from '../../../components/viajero/dashboard/itinerary-list/itinerary-list.component';
@@ -35,6 +36,7 @@ import { SharedTravelerDataService } from '../../../service/shared/shared-travel
 export class TravelerDashboardComponent implements OnInit {
   private readonly dashboardUseCase = inject(GetTravelerDashboardUseCase);
   private readonly sharedTravelerData = inject(SharedTravelerDataService);
+  private readonly getImageUrlUseCase = inject(GetImageUrlUseCase);
 
   dashboardData = signal<DashboardData | null>(null);
   isLoading = signal(false);
@@ -50,6 +52,16 @@ export class TravelerDashboardComponent implements OnInit {
 
     try {
       const data = await this.dashboardUseCase.execute();
+      
+      if (data.destinosRecomendados?.length) {
+        data.destinosRecomendados = await Promise.all(
+          data.destinosRecomendados.map(async (destino) => ({
+            ...destino,
+            imagen: destino.imagen ? await this.getImageUrlUseCase.execute(destino.imagen) : destino.imagen
+          }))
+        );
+      }
+      
       this.dashboardData.set(data);
       this.sharedTravelerData.setDashboardData(data);
     } catch (err: any) {
