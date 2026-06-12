@@ -2,7 +2,7 @@ import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { ReservasFilter } from '../../../components/proveedor/reservas-filter/reservas-filter';
-import { ReservasList } from '../../../components/proveedor/reservas-list/reservas-list';
+import { ReservasTable } from '../../../components/proveedor/reservas-table/reservas-table';
 import { LoadEstablecimientosUseCase } from '../../../../useCase/proveedor/services/LoadEstablecimientosUseCase';
 import { LoadReservasByEstablecimientoUseCase } from '../../../../useCase/proveedor/reservas/LoadReservasByEstablecimientoUseCase';
 import { EstablecimientoTuristico } from '../../../../domain/entities/EstablecimientoTuristico';
@@ -11,7 +11,7 @@ import { ProveedorReservaItem } from '../../../../domain/ui/proveedor/reservas/P
 @Component({
   selector: 'app-proveedor-reservations',
   standalone: true,
-  imports: [CommonModule, TranslateModule, ReservasFilter, ReservasList],
+  imports: [CommonModule, TranslateModule, ReservasFilter, ReservasTable],
   templateUrl: './proveedor-reservations.html',
   styleUrl: './proveedor-reservations.css'
 })
