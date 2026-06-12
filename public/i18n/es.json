@@ -415,5 +415,30 @@
     "SUBMIT": "Crear Destino",
     "SUCCESS": "Destino creado exitosamente",
     "ERROR": "Error al crear el destino"
+  },
+  "PROVIDER_RESERVATIONS": {
+    "TITLE": "Reservas",
+    "SUBTITLE": "Gestiona y visualiza las reservas de tus servicios",
+    "FILTERS": {
+      "ESTABLISHMENT": "Establecimiento",
+      "ESTABLISHMENT_PLACEHOLDER": "Selecciona un establecimiento",
+      "SERVICE": "Servicio",
+      "SERVICE_PLACEHOLDER": "Todos los servicios",
+      "STATUS": "Estado",
+      "STATUS_ALL": "Todos",
+      "STATUS_PENDING": "Pendiente",
+      "STATUS_ACCEPTED": "Aceptado",
+      "STATUS_REJECTED": "Rechazado",
+      "DATE": "Fecha de reserva"
+    },
+    "EMPTY_TITLE": "No hay reservas",
+    "EMPTY_DESC": "No se encontraron reservas con los filtros seleccionados.",
+    "CARD": {
+      "SERVICE": "Servicio",
+      "DATE": "Fecha",
+      "PAX": "Personas",
+      "TOTAL": "Total",
+      "STATUS": "Estado"
+    }
   }
 }

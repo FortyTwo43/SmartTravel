@@ -1,0 +1,21 @@
+<div class="page-container fade-in">
+  <header class="page-header">
+    <h1 class="page-title">{{ 'PROVIDER_RESERVATIONS.TITLE' | translate }}</h1>
+    <p class="page-subtitle">{{ 'PROVIDER_RESERVATIONS.SUBTITLE' | translate }}</p>
+  </header>
+
+  <div class="page-content">
+    <app-reservas-filter
+      [establecimientos]="establecimientos()"
+      [selectedEstablecimientoId]="selectedEstablecimientoId()"
+      [serviciosNombres]="serviciosNombres()"
+      (establecimientoChange)="onEstablecimientoChange($event)"
+      (filtersChange)="onFiltersChange($event)"
+    ></app-reservas-filter>
+
+    <app-reservas-list
+      [reservas]="reservasFiltradas()"
+      [loading]="loading()"
+    ></app-reservas-list>
+  </div>
+</div>

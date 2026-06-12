@@ -27,6 +27,18 @@ export class SupabaseReservaRepository extends SupabaseCrudRepository<Reserva, C
     return (data ?? []).map((row) => this.mapFromRow(row));
   }
 
+  async findByServiciosIds(servicioIds: string[]): Promise<Reserva[]> {
+    if (!servicioIds || servicioIds.length === 0) return [];
+    
+    const { data, error } = await this.supabase
+      .from(this.tableName)
+      .select('*')
+      .in('id_servicio_reservable', servicioIds);
+
+    if (error) throw buildSupabaseError('findByServiciosIds', this.tableName, error);
+    return (data ?? []).map((row) => this.mapFromRow(row));
+  }
+
   protected override mapToRow(item: CreateReservaDto | UpdateReservaDto): Record<string, unknown> {
     const mapped: Record<string, unknown> = { ...item };
 
