@@ -1,0 +1,9 @@
+<div class="chart-container">
+  @if (data && data.length > 0) {
+    <div echarts [options]="chartOption" class="chart"></div>
+  } @else {
+    <div class="empty-state">
+      <p>{{ 'PROVIDER_STATISTICS.NO_DATA' | translate }}</p>
+    </div>
+  }
+</div>

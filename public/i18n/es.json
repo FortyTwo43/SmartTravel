@@ -440,5 +440,30 @@
       "TOTAL": "Total",
       "STATUS": "Estado"
     }
+  },
+  "PROVIDER_STATISTICS": {
+    "TITLE": "Estadísticas del Establecimiento",
+    "SUBTITLE": "Analiza el rendimiento de tus servicios y reservas",
+    "INCOME_CHART": {
+      "TITLE": "Ingresos por período",
+      "SERIES_NAME": "Ingresos"
+    },
+    "RESERVATIONS_CHART": {
+      "TITLE": "Reservas realizadas",
+      "SERIES_NAME": "Reservas"
+    },
+    "TOP_SERVICES_CHART": {
+      "TITLE": "Servicios más reservados",
+      "SERIES_NAME": "Reservas"
+    },
+    "INCOME_DISTRIBUTION_CHART": {
+      "TITLE": "Distribución de ingresos por servicio",
+      "SERIES_NAME": "Ingresos"
+    },
+    "STATUS_DISTRIBUTION_CHART": {
+      "TITLE": "Reservas por estado",
+      "SERIES_NAME": "Cantidad"
+    },
+    "NO_DATA": "No hay datos suficientes para mostrar estadísticas."
   }
 }
