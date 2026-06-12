@@ -52,12 +52,20 @@ export const routes: Routes = [
         loadComponent: () => import('./presentation/pages/proveedor/proveedor-services/proveedor-services').then(m => m.ProveedorServicesPageComponent)
       },
       {
+        path: 'reservations',
+        loadComponent: () => import('./presentation/pages/proveedor/proveedor-reservations/proveedor-reservations').then(m => m.ProveedorReservationsComponent)
+      },
+      {
         path: 'services/new',
         loadComponent: () => import('./presentation/pages/proveedor/proveedor-service-form/proveedor-service-form').then(m => m.ProveedorServiceFormComponent)
       },
       {
         path: 'services/edit/:id',
         loadComponent: () => import('./presentation/pages/proveedor/proveedor-service-form/proveedor-service-form').then(m => m.ProveedorServiceFormComponent)
+      },
+      {
+        path: 'statistics',
+        loadComponent: () => import('./presentation/pages/proveedor/proveedor-estadisticas/proveedor-estadisticas.component').then(m => m.ProveedorEstadisticasComponent)
       },
       {
         path: 'accessibility',

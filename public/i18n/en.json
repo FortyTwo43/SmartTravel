@@ -415,5 +415,30 @@
     "SUBMIT": "Create Destination",
     "SUCCESS": "Destination created successfully",
     "ERROR": "Error creating destination"
+  },
+  "PROVIDER_STATISTICS": {
+    "TITLE": "Establishment Statistics",
+    "SUBTITLE": "Analyze the performance of your services and reservations",
+    "INCOME_CHART": {
+      "TITLE": "Income per period",
+      "SERIES_NAME": "Income"
+    },
+    "RESERVATIONS_CHART": {
+      "TITLE": "Reservations made",
+      "SERIES_NAME": "Reservations"
+    },
+    "TOP_SERVICES_CHART": {
+      "TITLE": "Most reserved services",
+      "SERIES_NAME": "Reservations"
+    },
+    "INCOME_DISTRIBUTION_CHART": {
+      "TITLE": "Income distribution by service",
+      "SERIES_NAME": "Income"
+    },
+    "STATUS_DISTRIBUTION_CHART": {
+      "TITLE": "Reservations by status",
+      "SERIES_NAME": "Amount"
+    },
+    "NO_DATA": "Not enough data to display statistics."
   }
 }

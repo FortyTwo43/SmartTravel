@@ -1,0 +1,66 @@
+<div class="filters-container">
+  <!-- Establishment Selection -->
+  <div class="filter-group establishment-selector">
+    <label for="establecimiento-select">{{ 'PROVIDER_RESERVATIONS.FILTERS.ESTABLISHMENT' | translate }}</label>
+    <select 
+      id="establecimiento-select" 
+      [value]="selectedEstablecimientoId()" 
+      (change)="onEstablecimientoChange($event)"
+      class="form-control"
+    >
+      @if (establecimientos().length === 0) {
+        <option value="" disabled>{{ 'PROVIDER_RESERVATIONS.FILTERS.ESTABLISHMENT_PLACEHOLDER' | translate }}</option>
+      }
+      @for (est of establecimientos(); track est.id) {
+        <option [value]="est.id">{{ est.nombre }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="filters-divider"></div>
+
+  <!-- Advanced Filters -->
+  <div class="filter-group">
+    <label for="service-filter">
+      <lucide-icon name="filter" class="icon-sm"></lucide-icon>
+      {{ 'PROVIDER_RESERVATIONS.FILTERS.SERVICE' | translate }}
+    </label>
+    <select 
+      id="service-filter" 
+      [(ngModel)]="selectedServicio" 
+      (ngModelChange)="onFilterChange()"
+      class="form-control"
+    >
+      <option value="">{{ 'PROVIDER_RESERVATIONS.FILTERS.SERVICE_PLACEHOLDER' | translate }}</option>
+      @for (nombre of serviciosNombres(); track nombre) {
+        <option [value]="nombre">{{ nombre }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="filter-group">
+    <label for="status-filter">{{ 'PROVIDER_RESERVATIONS.FILTERS.STATUS' | translate }}</label>
+    <select 
+      id="status-filter" 
+      [(ngModel)]="selectedEstado" 
+      (ngModelChange)="onFilterChange()"
+      class="form-control"
+    >
+      <option value="">{{ 'PROVIDER_RESERVATIONS.FILTERS.STATUS_ALL' | translate }}</option>
+      <option value="pendiente">{{ 'PROVIDER_RESERVATIONS.FILTERS.STATUS_PENDING' | translate }}</option>
+      <option value="aceptado">{{ 'PROVIDER_RESERVATIONS.FILTERS.STATUS_ACCEPTED' | translate }}</option>
+      <option value="rechazado">{{ 'PROVIDER_RESERVATIONS.FILTERS.STATUS_REJECTED' | translate }}</option>
+    </select>
+  </div>
+
+  <div class="filter-group">
+    <label for="date-filter">{{ 'PROVIDER_RESERVATIONS.FILTERS.DATE' | translate }}</label>
+    <input 
+      type="date" 
+      id="date-filter" 
+      [(ngModel)]="selectedFecha" 
+      (ngModelChange)="onFilterChange()"
+      class="form-control"
+    >
+  </div>
+</div>

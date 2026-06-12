@@ -1,0 +1,148 @@
+.reserva-row {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  gap: 0.75rem;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.reserva-row::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+}
+
+.status-border-pendiente::before {
+  background-color: var(--color-tertiary);
+}
+
+.status-border-aceptado::before {
+  background-color: var(--color-secondary);
+}
+
+.status-border-rechazado::before {
+  background-color: var(--color-negative);
+}
+
+.reserva-row:hover {
+  background: var(--bg-surface-alt);
+  transform: translateX(2px);
+}
+
+.row-cell {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+  color: var(--text-main);
+}
+
+.mobile-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-weight: 600;
+  display: block;
+}
+
+.service-name {
+  font-weight: 600;
+  font-family: var(--font-headline);
+  font-size: 1rem;
+}
+
+.price {
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  display: inline-block;
+  text-align: center;
+}
+
+.status-pendiente {
+  color: var(--color-tertiary);
+  border: 1px solid var(--color-tertiary);
+  background-color: transparent;
+}
+
+.status-aceptado {
+  color: var(--color-secondary);
+  border: 1px solid var(--color-secondary);
+  background-color: transparent;
+}
+
+.status-rechazado {
+  color: var(--color-negative);
+  border: 1px solid var(--color-negative);
+  background-color: transparent;
+}
+
+/* Tablet & Desktop Layout */
+@media (min-width: 768px) {
+  .reserva-row {
+    flex-direction: row;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    gap: 1rem;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+  }
+
+  .reserva-row:first-child {
+    border-top: 1px solid var(--border-color);
+  }
+
+  .row-cell {
+    justify-content: flex-start;
+  }
+
+  .mobile-label {
+    display: none;
+  }
+
+  .service-cell {
+    flex: 2;
+    min-width: 0;
+  }
+
+  .service-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .date-cell {
+    flex: 1;
+  }
+
+  .pax-cell {
+    flex: 1;
+  }
+
+  .total-cell {
+    flex: 1;
+  }
+
+  .status-cell {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+  }
+}

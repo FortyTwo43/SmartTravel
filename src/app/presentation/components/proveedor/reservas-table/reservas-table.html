@@ -1,0 +1,34 @@
+<div class="reservas-table-container">
+  @if (loading()) {
+    <div class="loading-state">
+      <div class="spinner"></div>
+      <p>{{ 'COMMON.LOADING' | translate }}</p>
+    </div>
+  } @else if (reservas().length === 0) {
+    <div class="empty-state">
+      <div class="empty-icon-wrapper">
+        <lucide-icon name="inbox" class="empty-icon"></lucide-icon>
+      </div>
+      <h3>{{ 'PROVIDER_RESERVATIONS.EMPTY_TITLE' | translate }}</h3>
+      <p>{{ 'PROVIDER_RESERVATIONS.EMPTY_DESC' | translate }}</p>
+    </div>
+  } @else {
+    <div class="table-wrapper">
+      <!-- Desktop Header -->
+      <div class="table-header">
+        <div class="header-cell service-cell">{{ 'PROVIDER_RESERVATIONS.CARD.SERVICE' | translate }}</div>
+        <div class="header-cell date-cell">{{ 'PROVIDER_RESERVATIONS.CARD.DATE' | translate }}</div>
+        <div class="header-cell pax-cell">{{ 'PROVIDER_RESERVATIONS.CARD.PAX' | translate }}</div>
+        <div class="header-cell total-cell">{{ 'PROVIDER_RESERVATIONS.CARD.TOTAL' | translate }}</div>
+        <div class="header-cell status-cell text-right">{{ 'PROVIDER_RESERVATIONS.CARD.STATUS' | translate }}</div>
+      </div>
+      
+      <!-- Rows -->
+      <div class="table-body">
+        @for (reserva of reservas(); track reserva.id) {
+          <app-reserva-row [reserva]="reserva"></app-reserva-row>
+        }
+      </div>
+    </div>
+  }
+</div>

@@ -1,0 +1,22 @@
+<div class="reservas-list-container">
+  @if (loading()) {
+    <div class="loading-state">
+      <div class="spinner"></div>
+      <p>{{ 'COMMON.LOADING' | translate }}</p>
+    </div>
+  } @else if (reservas().length === 0) {
+    <div class="empty-state">
+      <div class="empty-icon-wrapper">
+        <lucide-icon name="inbox" class="empty-icon"></lucide-icon>
+      </div>
+      <h3>{{ 'PROVIDER_RESERVATIONS.EMPTY_TITLE' | translate }}</h3>
+      <p>{{ 'PROVIDER_RESERVATIONS.EMPTY_DESC' | translate }}</p>
+    </div>
+  } @else {
+    <div class="reservas-grid">
+      @for (reserva of reservas(); track reserva.id) {
+        <app-reserva-card [reserva]="reserva"></app-reserva-card>
+      }
+    </div>
+  }
+</div>
