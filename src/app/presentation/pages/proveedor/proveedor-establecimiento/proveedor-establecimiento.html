@@ -1,0 +1,38 @@
+<div class="establecimiento-page">
+  <div class="header">
+    <span class="eyebrow">SERVICIOS &amp; ESTABLECIMIENTOS</span>
+    <h1 class="title">{{ 'PROVIDER_ESTABLISHMENT.TITLE' | translate }}</h1>
+    <p class="subtitle">{{ 'PROVIDER_ESTABLISHMENT.SUBTITLE' | translate }}</p>
+  </div>
+
+  @if (successMessage()) {
+    <div class="alert alert-success">
+      {{ successMessage() }}
+    </div>
+  }
+
+  @if (errorMessage()) {
+    <div class="alert alert-error">
+      {{ errorMessage() }}
+    </div>
+  }
+
+  @if (isLoading()) {
+    <div class="loading-state">
+      <p>{{ 'COMMON.LOADING' | translate }}</p>
+    </div>
+  } @else if (establecimiento()) {
+    <div class="content-grid">
+      <app-establecimiento-details
+        [establecimiento]="establecimiento()!"
+        [destinoLabel]="destinoLabel()"
+        [isUpdating]="isUpdating()"
+        (onUpdate)="handleUpdate($event)"
+      ></app-establecimiento-details>
+
+      <app-establecimiento-gallery
+        [images]="images()"
+      ></app-establecimiento-gallery>
+    </div>
+  }
+</div>

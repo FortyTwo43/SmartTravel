@@ -16,9 +16,9 @@
       <lucide-icon name="concierge-bell"></lucide-icon>
       <span>{{ 'PROVIDER_DASHBOARD.SIDEBAR.SERVICES' | translate }}</span>
     </a>
-    <a class="nav-item" href="#">
-      <lucide-icon name="users"></lucide-icon>
-      <span>{{ 'PROVIDER_DASHBOARD.SIDEBAR.CLIENTS' | translate }}</span>
+    <a class="nav-item" routerLink="/provider/establecimiento" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      <lucide-icon name="store"></lucide-icon>
+      <span>{{ 'PROVIDER_DASHBOARD.SIDEBAR.ESTABLISHMENT' | translate }}</span>
     </a>
     <a class="nav-item" routerLink="/provider/statistics" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
       <lucide-icon name="bar-chart"></lucide-icon>

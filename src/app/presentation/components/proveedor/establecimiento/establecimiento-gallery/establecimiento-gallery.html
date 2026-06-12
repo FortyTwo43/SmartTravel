@@ -1,0 +1,26 @@
+<div class="card gallery-card">
+  <div class="gallery-header">
+    <h2 class="gallery-title">{{ 'PROVIDER_ESTABLISHMENT.GALLERY.TITLE' | translate }}</h2>
+    <span class="gallery-limit">{{ 'PROVIDER_ESTABLISHMENT.GALLERY.LIMIT' | translate }}</span>
+  </div>
+
+  @if (isLoading()) {
+    <div class="loading-state">
+      <p>{{ 'COMMON.LOADING' | translate }}</p>
+    </div>
+  } @else {
+    <div class="gallery-grid">
+      @for (img of resolvedImages(); track $index) {
+        <div class="gallery-item">
+          <img [src]="img" alt="Gallery image" class="gallery-img" />
+        </div>
+      }
+      
+      <!-- Upload Placeholder -->
+      <div class="gallery-upload">
+        <lucide-icon name="camera" class="upload-icon"></lucide-icon>
+        <span>{{ 'PROVIDER_ESTABLISHMENT.GALLERY.UPLOAD' | translate }}</span>
+      </div>
+    </div>
+  }
+</div>

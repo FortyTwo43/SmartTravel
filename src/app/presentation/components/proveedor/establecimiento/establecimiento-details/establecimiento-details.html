@@ -1,0 +1,62 @@
+<div class="card details-card">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-grid">
+
+    <!-- Nombre -->
+    <div class="form-group">
+      <label for="nombre">{{ 'PROVIDER_ESTABLISHMENT.DETAILS.NAME' | translate }}</label>
+      <input id="nombre" type="text" formControlName="nombre" class="form-input">
+    </div>
+
+    <!-- Tipo de Servicio -->
+    <div class="form-group">
+      <label for="tipo">{{ 'PROVIDER_ESTABLISHMENT.DETAILS.TYPE' | translate }}</label>
+      <select id="tipo" formControlName="tipo" class="form-input">
+        <option value="tour">{{ 'PROVIDER_ESTABLISHMENT.DETAILS.TOUR' | translate }}</option>
+        <option value="hotel">{{ 'PROVIDER_ESTABLISHMENT.DETAILS.HOTEL' | translate }}</option>
+        <option value="restaurante">{{ 'PROVIDER_ESTABLISHMENT.DETAILS.RESTAURANT' | translate }}</option>
+      </select>
+    </div>
+
+    <!-- Destino (solo lectura) -->
+    <div class="form-group readonly-group">
+      <label>{{ 'PROVIDER_ESTABLISHMENT.DETAILS.DESTINATION' | translate }}</label>
+      <div class="readonly-value">
+        <lucide-icon name="map-pin" class="icon-sm"></lucide-icon>
+        <span>{{ destinoLabel || establecimiento.id_destino }}</span>
+      </div>
+    </div>
+
+    <!-- Estado Operativo (solo lectura) -->
+    <div class="form-group readonly-group">
+      <label>{{ 'PROVIDER_ESTABLISHMENT.DETAILS.STATUS' | translate }}</label>
+      <div class="status-display">
+        @if (establecimiento.estado === 'activo') {
+          <span class="status-badge active">
+            {{ 'PROVIDER_ESTABLISHMENT.DETAILS.STATUS_ACTIVE' | translate }}
+          </span>
+        } @else {
+          <span class="status-badge inactive">
+            {{ 'PROVIDER_ESTABLISHMENT.DETAILS.STATUS_INACTIVE' | translate }}
+          </span>
+        }
+      </div>
+    </div>
+
+    <!-- Descripción (ancho completo, sin toolbar) -->
+    <div class="form-group full-width">
+      <label for="descripcion">{{ 'PROVIDER_ESTABLISHMENT.DETAILS.DESCRIPTION' | translate }}</label>
+      <textarea id="descripcion" formControlName="descripcion" class="form-textarea" rows="5"></textarea>
+    </div>
+
+    <div class="form-actions full-width">
+      <button type="button" class="btn-cancel" (click)="onCancel()">{{ 'PROVIDER_ESTABLISHMENT.CANCEL' | translate }}</button>
+      <button type="submit" class="btn-primary" [disabled]="form.invalid || isUpdating">
+        @if (isUpdating) {
+          {{ 'COMMON.LOADING' | translate }}
+        } @else {
+          {{ 'PROVIDER_ESTABLISHMENT.SAVE' | translate }}
+        }
+      </button>
+    </div>
+  </form>
+</div>

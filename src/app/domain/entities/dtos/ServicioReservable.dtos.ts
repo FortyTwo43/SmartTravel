@@ -9,6 +9,7 @@ export interface CreateServicioReservableDto {
   descripcion: string;
   comodidades_adicionales: string;
   disponibilidad: boolean;
+  imagen: string;
 }
 
 export interface UpdateServicioReservableDto {
@@ -18,4 +19,5 @@ export interface UpdateServicioReservableDto {
   descripcion?: string;
   comodidades_adicionales?: string;
   disponibilidad?: boolean;
+  imagen?: string;
 }

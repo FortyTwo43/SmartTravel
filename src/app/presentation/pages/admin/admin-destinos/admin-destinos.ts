@@ -38,7 +38,7 @@ export class AdminDestinosComponent implements OnInit {
       const destinosWithImages = await Promise.all(
         data.map(async (destino) => ({
           ...destino,
-          imagen: await this.getImageUrlUseCase.execute(destino.imagen)
+          imagen: await this.getImageUrlUseCase.execute(destino.imagen, 'destinos-imagenes')
         }))
       );
 

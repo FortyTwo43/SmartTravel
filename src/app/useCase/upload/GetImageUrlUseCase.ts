@@ -7,7 +7,7 @@ import { SupabaseStorageRepository } from '../../infrastructure/repositories/sup
 export class GetImageUrlUseCase {
   constructor(private readonly storageRepository: SupabaseStorageRepository) {}
 
-  async execute(path: string, bucket: string = 'destinos-imagenes'): Promise<string> {
+  async execute(path: string, bucket: string): Promise<string> {
     if (!path) return '';
     
     // Si ya es una URL completa, la retornamos tal cual

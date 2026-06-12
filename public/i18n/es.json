@@ -225,6 +225,7 @@
       "RESERVATIONS": "Reservas",
       "SERVICES": "Servicios",
       "CLIENTS": "Clientes",
+      "ESTABLISHMENT": "Establecimiento",
       "STATISTICS": "Estadísticas",
       "NOTIFICATIONS": "Notificaciones",
       "SETTINGS": "Configuración",
@@ -465,5 +466,30 @@
       "SERIES_NAME": "Cantidad"
     },
     "NO_DATA": "No hay datos suficientes para mostrar estadísticas."
+  },
+  "PROVIDER_ESTABLISHMENT": {
+    "TITLE": "Editar Detalles del Establecimiento",
+    "SUBTITLE": "Configura la presencia de tu establecimiento en la red de Smart Travel AI.",
+    "DETAILS": {
+      "NAME": "Nombre del Establecimiento",
+      "TYPE": "Tipo de Servicio",
+      "DESTINATION": "Destino (Ubicación)",
+      "STATUS": "Estado Operativo",
+      "DESCRIPTION": "Descripción del Establecimiento",
+      "STATUS_ACTIVE": "Activo",
+      "STATUS_INACTIVE": "Inactivo",
+      "TOUR": "Tour",
+      "HOTEL": "Hotel",
+      "RESTAURANT": "Restaurante"
+    },
+    "GALLERY": {
+      "TITLE": "Galería Multimedia",
+      "LIMIT": "Máximo 10 fotos (PNG, JPG)",
+      "UPLOAD": "Subir Foto"
+    },
+    "SUCCESS_MSG": "Establecimiento actualizado correctamente",
+    "ERROR_MSG": "Error al actualizar el establecimiento",
+    "SAVE": "Guardar Cambios",
+    "CANCEL": "Cancelar"
   }
 }
