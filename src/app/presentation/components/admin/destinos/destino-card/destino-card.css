@@ -1,0 +1,85 @@
+.destino-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+}
+
+.destino-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.card-image-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  background-color: var(--bg-surface-alt);
+}
+
+.card-image {
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.destino-card:hover .card-image {
+  transform: scale(1.05);
+}
+
+.image-placeholder {
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-surface-alt);
+}
+
+.card-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
+}
+
+.card-title {
+  font-family: var(--font-headline);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin: 0;
+}
+
+.card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.icon {
+  width: 1rem;
+  height: 1rem;
+  color: var(--color-primary);
+}
+
+.experience-badge {
+  background-color: var(--bg-main);
+  color: var(--color-primary);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}

@@ -6,4 +6,5 @@ export interface ServicioReservable {
   descripcion: string;
   comodidades_adicionales: string;
   disponibilidad: boolean;
+  created_at: string;  
 }

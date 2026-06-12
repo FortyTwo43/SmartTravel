@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { TravelerLayoutComponent } from './presentation/layouts/viajero/traveler-layout/traveler-layout.component';
 import { ProveedorLayoutComponent } from './presentation/layouts/proveedor/proveedor-layout/proveedor-layout';
+import { AdminLayoutComponent } from './presentation/layouts/admin/admin-layout/admin-layout';
 
 export const routes: Routes = [
   {
@@ -29,7 +30,7 @@ export const routes: Routes = [
       },
       {
         path: 'accessibility',
-        loadComponent: ()=> import('./presentation/pages/accessibility/accessibility.component').then(m => m.AccessibilityComponent)
+        loadComponent: () => import('./presentation/pages/accessibility/accessibility.component').then(m => m.AccessibilityComponent)
       }
       ,
       {
@@ -60,7 +61,29 @@ export const routes: Routes = [
       },
       {
         path: 'accessibility',
-        loadComponent: ()=> import('./presentation/pages/accessibility/accessibility.component').then(m => m.AccessibilityComponent)
+        loadComponent: () => import('./presentation/pages/accessibility/accessibility.component').then(m => m.AccessibilityComponent)
+      }
+    ]
+  },
+  {
+    path: 'admin',
+    component: AdminLayoutComponent,
+    children: [
+      {
+        path: 'dashboard',
+        loadComponent: () => import('./presentation/pages/admin/admin-dashboard/admin-dashboard').then(m => m.AdminDashboardComponent)
+      },
+      {
+        path: 'accessibility',
+        loadComponent: () => import('./presentation/pages/accessibility/accessibility.component').then(m => m.AccessibilityComponent)
+      },
+      {
+        path: 'destinos',
+        loadComponent: () => import('./presentation/pages/admin/admin-destinos/admin-destinos').then(m => m.AdminDestinosComponent)
+      },
+      {
+        path: 'destinos/new',
+        loadComponent: () => import('./presentation/pages/admin/admin-destino-create/admin-destino-create').then(m => m.AdminDestinoCreateComponent)
       }
     ]
   },

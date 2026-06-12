@@ -1,0 +1,92 @@
+.header-container {
+  height: 6rem;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2.5rem;
+  background-color: var(--bg-surface);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.header-title {
+  font-family: var(--font-headline);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  color: var(--color-primary);
+  background-color: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-full);
+}
+
+.status-text {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.icon-sm {
+  width: 18px;
+  height: 18px;
+}
+
+.icon-md {
+  width: 24px;
+  height: 24px;
+  color: var(--text-main);
+}
+
+.notification-btn {
+  position: relative;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.notification-btn:hover {
+  background-color: var(--bg-surface-alt);
+}
+
+.notification-dot {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  width: 0.625rem;
+  height: 0.625rem;
+  background-color: #ff6b6b;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--bg-surface);
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    padding: 0 1rem;
+  }
+  .header-title {
+    font-size: 1.125rem;
+  }
+}

@@ -56,6 +56,14 @@ export class LoginUseCase {
     
     if (role === 'viajero') {
       redirect = '/traveler/dashboard';
+
+    } else if(role == 'proveedor'){
+      redirect = '/provider/dashboard';
+
+    } else if (role === 'admin') {
+      redirect = '/admin/dashboard';
+    } else {
+      redirect = '/home';
     }
 
     return {

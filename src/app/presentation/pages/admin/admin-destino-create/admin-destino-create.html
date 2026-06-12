@@ -1,0 +1,15 @@
+<section class="admin-page-container">
+  <header class="page-header">
+    <button class="back-button" routerLink="/admin/destinos" [attr.aria-label]="'COMMON.CANCEL' | translate">
+      <lucide-icon name="arrow-left" [size]="20"></lucide-icon>
+    </button>
+    <div class="header-content">
+      <h1 class="page-title">{{ 'ADMIN_DESTINO_FORM.TITLE' | translate }}</h1>
+      <p class="page-subtitle">{{ 'ADMIN_DESTINO_FORM.SUBTITLE' | translate }}</p>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <app-admin-destino-form></app-admin-destino-form>
+  </main>
+</section>

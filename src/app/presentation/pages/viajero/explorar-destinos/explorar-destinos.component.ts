@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { GetExplorarDestinosUseCase, ExploreDestination } from '../../../../useCase/viajero/explorar-destinos/GetExplorarDestinosUseCase';
+import { GetImageUrlUseCase } from '../../../../useCase/upload/GetImageUrlUseCase';
 
 
 import { TravelerFilterSidebarComponent } from '../../../components/viajero/explorar-destinos/traveler-filter-sidebar/traveler-filter-sidebar.component';
@@ -22,6 +23,7 @@ import { DestinationGridComponent } from '../../../components/viajero/explorar-d
 })
 export class ExplorarDestinosComponent implements OnInit {
   private readonly useCase = inject(GetExplorarDestinosUseCase);
+  private readonly getImageUrlUseCase = inject(GetImageUrlUseCase);
 
   destinos = signal<ReadonlyArray<ExploreDestination>>([]);
   isLoading = signal(false);
@@ -39,7 +41,13 @@ export class ExplorarDestinosComponent implements OnInit {
     this.error.set(null);
     try {
       const data = await this.useCase.execute();
-      this.destinos.set(data);
+      const destinosWithImages = await Promise.all(
+        data.map(async (destino) => ({
+          ...destino,
+          imagen: await this.getImageUrlUseCase.execute(destino.imagen)
+        }))
+      );
+      this.destinos.set(destinosWithImages);
     } catch (err: any) {
       console.error(err);
       this.error.set(err?.message || 'Error al cargar destinos');
@@ -52,9 +60,15 @@ export class ExplorarDestinosComponent implements OnInit {
     this.isLoading.set(true);
     this.error.set(null);
     this.useCase.execute(filters)
-      .then(res => {
-        this.destinos.set(res);
-        if (res.length === 0) {
+      .then(async res => {
+        const destinosWithImages = await Promise.all(
+          res.map(async (destino) => ({
+            ...destino,
+            imagen: await this.getImageUrlUseCase.execute(destino.imagen)
+          }))
+        );
+        this.destinos.set(destinosWithImages);
+        if (destinosWithImages.length === 0) {
           this.error.set('No se encontraron destinos con esos filtros.');
         }
       })

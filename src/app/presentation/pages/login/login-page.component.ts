@@ -56,18 +56,11 @@ export class LoginPageComponent {
       const { email, password } = this.loginForm.value;
       const result = await this.loginUseCase.execute(email, password);
       console.log('Login exitoso. Result:', result);
-      
-      // Redirect based on user role and onboarding status
-      if (result.role === 'viajero' && result.redirect) {
-        // For travelers, use the redirect determined by LoginUseCase (onboarding status check)
+
+      if(result.redirect){
         this.router.navigate([result.redirect]);
-      } else if (result.role === 'proveedor') {
-        // Provider dashboard
-        this.router.navigate(['/provider/dashboard']);
-      } else {
-        // Default redirect for other roles
-        this.router.navigate(['/home']);
       }
+
     } catch (error: any) {
       this.errorMessage = error.message || 'Error al iniciar sesión';
     } finally {
