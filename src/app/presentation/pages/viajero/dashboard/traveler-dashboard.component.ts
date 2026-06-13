@@ -57,7 +57,7 @@ export class TravelerDashboardComponent implements OnInit {
         data.destinosRecomendados = await Promise.all(
           data.destinosRecomendados.map(async (destino) => ({
             ...destino,
-            imagen: destino.imagen ? await this.getImageUrlUseCase.execute(destino.imagen) : destino.imagen
+            imagen: destino.imagen ? await this.getImageUrlUseCase.execute(destino.imagen, 'destinos-imagenes') : destino.imagen
           }))
         );
       }

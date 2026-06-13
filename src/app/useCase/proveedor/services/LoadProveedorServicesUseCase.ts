@@ -47,7 +47,8 @@ export class LoadProveedorServicesUseCase {
         precio: service.precio,
         comodidadesAdicionales: service.comodidades_adicionales,
         disponibilidad: service.disponibilidad,
-        establecimientoNombre: establecimiento.nombre
+        establecimientoNombre: establecimiento.nombre,
+        imagen: service.imagen
       }));
     });
   }

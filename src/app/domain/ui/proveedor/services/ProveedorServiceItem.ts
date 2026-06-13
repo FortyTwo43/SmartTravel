@@ -6,4 +6,5 @@ export interface ProveedorServiceItem {
   comodidadesAdicionales: string;
   disponibilidad: boolean;
   establecimientoNombre: string;
+  imagen?: string;
 }

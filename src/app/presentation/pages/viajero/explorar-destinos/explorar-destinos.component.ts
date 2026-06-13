@@ -44,7 +44,7 @@ export class ExplorarDestinosComponent implements OnInit {
       const destinosWithImages = await Promise.all(
         data.map(async (destino) => ({
           ...destino,
-          imagen: await this.getImageUrlUseCase.execute(destino.imagen)
+          imagen: await this.getImageUrlUseCase.execute(destino.imagen, 'destinos-imagenes')
         }))
       );
       this.destinos.set(destinosWithImages);
@@ -64,7 +64,7 @@ export class ExplorarDestinosComponent implements OnInit {
         const destinosWithImages = await Promise.all(
           res.map(async (destino) => ({
             ...destino,
-            imagen: await this.getImageUrlUseCase.execute(destino.imagen)
+            imagen: await this.getImageUrlUseCase.execute(destino.imagen, 'destinos-imagenes')
           }))
         );
         this.destinos.set(destinosWithImages);

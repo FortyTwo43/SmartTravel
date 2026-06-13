@@ -68,6 +68,10 @@ export const routes: Routes = [
         loadComponent: () => import('./presentation/pages/proveedor/proveedor-estadisticas/proveedor-estadisticas.component').then(m => m.ProveedorEstadisticasComponent)
       },
       {
+        path: 'establecimiento',
+        loadComponent: () => import('./presentation/pages/proveedor/proveedor-establecimiento/proveedor-establecimiento').then(m => m.ProveedorEstablecimientoComponent)
+      },
+      {
         path: 'accessibility',
         loadComponent: () => import('./presentation/pages/accessibility/accessibility.component').then(m => m.AccessibilityComponent)
       }
