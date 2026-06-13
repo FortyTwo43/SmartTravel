@@ -36,6 +36,10 @@ export const routes: Routes = [
       {
         path: 'explorar-destinos',
         loadComponent: () => import('./presentation/pages/viajero/explorar-destinos/explorar-destinos.component').then(m => m.ExplorarDestinosComponent)
+      },
+      {
+        path: 'destinations/:id',
+        loadComponent: () => import('./presentation/pages/viajero/detalle-destino/detalle-destino.component').then(m => m.DetalleDestinoComponent)
       }
     ]
   },

@@ -1,0 +1,153 @@
+<div class="detail-page">
+
+  <!-- ESTADO: CARGANDO -->
+  @if (isLoading()) {
+    <div class="state-container" role="status" aria-live="polite">
+      <div class="spinner" aria-hidden="true"></div>
+      <p class="state-text">{{ 'DESTINATION_DETAIL.LOADING' | translate }}</p>
+    </div>
+  }
+
+  <!-- ESTADO: NO ENCONTRADO -->
+  @else if (error() === 'not_found') {
+    <div class="state-container">
+      <p class="state-title">{{ 'DESTINATION_DETAIL.NOT_FOUND' | translate }}</p>
+      <p class="state-text">{{ 'DESTINATION_DETAIL.NOT_FOUND_DESC' | translate }}</p>
+      <button class="btn-back" (click)="goBack()" id="btn-back-not-found">
+        <lucide-icon name="arrow-left" class="icon-sm" aria-hidden="true"></lucide-icon>
+        {{ 'DESTINATION_DETAIL.BACK' | translate }}
+      </button>
+    </div>
+  }
+
+  <!-- ESTADO: ERROR GENÉRICO -->
+  @else if (error()) {
+    <div class="state-container">
+      <p class="state-title">{{ 'DESTINATION_DETAIL.ERROR' | translate }}</p>
+      <p class="state-text">{{ error() }}</p>
+      <button class="btn-back" (click)="goBack()" id="btn-back-error">
+        <lucide-icon name="arrow-left" class="icon-sm" aria-hidden="true"></lucide-icon>
+        {{ 'DESTINATION_DETAIL.BACK' | translate }}
+      </button>
+    </div>
+  }
+
+  <!-- CONTENIDO PRINCIPAL -->
+  @else if (destino()) {
+    <!-- BOTÓN VOLVER -->
+    <div class="back-bar">
+      <button class="btn-back" (click)="goBack()" id="btn-back-main" [attr.aria-label]="'DESTINATION_DETAIL.BACK' | translate">
+        <lucide-icon name="arrow-left" class="icon-sm" aria-hidden="true"></lucide-icon>
+        {{ 'DESTINATION_DETAIL.BACK' | translate }}
+      </button>
+    </div>
+
+    <!-- HERO IMAGE -->
+    <section class="hero-section" [attr.aria-label]="destino()!.nombre">
+      @if (destino()!.imagenUrl) {
+        <img
+          class="hero-img"
+          [src]="destino()!.imagenUrl"
+          [alt]="destino()!.nombre"
+        />
+      } @else {
+        <div class="hero-img hero-placeholder" aria-hidden="true"></div>
+      }
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="hero-content">
+        <h1 class="hero-title">{{ destino()!.nombre }}</h1>
+        <div class="hero-location">
+          <lucide-icon name="map-pin" class="icon-xs" aria-hidden="true"></lucide-icon>
+          <span>{{ destino()!.ciudad }}, {{ destino()!.pais }}</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- GRID: INFO + SIDEBAR -->
+    <div class="detail-grid">
+
+      <!-- COLUMNA IZQUIERDA: INFO CARD -->
+      <main class="info-column">
+        <article class="info-card card" aria-label="Información del destino">
+
+          <!-- BADGE EXPERIENCIA -->
+          <div class="badge-experience">
+            <lucide-icon name="tag" class="icon-xs" aria-hidden="true"></lucide-icon>
+            <span>{{ destino()!.tipo_experiencia }}</span>
+          </div>
+
+          <!-- TÍTULO ATRACTIVO -->
+          <h2 class="info-title">
+            {{ 'DESTINATION_DETAIL.EXPLORE_PREFIX' | translate }} {{ destino()!.nombre }}
+          </h2>
+
+          <!-- DESCRIPCIÓN REAL (o generada desde datos reales) -->
+          <p class="info-description">{{ destino()!.descripcionDisplay }}</p>
+
+          <!-- DETALLES: CIUDAD / PAÍS -->
+          <div class="detail-chips">
+            <div class="detail-chip">
+              <lucide-icon name="map-pin" class="icon-xs" aria-hidden="true"></lucide-icon>
+              <span>{{ destino()!.ciudad }}</span>
+            </div>
+            <div class="detail-chip">
+              <lucide-icon name="book-open" class="icon-xs" aria-hidden="true"></lucide-icon>
+              <span>{{ destino()!.pais }}</span>
+            </div>
+          </div>
+
+        </article>
+      </main>
+
+      <!-- COLUMNA DERECHA: SIDEBAR -->
+      <aside class="sidebar-column" aria-label="Gestionar viaje">
+        <div class="sidebar-card card">
+          <h3 class="sidebar-title">{{ 'DESTINATION_DETAIL.MANAGE_TRIP' | translate }}</h3>
+          <p class="sidebar-desc">{{ 'DESTINATION_DETAIL.MANAGE_TRIP_DESC' | translate }}</p>
+
+          <div class="sidebar-actions">
+            <button
+              class="action-btn action-btn--primary"
+              disabled
+              id="btn-add-itinerary"
+              [attr.aria-label]="'DESTINATION_DETAIL.ADD_ITINERARY' | translate"
+              [title]="'DESTINATION_DETAIL.COMING_SOON' | translate"
+            >
+              <lucide-icon name="calendar-plus" class="icon-sm" aria-hidden="true"></lucide-icon>
+              {{ 'DESTINATION_DETAIL.ADD_ITINERARY' | translate }}
+            </button>
+
+            <button
+              class="action-btn action-btn--secondary"
+              disabled
+              id="btn-book-now"
+              [attr.aria-label]="'DESTINATION_DETAIL.BOOK_NOW' | translate"
+              [title]="'DESTINATION_DETAIL.COMING_SOON' | translate"
+            >
+              <lucide-icon name="book-open" class="icon-sm" aria-hidden="true"></lucide-icon>
+              {{ 'DESTINATION_DETAIL.BOOK_NOW' | translate }}
+            </button>
+
+            <button
+              class="action-btn action-btn--ghost"
+              disabled
+              id="btn-save-later"
+              [attr.aria-label]="'DESTINATION_DETAIL.SAVE_LATER' | translate"
+              [title]="'DESTINATION_DETAIL.COMING_SOON' | translate"
+            >
+              <lucide-icon name="bookmark" class="icon-sm" aria-hidden="true"></lucide-icon>
+              {{ 'DESTINATION_DETAIL.SAVE_LATER' | translate }}
+            </button>
+          </div>
+
+          <p class="sidebar-note">
+            <lucide-icon name="tag" class="icon-xs" aria-hidden="true"></lucide-icon>
+            {{ 'DESTINATION_DETAIL.COMING_SOON' | translate }}
+          </p>
+        </div>
+      </aside>
+
+    </div>
+  }
+
+</div>

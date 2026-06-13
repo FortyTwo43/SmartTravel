@@ -381,13 +381,31 @@
     "LANGUAGE_PREFERENCE": "Preferencia de Idioma",
     "SPANISH_CASTILIAN": "Español (Castellano)",
     "ENGLISH": "Inglés"
-  }
-  ,
+  },
   "TRAVELER_EXPLORAR": {
     "TITLE": "Explorar Destinos",
     "FILTERS": "Filtros",
     "LOAD_MORE": "Cargar más destinos",
-    "NO_RESULTS": "No se encontraron destinos"
+    "NO_RESULTS": "No se encontraron destinos",
+    "VIEW_DETAILS": "Ver detalles"
+  },
+  "DESTINATION_DETAIL": {
+    "BACK": "Volver a destinos",
+    "LOCATION_LABEL": "Ubicación",
+    "EXPLORE_PREFIX": "Explora",
+    "EXPLORE_LOCATED": "ubicado en",
+    "EXPLORE_IDEAL": "Ideal para viajeros interesados en",
+    "EXPERIENCE_BADGE": "Tipo de experiencia",
+    "MANAGE_TRIP": "Gestionar viaje",
+    "MANAGE_TRIP_DESC": "Personaliza tu estancia en este destino.",
+    "ADD_ITINERARY": "Agregar a itinerario",
+    "BOOK_NOW": "Reservar ahora",
+    "SAVE_LATER": "Guardar para después",
+    "COMING_SOON": "Próximamente",
+    "NOT_FOUND": "Destino no encontrado",
+    "NOT_FOUND_DESC": "El destino que buscas no existe o fue eliminado.",
+    "LOADING": "Cargando destino...",
+    "ERROR": "Error al cargar el destino"
   },
   "ADMIN_DESTINATIONS": {
     "TITLE": "Destinos",
