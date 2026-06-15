@@ -1,8 +1,9 @@
-.typography-section {
+.adjustments-section {
   background-color: var(--bg-surface);
   border-radius: var(--radius-lg);
   padding: 1.5rem;
   box-shadow: var(--shadow-sm);
+  margin-top: 1.5rem;
 }
 
 fieldset {
@@ -22,96 +23,10 @@ fieldset {
   margin: 0 0 1.5rem 0;
 }
 
-.section-title lucide-icon {
-  color: var(--color-primary);
-}
-
-.font-size-controls {
+.toggles-container {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-}
-
-.font-size-slider {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.slider-label {
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--text-main);
-}
-
-.slider {
-  width: 100%;
-  height: 6px;
-  border-radius: var(--radius-full);
-  background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
-  outline: none;
-  -webkit-appearance: none;
-  appearance: none;
-  cursor: pointer;
-}
-
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 1.25rem;
-  height: 1.25rem;
-  border-radius: 50%;
-  background: var(--color-primary);
-  cursor: pointer;
-  box-shadow: var(--shadow-md);
-  transition: all 0.2s ease;
-}
-
-.slider::-webkit-slider-thumb:hover {
-  transform: scale(1.1);
-  box-shadow: var(--shadow-lg);
-}
-
-.slider::-moz-range-thumb {
-  width: 1.25rem;
-  height: 1.25rem;
-  border-radius: 50%;
-  background: var(--color-primary);
-  border: none;
-  cursor: pointer;
-  box-shadow: var(--shadow-md);
-  transition: all 0.2s ease;
-}
-
-.slider::-moz-range-thumb:hover {
-  transform: scale(1.1);
-  box-shadow: var(--shadow-lg);
-}
-
-.font-size-labels {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0.5rem;
-  font-family: var(--font-body);
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  text-align: center;
-}
-
-.font-preview {
-  padding: 1.5rem;
-  background-color: var(--bg-surface-alt);
-  border-radius: var(--radius-md);
-  border-left: 4px solid var(--color-primary);
-}
-
-.preview-text {
-  font-family: var(--font-body);
-  font-size: 1rem;
-  color: var(--text-main);
-  margin: 0;
-  line-height: 1.6;
+  gap: 1.25rem;
 }
 
 .toggle-option {
@@ -123,7 +38,6 @@ fieldset {
   background-color: var(--bg-surface-alt);
   border-radius: var(--radius-md);
   transition: all 0.2s ease;
-  margin-top: 1.5rem;
 }
 
 .toggle-option:hover {
@@ -190,7 +104,7 @@ fieldset {
 }
 
 @media (max-width: 768px) {
-  .typography-section {
+  .adjustments-section {
     padding: 1.25rem;
   }
 
@@ -199,9 +113,8 @@ fieldset {
     margin-bottom: 1.25rem;
   }
 
-  .font-size-labels {
-    grid-template-columns: repeat(4, 1fr);
-    font-size: 0.75rem;
+  .toggles-container {
+    gap: 1rem;
   }
 
   .toggle-option {

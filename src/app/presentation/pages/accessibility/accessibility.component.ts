@@ -9,6 +9,11 @@ import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, RotateCcw } from
 import { VisualThemeComponent } from '../../components/accessibility/visual-theme/visual-theme.component';
 import { TypographyComponent } from '../../components/accessibility/typography/typography.component';
 import { LanguagePreferenceComponent } from '../../components/accessibility/language-preference/language-preference.component';
+import { ContrastColor } from '../../components/accessibility/contrast-color/contrast-color';
+import { AnimationsMovement } from '../../components/accessibility/animations-movement/animations-movement';
+import { NavigationFocus } from '../../components/accessibility/navigation-focus/navigation-focus';
+import { KeyboardShortcuts } from '../../components/accessibility/keyboard-shortcuts/keyboard-shortcuts';
+import { Multimedia } from '../../components/accessibility/multimedia/multimedia';
 import {
   ChangeThemeUseCase,
   ChangeFontSizeUseCase,
@@ -27,7 +32,12 @@ import {
     LucideAngularModule,
     VisualThemeComponent,
     TypographyComponent,
-    LanguagePreferenceComponent
+    LanguagePreferenceComponent,
+    ContrastColor,
+    AnimationsMovement,
+    NavigationFocus,
+    KeyboardShortcuts,
+    Multimedia
   ],
   providers: [{
     provide: LUCIDE_ICONS,
