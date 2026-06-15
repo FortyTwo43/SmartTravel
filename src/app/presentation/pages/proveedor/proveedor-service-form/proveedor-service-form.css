@@ -263,6 +263,79 @@ label {
   color: var(--color-primary);
 }
 
+/* File Upload Styles */
+.file-upload-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  border: 2px dashed var(--border-color);
+  border-radius: var(--radius-md);
+  background-color: var(--input-bg);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.file-upload-area:hover, .file-upload-area.dragging {
+  border-color: var(--color-primary);
+  background-color: rgba(2, 136, 209, 0.05);
+  color: var(--color-primary);
+}
+
+.hidden-file-input {
+  display: none;
+}
+
+.file-upload-highlight {
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+.file-upload-hint {
+  font-size: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.selected-file-area {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background-color: var(--input-bg);
+}
+
+.file-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--text-main);
+  font-weight: 500;
+  font-size: 0.875rem;
+  word-break: break-all;
+}
+
+.remove-file-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #ef4444; /* var(--color-negative) is standard, but keeping consistent with provider-service-form.css #ef4444 error color if preferred, let's use var(--color-negative) if present or fallback to red. The css has #ef4444. */
+  padding: 0.25rem;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.remove-file-btn:hover {
+  background-color: rgba(239, 68, 68, 0.1);
+}
+
 .alert {
   padding: 1rem;
   border-radius: var(--radius-md);

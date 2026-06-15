@@ -1,7 +1,7 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { EstadisticasProveedorUseCase } from '../../../../application/usecases/proveedor/estadisticas.usecase';
+import { EstadisticasProveedorUseCase } from '../../../../useCase/proveedor/estadisticas/estadisticas.usecase';
 import { LoadDashboardDataUseCase } from '../../../../useCase/proveedor/dashboard/LoadDashboardDataUseCase';
 
 import { IngresoPeriodo } from '../../../../domain/ui/proveedor/estadisticas/IngresoPeriodo';

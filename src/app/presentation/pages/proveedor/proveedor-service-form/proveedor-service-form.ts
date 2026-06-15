@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormArray, ReactiveFormsModule, Validators, AbstractControl } from '@angular/forms';
 import { Router, RouterLink, ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, ArrowLeft, Save, Plus, Trash2 } from 'lucide-angular';
+import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, ArrowLeft, Save, Plus, Trash2, CloudUpload, Image as ImageIcon, X } from 'lucide-angular';
 import { CreateProveedorServiceUseCase } from '../../../../useCase/proveedor/services/CreateProveedorServiceUseCase';
 import { UpdateProveedorServiceUseCase } from '../../../../useCase/proveedor/services/UpdateProveedorServiceUseCase';
 import { GetProveedorServiceUseCase } from '../../../../useCase/proveedor/services/GetProveedorServiceUseCase';
 import { LoadEstablecimientosUseCase } from '../../../../useCase/proveedor/services/LoadEstablecimientosUseCase';
+import { UploadServicioImageUseCase } from '../../../../useCase/upload/UploadServicioImageUseCase';
 import { EstablecimientoTuristico } from '../../../../domain/entities/EstablecimientoTuristico';
 import { CreateServicioReservableDto, UpdateServicioReservableDto } from '../../../../domain/entities/dtos';
 
@@ -21,7 +22,7 @@ import { CreateServicioReservableDto, UpdateServicioReservableDto } from '../../
     {
       provide: LUCIDE_ICONS,
       multi: true,
-      useValue: new LucideIconProvider({ ArrowLeft, Save, Plus, Trash2 })
+      useValue: new LucideIconProvider({ ArrowLeft, Save, Plus, Trash2, CloudUpload, Image: ImageIcon, X })
     }
   ]
 })
@@ -33,6 +34,7 @@ export class ProveedorServiceFormComponent implements OnInit {
   private readonly updateServiceUseCase = inject(UpdateProveedorServiceUseCase);
   private readonly getServiceUseCase = inject(GetProveedorServiceUseCase);
   private readonly loadEstablecimientosUseCase = inject(LoadEstablecimientosUseCase);
+  private readonly uploadImageUseCase = inject(UploadServicioImageUseCase);
 
   public serviceForm!: FormGroup;
   public establecimientos = signal<EstablecimientoTuristico[]>([]);
@@ -41,6 +43,8 @@ export class ProveedorServiceFormComponent implements OnInit {
   public error = signal<string | null>(null);
   public isEditMode = signal<boolean>(false);
   private editId: string | null = null;
+  public selectedFile = signal<File | null>(null);
+  public isDragging = signal<boolean>(false);
 
   ngOnInit(): void {
     this.editId = this.route.snapshot.paramMap.get('id');
@@ -70,6 +74,54 @@ export class ProveedorServiceFormComponent implements OnInit {
 
   public removeComodidad(index: number): void {
     this.comodidadesArray.removeAt(index);
+  }
+
+  onDragOver(event: DragEvent) {
+    event.preventDefault();
+    this.isDragging.set(true);
+  }
+
+  onDragLeave(event: DragEvent) {
+    event.preventDefault();
+    this.isDragging.set(false);
+  }
+
+  onDrop(event: DragEvent) {
+    event.preventDefault();
+    this.isDragging.set(false);
+    
+    if (event.dataTransfer?.files && event.dataTransfer.files.length > 0) {
+      this.handleFile(event.dataTransfer.files[0]);
+    }
+  }
+
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.handleFile(input.files[0]);
+    }
+  }
+
+  private handleFile(file: File) {
+    const validTypes = ['image/jpeg', 'image/png'];
+    const maxSize = 5 * 1024 * 1024; // 5MB
+
+    if (!validTypes.includes(file.type)) {
+      this.error.set('REGISTER.ERROR_FILE_TYPE');
+      return;
+    }
+
+    if (file.size > maxSize) {
+      this.error.set('REGISTER.ERROR_FILE_SIZE');
+      return;
+    }
+
+    this.selectedFile.set(file);
+    this.error.set(null);
+  }
+
+  removeFile() {
+    this.selectedFile.set(null);
   }
 
   private async loadEstablecimientos(): Promise<void> {
@@ -131,6 +183,11 @@ export class ProveedorServiceFormComponent implements OnInit {
       return;
     }
 
+    if (!this.isEditMode() && !this.selectedFile()) {
+      this.error.set('Por favor selecciona una imagen para el servicio');
+      return;
+    }
+
     try {
       this.loading.set(true);
       this.error.set(null);
@@ -141,16 +198,26 @@ export class ProveedorServiceFormComponent implements OnInit {
         .filter(c => c.length > 0)
         .join(', ');
 
+      let imageUrl: string | undefined = undefined;
+      if (this.selectedFile()) {
+        imageUrl = await this.uploadImageUseCase.execute(this.selectedFile()!);
+      }
+
       if (this.isEditMode() && this.editId) {
         const dto: UpdateServicioReservableDto = {
           ...rawValue,
           comodidades_adicionales: comodidades
         };
+        if (imageUrl) {
+          dto.imagen = imageUrl;
+        }
         await this.updateServiceUseCase.execute(this.editId, dto);
       } else {
+        if (!imageUrl) throw new Error('Imagen es requerida al crear');
         const dto: CreateServicioReservableDto = {
           ...rawValue,
-          comodidades_adicionales: comodidades
+          comodidades_adicionales: comodidades,
+          imagen: imageUrl
         };
         await this.createServiceUseCase.execute(dto);
       }
