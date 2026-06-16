@@ -331,6 +331,9 @@
       "ERROR": "An error occurred while creating the service",
       "BACK": "Back to services",
       "ADD_AMENITY": "Add amenity",
+      "REMOVE_AMENITY": "Remove amenity",
+      "MANDATORY_NOTE": "Required fields are marked with an asterisk (*)",
+      "IMAGE_HINT": "PNG or JPEG (max. 5 MB)",
       "ERROR_PRICE_GREATER_THAN_ZERO": "Price must be greater than 0"
     }
   },

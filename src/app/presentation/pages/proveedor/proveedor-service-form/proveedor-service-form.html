@@ -1,7 +1,12 @@
 <section class="provider-service-form-page">
   <header class="provider-service-form-page__header">
-    <button class="back-button" routerLink="/provider/services" [attr.aria-label]="'PROVIDER_SERVICES.FORM.BACK' | translate">
-      <lucide-icon name="arrow-left" [size]="20"></lucide-icon>
+    <button
+      type="button"
+      class="back-button"
+      routerLink="/provider/services"
+      [attr.aria-label]="'PROVIDER_SERVICES.FORM.BACK' | translate"
+    >
+      <lucide-icon name="arrow-left" [size]="20" aria-hidden="true"></lucide-icon>
     </button>
     <div>
       <h1 class="provider-service-form-page__title">
@@ -15,50 +20,83 @@
 
   <main class="provider-service-form-page__content">
     @if (error()) {
-      <div class="alert alert--error" role="alert">
+      <div class="alert alert--error" role="alert" aria-live="assertive">
         {{ error() | translate }}
       </div>
     }
 
-    <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()" class="service-form">
-      <p class="mandatory-note">Los campos obligatorios están marcados con un asterisco (<span class="required-asterisk">*</span>)</p>
+    <form
+      [formGroup]="serviceForm"
+      (ngSubmit)="onSubmit()"
+      class="service-form"
+      aria-describedby="mandatory-note"
+      novalidate
+    >
+      <p id="mandatory-note" class="mandatory-note">
+        {{ 'PROVIDER_SERVICES.FORM.MANDATORY_NOTE' | translate }}
+      </p>
+
       <div class="form-group">
-        <label for="nombre">{{ 'PROVIDER_SERVICES.FORM.NAME' | translate }} <span class="required-asterisk">*</span></label>
-        <input 
-          type="text" 
-          id="nombre" 
-          formControlName="nombre" 
+        <label for="nombre">
+          {{ 'PROVIDER_SERVICES.FORM.NAME' | translate }}
+          <span class="required-asterisk" aria-hidden="true">*</span>
+        </label>
+        <input
+          type="text"
+          id="nombre"
+          formControlName="nombre"
           class="form-input"
           [placeholder]="'PROVIDER_SERVICES.FORM.NAME_PLACEHOLDER' | translate"
           autocomplete="off"
+          required
+          aria-required="true"
+          [attr.aria-invalid]="serviceForm.get('nombre')?.invalid && serviceForm.get('nombre')?.touched ? 'true' : null"
         />
       </div>
 
       <div class="form-group form-group--inline">
         <div class="form-field">
-          <label for="precio">{{ 'PROVIDER_SERVICES.FORM.PRICE' | translate }} <span class="required-asterisk">*</span></label>
+          <label for="precio">
+            {{ 'PROVIDER_SERVICES.FORM.PRICE' | translate }}
+            <span class="required-asterisk" aria-hidden="true">*</span>
+          </label>
           <div class="input-with-icon">
             <span class="currency-symbol" aria-hidden="true">$</span>
-            <input 
-              type="number" 
-              id="precio" 
-              formControlName="precio" 
+            <input
+              type="number"
+              id="precio"
+              formControlName="precio"
               class="form-input"
               [placeholder]="'PROVIDER_SERVICES.FORM.PRICE_PLACEHOLDER' | translate"
               min="0.01"
               step="0.01"
               autocomplete="off"
+              required
+              aria-required="true"
+              [attr.aria-describedby]="serviceForm.get('precio')?.hasError('greaterThanZero') && serviceForm.get('precio')?.touched ? 'precio-error' : null"
+              [attr.aria-invalid]="serviceForm.get('precio')?.invalid && serviceForm.get('precio')?.touched ? 'true' : null"
             />
           </div>
           @if (serviceForm.get('precio')?.hasError('greaterThanZero') && serviceForm.get('precio')?.touched) {
-            <span class="error-text">{{ 'PROVIDER_SERVICES.FORM.ERROR_PRICE_GREATER_THAN_ZERO' | translate }}</span>
+            <span id="precio-error" class="error-text" role="alert">{{ 'PROVIDER_SERVICES.FORM.ERROR_PRICE_GREATER_THAN_ZERO' | translate }}</span>
           }
         </div>
 
         @if (establecimientos().length > 1) {
           <div class="form-field">
-            <label for="id_establecimiento">{{ 'PROVIDER_SERVICES.FORM.ESTABLISHMENT' | translate }} <span class="required-asterisk">*</span></label>
-            <select id="id_establecimiento" formControlName="id_establecimiento" class="form-input form-select" autocomplete="organization">
+            <label for="id_establecimiento">
+              {{ 'PROVIDER_SERVICES.FORM.ESTABLISHMENT' | translate }}
+              <span class="required-asterisk" aria-hidden="true">*</span>
+            </label>
+            <select
+              id="id_establecimiento"
+              formControlName="id_establecimiento"
+              class="form-input form-select"
+              autocomplete="organization"
+              required
+              aria-required="true"
+              [attr.aria-invalid]="serviceForm.get('id_establecimiento')?.invalid && serviceForm.get('id_establecimiento')?.touched ? 'true' : null"
+            >
               <option value="" disabled>{{ 'PROVIDER_SERVICES.FORM.ESTABLISHMENT_PLACEHOLDER' | translate }}</option>
               @for (est of establecimientos(); track est.id) {
                 <option [value]="est.id">{{ est.nombre }}</option>
@@ -67,40 +105,62 @@
           </div>
         } @else if (establecimientos().length === 1) {
           <div class="form-field">
-            <label>{{ 'PROVIDER_SERVICES.FORM.ESTABLISHMENT' | translate }}</label>
-            <div class="readonly-field">{{ establecimientos()[0].nombre }}</div>
+            <label id="establecimiento-single-label" for="establecimiento-single">
+              {{ 'PROVIDER_SERVICES.FORM.ESTABLISHMENT' | translate }}
+            </label>
+            <output id="establecimiento-single" class="readonly-field" aria-labelledby="establecimiento-single-label">
+              {{ establecimientos()[0].nombre }}
+            </output>
           </div>
         }
       </div>
 
       <div class="form-group">
-        <label for="descripcion">{{ 'PROVIDER_SERVICES.FORM.DESCRIPTION' | translate }} <span class="required-asterisk">*</span></label>
-        <textarea 
-          id="descripcion" 
-          formControlName="descripcion" 
+        <label for="descripcion">
+          {{ 'PROVIDER_SERVICES.FORM.DESCRIPTION' | translate }}
+          <span class="required-asterisk" aria-hidden="true">*</span>
+        </label>
+        <textarea
+          id="descripcion"
+          formControlName="descripcion"
           class="form-input form-textarea"
           [placeholder]="'PROVIDER_SERVICES.FORM.DESCRIPTION_PLACEHOLDER' | translate"
           rows="4"
           autocomplete="off"
+          required
+          aria-required="true"
+          [attr.aria-invalid]="serviceForm.get('descripcion')?.invalid && serviceForm.get('descripcion')?.touched ? 'true' : null"
         ></textarea>
       </div>
 
       <fieldset class="form-group" formArrayName="comodidades_adicionales">
-        <legend class="form-legend">{{ 'PROVIDER_SERVICES.FORM.AMENITIES' | translate }} <span class="required-asterisk">*</span></legend>
-        
-        <div class="amenities-list">
+        <legend class="form-legend">
+          {{ 'PROVIDER_SERVICES.FORM.AMENITIES' | translate }}
+          <span class="required-asterisk" aria-hidden="true">*</span>
+        </legend>
+
+        <div class="amenities-list" role="list">
           @for (control of comodidadesArray.controls; track $index) {
-            <div class="amenity-item">
-              <input 
-                type="text" 
-                [formControlName]="$index" 
+            <div class="amenity-item" role="listitem">
+              <label class="sr-only" [for]="'comodidad-' + $index">
+                {{ 'PROVIDER_SERVICES.FORM.AMENITIES' | translate }} {{ $index + 1 }}
+              </label>
+              <input
+                type="text"
+                [id]="'comodidad-' + $index"
+                [formControlName]="$index"
                 class="form-input"
                 [placeholder]="'PROVIDER_SERVICES.FORM.AMENITIES_PLACEHOLDER' | translate"
                 autocomplete="off"
-                [attr.aria-label]="('PROVIDER_SERVICES.FORM.AMENITIES' | translate) + ' ' + ($index + 1)"
+                [attr.aria-required]="$index === 0 ? 'true' : null"
               />
               @if (comodidadesArray.length > 1) {
-                <button type="button" class="btn-icon btn-icon--danger" (click)="removeComodidad($index)" aria-label="Eliminar comodidad">
+                <button
+                  type="button"
+                  class="btn-icon btn-icon--danger"
+                  (click)="removeComodidad($index)"
+                  [attr.aria-label]="('PROVIDER_SERVICES.FORM.REMOVE_AMENITY' | translate) + ' ' + ($index + 1)"
+                >
                   <lucide-icon name="trash-2" [size]="18" aria-hidden="true"></lucide-icon>
                 </button>
               }
@@ -115,33 +175,50 @@
       </fieldset>
 
       <div class="form-group">
-        <span class="form-label" id="image-upload-label">{{ 'ADMIN_DESTINO_FORM.IMAGE' | translate }} <span class="required-asterisk">*</span></span>
+        <span class="form-label" id="image-upload-label">
+          {{ 'ADMIN_DESTINO_FORM.IMAGE' | translate }}
+          <span class="required-asterisk" aria-hidden="true">*</span>
+        </span>
 
         @if (!selectedFile()) {
-          <label 
-            class="file-upload-area" 
-            [class.dragging]="isDragging()" 
+          <label
+            class="file-upload-area"
+            [class.dragging]="isDragging()"
             (dragover)="onDragOver($event)"
-            (dragleave)="onDragLeave($event)" 
+            (dragleave)="onDragLeave($event)"
             (drop)="onDrop($event)"
-            aria-labelledby="image-upload-label">
-            <input 
-              type="file" 
-              class="hidden-file-input" 
+            aria-labelledby="image-upload-label"
+          >
+            <input
+              type="file"
+              id="image-upload-input"
+              class="hidden-file-input"
               accept="image/png, image/jpeg"
-              (change)="onFileSelected($event)" 
+              (change)="onFileSelected($event)"
+              [attr.aria-required]="!isEditMode() ? 'true' : null"
+              aria-describedby="image-upload-hint"
             />
             <lucide-icon name="cloud-upload" aria-hidden="true"></lucide-icon>
-            <p><span class="file-upload-highlight">{{ 'REGISTER.UPLOAD_FILES' | translate }}</span> {{ 'REGISTER.OR_DRAG_DROP' | translate }}</p>
-            <p class="file-upload-hint">{{ 'REGISTER.FILE_HINT' | translate }} (Max 5MB)</p>
+            <p>
+              <span class="file-upload-highlight">{{ 'REGISTER.UPLOAD_FILES' | translate }}</span>
+              {{ 'REGISTER.OR_DRAG_DROP' | translate }}
+            </p>
+            <p id="image-upload-hint" class="file-upload-hint">
+              {{ 'PROVIDER_SERVICES.FORM.IMAGE_HINT' | translate }}
+            </p>
           </label>
         } @else {
-          <div class="selected-file-area">
+          <div class="selected-file-area" role="group" aria-labelledby="image-upload-label">
             <div class="file-info">
-              <lucide-icon name="image" [size]="20"></lucide-icon>
+              <lucide-icon name="image" [size]="20" aria-hidden="true"></lucide-icon>
               <span>{{ selectedFile()?.name }}</span>
             </div>
-            <button type="button" class="remove-file-btn" (click)="removeFile()" [attr.aria-label]="'REGISTER.REMOVE_FILE' | translate">
+            <button
+              type="button"
+              class="remove-file-btn"
+              (click)="removeFile()"
+              [attr.aria-label]="'REGISTER.REMOVE_FILE' | translate"
+            >
               <lucide-icon name="x" [size]="20" aria-hidden="true"></lucide-icon>
             </button>
           </div>
@@ -149,10 +226,10 @@
       </div>
 
       <div class="form-group form-group--checkbox">
-        <input 
-          type="checkbox" 
-          id="disponibilidad" 
-          formControlName="disponibilidad" 
+        <input
+          type="checkbox"
+          id="disponibilidad"
+          formControlName="disponibilidad"
           class="form-checkbox"
         />
         <label for="disponibilidad">{{ 'PROVIDER_SERVICES.FORM.AVAILABILITY' | translate }}</label>
@@ -162,12 +239,17 @@
         <button type="button" class="btn-cancel" routerLink="/provider/services">
           {{ 'COMMON.CANCEL' | translate }}
         </button>
-        <button type="submit" class="btn-submit" [disabled]="serviceForm.invalid || loading()">
+        <button
+          type="submit"
+          class="btn-submit"
+          [disabled]="serviceForm.invalid || loading()"
+          [attr.aria-busy]="loading() ? 'true' : null"
+        >
           @if (loading()) {
-            <span class="spinner"></span>
+            <span class="spinner" aria-hidden="true"></span>
             {{ 'COMMON.LOADING' | translate }}
           } @else {
-            <lucide-icon name="save" [size]="18"></lucide-icon>
+            <lucide-icon name="save" [size]="18" aria-hidden="true"></lucide-icon>
             <span>{{ (isEditMode() ? 'PROVIDER_SERVICES.FORM.SUBMIT_EDIT' : 'PROVIDER_SERVICES.FORM.SUBMIT') | translate }}</span>
           }
         </button>

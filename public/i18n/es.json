@@ -331,6 +331,9 @@
       "ERROR": "Ocurrió un error al crear el servicio",
       "BACK": "Volver a servicios",
       "ADD_AMENITY": "Agregar comodidad",
+      "REMOVE_AMENITY": "Eliminar comodidad",
+      "MANDATORY_NOTE": "Los campos obligatorios están marcados con un asterisco (*)",
+      "IMAGE_HINT": "PNG o JPEG (máx. 5 MB)",
       "ERROR_PRICE_GREATER_THAN_ZERO": "El precio debe ser mayor a 0"
     }
   },
