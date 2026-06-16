@@ -21,22 +21,24 @@
     }
 
     <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()" class="service-form">
+      <p class="mandatory-note">Los campos obligatorios están marcados con un asterisco (<span class="required-asterisk">*</span>)</p>
       <div class="form-group">
-        <label for="nombre">{{ 'PROVIDER_SERVICES.FORM.NAME' | translate }}</label>
+        <label for="nombre">{{ 'PROVIDER_SERVICES.FORM.NAME' | translate }} <span class="required-asterisk">*</span></label>
         <input 
           type="text" 
           id="nombre" 
           formControlName="nombre" 
           class="form-input"
           [placeholder]="'PROVIDER_SERVICES.FORM.NAME_PLACEHOLDER' | translate"
+          autocomplete="off"
         />
       </div>
 
       <div class="form-group form-group--inline">
         <div class="form-field">
-          <label for="precio">{{ 'PROVIDER_SERVICES.FORM.PRICE' | translate }}</label>
+          <label for="precio">{{ 'PROVIDER_SERVICES.FORM.PRICE' | translate }} <span class="required-asterisk">*</span></label>
           <div class="input-with-icon">
-            <span class="currency-symbol">$</span>
+            <span class="currency-symbol" aria-hidden="true">$</span>
             <input 
               type="number" 
               id="precio" 
@@ -45,6 +47,7 @@
               [placeholder]="'PROVIDER_SERVICES.FORM.PRICE_PLACEHOLDER' | translate"
               min="0.01"
               step="0.01"
+              autocomplete="off"
             />
           </div>
           @if (serviceForm.get('precio')?.hasError('greaterThanZero') && serviceForm.get('precio')?.touched) {
@@ -54,8 +57,8 @@
 
         @if (establecimientos().length > 1) {
           <div class="form-field">
-            <label for="id_establecimiento">{{ 'PROVIDER_SERVICES.FORM.ESTABLISHMENT' | translate }}</label>
-            <select id="id_establecimiento" formControlName="id_establecimiento" class="form-input form-select">
+            <label for="id_establecimiento">{{ 'PROVIDER_SERVICES.FORM.ESTABLISHMENT' | translate }} <span class="required-asterisk">*</span></label>
+            <select id="id_establecimiento" formControlName="id_establecimiento" class="form-input form-select" autocomplete="organization">
               <option value="" disabled>{{ 'PROVIDER_SERVICES.FORM.ESTABLISHMENT_PLACEHOLDER' | translate }}</option>
               @for (est of establecimientos(); track est.id) {
                 <option [value]="est.id">{{ est.nombre }}</option>
@@ -71,18 +74,19 @@
       </div>
 
       <div class="form-group">
-        <label for="descripcion">{{ 'PROVIDER_SERVICES.FORM.DESCRIPTION' | translate }}</label>
+        <label for="descripcion">{{ 'PROVIDER_SERVICES.FORM.DESCRIPTION' | translate }} <span class="required-asterisk">*</span></label>
         <textarea 
           id="descripcion" 
           formControlName="descripcion" 
           class="form-input form-textarea"
           [placeholder]="'PROVIDER_SERVICES.FORM.DESCRIPTION_PLACEHOLDER' | translate"
           rows="4"
+          autocomplete="off"
         ></textarea>
       </div>
 
-      <div class="form-group" formArrayName="comodidades_adicionales">
-        <label>{{ 'PROVIDER_SERVICES.FORM.AMENITIES' | translate }}</label>
+      <fieldset class="form-group" formArrayName="comodidades_adicionales">
+        <legend class="form-legend">{{ 'PROVIDER_SERVICES.FORM.AMENITIES' | translate }} <span class="required-asterisk">*</span></legend>
         
         <div class="amenities-list">
           @for (control of comodidadesArray.controls; track $index) {
@@ -92,10 +96,12 @@
                 [formControlName]="$index" 
                 class="form-input"
                 [placeholder]="'PROVIDER_SERVICES.FORM.AMENITIES_PLACEHOLDER' | translate"
+                autocomplete="off"
+                [attr.aria-label]="('PROVIDER_SERVICES.FORM.AMENITIES' | translate) + ' ' + ($index + 1)"
               />
               @if (comodidadesArray.length > 1) {
                 <button type="button" class="btn-icon btn-icon--danger" (click)="removeComodidad($index)" aria-label="Eliminar comodidad">
-                  <lucide-icon name="trash-2" [size]="18"></lucide-icon>
+                  <lucide-icon name="trash-2" [size]="18" aria-hidden="true"></lucide-icon>
                 </button>
               }
             </div>
@@ -103,13 +109,13 @@
         </div>
 
         <button type="button" class="btn-add-amenity" (click)="addComodidad()">
-          <lucide-icon name="plus" [size]="16"></lucide-icon>
+          <lucide-icon name="plus" [size]="16" aria-hidden="true"></lucide-icon>
           <span>{{ 'PROVIDER_SERVICES.FORM.ADD_AMENITY' | translate }}</span>
         </button>
-      </div>
+      </fieldset>
 
       <div class="form-group">
-        <span class="form-label" id="image-upload-label">{{ 'ADMIN_DESTINO_FORM.IMAGE' | translate }}</span>
+        <span class="form-label" id="image-upload-label">{{ 'ADMIN_DESTINO_FORM.IMAGE' | translate }} <span class="required-asterisk">*</span></span>
 
         @if (!selectedFile()) {
           <label 
@@ -125,7 +131,7 @@
               accept="image/png, image/jpeg"
               (change)="onFileSelected($event)" 
             />
-            <lucide-icon name="cloud-upload"></lucide-icon>
+            <lucide-icon name="cloud-upload" aria-hidden="true"></lucide-icon>
             <p><span class="file-upload-highlight">{{ 'REGISTER.UPLOAD_FILES' | translate }}</span> {{ 'REGISTER.OR_DRAG_DROP' | translate }}</p>
             <p class="file-upload-hint">{{ 'REGISTER.FILE_HINT' | translate }} (Max 5MB)</p>
           </label>

@@ -13,6 +13,26 @@
   box-shadow: var(--shadow-sm);
 }
 
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--text-main);
+  cursor: pointer;
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+  border-radius: var(--radius-sm);
+}
+
+.mobile-menu-btn:hover {
+  background-color: var(--bg-surface-alt);
+}
+
 .header-title {
   font-size: 1.5rem;
   color: var(--text-main);
@@ -116,5 +136,10 @@
   }
   .date-selector {
     display: none;
+  }
+  .mobile-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }

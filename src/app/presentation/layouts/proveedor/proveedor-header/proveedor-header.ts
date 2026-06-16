@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Star, Calendar, ChevronDown, Bell } from 'lucide-angular';
+import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Star, Calendar, ChevronDown, Bell, Menu } from 'lucide-angular';
 import { SharedEstablishmentService } from '../../../service/shared/shared-establishment.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { SharedEstablishmentService } from '../../../service/shared/shared-estab
   providers: [{
     provide: LUCIDE_ICONS,
     multi: true,
-    useValue: new LucideIconProvider({ Star, Calendar, ChevronDown, Bell })
+    useValue: new LucideIconProvider({ Star, Calendar, ChevronDown, Bell, Menu })
   }],
   templateUrl: './proveedor-header.html',
   styleUrl: './proveedor-header.css'
@@ -18,4 +18,6 @@ import { SharedEstablishmentService } from '../../../service/shared/shared-estab
 export class ProveedorHeaderComponent {
   private sharedEstablishment = inject(SharedEstablishmentService);
   protected establishment = this.sharedEstablishment.establishment;
+  
+  toggleSidebar = output<void>();
 }

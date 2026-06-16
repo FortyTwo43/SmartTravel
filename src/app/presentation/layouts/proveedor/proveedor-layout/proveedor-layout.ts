@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ProveedorSidebarComponent } from '../proveedor-sidebar/proveedor-sidebar';
@@ -12,4 +12,14 @@ import { Footer } from '../../footer/footer';
   templateUrl: './proveedor-layout.html',
   styleUrl: './proveedor-layout.css'
 })
-export class ProveedorLayoutComponent {}
+export class ProveedorLayoutComponent {
+  isSidebarOpen = signal(false);
+
+  toggleSidebar() {
+    this.isSidebarOpen.update(v => !v);
+  }
+
+  closeSidebar() {
+    this.isSidebarOpen.set(false);
+  }
+}
