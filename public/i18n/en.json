@@ -28,6 +28,7 @@
     "HERO_IMAGE_ALT": "Panoramic view of a travel destination with mountains and clear sky"
   },
   "COMMON": {
+    "BACK": "Back",
     "SAVE": "Save",
     "CANCEL": "Cancel",
     "DELETE": "Delete",
