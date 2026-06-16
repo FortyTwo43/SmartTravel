@@ -50,7 +50,8 @@
     "PROVIDERS": "Proveedores",
     "ABOUT": "Nosotros",
     "LOGIN": "Iniciar Sesión",
-    "REGISTER": "Registrarme"
+    "REGISTER": "Registrarme",
+    "ARIA_LABEL": "Navegación principal"
   },
   "HOME": {
     "HERO": {
@@ -92,7 +93,22 @@
       "DUBAI": "Dubai, UAE",
       "DUBAI_DESC": "Arquitectura futurista",
       "SANTORINI": "Santorini, GR",
-      "SANTORINI_DESC": "Vistas infinitas"
+      "SANTORINI_DESC": "Vistas infinitas",
+      "PARIS": "París, Francia",
+      "PARIS_DESC": "La ciudad del amor, famosa por su arte, gastronomía y monumentos históricos.",
+      "BALI": "Bali, Indonesia",
+      "BALI_DESC": "Playas paradisíacas, templos ancestrales y paisajes tropicales únicos.",
+      "NEW_YORK": "Nueva York, Estados Unidos",
+      "NEW_YORK_DESC": "La ciudad que nunca duerme, llena de cultura, entretenimiento y rascacielos.",
+      "MACHU_PICCHU": "Machu Picchu, Perú",
+      "MACHU_PICCHU_DESC": "Maravilla arqueológica rodeada de impresionantes montañas andinas.",
+      "CAROUSEL_LABEL": "Carrusel de destinos populares",
+      "PAUSE_CAROUSEL": "Pausar rotación automática",
+      "PLAY_CAROUSEL": "Reanudar rotación automática",
+      "CARD_LABEL": "Destino",
+      "RATING_LABEL": "Calificación",
+      "FAVORITE_LABEL": "Marcar como favorito",
+      "SLIDE_OF": "Destino {{current}} de {{total}}"
     },
     "CTA": {
       "TITLE": "Comienza tu próxima aventura hoy",

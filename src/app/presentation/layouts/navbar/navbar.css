@@ -67,19 +67,15 @@
 }
 
 .btn-login {
-  display: none;
+  display: block;
   background: none;
   border: none;
   color: var(--text-muted);
   font-family: var(--font-body);
+  font-size: 0.875rem;
   cursor: pointer;
   transition: color 0.2s ease;
-}
-
-@media (min-width: 1024px) {
-  .btn-login {
-    display: block;
-  }
+  padding: 0.25rem 0.5rem;
 }
 
 .btn-login:hover {
