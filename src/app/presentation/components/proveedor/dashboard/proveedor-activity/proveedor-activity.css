@@ -1,3 +1,10 @@
+:host {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
 .activity-card {
   background-color: var(--bg-surface);
   backdrop-filter: blur(12px);
@@ -6,6 +13,7 @@
   border-radius: var(--radius-lg);
   overflow: hidden;
   height: 100%;
+  max-width: 100%;
 }
 
 .activity-header {
@@ -119,4 +127,39 @@
   background-color: rgba(255, 180, 171, 0.1);
   color: #ffb4ab;
   border: 1px solid rgba(255, 180, 171, 0.3);
+}
+
+@media (max-width: 767px) {
+  .activity-header {
+    padding: 1rem;
+  }
+
+  .activity-title {
+    font-size: 1.25rem;
+  }
+
+  .btn-link {
+    font-size: 0.75rem;
+  }
+
+  .avatar {
+    display: none;
+  }
+
+  .client-cell {
+    gap: 0;
+  }
+
+  .activity-table th,
+  .activity-table td {
+    padding: 0.75rem 0.625rem;
+  }
+
+  .activity-table th {
+    font-size: 0.625rem;
+  }
+
+  .activity-table td {
+    font-size: 0.8125rem;
+  }
 }
