@@ -27,14 +27,29 @@
           <span>{{ 'ACCESSIBILITY.EXTRA_LARGE' | translate }}</span>
         </div>
       </div>
-      <!-- Spacing toggle visual only -->
-      <label class="toggle-option">
-        <input type="checkbox" class="toggle-input" />
-        <div class="toggle-label-text">
-          <span class="toggle-title">{{ 'ACCESSIBILITY.TEXT_SPACING' | translate }}</span>
-          <span class="toggle-desc">{{ 'ACCESSIBILITY.TEXT_SPACING_DESC' | translate }}</span>
+      <!-- Spacing controls -->
+      <div class="font-size-slider">
+        <label for="text-spacing-input" class="slider-label">
+          {{ 'ACCESSIBILITY.TEXT_SPACING' | translate }}
+        </label>
+        <input
+          id="text-spacing-input"
+          type="range"
+          min="0"
+          max="3"
+          [value]="['small', 'normal', 'large', 'extra-large'].indexOf(selectedTextSpacing())"
+          (change)="onTextSpacingChange($event)"
+          class="slider"
+          [attr.aria-label]="'ACCESSIBILITY.TEXT_SPACING' | translate"
+        />
+        <div class="font-size-labels">
+          <span>{{ 'ACCESSIBILITY.SMALL' | translate }}</span>
+          <span>{{ 'ACCESSIBILITY.NORMAL' | translate }}</span>
+          <span>{{ 'ACCESSIBILITY.LARGE' | translate }}</span>
+          <span>{{ 'ACCESSIBILITY.EXTRA_LARGE' | translate }}</span>
         </div>
-      </label>
+        <p class="spacing-desc">{{ 'ACCESSIBILITY.TEXT_SPACING_DESC' | translate }}</p>
+      </div>
 
       <div class="font-preview">
         <p class="preview-text">{{ 'ACCESSIBILITY.PREVIEW_TEXT' | translate }}</p>

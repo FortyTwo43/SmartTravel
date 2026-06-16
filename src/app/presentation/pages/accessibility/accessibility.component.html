@@ -23,7 +23,9 @@
   <!-- Typography Component -->
   <app-typography
     [selectedFontSize]="selectedFontSize()"
+    [selectedTextSpacing]="selectedTextSpacing()"
     (fontSizeChanged)="onFontSizeChange($event)"
+    (textSpacingChanged)="onTextSpacingChange($event)"
   ></app-typography>
 
   <app-contrast-color></app-contrast-color>

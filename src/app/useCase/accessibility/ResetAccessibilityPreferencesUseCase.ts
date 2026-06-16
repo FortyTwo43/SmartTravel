@@ -8,6 +8,7 @@ export class ResetAccessibilityPreferencesUseCase {
   private readonly DEFAULT_PREFERENCES: AccessibilityPreferences = {
     theme: 'system',
     fontSize: 'normal',
+    textSpacing: 'normal',
     language: 'es'
   };
 

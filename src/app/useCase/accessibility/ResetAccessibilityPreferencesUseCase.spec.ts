@@ -25,6 +25,7 @@ describe('ResetAccessibilityPreferencesUseCase', () => {
     expect(result).toEqual({
       theme: 'system',
       fontSize: 'normal',
+      textSpacing: 'normal',
       language: 'es'
     });
   });

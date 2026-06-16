@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { signal, computed } from '@angular/core';
 import { FontSizeLevel } from '../../service/font-size/font-size.service';
+import { TextSpacingLevel } from '../../service/text-spacing/text-spacing.service';
 import { LanguageCode } from '../../constants/languages.constant';
 import { ThemeMode } from '../../constants/themes.constant';
 import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, RotateCcw } from 'lucide-angular';
@@ -17,6 +18,7 @@ import { Multimedia } from '../../components/accessibility/multimedia/multimedia
 import {
   ChangeThemeUseCase,
   ChangeFontSizeUseCase,
+  ChangeTextSpacingUseCase,
   ChangeLanguageUseCase,
   SaveAccessibilityPreferencesUseCase,
   LoadAccessibilityPreferencesUseCase,
@@ -52,6 +54,7 @@ export class AccessibilityComponent implements OnInit, OnDestroy {
     // Use Cases
     private changeThemeUseCase = inject(ChangeThemeUseCase);
     private changeFontSizeUseCase = inject(ChangeFontSizeUseCase);
+    private changeTextSpacingUseCase = inject(ChangeTextSpacingUseCase);
     private changeLanguageUseCase = inject(ChangeLanguageUseCase);
     private savePreferencesUseCase = inject(SaveAccessibilityPreferencesUseCase);
     private loadPreferencesUseCase = inject(LoadAccessibilityPreferencesUseCase);
@@ -60,12 +63,14 @@ export class AccessibilityComponent implements OnInit, OnDestroy {
     // Current state signals
     selectedTheme = signal<ThemeMode>('system');
     selectedFontSize = signal<FontSizeLevel>('normal');
+    selectedTextSpacing = signal<TextSpacingLevel>('normal');
     selectedLanguage = signal<LanguageCode>('es');
 
     // Initial state for change detection
     private initialState = signal({
         theme: 'system' as ThemeMode,
         fontSize: 'normal' as FontSizeLevel,
+        textSpacing: 'normal' as TextSpacingLevel,
         language: 'es' as LanguageCode
     });
 
@@ -75,6 +80,7 @@ export class AccessibilityComponent implements OnInit, OnDestroy {
         return (
         this.selectedTheme() !== current.theme ||
         this.selectedFontSize() !== current.fontSize ||
+        this.selectedTextSpacing() !== current.textSpacing ||
         this.selectedLanguage() !== current.language
         );
     });
@@ -92,12 +98,14 @@ export class AccessibilityComponent implements OnInit, OnDestroy {
         // Set state signals
         this.selectedTheme.set(preferences.theme);
         this.selectedFontSize.set(preferences.fontSize);
+        this.selectedTextSpacing.set(preferences.textSpacing);
         this.selectedLanguage.set(preferences.language);
 
         // Set initial state for change detection
         this.initialState.set({
         theme: preferences.theme,
         fontSize: preferences.fontSize,
+        textSpacing: preferences.textSpacing,
         language: preferences.language
         });
     }
@@ -107,6 +115,7 @@ export class AccessibilityComponent implements OnInit, OnDestroy {
         this.savePreferencesUseCase.execute({
         theme: this.selectedTheme(),
         fontSize: this.selectedFontSize(),
+        textSpacing: this.selectedTextSpacing(),
         language: this.selectedLanguage()
         });
 
@@ -114,6 +123,7 @@ export class AccessibilityComponent implements OnInit, OnDestroy {
         this.initialState.set({
         theme: this.selectedTheme(),
         fontSize: this.selectedFontSize(),
+        textSpacing: this.selectedTextSpacing(),
         language: this.selectedLanguage()
         });
     }
@@ -127,10 +137,12 @@ export class AccessibilityComponent implements OnInit, OnDestroy {
 
         this.changeThemeUseCase.execute(committed.theme);
         this.changeFontSizeUseCase.execute(committed.fontSize);
+        this.changeTextSpacingUseCase.execute(committed.textSpacing);
         this.changeLanguageUseCase.execute(committed.language);
 
         this.selectedTheme.set(committed.theme);
         this.selectedFontSize.set(committed.fontSize);
+        this.selectedTextSpacing.set(committed.textSpacing);
         this.selectedLanguage.set(committed.language);
     }
 
@@ -141,11 +153,13 @@ export class AccessibilityComponent implements OnInit, OnDestroy {
         // Update state signals
         this.selectedTheme.set(preferences.theme);
         this.selectedFontSize.set(preferences.fontSize);
+        this.selectedTextSpacing.set(preferences.textSpacing);
         this.selectedLanguage.set(preferences.language);
 
         // Apply preview immediately without persisting until save
         this.changeThemeUseCase.execute(preferences.theme);
         this.changeFontSizeUseCase.execute(preferences.fontSize);
+        this.changeTextSpacingUseCase.execute(preferences.textSpacing);
         this.changeLanguageUseCase.execute(preferences.language);
     }
 
@@ -160,6 +174,12 @@ export class AccessibilityComponent implements OnInit, OnDestroy {
         this.selectedFontSize.set(fontSize);
         // Apply immediately for real-time feedback
         this.changeFontSizeUseCase.execute(fontSize);
+    }
+
+    onTextSpacingChange(textSpacing: TextSpacingLevel): void {
+        this.selectedTextSpacing.set(textSpacing);
+        // Apply immediately for real-time feedback
+        this.changeTextSpacingUseCase.execute(textSpacing);
     }
 
     onLanguageChange(language: LanguageCode): void {

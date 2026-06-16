@@ -4,6 +4,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AVAILABLE_LANGUAGE_CODES, DEFAULT_LANGUAGE, LanguageCode } from './presentation/constants/languages.constant';
 import { ThemeService } from './presentation/service/theme/theme.service';
 import { FontSizeService } from './presentation/service/font-size/font-size.service';
+import { TextSpacingService } from './presentation/service/text-spacing/text-spacing.service';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,7 @@ export class App {
   private readonly translate = inject(TranslateService);
   protected readonly themeService = inject(ThemeService);
   protected readonly fontSizeService = inject(FontSizeService);
+  protected readonly textSpacingService = inject(TextSpacingService);
 
   constructor() {
     this.translate.addLangs(AVAILABLE_LANGUAGE_CODES);
