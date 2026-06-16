@@ -45,7 +45,7 @@
     "PEOPLE": "personas"
   },
   "NAVBAR": {
-    "TITLE": "Smart Travel AI",
+    "TITLE": "Smart Travel",
     "DESTINATIONS": "Destinos",
     "AI_PLANNER": "Planner IA",
     "PROVIDERS": "Proveedores",
@@ -118,8 +118,8 @@
     }
   },
   "FOOTER": {
-    "TITLE": "Smart Travel AI",
-    "COPYRIGHT": "© 2024 Smart Travel AI. Precision Engineering for Modern Voyagers.",
+    "TITLE": "Smart Travel",
+    "COPYRIGHT": "© 2024 Smart Travel. Precision Engineering for Modern Voyagers.",
     "LINKS": {
       "PRIVACY": "Política de Privacidad",
       "TERMS": "Términos de Servicio",
@@ -517,7 +517,7 @@
   },
   "PROVIDER_ESTABLISHMENT": {
     "TITLE": "Editar Detalles del Establecimiento",
-    "SUBTITLE": "Configura la presencia de tu establecimiento en la red de Smart Travel AI.",
+    "SUBTITLE": "Configura la presencia de tu establecimiento en la red de Smart Travel.",
     "DETAILS": {
       "NAME": "Nombre del Establecimiento",
       "TYPE": "Tipo de Servicio",
