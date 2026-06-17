@@ -516,7 +516,14 @@
       "TITLE": "Reservas por estado",
       "SERIES_NAME": "Cantidad"
     },
-    "NO_DATA": "No hay datos suficientes para mostrar estadísticas."
+    "NO_DATA": "No hay datos suficientes para mostrar estadísticas.",
+    "PERIOD_LABEL": "Seleccionar período de tiempo",
+    "CHARTS_SECTION": "Gráficos de estadísticas",
+    "PERIOD": {
+      "DAY": "Día",
+      "WEEK": "Semana",
+      "MONTH": "Mes"
+    }
   },
   "PROVIDER_ESTABLISHMENT": {
     "TITLE": "Editar Detalles del Establecimiento",

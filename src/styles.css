@@ -97,3 +97,19 @@ h1, h2, h3, h4, h5, h6 {
 .input-field:focus {
   border-color: var(--color-primary);
 }
+
+.chart-tooltip {
+  line-height: var(--text-line-height) !important;
+  letter-spacing: var(--text-letter-spacing) !important;
+  word-spacing: var(--text-word-spacing) !important;
+  font-family: var(--font-body) !important;
+}
+
+@media (max-width: 768px) {
+  .chart-tooltip--wrap-mobile {
+    max-width: 10rem !important;
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+}

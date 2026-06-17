@@ -491,7 +491,14 @@
       "TITLE": "Reservations by status",
       "SERIES_NAME": "Amount"
     },
-    "NO_DATA": "Not enough data to display statistics."
+    "NO_DATA": "Not enough data to display statistics.",
+    "PERIOD_LABEL": "Select time period",
+    "CHARTS_SECTION": "Statistics charts",
+    "PERIOD": {
+      "DAY": "Day",
+      "WEEK": "Week",
+      "MONTH": "Month"
+    }
   },
   "PROVIDER_ESTABLISHMENT": {
     "TITLE": "Edit Establishment Details",
