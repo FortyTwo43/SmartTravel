@@ -1,90 +1,111 @@
-<section class="destinations-section">
+<!-- 1.3.1: Semántica con <section> -->
+<section class="destinations-section" aria-labelledby="destinations-heading"
+  [style.--current-index]="currentIndex()"
+  [style.--total-items]="total">
   <div class="destinations-header">
     <div>
-      <h2 class="destinations-title">{{ 'HOME.DESTINATIONS.TITLE' | translate }}</h2>
+      <h2 id="destinations-heading" class="destinations-title">{{ 'HOME.DESTINATIONS.TITLE' | translate }}</h2>
+      <!-- 1.4.12: sin height fija en el texto -->
       <p class="destinations-subtitle">{{ 'HOME.DESTINATIONS.SUBTITLE' | translate }}</p>
     </div>
     <button class="btn btn-outlined btn-view-all">
       {{ 'HOME.DESTINATIONS.VIEW_ALL' | translate }}
-      <lucide-icon name="external-link" class="dest-view-icon"></lucide-icon>
+      <!-- 4.1.2: icono decorativo con aria-hidden -->
+      <lucide-icon name="external-link" class="dest-view-icon" aria-hidden="true"></lucide-icon>
     </button>
   </div>
-  
-  <div class="destinations-grid">
-    <!-- Card 1 -->
-    <div class="dest-card">
-      <div class="dest-img-container">
-        <img class="dest-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxRmQD6Vk4BPcSgpgQG5ilc8uE52pOYPriZOyGdW16JvBEwiX-ivdSCeTPdVFSVuVfrrGkNI997Aa8BjC3OjxeUYOLfzo-kwkGvVW4ZO-vHN4m_auPUUlnaM8jbajvHzQ8IBSWTRu1kWVO2zFDkBcMiynwBfnxiFCZYDAd-qAjxGbxcc00PIAvtON1aCj-kXiA9MAvGFNQmHANpx5aQjRMIZq-T1ccSA55wduHSdzyQZviuDWNZ8g1FxSmS78RDoainInDIugTR7k" [attr.alt]="('HOME.DESTINATIONS.MALDIVES' | translate) + ' — ' + ('HOME.DESTINATIONS.MALDIVES_DESC' | translate)" />
-        <div class="dest-rating">
-          <lucide-icon name="star" class="dest-star-icon"></lucide-icon>
-          <span class="rating-text">4.9</span>
-        </div>
-      </div>
-      <div class="dest-content">
-        <h4 class="dest-name">{{ 'HOME.DESTINATIONS.MALDIVES' | translate }}</h4>
-        <p class="dest-desc">{{ 'HOME.DESTINATIONS.MALDIVES_DESC' | translate }}</p>
-        <div class="dest-footer">
-          <span class="dest-price">{{ 'HOME.DESTINATIONS.FROM' | translate }} $1,200</span>
-          <lucide-icon name="heart" class="dest-heart-icon"></lucide-icon>
-        </div>
+
+  <!-- 2.2.2 + 4.1.2: carrusel con role, aria-live y aria-label -->
+  <div
+    class="carousel-wrapper"
+    role="region"
+    aria-label="{{ 'HOME.DESTINATIONS.CAROUSEL_LABEL' | translate }}"
+    aria-live="off"
+  >
+    <!-- Botón de pausa/reanudar (2.2.2 + 4.1.2) -->
+    <div class="carousel-controls">
+      <button
+        class="carousel-pause-btn"
+        (click)="togglePause()"
+        [attr.aria-label]="(isPaused() ? 'HOME.DESTINATIONS.PLAY_CAROUSEL' : 'HOME.DESTINATIONS.PAUSE_CAROUSEL') | translate"
+        [attr.aria-pressed]="isPaused()"
+        type="button"
+      >
+        @if (isPaused()) {
+          <!-- 1.4.1: icono + texto visible para no depender solo del color -->
+          <lucide-icon name="play" class="carousel-ctrl-icon" aria-hidden="true"></lucide-icon>
+          <span class="carousel-ctrl-label">{{ 'HOME.DESTINATIONS.PLAY_CAROUSEL' | translate }}</span>
+        } @else {
+          <lucide-icon name="pause" class="carousel-ctrl-icon" aria-hidden="true"></lucide-icon>
+          <span class="carousel-ctrl-label">{{ 'HOME.DESTINATIONS.PAUSE_CAROUSEL' | translate }}</span>
+        }
+      </button>
+
+      <!-- Indicadores de posición (dots) -->
+      <div class="carousel-dots" role="tablist" aria-label="{{ 'HOME.DESTINATIONS.CAROUSEL_LABEL' | translate }}">
+        @for (dotIndex of dots(); track dotIndex) {
+          <button
+            class="carousel-dot"
+            role="tab"
+            [class.active]="currentIndex() === dotIndex"
+            [attr.aria-selected]="currentIndex() === dotIndex"
+            [attr.aria-label]="destinations[dotIndex].key | translate"
+            (click)="goTo(dotIndex)"
+            type="button"
+          ></button>
+        }
       </div>
     </div>
 
-    <!-- Card 2 -->
-    <div class="dest-card">
-      <div class="dest-img-container">
-        <img class="dest-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUXIUND8JUkmIOttzfzYHq2Y375eFVffN0rrvtN4_OhkaxkP9tHU3GC7eaddtqW9IwLIzD7PXwcWO-JQSUN-FZjv7FvtaYSUM55kQRLtAu6pI8kIBtJY0Fs_UswXvoDfN8VkxPPWbpA60pjZmYSycl2Cd8zzcULT4kXghQOwz_Cgj8oSLcQw0LDP626vq-x7gi5NIEpIleGs2u7OhZODhuDO4nQsSrj0eh0KNNn-DN0EXyYFo5gN574yRCgGA6b-wTOGgr6WueyHY" [attr.alt]="('HOME.DESTINATIONS.KYOTO' | translate) + ' — ' + ('HOME.DESTINATIONS.KYOTO_DESC' | translate)" />
-        <div class="dest-rating">
-          <lucide-icon name="star" style="width: 1rem; height: 1rem; color: var(--color-tertiary); fill: currentColor;"></lucide-icon>
-          <span class="rating-text">4.8</span>
-        </div>
-      </div>
-      <div class="dest-content">
-        <h4 class="dest-name">{{ 'HOME.DESTINATIONS.KYOTO' | translate }}</h4>
-        <p class="dest-desc">{{ 'HOME.DESTINATIONS.KYOTO_DESC' | translate }}</p>
-        <div class="dest-footer">
-          <span class="dest-price">{{ 'HOME.DESTINATIONS.FROM' | translate }} $950</span>
-          <lucide-icon name="heart" class="dest-heart-icon"></lucide-icon>
-        </div>
-      </div>
-    </div>
+    <div class="carousel-track-container">
+      <!-- Pista del carrusel -->
+      <!-- 1.3.1: lista semántica de artículos -->
+      <ol class="carousel-track" aria-atomic="false">
+      @for (dest of destinations; track dest.key; let i = $index) {
+        <!-- 1.3.1: cada destino es un <article> con semántica de elemento de lista -->
+        <li
+          class="carousel-slide"
+          [attr.aria-hidden]="currentIndex() !== i ? 'true' : null"
+        >
+          <article class="dest-card">
+            <div class="dest-img-container">
+              <!-- 1.4.1: alt descriptivo que no depende del color -->
+              <img
+                class="dest-img"
+                [src]="dest.imgSrc"
+                [attr.alt]="(dest.key | translate) + ' — ' + (dest.descKey | translate)"
+                loading="lazy"
+              />
+              <!-- 1.4.1 + 4.1.2: rating con texto visible, no solo ícono/color -->
+              <div class="dest-rating" aria-hidden="true">
+                <lucide-icon name="star" class="dest-star-icon" aria-hidden="true"></lucide-icon>
+                <span class="rating-text">{{ dest.rating }}</span>
+              </div>
+            </div>
 
-    <!-- Card 3 -->
-    <div class="dest-card">
-      <div class="dest-img-container">
-        <img class="dest-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARGUoQpZueF0rcvfMaIlfPxiBhDg2UIeRz_QLZoAxBFwJG8V-ElcEtW-UbT6U7UoeGg5x-OZVCommUvEcfK7IxEehQJ1j2Cc8v343Jp2PUH_13BOhcDO2X1mfToSLFYfWvcijChI62tyVVoMPnBfp-htBY5xSMqkTpWlYQEv-r6yITKxeNwrlBfvOonu6Pzx71RUgTNaxaVcVr56sY9uoSYIWTyw6r4yvsBs3Z89q7_CMJpZllHA0wGFDWeDVF_4vHSMPT9jwJLXs" [attr.alt]="('HOME.DESTINATIONS.DUBAI' | translate) + ' — ' + ('HOME.DESTINATIONS.DUBAI_DESC' | translate)" />
-        <div class="dest-rating">
-          <lucide-icon name="star" style="width: 1rem; height: 1rem; color: var(--color-tertiary); fill: currentColor;"></lucide-icon>
-          <span class="rating-text">5.0</span>
-        </div>
-      </div>
-      <div class="dest-content">
-        <h4 class="dest-name">{{ 'HOME.DESTINATIONS.DUBAI' | translate }}</h4>
-        <p class="dest-desc">{{ 'HOME.DESTINATIONS.DUBAI_DESC' | translate }}</p>
-        <div class="dest-footer">
-          <span class="dest-price">{{ 'HOME.DESTINATIONS.FROM' | translate }} $1,500</span>
-          <lucide-icon name="heart" class="dest-heart-icon"></lucide-icon>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 4 -->
-    <div class="dest-card">
-      <div class="dest-img-container">
-        <img class="dest-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDK3w5ubb6jOSRZJMR9N6X46OGul2LuGG5cvbz9WfoKhZObguyMhc1SjFVSBEmp-DO5vcSyZ00UVHN_0oz2LYwuDuWKtE0FgPM3pMjbuM9oCROqind-a7lvg--V5CVZma6m7gbwJOQ6_dcSch1g2gsOcD4jWoAKvDtRksGtHbcjZeBBATGUoW6y82mn5V3aJ6hgDtabtyfZbYa-aANlp4RBYu_gD9r-xSxDS1qARNoiyFcN_dCfOL4v3ishOWRPIM1ZBL67FcAn8zk" [attr.alt]="('HOME.DESTINATIONS.SANTORINI' | translate) + ' — ' + ('HOME.DESTINATIONS.SANTORINI_DESC' | translate)" />
-        <div class="dest-rating">
-          <lucide-icon name="star" style="width: 1rem; height: 1rem; color: var(--color-tertiary); fill: currentColor;"></lucide-icon>
-          <span class="rating-text">4.7</span>
-        </div>
-      </div>
-      <div class="dest-content">
-        <h4 class="dest-name">{{ 'HOME.DESTINATIONS.SANTORINI' | translate }}</h4>
-        <p class="dest-desc">{{ 'HOME.DESTINATIONS.SANTORINI_DESC' | translate }}</p>
-        <div class="dest-footer">
-          <span class="dest-price">{{ 'HOME.DESTINATIONS.FROM' | translate }} $800</span>
-          <lucide-icon name="heart" class="dest-heart-icon"></lucide-icon>
-        </div>
-      </div>
+            <div class="dest-content">
+              <!-- 1.3.1: h3 correcto dentro de un article anidado bajo h2 -->
+              <h3 class="dest-name">{{ dest.key | translate }}</h3>
+              <p class="dest-desc">{{ dest.descKey | translate }}</p>
+              <div class="dest-footer">
+                <span class="dest-price">
+                  <!-- 1.4.1: texto "Desde $X" no depende del color para transmitir la info -->
+                  {{ 'HOME.DESTINATIONS.FROM' | translate }} ${{ dest.price | number:'1.0-0' }}
+                </span>
+                <!-- 4.1.2: botón de favorito con aria-label descriptivo -->
+                <button
+                  class="dest-heart-btn"
+                  type="button"
+                  [attr.aria-label]="('HOME.DESTINATIONS.FAVORITE_LABEL' | translate) + ': ' + (dest.key | translate)"
+                >
+                  <lucide-icon name="heart" class="dest-heart-icon" aria-hidden="true"></lucide-icon>
+                </button>
+              </div>
+            </div>
+          </article>
+        </li>
+      }
+      </ol>
     </div>
   </div>
 </section>

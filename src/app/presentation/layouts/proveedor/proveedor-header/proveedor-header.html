@@ -1,5 +1,8 @@
 <header class="header-container">
   <div class="header-left">
+    <button class="mobile-menu-btn" (click)="toggleSidebar.emit()" aria-label="Abrir menú">
+      <lucide-icon name="menu" class="icon-md"></lucide-icon>
+    </button>
     <h2 class="header-title">{{ establishment()?.nombre }}</h2>
     <div class="status-badge">
       <lucide-icon name="star" class="icon-sm text-secondary"></lucide-icon>

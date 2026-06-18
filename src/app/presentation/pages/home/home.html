@@ -7,3 +7,25 @@
   <app-home-cta></app-home-cta>
 </main>
 <app-footer></app-footer>
+
+<!-- Botón flotante de accesibilidad -->
+<button class="fab-accessibility" (click)="toggleAccessibilityMenu()" [attr.aria-label]="'ACCESSIBILITY.TITLE' | translate" type="button">
+  <lucide-icon name="accessibility" class="fab-icon" aria-hidden="true"></lucide-icon>
+</button>
+
+<!-- Menú lateral (Drawer) -->
+@if (isAccessibilityMenuOpen()) {
+  <div class="accessibility-drawer-backdrop" (click)="toggleAccessibilityMenu()" aria-hidden="true"></div>
+}
+
+<div class="accessibility-drawer" [class.open]="isAccessibilityMenuOpen()" role="dialog" aria-modal="true" [attr.aria-label]="'ACCESSIBILITY.TITLE' | translate">
+  <div class="drawer-header">
+    <button class="btn-back" (click)="toggleAccessibilityMenu()" type="button">
+      <lucide-icon name="arrow-left" class="back-icon" aria-hidden="true"></lucide-icon>
+      {{ 'COMMON.BACK' | translate }}
+    </button>
+  </div>
+  <div class="drawer-content">
+    <app-accessibility></app-accessibility>
+  </div>
+</div>

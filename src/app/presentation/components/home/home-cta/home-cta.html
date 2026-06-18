@@ -1,12 +1,12 @@
-<section class="cta-section">
+<section class="cta-section" aria-labelledby="cta-title">
   <div class="cta-card">
     <div class="cta-bg-shape cta-bg-1"></div>
     <div class="cta-bg-shape cta-bg-2"></div>
-    <h2 class="cta-title">{{ 'HOME.CTA.TITLE' | translate }}</h2>
+    <h2 id="cta-title" class="cta-title">{{ 'HOME.CTA.TITLE' | translate }}</h2>
     <p class="cta-subtitle">{{ 'HOME.CTA.SUBTITLE' | translate }}</p>
-    <button class="btn btn-primary btn-lg cta-btn group" routerLink="/register">
+    <button class="btn btn-primary btn-lg cta-btn group" routerLink="/register" type="button">
       {{ 'HOME.CTA.REGISTER_FREE' | translate }}
-      <lucide-icon name="arrow-right" class="cta-btn-icon group-hover:translate-x-1"></lucide-icon>
+      <lucide-icon name="arrow-right" class="cta-btn-icon group-hover:translate-x-1" aria-hidden="true"></lucide-icon>
     </button>
   </div>
 </section>

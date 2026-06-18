@@ -1,9 +1,16 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, HostListener, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxEchartsDirective } from 'ngx-echarts';
 import type { EChartsOption } from 'echarts';
 import { IngresoPorServicio } from '../../../../../domain/ui/proveedor/estadisticas/IngresoPorServicio';
 import { TranslateModule } from '@ngx-translate/core';
+import {
+  getChartTextStyle,
+  getChartThemeTokens,
+  getItemTooltipConfig,
+  getPieLegendConfig,
+  isMobileChartView
+} from '../chart-theme.utils';
 
 @Component({
   selector: 'app-ingresos-pie-chart',
@@ -19,58 +26,69 @@ export class IngresosPieChartComponent implements OnChanges {
 
   chartOption: EChartsOption = {};
 
+  @HostListener('window:resize')
+  onResize(): void {
+    if (this.data?.length) {
+      this.updateChart();
+    }
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['data'] && this.data) {
       this.updateChart();
     }
   }
 
-  private updateChart() {
+  private updateChart(): void {
+    const tokens = getChartThemeTokens();
+    const isMobile = isMobileChartView();
     const chartData = this.data.map(d => ({
       name: d.nombre_servicio,
       value: d.total_ingresos
     }));
 
-    const textColor = getComputedStyle(document.documentElement).getPropertyValue('--text-main').trim() || '#1f2937';
-    // Colores para el pie chart: primario, secundario, acento, alerta y un color extra
-    const colorPalette = [
-      getComputedStyle(document.documentElement).getPropertyValue('--color-primary').trim() || '#3b82f6',
-      getComputedStyle(document.documentElement).getPropertyValue('--color-secondary').trim() || '#10b981',
-      getComputedStyle(document.documentElement).getPropertyValue('--color-accent').trim() || '#f59e0b',
-      getComputedStyle(document.documentElement).getPropertyValue('--color-alert').trim() || '#ef4444',
-      '#8b5cf6', '#06b6d4'
-    ];
+    const colorPalette = [tokens.primary, tokens.secondary, tokens.tertiary, tokens.negative, '#8b5cf6', '#06b6d4'];
+
+    const showSliceLabels = !isMobile && chartData.length > 1;
 
     this.chartOption = {
       title: {
         text: this.title,
         left: 'center',
         textStyle: {
-          color: textColor,
-          fontFamily: 'var(--font-headline)'
+          ...getChartTextStyle(tokens.textColor, 16),
+          fontFamily: tokens.fontHeadline
         }
       },
       tooltip: {
-        trigger: 'item',
-        formatter: '{a} <br/>{b}: ${c} ({d}%)'
+        ...getItemTooltipConfig(true),
+        formatter: '{a}<br/>{b}: ${c} ({d}%)'
       },
-      legend: {
-        orient: 'vertical',
-        left: 'left',
-        textStyle: { color: textColor },
-        top: 'middle'
-      },
+      legend: getPieLegendConfig(),
       color: colorPalette,
       series: [
         {
           name: this.seriesName,
           type: 'pie',
-          radius: '50%',
+          radius: isMobile ? '42%' : '50%',
+          center: isMobile ? ['50%', '40%'] : ['58%', '50%'],
+          avoidLabelOverlap: true,
           data: chartData,
           label: {
-            color: textColor,
+            show: showSliceLabels,
+            color: tokens.textColor,
+            fontFamily: tokens.fontBody,
+            fontSize: 12,
+            lineHeight: Math.round(12 * tokens.lineHeight),
+            formatter: '{b}\n{d}%',
             textBorderWidth: 0,
             textShadowColor: 'transparent'
+          },
+          labelLine: {
+            show: showSliceLabels,
+            lineStyle: {
+              color: tokens.borderColor
+            }
           },
           emphasis: {
             itemStyle: {

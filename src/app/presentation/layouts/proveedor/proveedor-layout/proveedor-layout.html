@@ -1,10 +1,14 @@
 <div class="layout-wrapper">
+  @if (isSidebarOpen()) {
+    <div class="sidebar-backdrop" (click)="closeSidebar()"></div>
+  }
+
   <!-- Sidebar -->
-  <app-proveedor-sidebar></app-proveedor-sidebar>
+  <app-proveedor-sidebar [isOpen]="isSidebarOpen()" (closeSidebar)="closeSidebar()"></app-proveedor-sidebar>
 
   <!-- Main Content -->
   <main class="main-content">
-    <app-proveedor-header></app-proveedor-header>
+    <app-proveedor-header (toggleSidebar)="toggleSidebar()"></app-proveedor-header>
     
     <div class="content-area">
       <router-outlet></router-outlet>

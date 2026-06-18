@@ -37,6 +37,20 @@
   color: var(--color-primary);
 }
 
+@media (max-width: 767px) {
+  .navbar-logo {
+    display: none;
+  }
+
+  .navbar-title {
+    font-size: 1.125rem;
+  }
+
+  .navbar-brand {
+    gap: 0;
+  }
+}
+
 .navbar-nav {
   display: none;
   gap: 2rem;
@@ -67,19 +81,15 @@
 }
 
 .btn-login {
-  display: none;
+  display: block;
   background: none;
   border: none;
   color: var(--text-muted);
   font-family: var(--font-body);
+  font-size: 0.875rem;
   cursor: pointer;
   transition: color 0.2s ease;
-}
-
-@media (min-width: 1024px) {
-  .btn-login {
-    display: block;
-  }
+  padding: 0.25rem 0.5rem;
 }
 
 .btn-login:hover {

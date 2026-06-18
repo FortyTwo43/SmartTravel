@@ -7,6 +7,7 @@ import { signal } from '@angular/core';
 import {
   ChangeThemeUseCase,
   ChangeFontSizeUseCase,
+  ChangeTextSpacingUseCase,
   ChangeLanguageUseCase,
   SaveAccessibilityPreferencesUseCase,
   LoadAccessibilityPreferencesUseCase,
@@ -18,6 +19,7 @@ describe('AccessibilityComponent', () => {
   let fixture: ComponentFixture<AccessibilityComponent>;
   let mockChangeThemeUseCase: any;
   let mockChangeFontSizeUseCase: any;
+  let mockChangeTextSpacingUseCase: any;
   let mockChangeLanguageUseCase: any;
   let mockSavePreferencesUseCase: any;
   let mockLoadPreferencesUseCase: any;
@@ -26,12 +28,14 @@ describe('AccessibilityComponent', () => {
   beforeEach(async () => {
     mockChangeThemeUseCase = { execute: vi.fn() };
     mockChangeFontSizeUseCase = { execute: vi.fn() };
+    mockChangeTextSpacingUseCase = { execute: vi.fn() };
     mockChangeLanguageUseCase = { execute: vi.fn() };
     mockSavePreferencesUseCase = { execute: vi.fn() };
     mockLoadPreferencesUseCase = { 
       execute: vi.fn().mockReturnValue({
         theme: 'system',
         fontSize: 'normal',
+        textSpacing: 'normal',
         language: 'es'
       })
     };
@@ -39,6 +43,7 @@ describe('AccessibilityComponent', () => {
       execute: vi.fn().mockReturnValue({
         theme: 'system',
         fontSize: 'normal',
+        textSpacing: 'normal',
         language: 'es'
       })
     };
@@ -48,6 +53,7 @@ describe('AccessibilityComponent', () => {
       providers: [
         { provide: ChangeThemeUseCase, useValue: mockChangeThemeUseCase },
         { provide: ChangeFontSizeUseCase, useValue: mockChangeFontSizeUseCase },
+        { provide: ChangeTextSpacingUseCase, useValue: mockChangeTextSpacingUseCase },
         { provide: ChangeLanguageUseCase, useValue: mockChangeLanguageUseCase },
         { provide: SaveAccessibilityPreferencesUseCase, useValue: mockSavePreferencesUseCase },
         { provide: LoadAccessibilityPreferencesUseCase, useValue: mockLoadPreferencesUseCase },
@@ -68,6 +74,7 @@ describe('AccessibilityComponent', () => {
     expect(mockLoadPreferencesUseCase.execute).toHaveBeenCalled();
     expect(component.selectedTheme()).toBe('system');
     expect(component.selectedFontSize()).toBe('normal');
+    expect(component.selectedTextSpacing()).toBe('normal');
     expect(component.selectedLanguage()).toBe('es');
   });
 
@@ -83,6 +90,13 @@ describe('AccessibilityComponent', () => {
     component.onFontSizeChange('large');
     expect(component.selectedFontSize()).toBe('large');
     expect(mockChangeFontSizeUseCase.execute).toHaveBeenCalledWith('large');
+    expect(component.hasChanges()).toBe(true);
+  });
+
+  it('should detect changes when text spacing is modified', () => {
+    component.onTextSpacingChange('large');
+    expect(component.selectedTextSpacing()).toBe('large');
+    expect(mockChangeTextSpacingUseCase.execute).toHaveBeenCalledWith('large');
     expect(component.hasChanges()).toBe(true);
   });
 
@@ -107,6 +121,7 @@ describe('AccessibilityComponent', () => {
     expect(mockSavePreferencesUseCase.execute).toHaveBeenCalledWith({
       theme: 'dark',
       fontSize: 'normal',
+      textSpacing: 'normal',
       language: 'es'
     });
     

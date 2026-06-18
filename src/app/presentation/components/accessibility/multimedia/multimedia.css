@@ -1,0 +1,123 @@
+.adjustments-section {
+  background-color: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  margin-top: 1.5rem;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-headline);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin: 0 0 1.5rem 0;
+}
+
+.toggles-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.toggle-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  cursor: pointer;
+  padding: 1rem;
+  background-color: var(--bg-surface-alt);
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
+}
+
+.toggle-option:hover {
+  background-color: var(--bg-main);
+}
+
+.toggle-input {
+  appearance: none;
+  width: 3rem;
+  height: 1.5rem;
+  background-color: var(--text-muted);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  position: relative;
+  margin-top: 0.25rem;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.toggle-input:checked {
+  background-color: var(--color-secondary);
+}
+
+.toggle-input:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.toggle-input::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 1.2rem;
+  height: 1.2rem;
+  background-color: white;
+  border-radius: 50%;
+  transition: left 0.3s ease;
+}
+
+.toggle-input:checked::after {
+  left: 1.5rem;
+}
+
+.toggle-label-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.toggle-title {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+.toggle-desc {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .adjustments-section {
+    padding: 1.25rem;
+  }
+
+  .section-title {
+    font-size: 1.1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .toggles-container {
+    gap: 1rem;
+  }
+
+  .toggle-option {
+    padding: 0.875rem;
+  }
+}

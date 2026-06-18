@@ -70,7 +70,6 @@
 .feature-desc {
   font-family: var(--font-body);
   color: var(--text-muted);
-  line-height: 1.6;
 }
 
 .feature-icon {

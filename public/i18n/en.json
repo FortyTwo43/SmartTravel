@@ -28,6 +28,7 @@
     "HERO_IMAGE_ALT": "Panoramic view of a travel destination with mountains and clear sky"
   },
   "COMMON": {
+    "BACK": "Back",
     "SAVE": "Save",
     "CANCEL": "Cancel",
     "DELETE": "Delete",
@@ -44,13 +45,14 @@
     "PEOPLE": "people"
   },
   "NAVBAR": {
-    "TITLE": "Smart Travel AI",
+    "TITLE": "Smart Travel",
     "DESTINATIONS": "Destinations",
     "AI_PLANNER": "AI Planner",
     "PROVIDERS": "Providers",
     "ABOUT": "About Us",
     "LOGIN": "Log In",
-    "REGISTER": "Register Now"
+    "REGISTER": "Register Now",
+    "ARIA_LABEL": "Main navigation"
   },
   "HOME": {
     "HERO": {
@@ -92,7 +94,22 @@
       "DUBAI": "Dubai, UAE",
       "DUBAI_DESC": "Futuristic architecture",
       "SANTORINI": "Santorini, GR",
-      "SANTORINI_DESC": "Endless views"
+      "SANTORINI_DESC": "Endless views",
+      "PARIS": "Paris, France",
+      "PARIS_DESC": "The city of love, famous for its art, cuisine, and historic landmarks.",
+      "BALI": "Bali, Indonesia",
+      "BALI_DESC": "A tropical paradise known for its stunning beaches, ancient temples, and lush landscapes.",
+      "NEW_YORK": "New York, United States",
+      "NEW_YORK_DESC": "The city that never sleeps, filled with culture, entertainment, and iconic skyscrapers.",
+      "MACHU_PICCHU": "Machu Picchu, Peru",
+      "MACHU_PICCHU_DESC": "An ancient archaeological wonder surrounded by breathtaking Andean mountains.",
+      "CAROUSEL_LABEL": "Popular destinations carousel",
+      "PAUSE_CAROUSEL": "Pause automatic rotation",
+      "PLAY_CAROUSEL": "Resume automatic rotation",
+      "CARD_LABEL": "Destination",
+      "RATING_LABEL": "Rating",
+      "FAVORITE_LABEL": "Mark as favourite",
+      "SLIDE_OF": "Destination {{current}} of {{total}}"
     },
     "CTA": {
       "TITLE": "Start your next adventure today",
@@ -101,8 +118,8 @@
     }
   },
   "FOOTER": {
-    "TITLE": "Smart Travel AI",
-    "COPYRIGHT": "© 2024 Smart Travel AI. Precision Engineering for Modern Voyagers.",
+    "TITLE": "Smart Travel",
+    "COPYRIGHT": "© 2024 Smart Travel. Precision Engineering for Modern Voyagers.",
     "LINKS": {
       "PRIVACY": "Privacy Policy",
       "TERMS": "Terms of Service",
@@ -314,6 +331,9 @@
       "ERROR": "An error occurred while creating the service",
       "BACK": "Back to services",
       "ADD_AMENITY": "Add amenity",
+      "REMOVE_AMENITY": "Remove amenity",
+      "MANDATORY_NOTE": "Required fields are marked with an asterisk (*)",
+      "IMAGE_HINT": "PNG or JPEG (max. 5 MB)",
       "ERROR_PRICE_GREATER_THAN_ZERO": "Price must be greater than 0"
     }
   },
@@ -380,8 +400,40 @@
     "SCREEN_READER_DESC": "Speech output optimization for NVDA and VoiceOver.",
     "LANGUAGE_PREFERENCE": "Language Preference",
     "SPANISH_CASTILIAN": "Spanish (Castilian)",
-    "ENGLISH": "English"
-  },
+    "ENGLISH": "English",
+    "TEXT_SPACING": "Modify text spacing",
+    "TEXT_SPACING_DESC": "Allows you to modify the spacing of lines, letters, and words.",
+    "CONTRAST_COLOR": "Contrast and color",
+    "HIGH_CONTRAST_45": "High contrast mode",
+    "HIGH_CONTRAST_45_DESC": "Activates a high contrast mode where text meets a minimum ratio of 4.5:1.",
+    "BORDER_CONTRAST": "Increase border contrast",
+    "BORDER_CONTRAST_DESC": "Increases the border contrast of controls, icons, and graphics to at least 3:1.",
+    "ANIMATIONS_MOVEMENT": "Animations and movement",
+    "TOOLTIPS_MENUS": "Control tooltips and menus",
+    "TOOLTIPS_MENUS_DESC": "Allows you to dismiss them without moving the keyboard focus.",
+    "PAUSE_MOTION": "Pause moving content",
+    "PAUSE_MOTION_DESC": "Allows you to pause, stop, or hide content like carousels or updates.",
+    "DISABLE_FLASHING": "Disable flashing",
+    "DISABLE_FLASHING_DESC": "Disables or reduces elements that flash more than 3 times per second.",
+    "NAVIGATION_FOCUS": "Navigation and focus",
+    "FOCUS_INDICATOR": "Clear focus indicator",
+    "FOCUS_INDICATOR_DESC": "Activates a clear visual indicator for keyboard focus using :focus styles.",
+    "KEYBOARD_SHORTCUTS": "Keyboard shortcuts",
+    "DISABLE_SINGLE_KEY": "Disable single-key shortcuts",
+    "DISABLE_SINGLE_KEY_DESC": "Allows you to configure, remap, or disable single-key keyboard shortcuts.",
+    "MULTIMEDIA": "Multimedia",
+    "PAUSE_AUTO_AUDIO": "Pause automatic audio",
+    "PAUSE_AUTO_AUDIO_DESC": "Shows a control to pause or mute automatic audio.",
+    "TEXT_TRANSCRIPTS": "Text transcripts",
+    "TEXT_TRANSCRIPTS_DESC": "Activates the display of text transcripts for audio or video.",
+    "SYNC_CAPTIONS": "Synchronized captions",
+    "SYNC_CAPTIONS_DESC": "Activates the display of synchronized captions in videos.",
+    "AUDIO_DESCRIPTION": "Audio description",
+    "AUDIO_DESCRIPTION_DESC": "Activates the audio description track in pre-recorded videos.",
+    "REALTIME_CAPTIONS": "Real-time captions",
+    "REALTIME_CAPTIONS_DESC": "Activates the real-time captions feature for live broadcasts."
+  }
+  ,
   "TRAVELER_EXPLORAR": {
     "TITLE": "Explore Destinations",
     "FILTERS": "Filters",
@@ -458,11 +510,18 @@
       "TITLE": "Reservations by status",
       "SERIES_NAME": "Amount"
     },
-    "NO_DATA": "Not enough data to display statistics."
+    "NO_DATA": "Not enough data to display statistics.",
+    "PERIOD_LABEL": "Select time period",
+    "CHARTS_SECTION": "Statistics charts",
+    "PERIOD": {
+      "DAY": "Day",
+      "WEEK": "Week",
+      "MONTH": "Month"
+    }
   },
   "PROVIDER_ESTABLISHMENT": {
     "TITLE": "Edit Establishment Details",
-    "SUBTITLE": "Configure your establishment's presence on the Smart Travel AI network.",
+    "SUBTITLE": "Configure your establishment's presence on the Smart Travel network.",
     "DETAILS": {
       "NAME": "Establishment Name",
       "TYPE": "Service Type",

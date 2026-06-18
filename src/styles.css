@@ -15,6 +15,9 @@ body {
   font-family: var(--font-body);
   background-color: var(--bg-main);
   color: var(--text-main);
+  line-height: var(--text-line-height);
+  letter-spacing: var(--text-letter-spacing);
+  word-spacing: var(--text-word-spacing);
   transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
               color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   min-height: 100vh;
@@ -26,7 +29,9 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-headline);
   font-weight: 700;
   color: var(--text-main);
-  letter-spacing: -0.025em;
+  line-height: var(--text-line-height);
+  letter-spacing: calc(-0.025em + var(--text-letter-spacing));
+  word-spacing: var(--text-word-spacing);
 }
 
 /* Base Component Styles based on UI Kit image */
@@ -91,4 +96,20 @@ h1, h2, h3, h4, h5, h6 {
 
 .input-field:focus {
   border-color: var(--color-primary);
+}
+
+.chart-tooltip {
+  line-height: var(--text-line-height) !important;
+  letter-spacing: var(--text-letter-spacing) !important;
+  word-spacing: var(--text-word-spacing) !important;
+  font-family: var(--font-body) !important;
+}
+
+@media (max-width: 768px) {
+  .chart-tooltip--wrap-mobile {
+    max-width: 10rem !important;
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+  }
 }
