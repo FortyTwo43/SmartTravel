@@ -81,7 +81,9 @@
       "DISABLE_AD": "Desactivar Audiodescripción",
       "SHOW_TRANSCRIPT": "Mostrar Transcripción",
       "HIDE_TRANSCRIPT": "Ocultar Transcripción",
-      "TRANSCRIPT_TITLE": "Transcripción del Video"
+      "TRANSCRIPT_TITLE": "Transcripción del Video",
+      "MUTE_AUDIO": "Silenciar audio",
+      "UNMUTE_AUDIO": "Activar audio"
     },
     "FEATURES": {
       "PERSONALIZATION": "Personalización Total",

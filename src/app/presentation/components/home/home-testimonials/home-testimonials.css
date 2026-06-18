@@ -1,18 +1,44 @@
 .testimonials-section {
   background-color: var(--bg-surface);
   color: var(--text-main);
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+  padding: 5rem 2rem;
+}
+
+.testimonials-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.testimonials-header {
+  text-align: center;
+  margin-bottom: 3rem;
 }
 
 .section-title {
   font-family: var(--font-headline);
+  font-size: calc(2rem * var(--font-scale, 1));
+  font-weight: 700;
   color: var(--text-main);
+  margin-bottom: 1rem;
+  letter-spacing: var(--text-letter-spacing, 0em);
+  line-height: var(--text-line-height, 1.2);
+}
+
+@media (min-width: 768px) {
+  .section-title {
+    font-size: calc(2.5rem * var(--font-scale, 1));
+  }
 }
 
 .section-subtitle {
   font-family: var(--font-body);
+  font-size: calc(1.125rem * var(--font-scale, 1));
   color: var(--text-muted);
+  max-width: 42rem;
+  margin: 0 auto;
+  letter-spacing: var(--text-letter-spacing, 0em);
+  line-height: var(--text-line-height, 1.6);
+  word-spacing: var(--text-word-spacing, 0em);
 }
 
 .testimonials-grid {
@@ -62,6 +88,7 @@
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid var(--color-primary);
+  flex-shrink: 0;
 }
 
 .user-info {
@@ -72,14 +99,15 @@
 .user-name {
   font-family: var(--font-headline);
   font-weight: 600;
-  font-size: 1.125rem;
+  font-size: calc(1.125rem * var(--font-scale, 1));
   margin: 0;
   color: var(--text-main);
+  letter-spacing: var(--text-letter-spacing, 0em);
 }
 
 .user-country {
   font-family: var(--font-body);
-  font-size: 0.875rem;
+  font-size: calc(0.875rem * var(--font-scale, 1));
   color: var(--text-muted);
   margin: 0;
 }
@@ -101,11 +129,13 @@
 
 .testimonial-text {
   font-family: var(--font-body);
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: calc(1rem * var(--font-scale, 1));
+  line-height: var(--text-line-height, 1.6);
   color: var(--text-main);
   position: relative;
   z-index: 1;
+  letter-spacing: var(--text-letter-spacing, 0em);
+  word-spacing: var(--text-word-spacing, 0em);
 }
 
 .card-footer {

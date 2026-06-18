@@ -76,7 +76,14 @@
       "SUBTITLE": "Our cutting-edge AI analyzes thousands of destinations to offer you the ultimate personalized experience, from perfect weather to the planet's most exclusive hidden gems.",
       "PLAN_TRIP": "Plan my trip",
       "PROVIDER": "I'm a Provider",
-      "INTRO_VIDEO": "Introduction Video"
+      "INTRO_VIDEO": "Introduction Video",
+      "ENABLE_AD": "Enable Audio Description",
+      "DISABLE_AD": "Disable Audio Description",
+      "SHOW_TRANSCRIPT": "Show Transcript",
+      "HIDE_TRANSCRIPT": "Hide Transcript",
+      "TRANSCRIPT_TITLE": "Video Transcript",
+      "MUTE_AUDIO": "Mute audio",
+      "UNMUTE_AUDIO": "Unmute audio"
     },
     "FEATURES": {
       "PERSONALIZATION": "Total Personalization",
