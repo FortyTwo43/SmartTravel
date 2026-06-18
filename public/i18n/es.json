@@ -52,7 +52,23 @@
     "ABOUT": "Nosotros",
     "LOGIN": "Iniciar Sesión",
     "REGISTER": "Registrarme",
-    "ARIA_LABEL": "Navegación principal"
+    "ARIA_LABEL": "Navegación principal",
+    "LIVE": "En vivo"
+  },
+  "LIVE_STREAMS": {
+    "TITLE": "Directos",
+    "RECOMMENDED": "Recomendados",
+    "START_MIC": "Escuchar y subtitular",
+    "STOP_MIC": "Detener micrófono",
+    "VIEWERS": "espectadores",
+    "MIC_PERMISSION_ERROR": "Error: Permiso de micrófono denegado",
+    "BROWSER_NOT_SUPPORTED": "Error: Tu navegador no soporta reconocimiento de voz.",
+    "SIMULATED_TITLE_1": "Explorando las montañas de Suiza",
+    "SIMULATED_TITLE_2": "Tour gastronómico en Japón",
+    "SIMULATED_TITLE_3": "Buceo en la Gran Barrera de Coral",
+    "SIMULATED_TITLE_4": "Atardecer en Santorini",
+    "ARIA_MAIN_VIDEO": "Transmisión principal",
+    "ARIA_RECOMMENDED": "Transmisiones recomendadas"
   },
   "HOME": {
     "HERO": {

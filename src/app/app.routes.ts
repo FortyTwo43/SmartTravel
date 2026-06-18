@@ -21,6 +21,10 @@ export const routes: Routes = [
     loadComponent: () => import('./presentation/pages/viajero/traveler-onboarding/traveler-onboarding.component').then(m => m.TravelerOnboardingComponent)
   },
   {
+    path: 'live',
+    loadComponent: () => import('./presentation/pages/live-streams/live-streams-page/live-streams-page').then(m => m.LiveStreamsPageComponent)
+  },
+  {
     path: 'traveler',
     component: TravelerLayoutComponent,
     children: [

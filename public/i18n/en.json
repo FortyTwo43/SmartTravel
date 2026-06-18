@@ -52,7 +52,23 @@
     "ABOUT": "About Us",
     "LOGIN": "Log In",
     "REGISTER": "Register Now",
-    "ARIA_LABEL": "Main navigation"
+    "ARIA_LABEL": "Main navigation",
+    "LIVE": "Live"
+  },
+  "LIVE_STREAMS": {
+    "TITLE": "Live Streams",
+    "RECOMMENDED": "Recommended",
+    "START_MIC": "Listen & Caption",
+    "STOP_MIC": "Stop microphone",
+    "VIEWERS": "viewers",
+    "MIC_PERMISSION_ERROR": "Error: Microphone permission denied",
+    "BROWSER_NOT_SUPPORTED": "Error: Your browser doesn't support speech recognition.",
+    "SIMULATED_TITLE_1": "Exploring the Swiss Alps",
+    "SIMULATED_TITLE_2": "Gastronomy tour in Japan",
+    "SIMULATED_TITLE_3": "Diving in the Great Barrier Reef",
+    "SIMULATED_TITLE_4": "Sunset in Santorini",
+    "ARIA_MAIN_VIDEO": "Main stream",
+    "ARIA_RECOMMENDED": "Recommended streams"
   },
   "HOME": {
     "HERO": {
