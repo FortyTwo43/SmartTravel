@@ -136,6 +136,10 @@
       "TITLE": "Comienza tu próxima aventura hoy",
       "SUBTITLE": "Únete a miles de viajeros que ya están explorando el mundo de una manera más inteligente, personalizada y eficiente.",
       "REGISTER_FREE": "Registrarme Gratis"
+    },
+    "TESTIMONIALS": {
+      "TITLE": "Lo que dicen los viajeros",
+      "SUBTITLE": "Nuestra comunidad global comparte sus experiencias alrededor del mundo."
     }
   },
   "FOOTER": {

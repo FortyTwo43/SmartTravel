@@ -131,6 +131,10 @@
       "TITLE": "Start your next adventure today",
       "SUBTITLE": "Join thousands of travelers who are already exploring the world in a smarter, more personalized, and efficient way.",
       "REGISTER_FREE": "Register for Free"
+    },
+    "TESTIMONIALS": {
+      "TITLE": "What travelers are saying",
+      "SUBTITLE": "Our global community shares their experiences around the world."
     }
   },
   "FOOTER": {

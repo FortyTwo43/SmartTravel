@@ -8,6 +8,7 @@ import { HomeFeatures } from '../../components/home/home-features/home-features'
 import { HomeInfo } from '../../components/home/home-info/home-info';
 import { HomeDestinations } from '../../components/home/home-destinations/home-destinations';
 import { HomeCta } from '../../components/home/home-cta/home-cta';
+import { HomeTestimonials } from '../../components/home/home-testimonials/home-testimonials';
 import { AccessibilityComponent } from '../accessibility/accessibility.component';
 
 @Component({
@@ -19,6 +20,7 @@ import { AccessibilityComponent } from '../accessibility/accessibility.component
     HomeFeatures,
     HomeInfo,
     HomeDestinations,
+    HomeTestimonials,
     HomeCta,
     AccessibilityComponent,
     LucideAngularModule,
