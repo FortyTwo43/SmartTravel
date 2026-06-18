@@ -52,7 +52,23 @@
     "ABOUT": "Nosotros",
     "LOGIN": "Iniciar Sesión",
     "REGISTER": "Registrarme",
-    "ARIA_LABEL": "Navegación principal"
+    "ARIA_LABEL": "Navegación principal",
+    "LIVE": "En vivo"
+  },
+  "LIVE_STREAMS": {
+    "TITLE": "Directos",
+    "RECOMMENDED": "Recomendados",
+    "START_MIC": "Escuchar y subtitular",
+    "STOP_MIC": "Detener micrófono",
+    "VIEWERS": "espectadores",
+    "MIC_PERMISSION_ERROR": "Error: Permiso de micrófono denegado",
+    "BROWSER_NOT_SUPPORTED": "Error: Tu navegador no soporta reconocimiento de voz.",
+    "SIMULATED_TITLE_1": "Explorando las montañas de Suiza",
+    "SIMULATED_TITLE_2": "Tour gastronómico en Japón",
+    "SIMULATED_TITLE_3": "Buceo en la Gran Barrera de Coral",
+    "SIMULATED_TITLE_4": "Atardecer en Santorini",
+    "ARIA_MAIN_VIDEO": "Transmisión principal",
+    "ARIA_RECOMMENDED": "Transmisiones recomendadas"
   },
   "HOME": {
     "HERO": {
@@ -60,7 +76,14 @@
       "SUBTITLE": "Nuestra IA de vanguardia analiza miles de destinos para ofrecerte la experiencia personalizada definitiva, desde el clima perfecto hasta las joyas ocultas más exclusivas del planeta.",
       "PLAN_TRIP": "Planear mi viaje",
       "PROVIDER": "Soy Proveedor",
-      "INTRO_VIDEO": "Video de Introducción"
+      "INTRO_VIDEO": "Video de Introducción",
+      "ENABLE_AD": "Activar Audiodescripción",
+      "DISABLE_AD": "Desactivar Audiodescripción",
+      "SHOW_TRANSCRIPT": "Mostrar Transcripción",
+      "HIDE_TRANSCRIPT": "Ocultar Transcripción",
+      "TRANSCRIPT_TITLE": "Transcripción del Video",
+      "MUTE_AUDIO": "Silenciar audio",
+      "UNMUTE_AUDIO": "Activar audio"
     },
     "FEATURES": {
       "PERSONALIZATION": "Personalización Total",
@@ -115,6 +138,10 @@
       "TITLE": "Comienza tu próxima aventura hoy",
       "SUBTITLE": "Únete a miles de viajeros que ya están explorando el mundo de una manera más inteligente, personalizada y eficiente.",
       "REGISTER_FREE": "Registrarme Gratis"
+    },
+    "TESTIMONIALS": {
+      "TITLE": "Lo que dicen los viajeros",
+      "SUBTITLE": "Nuestra comunidad global comparte sus experiencias alrededor del mundo."
     }
   },
   "FOOTER": {

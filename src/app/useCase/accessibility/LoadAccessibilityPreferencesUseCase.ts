@@ -4,13 +4,9 @@ import { FontSizeService, FontSizeLevel } from '../../presentation/service/font-
 import { TextSpacingService, TextSpacingLevel } from '../../presentation/service/text-spacing/text-spacing.service';
 import { LanguageService, LanguageCode } from '../../presentation/service/language/language.service';
 import { ThemeMode } from '../../presentation/constants/themes.constant';
-
-export interface AccessibilityPreferences {
-  theme: ThemeMode;
-  fontSize: FontSizeLevel;
-  textSpacing: TextSpacingLevel;
-  language: LanguageCode;
-}
+import { AccessibilityPreferences } from './SaveAccessibilityPreferencesUseCase';
+import { MultimediaService } from '../../presentation/service/multimedia/multimedia';
+import { AnimationsService } from '../../presentation/service/animations/animations.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +16,8 @@ export class LoadAccessibilityPreferencesUseCase {
   private fontSizeService = inject(FontSizeService);
   private textSpacingService = inject(TextSpacingService);
   private languageService = inject(LanguageService);
+  private multimediaService = inject(MultimediaService);
+  private animationsService = inject(AnimationsService);
 
   /**
    * Execute the use case to load all accessibility preferences
@@ -30,7 +28,19 @@ export class LoadAccessibilityPreferencesUseCase {
       theme: (localStorage.getItem('smart-travel-theme') as ThemeMode) || 'system',
       fontSize: this.fontSizeService.currentLevel(),
       textSpacing: this.textSpacingService.currentLevel(),
-      language: this.languageService.getCurrentLanguage()
+      language: this.languageService.getCurrentLanguage(),
+      multimedia: {
+        pauseAutoAudio: this.multimediaService.pauseAutoAudio(),
+        textTranscripts: this.multimediaService.textTranscripts(),
+        syncCaptions: this.multimediaService.syncCaptions(),
+        audioDescription: this.multimediaService.audioDescription(),
+        realtimeCaptions: this.multimediaService.realtimeCaptions()
+      },
+      animations: {
+        tooltipsMenus: this.animationsService.tooltipsMenus(),
+        pauseMotion: this.animationsService.pauseMotion(),
+        disableFlashing: this.animationsService.disableFlashing()
+      }
     };
   }
 }

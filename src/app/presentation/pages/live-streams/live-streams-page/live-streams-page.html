@@ -1,0 +1,71 @@
+<app-navbar></app-navbar>
+<main>
+  <div class="live-page-container">
+    <header class="live-header">
+      <h1 class="page-title">{{ 'LIVE_STREAMS.TITLE' | translate }}</h1>
+    </header>
+
+    <div class="live-main-content">
+      <section class="main-stream-section" aria-label="{{ 'LIVE_STREAMS.ARIA_MAIN_VIDEO' | translate }}">
+        <div class="video-wrapper">
+          <video 
+            class="main-video" 
+            src="assets/videos/home_video.mp4" 
+            controls 
+            crossorigin="anonymous">
+          </video>
+          
+          @if (isListening() && subtitles()) {
+            <div class="live-captions-overlay" aria-live="polite">
+              <p>{{ subtitles() }}</p>
+            </div>
+          }
+        </div>
+
+        <div class="stream-controls">
+          <button 
+            class="btn btn-primary btn-mic" 
+            [class.listening]="isListening()"
+            (click)="toggleListening()">
+            @if (isListening()) {
+              <lucide-icon name="mic" aria-hidden="true"></lucide-icon>
+              {{ 'LIVE_STREAMS.STOP_MIC' | translate }}
+            } @else {
+              <lucide-icon name="mic-off" aria-hidden="true"></lucide-icon>
+              {{ 'LIVE_STREAMS.START_MIC' | translate }}
+            }
+          </button>
+          @if (errorMessage()) {
+            <p class="error-text" role="alert">{{ errorMessage() | translate }}</p>
+          }
+        </div>
+      </section>
+
+      <aside class="recommended-streams-section" aria-label="{{ 'LIVE_STREAMS.ARIA_RECOMMENDED' | translate }}">
+        <h2 class="section-title">{{ 'LIVE_STREAMS.RECOMMENDED' | translate }}</h2>
+        <div class="streams-grid">
+          @for (stream of recommendedStreams; track stream.id) {
+            <article class="stream-card">
+              <div class="stream-thumbnail-wrapper">
+                <img [src]="stream.img" [alt]="stream.alt" class="stream-thumbnail">
+                <div class="stream-badge live-badge">LIVE</div>
+                <div class="stream-viewers">
+                  <lucide-icon name="users" class="viewer-icon" aria-hidden="true"></lucide-icon>
+                  {{ stream.viewers }} {{ 'LIVE_STREAMS.VIEWERS' | translate }}
+                </div>
+                <div class="play-overlay">
+                  <lucide-icon name="play-circle" aria-hidden="true"></lucide-icon>
+                </div>
+              </div>
+              <h3 class="stream-title">{{ stream.titleKey | translate }}</h3>
+            </article>
+          }
+        </div>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<app-accessibility-widget></app-accessibility-widget>
+
+<app-footer></app-footer>

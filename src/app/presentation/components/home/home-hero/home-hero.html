@@ -15,15 +15,49 @@
       </button>
     </div>
     
-    <button class="hero-video-card group" type="button">
-      <div class="video-overlay"></div>
-      <div class="video-content">
-        <div class="play-btn">
-          <lucide-icon name="play" class="hero-play-icon" aria-hidden="true"></lucide-icon>
+    <div class="video-container-wrapper">
+      <div class="video-section">
+        <div class="video-top-controls" style="display: flex; justify-content: flex-end; margin-bottom: 0.5rem;">
+          <button class="btn btn-outlined btn-sm custom-control-btn" (click)="multimediaService.togglePauseAutoAudio()" type="button" aria-label="Toggle Auto Audio">
+            <lucide-icon [name]="multimediaService.pauseAutoAudio() ? 'volume-x' : 'volume-2'" aria-hidden="true"></lucide-icon>
+            {{ (multimediaService.pauseAutoAudio() ? 'HOME.HERO.UNMUTE_AUDIO' : 'HOME.HERO.MUTE_AUDIO') | translate }}
+          </button>
         </div>
-        <p class="video-text">{{ 'HOME.HERO.INTRO_VIDEO' | translate }}</p>
+        
+        @if (multimediaService.audioDescription()) {
+          <video autoplay [muted]="multimediaService.pauseAutoAudio()" controls class="hero-video" crossorigin="anonymous">
+            <source src="assets/videos/home_audiodescripcion.mp4" type="video/mp4">
+            @if (multimediaService.syncCaptions()) {
+              <track src="assets/videos/subtitulos_audiodescripcion.vtt" kind="captions" srclang="en" label="English" default>
+            }
+          </video>
+        } @else {
+          <video autoplay [muted]="multimediaService.pauseAutoAudio()" controls class="hero-video" crossorigin="anonymous">
+            <source src="assets/videos/home_video.mp4" type="video/mp4">
+            @if (multimediaService.syncCaptions()) {
+              <track src="assets/videos/subtitulos_video.vtt" kind="captions" srclang="en" label="English" default>
+            }
+          </video>
+        }
+        
+        <div class="video-controls-custom">
+          <button class="btn btn-outlined btn-sm custom-control-btn" (click)="toggleAudioDesc()" type="button">
+            <lucide-icon name="audio-lines" aria-hidden="true"></lucide-icon>
+            {{ (multimediaService.audioDescription() ? 'HOME.HERO.DISABLE_AD' : 'HOME.HERO.ENABLE_AD') | translate }}
+          </button>
+          <button class="btn btn-outlined btn-sm custom-control-btn" (click)="toggleTranscript()" type="button" [attr.aria-expanded]="multimediaService.textTranscripts()">
+            <lucide-icon name="file-text" aria-hidden="true"></lucide-icon>
+            {{ (multimediaService.textTranscripts() ? 'HOME.HERO.HIDE_TRANSCRIPT' : 'HOME.HERO.SHOW_TRANSCRIPT') | translate }}
+          </button>
+        </div>
       </div>
-      <!-- Empty space for video embed or background image -->
-    </button>
+      
+      @if (multimediaService.textTranscripts()) {
+        <div class="transcript-panel">
+          <h3 class="transcript-title">{{ 'HOME.HERO.TRANSCRIPT_TITLE' | translate }}</h3>
+          <p class="transcript-content">{{ transcriptText() }}</p>
+        </div>
+      }
+    </div>
   </div>
 </section>

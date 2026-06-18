@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, signal, computed, ChangeDetectionStrategy, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy, signal, computed, ChangeDetectionStrategy, HostListener, inject } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import {
@@ -11,6 +11,7 @@ import {
   Pause,
   Play
 } from 'lucide-angular';
+import { AnimationsService } from '../../../service/animations/animations.service';
 
 interface Destination {
   key: string;
@@ -101,8 +102,10 @@ export class HomeDestinations implements OnInit, OnDestroy {
     }
   ];
 
+  private animationsService = inject(AnimationsService);
   readonly currentIndex = signal(0);
-  readonly isPaused = signal(false);
+  readonly isPausedByUser = signal(false);
+  readonly isPaused = computed(() => this.isPausedByUser() || this.animationsService.pauseMotion());
   readonly total = this.destinations.length;
 
   private getVisibleItems(): number {
@@ -163,6 +166,6 @@ export class HomeDestinations implements OnInit, OnDestroy {
   }
 
   togglePause(): void {
-    this.isPaused.update(v => !v);
+    this.isPausedByUser.update(v => !v);
   }
 }

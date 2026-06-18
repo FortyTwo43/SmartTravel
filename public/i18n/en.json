@@ -52,7 +52,23 @@
     "ABOUT": "About Us",
     "LOGIN": "Log In",
     "REGISTER": "Register Now",
-    "ARIA_LABEL": "Main navigation"
+    "ARIA_LABEL": "Main navigation",
+    "LIVE": "Live"
+  },
+  "LIVE_STREAMS": {
+    "TITLE": "Live Streams",
+    "RECOMMENDED": "Recommended",
+    "START_MIC": "Listen & Caption",
+    "STOP_MIC": "Stop microphone",
+    "VIEWERS": "viewers",
+    "MIC_PERMISSION_ERROR": "Error: Microphone permission denied",
+    "BROWSER_NOT_SUPPORTED": "Error: Your browser doesn't support speech recognition.",
+    "SIMULATED_TITLE_1": "Exploring the Swiss Alps",
+    "SIMULATED_TITLE_2": "Gastronomy tour in Japan",
+    "SIMULATED_TITLE_3": "Diving in the Great Barrier Reef",
+    "SIMULATED_TITLE_4": "Sunset in Santorini",
+    "ARIA_MAIN_VIDEO": "Main stream",
+    "ARIA_RECOMMENDED": "Recommended streams"
   },
   "HOME": {
     "HERO": {
@@ -60,7 +76,14 @@
       "SUBTITLE": "Our cutting-edge AI analyzes thousands of destinations to offer you the ultimate personalized experience, from perfect weather to the planet's most exclusive hidden gems.",
       "PLAN_TRIP": "Plan my trip",
       "PROVIDER": "I'm a Provider",
-      "INTRO_VIDEO": "Introduction Video"
+      "INTRO_VIDEO": "Introduction Video",
+      "ENABLE_AD": "Enable Audio Description",
+      "DISABLE_AD": "Disable Audio Description",
+      "SHOW_TRANSCRIPT": "Show Transcript",
+      "HIDE_TRANSCRIPT": "Hide Transcript",
+      "TRANSCRIPT_TITLE": "Video Transcript",
+      "MUTE_AUDIO": "Mute audio",
+      "UNMUTE_AUDIO": "Unmute audio"
     },
     "FEATURES": {
       "PERSONALIZATION": "Total Personalization",
@@ -115,6 +138,10 @@
       "TITLE": "Start your next adventure today",
       "SUBTITLE": "Join thousands of travelers who are already exploring the world in a smarter, more personalized, and efficient way.",
       "REGISTER_FREE": "Register for Free"
+    },
+    "TESTIMONIALS": {
+      "TITLE": "What travelers are saying",
+      "SUBTITLE": "Our global community shares their experiences around the world."
     }
   },
   "FOOTER": {

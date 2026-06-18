@@ -1,0 +1,41 @@
+<section class="testimonials-section" aria-labelledby="testimonials-title">
+  <div class="testimonials-inner">
+    <div class="testimonials-header">
+      <h2 id="testimonials-title" class="section-title">
+        {{ 'HOME.TESTIMONIALS.TITLE' | translate }}
+      </h2>
+      <p class="section-subtitle">
+        {{ 'HOME.TESTIMONIALS.SUBTITLE' | translate }}
+      </p>
+    </div>
+
+    <div class="testimonials-grid">
+      @for (item of testimonials; track item.id) {
+        <article class="testimonial-card">
+          <div class="card-header">
+            <img [src]="item.avatar" alt="{{ item.name }}" class="avatar" loading="lazy">
+            <div class="user-info">
+              <h3 class="user-name">{{ item.name }}</h3>
+              <p class="user-country">{{ item.country }}</p>
+            </div>
+          </div>
+          <div class="card-body">
+            <lucide-icon name="quote" class="quote-icon" aria-hidden="true"></lucide-icon>
+            <p class="testimonial-text" [attr.lang]="item.lang">
+              {{ item.text }}
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="stars" aria-label="5 stars rating">
+              <lucide-icon name="star" class="star-icon filled" aria-hidden="true"></lucide-icon>
+              <lucide-icon name="star" class="star-icon filled" aria-hidden="true"></lucide-icon>
+              <lucide-icon name="star" class="star-icon filled" aria-hidden="true"></lucide-icon>
+              <lucide-icon name="star" class="star-icon filled" aria-hidden="true"></lucide-icon>
+              <lucide-icon name="star" class="star-icon filled" aria-hidden="true"></lucide-icon>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
