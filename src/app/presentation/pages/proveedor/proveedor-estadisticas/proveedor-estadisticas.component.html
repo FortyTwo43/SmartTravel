@@ -1,73 +1,92 @@
-<div class="statistics-page">
-  <div class="header">
+<main class="statistics-page">
+  <header class="header">
     <div>
       <h1 class="title">{{ 'PROVIDER_STATISTICS.TITLE' | translate }}</h1>
       <p class="subtitle">{{ 'PROVIDER_STATISTICS.SUBTITLE' | translate }}</p>
     </div>
-    <div class="period-selector">
-      <button 
-        class="btn-period" 
-        [class.active]="periodoSeleccionado() === 'dia'" 
-        (click)="cambiarPeriodo('dia')">Día</button>
-      <button 
-        class="btn-period" 
-        [class.active]="periodoSeleccionado() === 'semana'" 
-        (click)="cambiarPeriodo('semana')">Semana</button>
-      <button 
-        class="btn-period" 
-        [class.active]="periodoSeleccionado() === 'mes'" 
-        (click)="cambiarPeriodo('mes')">Mes</button>
+    <div
+      class="period-selector"
+      role="group"
+      [attr.aria-label]="'PROVIDER_STATISTICS.PERIOD_LABEL' | translate"
+    >
+      <button
+        type="button"
+        class="btn-period"
+        [class.active]="periodoSeleccionado() === 'dia'"
+        [attr.aria-pressed]="periodoSeleccionado() === 'dia'"
+        (click)="cambiarPeriodo('dia')"
+      >
+        {{ 'PROVIDER_STATISTICS.PERIOD.DAY' | translate }}
+      </button>
+      <button
+        type="button"
+        class="btn-period"
+        [class.active]="periodoSeleccionado() === 'semana'"
+        [attr.aria-pressed]="periodoSeleccionado() === 'semana'"
+        (click)="cambiarPeriodo('semana')"
+      >
+        {{ 'PROVIDER_STATISTICS.PERIOD.WEEK' | translate }}
+      </button>
+      <button
+        type="button"
+        class="btn-period"
+        [class.active]="periodoSeleccionado() === 'mes'"
+        [attr.aria-pressed]="periodoSeleccionado() === 'mes'"
+        (click)="cambiarPeriodo('mes')"
+      >
+        {{ 'PROVIDER_STATISTICS.PERIOD.MONTH' | translate }}
+      </button>
     </div>
-  </div>
+  </header>
 
   @if (isLoading()) {
-    <div class="loading-state">
-      <p>{{ 'COMMON.LOADING' | translate }}</p>
-    </div>
+    <p class="loading-state" role="status" aria-live="polite">
+      {{ 'COMMON.LOADING' | translate }}
+    </p>
   } @else {
-    <div class="charts-grid">
-      <!-- Fila 1: Line Chart y Bar Chart (mitad y mitad) -->
-      <div class="chart-wrapper">
-        <app-ingresos-line-chart 
-          [data]="ingresosPorPeriodo()" 
+    <section
+      class="charts-grid"
+      [attr.aria-label]="'PROVIDER_STATISTICS.CHARTS_SECTION' | translate"
+    >
+      <article class="chart-wrapper">
+        <app-ingresos-line-chart
+          [data]="ingresosPorPeriodo()"
           [title]="'PROVIDER_STATISTICS.INCOME_CHART.TITLE' | translate"
-          [seriesName]="'PROVIDER_STATISTICS.INCOME_CHART.SERIES_NAME' | translate">
-        </app-ingresos-line-chart>
-      </div>
+          [seriesName]="'PROVIDER_STATISTICS.INCOME_CHART.SERIES_NAME' | translate"
+        ></app-ingresos-line-chart>
+      </article>
 
-      <div class="chart-wrapper">
-        <app-reservas-bar-chart 
-          [data]="reservasRealizadas()" 
+      <article class="chart-wrapper">
+        <app-reservas-bar-chart
+          [data]="reservasRealizadas()"
           [title]="'PROVIDER_STATISTICS.RESERVATIONS_CHART.TITLE' | translate"
-          [seriesName]="'PROVIDER_STATISTICS.RESERVATIONS_CHART.SERIES_NAME' | translate">
-        </app-reservas-bar-chart>
-      </div>
+          [seriesName]="'PROVIDER_STATISTICS.RESERVATIONS_CHART.SERIES_NAME' | translate"
+        ></app-reservas-bar-chart>
+      </article>
 
-      <!-- Fila 2: Top Servicios (ocupa 2 columnas si es posible o 1) -->
-      <div class="chart-wrapper full-width">
-        <app-top-servicios-bar-chart 
-          [data]="topServicios()" 
+      <article class="chart-wrapper full-width">
+        <app-top-servicios-bar-chart
+          [data]="topServicios()"
           [title]="'PROVIDER_STATISTICS.TOP_SERVICES_CHART.TITLE' | translate"
-          [seriesName]="'PROVIDER_STATISTICS.TOP_SERVICES_CHART.SERIES_NAME' | translate">
-        </app-top-servicios-bar-chart>
-      </div>
+          [seriesName]="'PROVIDER_STATISTICS.TOP_SERVICES_CHART.SERIES_NAME' | translate"
+        ></app-top-servicios-bar-chart>
+      </article>
 
-      <!-- Fila 3: Pie Chart y Donut Chart -->
-      <div class="chart-wrapper">
-        <app-ingresos-pie-chart 
-          [data]="distribucionIngresos()" 
+      <article class="chart-wrapper">
+        <app-ingresos-pie-chart
+          [data]="distribucionIngresos()"
           [title]="'PROVIDER_STATISTICS.INCOME_DISTRIBUTION_CHART.TITLE' | translate"
-          [seriesName]="'PROVIDER_STATISTICS.INCOME_DISTRIBUTION_CHART.SERIES_NAME' | translate">
-        </app-ingresos-pie-chart>
-      </div>
+          [seriesName]="'PROVIDER_STATISTICS.INCOME_DISTRIBUTION_CHART.SERIES_NAME' | translate"
+        ></app-ingresos-pie-chart>
+      </article>
 
-      <div class="chart-wrapper">
-        <app-reservas-status-donut-chart 
-          [data]="reservasPorEstado()" 
+      <article class="chart-wrapper">
+        <app-reservas-status-donut-chart
+          [data]="reservasPorEstado()"
           [title]="'PROVIDER_STATISTICS.STATUS_DISTRIBUTION_CHART.TITLE' | translate"
-          [seriesName]="'PROVIDER_STATISTICS.STATUS_DISTRIBUTION_CHART.SERIES_NAME' | translate">
-        </app-reservas-status-donut-chart>
-      </div>
-    </div>
+          [seriesName]="'PROVIDER_STATISTICS.STATUS_DISTRIBUTION_CHART.SERIES_NAME' | translate"
+        ></app-reservas-status-donut-chart>
+      </article>
+    </section>
   }
-</div>
+</main>

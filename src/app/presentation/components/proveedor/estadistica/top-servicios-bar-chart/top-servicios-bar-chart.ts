@@ -1,16 +1,22 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, HostListener, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxEchartsDirective } from 'ngx-echarts';
 import type { EChartsOption } from 'echarts';
 import { ServicioMasReservado } from '../../../../../domain/ui/proveedor/estadisticas/ServicioMasReservado';
 import { TranslateModule } from '@ngx-translate/core';
+import {
+  getAxisLineStyle,
+  getAxisTooltipConfig,
+  getChartTextStyle,
+  getChartThemeTokens
+} from '../chart-theme.utils';
 
 @Component({
   selector: 'app-top-servicios-bar-chart',
   standalone: true,
   imports: [CommonModule, NgxEchartsDirective, TranslateModule],
   templateUrl: './top-servicios-bar-chart.html',
-  styleUrls: ['../ingresos-line-chart/ingresos-line-chart.css'] // Reusing styles
+  styleUrls: ['../ingresos-line-chart/ingresos-line-chart.css']
 })
 export class TopServiciosBarChartComponent implements OnChanges {
   @Input() data: ServicioMasReservado[] = [];
@@ -19,39 +25,53 @@ export class TopServiciosBarChartComponent implements OnChanges {
 
   chartOption: EChartsOption = {};
 
+  @HostListener('window:resize')
+  onResize(): void {
+    if (this.data?.length) {
+      this.updateChart();
+    }
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['data'] && this.data) {
       this.updateChart();
     }
   }
 
-  private updateChart() {
+  private updateChart(): void {
+    const tokens = getChartThemeTokens();
     const names = this.data.map(d => d.nombre_servicio).reverse();
     const values = this.data.map(d => d.cantidad_reservas).reverse();
-
-    const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--color-accent').trim() || '#f59e0b';
-    const textColor = getComputedStyle(document.documentElement).getPropertyValue('--text-main').trim() || '#1f2937';
+    const axisLabelStyle = getChartTextStyle(tokens.textColor);
 
     this.chartOption = {
       title: {
         text: this.title,
         textStyle: {
-          color: textColor,
-          fontFamily: 'var(--font-headline)'
+          ...getChartTextStyle(tokens.textColor),
+          fontFamily: tokens.fontHeadline
         }
       },
       tooltip: {
-        trigger: 'axis',
+        ...getAxisTooltipConfig(),
         axisPointer: { type: 'shadow' }
       },
       xAxis: {
         type: 'value',
-        axisLabel: { color: textColor }
+        axisLabel: axisLabelStyle,
+        axisLine: getAxisLineStyle(),
+        splitLine: {
+          lineStyle: {
+            color: tokens.borderColor
+          }
+        }
       },
       yAxis: {
         type: 'category',
         data: names,
-        axisLabel: { color: textColor }
+        axisLabel: axisLabelStyle,
+        axisLine: getAxisLineStyle(),
+        axisTick: getAxisLineStyle()
       },
       grid: {
         left: '3%',
@@ -65,7 +85,9 @@ export class TopServiciosBarChartComponent implements OnChanges {
           data: values,
           type: 'bar',
           itemStyle: {
-            color: accentColor,
+            color: tokens.tertiary,
+            borderColor: tokens.textColor,
+            borderWidth: 1,
             borderRadius: [0, 4, 4, 0]
           }
         }

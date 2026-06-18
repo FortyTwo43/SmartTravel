@@ -26,7 +26,7 @@
   cursor: pointer;
   overflow: hidden;
   border-radius: 1.5rem;
-  height: 25rem;
+  min-height: 25rem;
   box-shadow: var(--shadow-lg);
 }
 
@@ -66,7 +66,6 @@
   border-radius: var(--radius-full);
   font-size: 0.625rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
   font-family: var(--font-headline);
 }
 
@@ -85,7 +84,6 @@
   font-family: var(--font-headline);
   /* color: var(--text-main); */
   color: #ffffff;
-  line-height: 1.2;
 }
 
 .info-desc {
@@ -93,7 +91,6 @@
   color: rgba(255, 255, 255, 0.85);
   max-width: 24rem;
   font-family: var(--font-body);
-  line-height: 1.5;
 }
 
 .info-action {

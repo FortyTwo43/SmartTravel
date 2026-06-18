@@ -1,3 +1,10 @@
+:host {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
 .insights-card {
   background-color: var(--bg-surface);
   backdrop-filter: blur(12px);
@@ -6,6 +13,8 @@
   border-radius: var(--radius-lg);
   padding: 1.5rem;
   height: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .insights-header {
@@ -64,4 +73,18 @@
 .progress-fill {
   height: 100%;
   border-radius: var(--radius-full);
+}
+
+@media (max-width: 767px) {
+  .insights-card {
+    padding: 1rem;
+  }
+
+  .insights-title {
+    font-size: 1.25rem;
+  }
+
+  .insights-header {
+    margin-bottom: 1rem;
+  }
 }

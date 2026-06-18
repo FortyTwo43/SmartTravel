@@ -28,6 +28,7 @@
     "HERO_IMAGE_ALT": "Panorámica de un destino turístico con montañas y cielo despejado"
   },
   "COMMON": {
+    "BACK": "Atrás",
     "SAVE": "Guardar",
     "CANCEL": "Cancelar",
     "DELETE": "Eliminar",
@@ -44,13 +45,14 @@
     "PEOPLE": "personas"
   },
   "NAVBAR": {
-    "TITLE": "Smart Travel AI",
+    "TITLE": "Smart Travel",
     "DESTINATIONS": "Destinos",
     "AI_PLANNER": "Planner IA",
     "PROVIDERS": "Proveedores",
     "ABOUT": "Nosotros",
     "LOGIN": "Iniciar Sesión",
-    "REGISTER": "Registrarme"
+    "REGISTER": "Registrarme",
+    "ARIA_LABEL": "Navegación principal"
   },
   "HOME": {
     "HERO": {
@@ -92,7 +94,22 @@
       "DUBAI": "Dubai, UAE",
       "DUBAI_DESC": "Arquitectura futurista",
       "SANTORINI": "Santorini, GR",
-      "SANTORINI_DESC": "Vistas infinitas"
+      "SANTORINI_DESC": "Vistas infinitas",
+      "PARIS": "París, Francia",
+      "PARIS_DESC": "La ciudad del amor, famosa por su arte, gastronomía y monumentos históricos.",
+      "BALI": "Bali, Indonesia",
+      "BALI_DESC": "Playas paradisíacas, templos ancestrales y paisajes tropicales únicos.",
+      "NEW_YORK": "Nueva York, Estados Unidos",
+      "NEW_YORK_DESC": "La ciudad que nunca duerme, llena de cultura, entretenimiento y rascacielos.",
+      "MACHU_PICCHU": "Machu Picchu, Perú",
+      "MACHU_PICCHU_DESC": "Maravilla arqueológica rodeada de impresionantes montañas andinas.",
+      "CAROUSEL_LABEL": "Carrusel de destinos populares",
+      "PAUSE_CAROUSEL": "Pausar rotación automática",
+      "PLAY_CAROUSEL": "Reanudar rotación automática",
+      "CARD_LABEL": "Destino",
+      "RATING_LABEL": "Calificación",
+      "FAVORITE_LABEL": "Marcar como favorito",
+      "SLIDE_OF": "Destino {{current}} de {{total}}"
     },
     "CTA": {
       "TITLE": "Comienza tu próxima aventura hoy",
@@ -101,8 +118,8 @@
     }
   },
   "FOOTER": {
-    "TITLE": "Smart Travel AI",
-    "COPYRIGHT": "© 2024 Smart Travel AI. Precision Engineering for Modern Voyagers.",
+    "TITLE": "Smart Travel",
+    "COPYRIGHT": "© 2024 Smart Travel. Precision Engineering for Modern Voyagers.",
     "LINKS": {
       "PRIVACY": "Política de Privacidad",
       "TERMS": "Términos de Servicio",
@@ -314,6 +331,9 @@
       "ERROR": "Ocurrió un error al crear el servicio",
       "BACK": "Volver a servicios",
       "ADD_AMENITY": "Agregar comodidad",
+      "REMOVE_AMENITY": "Eliminar comodidad",
+      "MANDATORY_NOTE": "Los campos obligatorios están marcados con un asterisco (*)",
+      "IMAGE_HINT": "PNG o JPEG (máx. 5 MB)",
       "ERROR_PRICE_GREATER_THAN_ZERO": "El precio debe ser mayor a 0"
     }
   },
@@ -380,7 +400,38 @@
     "SCREEN_READER_DESC": "Optimización de salida de voz para NVDA y VoiceOver.",
     "LANGUAGE_PREFERENCE": "Preferencia de Idioma",
     "SPANISH_CASTILIAN": "Español (Castellano)",
-    "ENGLISH": "Inglés"
+    "ENGLISH": "Inglés",
+    "TEXT_SPACING": "Modificar espaciado de texto",
+    "TEXT_SPACING_DESC": "Permite modificar el espaciado de líneas, letras y palabras.",
+    "CONTRAST_COLOR": "Contraste y color",
+    "HIGH_CONTRAST_45": "Modo de alto contraste ",
+    "HIGH_CONTRAST_45_DESC": "Activa un modo de alto contraste donde el texto cumple una relación mínima de 4,5:1.",
+    "BORDER_CONTRAST": "Aumentar contraste de bordes ",
+    "BORDER_CONTRAST_DESC": "Aumenta el contraste de bordes de controles, iconos y gráficos hasta alcanzar 3:1.",
+    "ANIMATIONS_MOVEMENT": "Animaciones y movimiento",
+    "TOOLTIPS_MENUS": "Controlar tooltips y menús",
+    "TOOLTIPS_MENUS_DESC": "Permite descartarlos sin mover el foco del teclado.",
+    "PAUSE_MOTION": "Pausar contenido en movimiento",
+    "PAUSE_MOTION_DESC": "Permite pausar, detener u ocultar contenido como carruseles o actualizaciones.",
+    "DISABLE_FLASHING": "Desactivar parpadeos",
+    "DISABLE_FLASHING_DESC": "Desactiva o reduce elementos que parpadeen más de 3 veces por segundo.",
+    "NAVIGATION_FOCUS": "Navegación y foco",
+    "FOCUS_INDICATOR": "Indicador de foco claro",
+    "FOCUS_INDICATOR_DESC": "Activa un indicador visual claro del foco del teclado mediante estilos :focus.",
+    "KEYBOARD_SHORTCUTS": "Atajos de teclado",
+    "DISABLE_SINGLE_KEY": "Desactivar atajos de una sola tecla",
+    "DISABLE_SINGLE_KEY_DESC": "Permite configurar, reasignar o desactivar los atajos de teclado de una sola tecla.",
+    "MULTIMEDIA": "Multimedia",
+    "PAUSE_AUTO_AUDIO": "Pausar audio automático",
+    "PAUSE_AUTO_AUDIO_DESC": "Muestra un control para pausar o silenciar el audio automático.",
+    "TEXT_TRANSCRIPTS": "Transcripciones de texto",
+    "TEXT_TRANSCRIPTS_DESC": "Activa la visualización de transcripciones de texto para audio o video.",
+    "SYNC_CAPTIONS": "Subtítulos sincronizados",
+    "SYNC_CAPTIONS_DESC": "Activa la visualización de subtítulos sincronizados en videos.",
+    "AUDIO_DESCRIPTION": "Audiodescripción",
+    "AUDIO_DESCRIPTION_DESC": "Activa la pista de audiodescripción en videos pregrabados.",
+    "REALTIME_CAPTIONS": "Subtítulos en tiempo real",
+    "REALTIME_CAPTIONS_DESC": "Activa la función de subtítulos en tiempo real para transmisiones en directo."
   }
   ,
   "TRAVELER_EXPLORAR": {
@@ -465,11 +516,18 @@
       "TITLE": "Reservas por estado",
       "SERIES_NAME": "Cantidad"
     },
-    "NO_DATA": "No hay datos suficientes para mostrar estadísticas."
+    "NO_DATA": "No hay datos suficientes para mostrar estadísticas.",
+    "PERIOD_LABEL": "Seleccionar período de tiempo",
+    "CHARTS_SECTION": "Gráficos de estadísticas",
+    "PERIOD": {
+      "DAY": "Día",
+      "WEEK": "Semana",
+      "MONTH": "Mes"
+    }
   },
   "PROVIDER_ESTABLISHMENT": {
     "TITLE": "Editar Detalles del Establecimiento",
-    "SUBTITLE": "Configura la presencia de tu establecimiento en la red de Smart Travel AI.",
+    "SUBTITLE": "Configura la presencia de tu establecimiento en la red de Smart Travel.",
     "DETAILS": {
       "NAME": "Nombre del Establecimiento",
       "TYPE": "Tipo de Servicio",

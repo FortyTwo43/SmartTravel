@@ -14,7 +14,7 @@
   --bg-surface-alt: #F8F9FA;
   
   --text-main: #1F2937;
-  --text-muted: #6B7280;
+  --text-muted: #5F6B7A;
   --text-on-primary: #FFFFFF;
   
   --border-color: #D1D5DB;
@@ -36,6 +36,11 @@
 
   /* Font Size Scaling */
   --font-scale: 1;
+
+  /* Text Spacing */
+  --text-line-height: 1.5;
+  --text-letter-spacing: 0em;
+  --text-word-spacing: 0em;
 
   /* Apply font scale to root so all rem units inherit the scaling */
   font-size: calc(16px * var(--font-scale));

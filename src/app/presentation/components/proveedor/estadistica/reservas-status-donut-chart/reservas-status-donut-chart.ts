@@ -1,9 +1,15 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, HostListener, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxEchartsDirective } from 'ngx-echarts';
 import type { EChartsOption } from 'echarts';
 import { ReservaPorEstado } from '../../../../../domain/ui/proveedor/estadisticas/ReservaPorEstado';
 import { TranslateModule } from '@ngx-translate/core';
+import {
+  getChartTextStyle,
+  getChartThemeTokens,
+  getDonutLegendConfig,
+  getItemTooltipConfig
+} from '../chart-theme.utils';
 
 @Component({
   selector: 'app-reservas-status-donut-chart',
@@ -19,22 +25,29 @@ export class ReservasStatusDonutChartComponent implements OnChanges {
 
   chartOption: EChartsOption = {};
 
+  @HostListener('window:resize')
+  onResize(): void {
+    if (this.data?.length) {
+      this.updateChart();
+    }
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['data'] && this.data) {
       this.updateChart();
     }
   }
 
-  private updateChart() {
+  private updateChart(): void {
+    const tokens = getChartThemeTokens();
     const chartData = this.data.map(d => {
-      // Traducir estado a su nombre para UI
       const nameMap: Record<string, string> = {
-        'aceptado': 'Aceptadas',
-        'pendiente': 'Pendientes',
-        'rechazado': 'Rechazadas',
-        'completado': 'Finalizadas'
+        aceptado: 'Aceptadas',
+        pendiente: 'Pendientes',
+        rechazado: 'Rechazadas',
+        completado: 'Finalizadas'
       };
-      
+
       return {
         name: nameMap[d.estado] || d.estado,
         value: d.cantidad,
@@ -42,35 +55,29 @@ export class ReservasStatusDonutChartComponent implements OnChanges {
       };
     });
 
-    const textColor = getComputedStyle(document.documentElement).getPropertyValue('--text-main').trim() || '#1f2937';
-    
-    // Asignar colores por estado (verde para aceptado, amarillo pendiente, rojo rechazado)
     const colorMap: Record<string, string> = {
-      'aceptado': getComputedStyle(document.documentElement).getPropertyValue('--color-secondary').trim() || '#10b981',
-      'pendiente': getComputedStyle(document.documentElement).getPropertyValue('--color-accent').trim() || '#f59e0b',
-      'rechazado': getComputedStyle(document.documentElement).getPropertyValue('--color-alert').trim() || '#ef4444',
-      'completado': getComputedStyle(document.documentElement).getPropertyValue('--color-primary').trim() || '#3b82f6',
+      aceptado: tokens.secondary,
+      pendiente: tokens.tertiary,
+      rechazado: tokens.negative,
+      completado: tokens.primary
     };
 
-    const colorPalette = chartData.map(item => colorMap[item.estado] || '#9ca3af');
+    const colorPalette = chartData.map(item => colorMap[item.estado] || tokens.textMuted);
 
     this.chartOption = {
       title: {
         text: this.title,
         left: 'center',
         textStyle: {
-          color: textColor,
-          fontFamily: 'var(--font-headline)'
+          ...getChartTextStyle(tokens.textColor),
+          fontFamily: tokens.fontHeadline
         }
       },
       tooltip: {
-        trigger: 'item',
-        formatter: '{a} <br/>{b}: {c} ({d}%)'
+        ...getItemTooltipConfig(false),
+        formatter: '{a}<br/>{b}: {c} ({d}%)'
       },
-      legend: {
-        top: 'bottom',
-        textStyle: { color: textColor }
-      },
+      legend: getDonutLegendConfig(),
       color: colorPalette,
       series: [
         {
@@ -80,7 +87,7 @@ export class ReservasStatusDonutChartComponent implements OnChanges {
           avoidLabelOverlap: false,
           itemStyle: {
             borderRadius: 10,
-            borderColor: 'var(--bg-card)',
+            borderColor: tokens.bgSurface,
             borderWidth: 2
           },
           label: {
@@ -90,9 +97,8 @@ export class ReservasStatusDonutChartComponent implements OnChanges {
           emphasis: {
             label: {
               show: true,
-              fontSize: 20,
               fontWeight: 'bold',
-              color: textColor,
+              ...getChartTextStyle(tokens.textColor, 20),
               textBorderWidth: 0,
               textShadowColor: 'transparent'
             }

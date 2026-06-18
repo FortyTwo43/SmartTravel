@@ -1,30 +1,34 @@
-<aside class="sidebar-container">
+<aside class="sidebar-container" [class.open]="isOpen()">
   <div class="sidebar-header">
-    <h1 class="brand-title">Smart Travel AI</h1>
+    <h1 class="brand-title">Smart Travel</h1>
+    <button class="mobile-back-btn" (click)="closeSidebar.emit()" aria-label="Cerrar menú">
+      <span>{{ 'COMMON.BACK' | translate }}</span>
+      <lucide-icon name="arrow-right" class="icon-sm"></lucide-icon>
+    </button>
   </div>
   
   <nav class="sidebar-nav">
-    <a class="nav-item" routerLink="/provider/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+    <a class="nav-item" routerLink="/provider/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="onNavItemClick()">
       <lucide-icon name="layout-dashboard"></lucide-icon>
       <span>{{ 'PROVIDER_DASHBOARD.SIDEBAR.DASHBOARD' | translate }}</span>
     </a>
-    <a class="nav-item" routerLink="/provider/reservations" routerLinkActive="active">
+    <a class="nav-item" routerLink="/provider/reservations" routerLinkActive="active" (click)="onNavItemClick()">
       <lucide-icon name="calendar"></lucide-icon>
       <span>{{ 'PROVIDER_DASHBOARD.SIDEBAR.RESERVATIONS' | translate }}</span>
     </a>
-    <a class="nav-item" routerLink="/provider/services" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+    <a class="nav-item" routerLink="/provider/services" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="onNavItemClick()">
       <lucide-icon name="concierge-bell"></lucide-icon>
       <span>{{ 'PROVIDER_DASHBOARD.SIDEBAR.SERVICES' | translate }}</span>
     </a>
-    <a class="nav-item" routerLink="/provider/establecimiento" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+    <a class="nav-item" routerLink="/provider/establecimiento" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="onNavItemClick()">
       <lucide-icon name="store"></lucide-icon>
       <span>{{ 'PROVIDER_DASHBOARD.SIDEBAR.ESTABLISHMENT' | translate }}</span>
     </a>
-    <a class="nav-item" routerLink="/provider/statistics" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+    <a class="nav-item" routerLink="/provider/statistics" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="onNavItemClick()">
       <lucide-icon name="bar-chart"></lucide-icon>
       <span>{{ 'PROVIDER_DASHBOARD.SIDEBAR.STATISTICS' | translate }}</span>
     </a>
-    <a class="nav-item" href="#">
+    <a class="nav-item" href="#" (click)="onNavItemClick()">
       <lucide-icon name="bell"></lucide-icon>
       <span>{{ 'PROVIDER_DASHBOARD.SIDEBAR.NOTIFICATIONS' | translate }}</span>
     </a>
@@ -34,6 +38,7 @@
     <a 
       class="nav-item mb-md"
       routerLink="/provider/accessibility"
+      (click)="onNavItemClick()"
     >
       <lucide-icon name="settings"></lucide-icon>
       <span>{{ 'PROVIDER_DASHBOARD.SIDEBAR.SETTINGS' | translate }}</span>

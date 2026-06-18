@@ -1,9 +1,7 @@
-<div class="chart-container">
+<figure class="chart-container" [attr.aria-label]="title">
   @if (data && data.length > 0) {
-    <div echarts [options]="chartOption" class="chart"></div>
+    <div echarts [options]="chartOption" class="chart" role="img" [attr.aria-label]="title"></div>
   } @else {
-    <div class="empty-state">
-      <p>{{ 'PROVIDER_STATISTICS.NO_DATA' | translate }}</p>
-    </div>
+    <p class="empty-state" role="status">{{ 'PROVIDER_STATISTICS.NO_DATA' | translate }}</p>
   }
-</div>
+</figure>

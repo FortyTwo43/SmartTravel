@@ -1,29 +1,29 @@
-<section class="hero-section">
+<section class="hero-section" aria-labelledby="hero-title">
   <div class="hero-background" aria-hidden="true">
     <div class="hero-gradient"></div>
   </div>
   <div class="hero-content">
-    <h1 class="hero-title">{{ 'HOME.HERO.TITLE' | translate }}</h1>
+    <h1 id="hero-title" class="hero-title">{{ 'HOME.HERO.TITLE' | translate }}</h1>
     <p class="hero-subtitle">{{ 'HOME.HERO.SUBTITLE' | translate }}</p>
     <div class="hero-actions">
-      <button class="btn btn-primary btn-lg group">
+      <button class="btn btn-primary btn-lg group" type="button">
         {{ 'HOME.HERO.PLAN_TRIP' | translate }}
-        <lucide-icon name="arrow-right" class="hero-btn-icon group-hover:translate-x-1"></lucide-icon>
+        <lucide-icon name="arrow-right" class="hero-btn-icon group-hover:translate-x-1" aria-hidden="true"></lucide-icon>
       </button>
-      <button class="btn btn-outlined btn-lg">
+      <button class="btn btn-outlined btn-lg" type="button">
         {{ 'HOME.HERO.PROVIDER' | translate }}
       </button>
     </div>
     
-    <div class="hero-video-card group">
+    <button class="hero-video-card group" type="button">
       <div class="video-overlay"></div>
       <div class="video-content">
         <div class="play-btn">
-          <lucide-icon name="play" class="hero-play-icon"></lucide-icon>
+          <lucide-icon name="play" class="hero-play-icon" aria-hidden="true"></lucide-icon>
         </div>
         <p class="video-text">{{ 'HOME.HERO.INTRO_VIDEO' | translate }}</p>
       </div>
       <!-- Empty space for video embed or background image -->
-    </div>
+    </button>
   </div>
 </section>
