@@ -1,31 +1,31 @@
 @if (destination()) {
-  <div class="explore-card">
-    <div class="image-wrap">
-      @if (destination()!.imagen) {
-        <img [src]="destination()!.imagen" [alt]="destination()!.nombre" />
-      } @else {
-        <div class="placeholder-img"></div>
-      }
-      <button class="favorite-btn"><lucide-icon name="heart"></lucide-icon></button>
+<div class="explore-card">
+  <div class="image-wrap">
+    @if (destination()!.imagen) {
+    <img [src]="destination()!.imagen" [alt]="destination()!.nombre" />
+    } @else {
+    <div class="placeholder-img"></div>
+    }
+    <button class="favorite-btn" [class.active]="isFavorite()" (click)="toggleFavorite()" [attr.aria-label]="isFavorite() ? 'Quitar ' + destination()!.nombre + ' de favoritos' : 'Añadir ' + destination()!.nombre + ' a favoritos'"><lucide-icon name="heart" [class.filled]="isFavorite()"></lucide-icon></button>
+  </div>
+  <div class="card-body">
+    <div class="card-header">
+      <h4 class="card-title">{{ destination()!.nombre }}</h4>
+      <div class="rating" [attr.aria-label]="'Calificación: ' + (destination()!.ratingPromedio != null ? destination()!.ratingPromedio : 'Sin calificación') + ' estrellas'">
+        @if (destination()!.ratingPromedio != null) {
+        ☆ {{ (destination()!.ratingPromedio | number: '1.1-1') }}
+        } @else {
+        <span class="no-rating" aria-hidden="true">Sin calificación</span>
+        }
+      </div>
     </div>
-    <div class="card-body">
-      <div class="card-header">
-        <h4 class="card-title">{{ destination()!.nombre }}</h4>
-        <div class="rating">
-          @if (destination()!.ratingPromedio != null) {
-            ☆ {{ (destination()!.ratingPromedio | number: '1.1-1') }}
-          } @else {
-            <span class="no-rating">Sin calificación</span>
-          }
-        </div>
-      </div>
-      <p class="description">{{ destination()!.ciudad }}, {{ destination()!.pais }}</p>
-      
-      <hr class="card-divider" />
-      
-      <div class="card-footer">
-        <button class="btn-primary">Ver detalles</button>
-      </div>
+    <p class="description">{{ destination()!.ciudad }}, {{ destination()!.pais }}</p>
+
+    <hr class="card-divider" />
+
+    <div class="card-footer">
+      <a href="javascript:void(0)" class="btn-primary" (click)="navigateToDetail()" [attr.aria-label]="'Ver detalles de ' + destination()!.nombre">Ver detalles</a>
     </div>
   </div>
+</div>
 }

@@ -1,8 +1,8 @@
-<div class="search-header">
+<div class="search-header" role="search">
   <div class="search-fields">
-    <input type="text" placeholder="{{ 'COMMON.SEARCH' | translate }}" [ngModel]="destino()" (ngModelChange)="destino.set($event)" />
-    <input type="text" placeholder="Fechas" [ngModel]="fechas()" (ngModelChange)="fechas.set($event)" />
-    <input type="number" min="1" [ngModel]="viajeros()" (ngModelChange)="viajeros.set($event)" />
+    <input type="text" placeholder="{{ 'COMMON.SEARCH' | translate }}" aria-label="Buscar destino" [ngModel]="destino()" (ngModelChange)="destino.set($event)" />
+    <input type="text" placeholder="Fechas" aria-label="Fechas de viaje" [ngModel]="fechas()" (ngModelChange)="fechas.set($event)" />
+    <input type="number" min="1" placeholder="Viajeros" aria-label="Número de viajeros" [ngModel]="viajeros()" (ngModelChange)="viajeros.set($event)" />
   </div>
   <button class="search-btn" (click)="onSearch()">{{ 'COMMON.SEARCH' | translate }}</button>
 </div>

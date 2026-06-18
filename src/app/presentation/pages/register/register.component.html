@@ -1,4 +1,4 @@
-<div class="register-container">
+<main id="main-content" class="register-container">
   <!-- LEFT SIDE: Registration Form (60%) -->
   <div class="form-panel">
     <!-- Back Button -->
@@ -31,16 +31,20 @@
       </div>
 
       <!-- Error / Success messages -->
-      @if (errorMessage()) {
-      <div class="alert-message alert-error">
-        {{ errorMessage() }}
+      <div aria-live="assertive" aria-atomic="true">
+        @if (errorMessage()) {
+        <div class="alert-message alert-error">
+          {{ errorMessage() }}
+        </div>
+        }
       </div>
-      }
-      @if (successMessage()) {
-      <div class="alert-message alert-success">
-        {{ successMessage() }}
+      <div aria-live="polite" aria-atomic="true">
+        @if (successMessage()) {
+        <div class="alert-message alert-success">
+          {{ successMessage() }}
+        </div>
+        }
       </div>
-      }
 
       <!-- Form -->
       <form class="registration-form-wrapper" (ngSubmit)="onSubmit()">
@@ -51,57 +55,64 @@
               <h3 class="section-title">{{ 'REGISTER.PERSONAL_INFO' | translate }}</h3>
 
               <div class="form-row two-columns">
-                <label class="form-group">
+                <label class="form-group" for="nombre">
                   <span class="form-label">{{ 'REGISTER.FIRST_NAME' | translate }}</span>
-                  <input type="text" class="form-input" [placeholder]="'REGISTER.PLACEHOLDER_FIRST_NAME' | translate"
+                  <input id="nombre" type="text" class="form-input" [placeholder]="'REGISTER.PLACEHOLDER_FIRST_NAME' | translate"
                     [(ngModel)]="nombre" name="nombre" />
                 </label>
-                <label class="form-group">
+                <label class="form-group" for="apellido">
                   <span class="form-label">{{ 'REGISTER.LAST_NAME' | translate }}</span>
-                  <input type="text" class="form-input" [placeholder]="'REGISTER.PLACEHOLDER_LAST_NAME' | translate"
+                  <input id="apellido" type="text" class="form-input" [placeholder]="'REGISTER.PLACEHOLDER_LAST_NAME' | translate"
                     [(ngModel)]="apellido" name="apellido" />
                 </label>
               </div>
 
-              <label class="form-group">
+              <label class="form-group" for="email">
                 <span class="form-label">{{ 'AUTH.EMAIL' | translate }}</span>
-                <input type="email" class="form-input" [class.ng-invalid-custom]="emailInvalid"
-                  [placeholder]="'AUTH.PLACEHOLDER_EMAIL' | translate" [(ngModel)]="email" name="email" />
-                @if (emailInvalid) {
-                <div class="input-error-message">{{ 'REGISTER.ERROR_INVALID_EMAIL_FORMAT' | translate }}</div>
-                }
+                <input id="email" type="email" class="form-input" [class.ng-invalid-custom]="emailInvalid"
+                  [placeholder]="'AUTH.PLACEHOLDER_EMAIL' | translate" [(ngModel)]="email" name="email" 
+                  [attr.aria-describedby]="emailInvalid ? 'email-error' : null" />
+                <div aria-live="polite">
+                  @if (emailInvalid) {
+                  <div id="email-error" class="input-error-message">{{ 'REGISTER.ERROR_INVALID_EMAIL_FORMAT' | translate }}</div>
+                  }
+                </div>
               </label>
 
               <div class="form-row two-columns">
-                <label class="form-group">
+                <label class="form-group" for="password">
                   <span class="form-label">{{ 'REGISTER.PASSWORD' | translate }}</span>
                   <div class="password-wrapper">
-                    <input [type]="passwordVisible() ? 'text' : 'password'" class="form-input"
+                    <input id="password" [type]="passwordVisible() ? 'text' : 'password'" class="form-input"
                       [class.ng-invalid-custom]="passwordInvalid" placeholder="••••••••" [(ngModel)]="password"
-                      name="password" />
+                      name="password" [attr.aria-describedby]="passwordInvalid ? 'password-error' : null" />
                     <button type="button" (click)="togglePasswordVisibility()" class="password-toggle"
                       [attr.aria-label]="(passwordVisible() ? 'REGISTER.HIDE_PASSWORD' : 'REGISTER.SHOW_PASSWORD') | translate">
                       <lucide-icon [name]="passwordVisible() ? 'eye_off' : 'eye'" aria-hidden="true"></lucide-icon>
                     </button>
                   </div>
-                  @if (passwordInvalid) {
-                  <div class="input-error-message">{{ 'REGISTER.ERROR_MIN_LENGTH_8' | translate }}</div>
-                  }
+                  <div aria-live="polite">
+                    @if (passwordInvalid) {
+                    <div id="password-error" class="input-error-message">{{ 'REGISTER.ERROR_MIN_LENGTH_8' | translate }}</div>
+                    }
+                  </div>
                 </label>
-                <label class="form-group">
+                <label class="form-group" for="confirmPassword">
                   <span class="form-label">{{ 'REGISTER.CONFIRM_PASSWORD' | translate }}</span>
                   <div class="password-wrapper">
-                    <input [type]="confirmPasswordVisible() ? 'text' : 'password'" class="form-input"
+                    <input id="confirmPassword" [type]="confirmPasswordVisible() ? 'text' : 'password'" class="form-input"
                       [class.ng-invalid-custom]="passwordsMismatch" placeholder="••••••••" [(ngModel)]="confirmPassword"
-                      name="confirmPassword" />
+                      name="confirmPassword" [attr.aria-describedby]="passwordsMismatch ? 'confirm-error' : null" />
                     <button type="button" (click)="toggleConfirmPasswordVisibility()" class="password-toggle"
                       [attr.aria-label]="(confirmPasswordVisible() ? 'REGISTER.HIDE_PASSWORD' : 'REGISTER.SHOW_PASSWORD') | translate">
                       <lucide-icon [name]="confirmPasswordVisible() ? 'eye_off' : 'eye'" aria-hidden="true"></lucide-icon>
                     </button>
                   </div>
-                  @if (passwordsMismatch) {
-                  <div class="input-error-message">{{ 'REGISTER.ERROR_PASSWORD_MISMATCH' | translate }}</div>
-                  }
+                  <div aria-live="polite">
+                    @if (passwordsMismatch) {
+                    <div id="confirm-error" class="input-error-message">{{ 'REGISTER.ERROR_PASSWORD_MISMATCH' | translate }}</div>
+                    }
+                  </div>
                 </label>
               </div>
             </div>
@@ -112,18 +123,18 @@
               <h3 class="section-title">{{ 'REGISTER.TRAVEL_PREFERENCES' | translate }}</h3>
 
               <div class="form-row two-columns">
-                <label class="form-group">
+                <label class="form-group" for="presupuesto">
                   <span class="form-label">{{ 'REGISTER.BUDGET' | translate }}</span>
-                  <select class="form-input" [(ngModel)]="presupuesto" name="presupuesto">
+                  <select id="presupuesto" class="form-input" [(ngModel)]="presupuesto" name="presupuesto">
                     <option value="economico">{{ 'REGISTER.BUDGET_ECONOMIC' | translate }}</option>
                     <option value="estandar">{{ 'REGISTER.BUDGET_STANDARD' | translate }}</option>
                     <option value="lujo">{{ 'REGISTER.BUDGET_LUXURY' | translate }}</option>
                     <option value="elite">{{ 'REGISTER.BUDGET_ELITE' | translate }}</option>
                   </select>
                 </label>
-                <label class="form-group">
+                <label class="form-group" for="idioma">
                   <span class="form-label">{{ 'REGISTER.LANGUAGE' | translate }}</span>
-                  <select class="form-input" [(ngModel)]="idioma" name="idioma">
+                  <select id="idioma" class="form-input" [(ngModel)]="idioma" name="idioma">
                     <option value="es">{{ 'REGISTER.LANGUAGE_SPANISH' | translate }}</option>
                     <option value="en">{{ 'REGISTER.LANGUAGE_ENGLISH' | translate }}</option>
                     <option value="fr">{{ 'REGISTER.LANGUAGE_FRENCH' | translate }}</option>
@@ -140,14 +151,14 @@
               <h3 class="section-title">{{ 'REGISTER.BUSINESS_INFO' | translate }}</h3>
 
               <div class="form-row two-columns">
-                <label class="form-group">
+                <label class="form-group" for="nombre_negocio">
                   <span class="form-label">{{ 'REGISTER.BUSINESS_NAME' | translate }}</span>
-                  <input type="text" class="form-input" [placeholder]="'REGISTER.PLACEHOLDER_BUSINESS_NAME' | translate"
+                  <input id="nombre_negocio" type="text" class="form-input" [placeholder]="'REGISTER.PLACEHOLDER_BUSINESS_NAME' | translate"
                     [(ngModel)]="nombre_negocio" name="nombre_negocio" />
                 </label>
-                <label class="form-group">
+                <label class="form-group" for="tipo_negocio">
                   <span class="form-label">{{ 'REGISTER.BUSINESS_TYPE' | translate }}</span>
-                  <select class="form-input" [(ngModel)]="tipo_negocio" name="tipo_negocio">
+                  <select id="tipo_negocio" class="form-input" [(ngModel)]="tipo_negocio" name="tipo_negocio">
                     <option value="" disabled selected>{{ 'REGISTER.BUSINESS_TYPE_PLACEHOLDER' | translate }}</option>
                     <option value="restaurante">{{ 'REGISTER.BUSINESS_TYPE_RESTAURANT' | translate }}</option>
                     <option value="hotel">{{ 'REGISTER.BUSINESS_TYPE_HOTEL' | translate }}</option>
@@ -157,24 +168,24 @@
               </div>
 
               <div class="form-row two-columns">
-                <label class="form-group">
+                <label class="form-group" for="telefono">
                   <span class="form-label">{{ 'REGISTER.PHONE' | translate }}</span>
-                  <input type="tel" class="form-input" [class.ng-invalid-custom]="phoneInvalid"
+                  <input id="telefono" type="tel" class="form-input" [class.ng-invalid-custom]="phoneInvalid"
                     [placeholder]="'REGISTER.PLACEHOLDER_PHONE' | translate" [(ngModel)]="telefono" name="telefono" />
                   @if (phoneInvalid) {
                   <div class="input-error-message">{{ 'REGISTER.ERROR_PHONE_10_DIGITS' | translate }}</div>
                   }
                 </label>
-                <label class="form-group">
+                <label class="form-group" for="ubicacion">
                   <span class="form-label">{{ 'REGISTER.LOCATION' | translate }}</span>
-                  <input type="text" class="form-input" [placeholder]="'REGISTER.PLACEHOLDER_LOCATION' | translate"
+                  <input id="ubicacion" type="text" class="form-input" [placeholder]="'REGISTER.PLACEHOLDER_LOCATION' | translate"
                     [(ngModel)]="ubicacion" name="ubicacion" />
                 </label>
               </div>
 
-              <label class="form-group">
+              <label class="form-group" for="descripcion">
                 <span class="form-label">{{ 'REGISTER.SERVICE_DESCRIPTION' | translate }}</span>
-                <textarea class="form-input textarea-input"
+                <textarea id="descripcion" class="form-input textarea-input"
                   [placeholder]="'REGISTER.PLACEHOLDER_SERVICE_DESC' | translate" [(ngModel)]="descripcion"
                   name="descripcion"></textarea>
               </label>
@@ -186,8 +197,8 @@
                 <label class="file-upload-area" [class.dragging]="isDragging()" (dragover)="onDragOver($event)"
                   (dragleave)="onDragLeave($event)" (drop)="onDrop($event)" style="cursor: pointer; display: block;">
 
-                  <input type="file" class="hidden-file-input" accept="application/pdf, image/png, image/jpeg"
-                    (change)="onFileSelected($event)" style="display: none;" />
+                  <input type="file" id="business-evidence" class="sr-only" accept="application/pdf, image/png, image/jpeg"
+                    (change)="onFileSelected($event)" />
 
                   <lucide-icon name="cloud_upload"></lucide-icon>
                   <p><span class="file-upload-highlight">{{ 'REGISTER.UPLOAD_FILES' | translate }}</span> {{
@@ -274,4 +285,4 @@
     </div>
   </div>
 
-</div>
+</main>

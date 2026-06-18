@@ -465,7 +465,26 @@
     "TITLE": "Explore Destinations",
     "FILTERS": "Filters",
     "LOAD_MORE": "Load more destinations",
-    "NO_RESULTS": "No destinations found"
+    "NO_RESULTS": "No destinations found",
+    "VIEW_DETAILS": "View details"
+  },
+  "DESTINATION_DETAIL": {
+    "BACK": "Back to destinations",
+    "LOCATION_LABEL": "Location",
+    "EXPLORE_PREFIX": "Explore",
+    "EXPLORE_LOCATED": "located in",
+    "EXPLORE_IDEAL": "Ideal for travelers interested in",
+    "EXPERIENCE_BADGE": "Experience type",
+    "MANAGE_TRIP": "Manage trip",
+    "MANAGE_TRIP_DESC": "Personalize your stay at this destination.",
+    "ADD_ITINERARY": "Add to itinerary",
+    "BOOK_NOW": "Book now",
+    "SAVE_LATER": "Save for later",
+    "COMING_SOON": "Coming soon",
+    "NOT_FOUND": "Destination not found",
+    "NOT_FOUND_DESC": "The destination you are looking for does not exist or was removed.",
+    "LOADING": "Loading destination...",
+    "ERROR": "Error loading destination"
   },
   "ADMIN_DESTINATIONS": {
     "TITLE": "Destinations",

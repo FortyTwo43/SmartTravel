@@ -1,5 +1,6 @@
-import { Component, input } from '@angular/core';
+import { Component, input, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import type { ExploreDestination } from '../../../../../useCase/viajero/explorar-destinos/GetExplorarDestinosUseCase';
 import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Heart } from 'lucide-angular';
@@ -19,4 +20,18 @@ import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Heart } from 'lu
 })
 export class DestinationCardComponent {
   destination = input<ExploreDestination | null>(null);
+  isFavorite = signal(false);
+
+  private readonly router = inject(Router);
+
+  toggleFavorite(): void {
+    this.isFavorite.set(!this.isFavorite());
+  }
+
+  navigateToDetail(): void {
+    const id = this.destination()?.id;
+    if (id) {
+      this.router.navigate(['/traveler/destinations', id]);
+    }
+  }
 }
