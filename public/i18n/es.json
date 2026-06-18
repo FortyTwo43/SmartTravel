@@ -60,7 +60,12 @@
       "SUBTITLE": "Nuestra IA de vanguardia analiza miles de destinos para ofrecerte la experiencia personalizada definitiva, desde el clima perfecto hasta las joyas ocultas más exclusivas del planeta.",
       "PLAN_TRIP": "Planear mi viaje",
       "PROVIDER": "Soy Proveedor",
-      "INTRO_VIDEO": "Video de Introducción"
+      "INTRO_VIDEO": "Video de Introducción",
+      "ENABLE_AD": "Activar Audiodescripción",
+      "DISABLE_AD": "Desactivar Audiodescripción",
+      "SHOW_TRANSCRIPT": "Mostrar Transcripción",
+      "HIDE_TRANSCRIPT": "Ocultar Transcripción",
+      "TRANSCRIPT_TITLE": "Transcripción del Video"
     },
     "FEATURES": {
       "PERSONALIZATION": "Personalización Total",

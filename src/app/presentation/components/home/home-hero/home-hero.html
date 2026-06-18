@@ -15,15 +15,38 @@
       </button>
     </div>
     
-    <button class="hero-video-card group" type="button">
-      <div class="video-overlay"></div>
-      <div class="video-content">
-        <div class="play-btn">
-          <lucide-icon name="play" class="hero-play-icon" aria-hidden="true"></lucide-icon>
+    <div class="video-container-wrapper">
+      <div class="video-section">
+        @if (isAudioDescActive()) {
+          <video controls class="hero-video" crossorigin="anonymous">
+            <source src="assets/videos/home_audiodescripcion.mp4" type="video/mp4">
+            <track src="assets/videos/subtitulos_audiodescripcion.vtt" kind="captions" srclang="es" label="Español" default>
+          </video>
+        } @else {
+          <video controls class="hero-video" crossorigin="anonymous">
+            <source src="assets/videos/home_video.mp4" type="video/mp4">
+            <track src="assets/videos/subtitulos_video.vtt" kind="captions" srclang="es" label="Español" default>
+          </video>
+        }
+        
+        <div class="video-controls-custom">
+          <button class="btn btn-outlined btn-sm custom-control-btn" (click)="toggleAudioDesc()" type="button">
+            <lucide-icon name="audio-lines" aria-hidden="true"></lucide-icon>
+            {{ (isAudioDescActive() ? 'HOME.HERO.DISABLE_AD' : 'HOME.HERO.ENABLE_AD') | translate }}
+          </button>
+          <button class="btn btn-outlined btn-sm custom-control-btn" (click)="toggleTranscript()" type="button" [attr.aria-expanded]="isTranscriptVisible()">
+            <lucide-icon name="file-text" aria-hidden="true"></lucide-icon>
+            {{ (isTranscriptVisible() ? 'HOME.HERO.HIDE_TRANSCRIPT' : 'HOME.HERO.SHOW_TRANSCRIPT') | translate }}
+          </button>
         </div>
-        <p class="video-text">{{ 'HOME.HERO.INTRO_VIDEO' | translate }}</p>
       </div>
-      <!-- Empty space for video embed or background image -->
-    </button>
+      
+      @if (isTranscriptVisible()) {
+        <div class="transcript-panel">
+          <h3 class="transcript-title">{{ 'HOME.HERO.TRANSCRIPT_TITLE' | translate }}</h3>
+          <p class="transcript-content">{{ transcriptText() }}</p>
+        </div>
+      }
+    </div>
   </div>
 </section>
