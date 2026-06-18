@@ -14,6 +14,7 @@ export interface ChartThemeTokens {
   lineHeight: number;
   letterSpacing: string;
   wordSpacing: string;
+  fontScale: number;
 }
 
 export function getChartThemeTokens(): ChartThemeTokens {
@@ -32,18 +33,20 @@ export function getChartThemeTokens(): ChartThemeTokens {
     fontBody: style.getPropertyValue('--font-body').trim() || "'Inter', sans-serif",
     lineHeight: Number.parseFloat(style.getPropertyValue('--text-line-height').trim() || '1.5'),
     letterSpacing: style.getPropertyValue('--text-letter-spacing').trim() || '0em',
-    wordSpacing: style.getPropertyValue('--text-word-spacing').trim() || '0em'
+    wordSpacing: style.getPropertyValue('--text-word-spacing').trim() || '0em',
+    fontScale: Number.parseFloat(style.getPropertyValue('--font-scale').trim() || '1')
   };
 }
 
 export function getChartTextStyle(color?: string, fontSize = 12) {
   const tokens = getChartThemeTokens();
+  const scaledFontSize = Math.round(fontSize * (tokens.fontScale || 1));
 
   return {
     color: color ?? tokens.textColor,
     fontFamily: tokens.fontBody,
-    fontSize,
-    lineHeight: Math.round(fontSize * tokens.lineHeight),
+    fontSize: scaledFontSize,
+    lineHeight: Math.round(scaledFontSize * tokens.lineHeight),
     letterSpacing: tokens.letterSpacing
   };
 }

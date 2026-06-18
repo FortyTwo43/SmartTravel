@@ -18,7 +18,7 @@ export class FontSizeService {
     small: { scale: 0.875, label: 'Pequeño' },
     normal: { scale: 1, label: 'Normal' },
     large: { scale: 1.125, label: 'Grande' },
-    'extra-large': { scale: 1.25, label: 'Extra Grande' }
+    'extra-large': { scale: 1.28, label: 'Extra Grande' }
   };
 
   // Signal to track current font size level

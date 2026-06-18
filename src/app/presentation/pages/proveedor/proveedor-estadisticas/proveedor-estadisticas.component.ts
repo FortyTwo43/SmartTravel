@@ -1,8 +1,9 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, inject, signal, effect, untracked } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { EstadisticasProveedorUseCase } from '../../../../useCase/proveedor/estadisticas/estadisticas.usecase';
 import { LoadDashboardDataUseCase } from '../../../../useCase/proveedor/dashboard/LoadDashboardDataUseCase';
+import { FontSizeService } from '../../../service/font-size/font-size.service';
 
 import { IngresoPeriodo } from '../../../../domain/ui/proveedor/estadisticas/IngresoPeriodo';
 import { ReservaPeriodo } from '../../../../domain/ui/proveedor/estadisticas/ReservaPeriodo';
@@ -44,6 +45,25 @@ export class ProveedorEstadisticasComponent implements OnInit {
   
   periodoSeleccionado = signal<'dia' | 'semana' | 'mes'>('mes');
   isLoading = signal(true);
+  private fontSizeService = inject(FontSizeService);
+
+  constructor() {
+    effect(() => {
+      // Track font size level so this effect runs when it changes
+      this.fontSizeService.currentLevel();
+      
+      // Untrack the rest to prevent infinite loop since we are reading and writing signals
+      untracked(() => {
+        if (!this.isLoading()) {
+          this.ingresosPorPeriodo.set([...this.ingresosPorPeriodo()]);
+          this.reservasRealizadas.set([...this.reservasRealizadas()]);
+          this.topServicios.set([...this.topServicios()]);
+          this.distribucionIngresos.set([...this.distribucionIngresos()]);
+          this.reservasPorEstado.set([...this.reservasPorEstado()]);
+        }
+      });
+    }, { allowSignalWrites: true });
+  }
 
   async ngOnInit() {
     await this.cargarEstadisticas();
