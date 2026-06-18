@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
+import { MultimediaService } from '../../../service/multimedia/multimedia';
 
 @Component({
   selector: 'app-multimedia',
@@ -8,4 +9,6 @@ import { TranslateModule } from '@ngx-translate/core';
   templateUrl: './multimedia.html',
   styleUrl: './multimedia.css',
 })
-export class Multimedia {}
+export class Multimedia {
+  public multimediaService = inject(MultimediaService);
+}

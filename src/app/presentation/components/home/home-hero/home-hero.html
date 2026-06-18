@@ -17,13 +17,20 @@
     
     <div class="video-container-wrapper">
       <div class="video-section">
+        <div class="video-top-controls" style="display: flex; justify-content: flex-end; margin-bottom: 0.5rem;">
+          <button class="btn btn-outlined btn-sm custom-control-btn" (click)="multimediaService.togglePauseAutoAudio()" type="button" aria-label="Toggle Auto Audio">
+            <lucide-icon [name]="multimediaService.pauseAutoAudio() ? 'volume-x' : 'volume-2'" aria-hidden="true"></lucide-icon>
+            {{ (multimediaService.pauseAutoAudio() ? 'Unmute Audio' : 'Mute Audio') }}
+          </button>
+        </div>
+        
         @if (isAudioDescActive()) {
-          <video controls class="hero-video" crossorigin="anonymous">
+          <video autoplay [muted]="multimediaService.pauseAutoAudio()" controls class="hero-video" crossorigin="anonymous">
             <source src="assets/videos/home_audiodescripcion.mp4" type="video/mp4">
             <track src="assets/videos/subtitulos_audiodescripcion.vtt" kind="captions" srclang="en" label="English" default>
           </video>
         } @else {
-          <video controls class="hero-video" crossorigin="anonymous">
+          <video autoplay [muted]="multimediaService.pauseAutoAudio()" controls class="hero-video" crossorigin="anonymous">
             <source src="assets/videos/home_video.mp4" type="video/mp4">
             <track src="assets/videos/subtitulos_video.vtt" kind="captions" srclang="en" label="English" default>
           </video>

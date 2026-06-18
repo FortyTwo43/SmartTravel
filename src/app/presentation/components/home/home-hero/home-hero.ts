@@ -1,6 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, ArrowRight, Play, FileText, AudioLines } from 'lucide-angular';
+import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, ArrowRight, Play, FileText, AudioLines, Volume2, VolumeX } from 'lucide-angular';
+import { MultimediaService } from '../../../service/multimedia/multimedia';
 
 @Component({
   selector: 'app-home-hero',
@@ -8,7 +9,7 @@ import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, ArrowRight, Play
   providers: [{
     provide: LUCIDE_ICONS,
     multi: true,
-    useValue: new LucideIconProvider({ ArrowRight, Play, FileText, AudioLines })
+    useValue: new LucideIconProvider({ ArrowRight, Play, FileText, AudioLines, Volume2, VolumeX })
   }],
   templateUrl: './home-hero.html',
   styleUrl: './home-hero.css',
@@ -17,6 +18,7 @@ export class HomeHero {
   isTranscriptVisible = signal(false);
   isAudioDescActive = signal(false);
   transcriptText = signal('');
+  public multimediaService = inject(MultimediaService);
 
   constructor() {
     fetch('assets/videos/transcripcion.txt')

@@ -5,7 +5,12 @@
     </legend>
     <div class="toggles-container">
       <label class="toggle-option">
-        <input type="checkbox" class="toggle-input" />
+        <input 
+          type="checkbox" 
+          class="toggle-input" 
+          [checked]="multimediaService.pauseAutoAudio()"
+          (change)="multimediaService.togglePauseAutoAudio()"
+        />
         <div class="toggle-label-text">
           <span class="toggle-title">{{ 'ACCESSIBILITY.PAUSE_AUTO_AUDIO' | translate }}</span>
           <span class="toggle-desc">{{ 'ACCESSIBILITY.PAUSE_AUTO_AUDIO_DESC' | translate }}</span>
