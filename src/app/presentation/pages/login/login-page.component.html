@@ -1,4 +1,4 @@
-<div class="login-container">
+<main id="main-content" class="login-container">
   <!-- Panel Izquierdo: Formulario -->
   <div class="form-panel">
     <div class="form-card">
@@ -22,11 +22,13 @@
             type="password" icon="lock"></app-ui-input>
         </div>
 
-        @if (errorMessage) {
-        <div class="error-box">
-          {{ errorMessage }}
+        <div aria-live="assertive" aria-atomic="true">
+          @if (errorMessage) {
+          <div class="error-box">
+            {{ errorMessage }}
+          </div>
+          }
         </div>
-        }
 
         <app-ui-button type="submit" variant="primary" [disabled]="isLoading">
           {{ (isLoading ? '...' : 'AUTH.ENTER' | translate) }}
@@ -65,4 +67,4 @@
       </p>
     </div>
   </div>
-</div>
+</main>

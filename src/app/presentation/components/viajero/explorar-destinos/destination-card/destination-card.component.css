@@ -131,3 +131,8 @@
 .btn-primary:hover {
   filter: brightness(1.1);
 }
+
+.favorite-btn.active lucide-icon.filled {
+  fill: red;
+  color: red;
+}

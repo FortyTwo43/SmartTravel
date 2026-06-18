@@ -1,12 +1,13 @@
 <div class="filters">
   <h2 class="filters-title">Filtros</h2>
 
-  <div class="filter-group">
-    <label class="filter-label">Países</label>
+  <fieldset class="filter-group" style="border:none; padding:0; margin:0;">
+    <legend class="filter-label">Países</legend>
     <div class="exps-pills">
       <button 
         class="pill-btn" 
         [class.active]="paises().includes('Ecuador')"
+        [attr.aria-pressed]="paises().includes('Ecuador')"
         (click)="togglePais('Ecuador')"
       >
         Ecuador
@@ -14,6 +15,7 @@
       <button 
         class="pill-btn" 
         [class.active]="paises().includes('Italia')"
+        [attr.aria-pressed]="paises().includes('Italia')"
         (click)="togglePais('Italia')"
       >
         Italia
@@ -21,6 +23,7 @@
       <button 
         class="pill-btn" 
         [class.active]="paises().includes('España')"
+        [attr.aria-pressed]="paises().includes('España')"
         (click)="togglePais('España')"
       >
         España
@@ -28,21 +31,23 @@
       <button 
         class="pill-btn" 
         [class.active]="paises().includes('Japón')"
+        [attr.aria-pressed]="paises().includes('Japón')"
         (click)="togglePais('Japón')"
       >
         Japón
       </button>
     </div>
     <hr class="divider" />
-  </div>
+  </fieldset>
 
-  <div class="filter-group">
-    <label class="filter-label">Intereses</label>
+  <fieldset class="filter-group" style="border:none; padding:0; margin:0;">
+    <legend class="filter-label">Intereses</legend>
     <div class="interests-grid">
       @for (interest of visibleIntereses(); track interest.id) {
         <button 
           class="interest-btn" 
           [class.active]="intereses().includes(interest.id)"
+          [attr.aria-pressed]="intereses().includes(interest.id)"
           (click)="toggleIntereses(interest.id)"
           [attr.aria-label]="interest.label | translate"
         >
@@ -62,14 +67,15 @@
       </button>
     }
     <hr class="divider" />
-  </div>
+  </fieldset>
 
-  <div class="filter-group">
-    <label class="filter-label">Calificación</label>
+  <fieldset class="filter-group" style="border:none; padding:0; margin:0;">
+    <legend class="filter-label">Calificación</legend>
     <div class="rating-buttons">
       <button 
         class="rating-btn" 
         [class.active]="ratingFilter() === '4-5'"
+        [attr.aria-pressed]="ratingFilter() === '4-5'"
         (click)="setRating('4-5')"
       >
         <lucide-icon name="star" size="16"></lucide-icon>
@@ -78,6 +84,7 @@
       <button 
         class="rating-btn" 
         [class.active]="ratingFilter() === '3-1'"
+        [attr.aria-pressed]="ratingFilter() === '3-1'"
         (click)="setRating('3-1')"
       >
         <lucide-icon name="star" size="16"></lucide-icon>
@@ -85,14 +92,15 @@
       </button>
     </div>
     <hr class="divider" />
-  </div>
+  </fieldset>
 
-  <div class="filter-group">
-    <label class="filter-label">Experiencia</label>
+  <fieldset class="filter-group" style="border:none; padding:0; margin:0;">
+    <legend class="filter-label">Experiencia</legend>
     <div class="exps-pills">
       <button 
         class="pill-btn" 
         [class.active]="experiencia() === 'relajante'"
+        [attr.aria-pressed]="experiencia() === 'relajante'"
         (click)="setExperiencia('relajante')"
       >
         Relajante
@@ -100,6 +108,7 @@
       <button 
         class="pill-btn" 
         [class.active]="experiencia() === 'aventura'"
+        [attr.aria-pressed]="experiencia() === 'aventura'"
         (click)="setExperiencia('aventura')"
       >
         Aventura
@@ -107,6 +116,7 @@
       <button 
         class="pill-btn" 
         [class.active]="experiencia() === 'familiar'"
+        [attr.aria-pressed]="experiencia() === 'familiar'"
         (click)="setExperiencia('familiar')"
       >
         Familiar
@@ -114,12 +124,13 @@
       <button 
         class="pill-btn" 
         [class.active]="experiencia() === 'lujo'"
+        [attr.aria-pressed]="experiencia() === 'lujo'"
         (click)="setExperiencia('lujo')"
       >
         Lujo
       </button>
     </div>
-  </div>
+  </fieldset>
 
   <button class="btn-clear-filters" (click)="clearFilters()">
     Limpiar filtros

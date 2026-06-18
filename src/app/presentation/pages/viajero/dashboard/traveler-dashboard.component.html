@@ -13,7 +13,7 @@
   </div>
 } @else if (dashboardData()) {
   <div class="dashboard-container">
-    <main class="dashboard-content">
+    <main id="main-content" class="dashboard-content">
       <!-- Top Section: 3 Columns Layout -->
       <div class="top-section">
         <!-- Left: Trip Card -->
@@ -71,8 +71,8 @@
         <div class="section-header">
           <h2 class="section-title">Destinos Recomendados</h2>
           <div class="nav-arrows">
-            <button class="nav-arrow">&lt;</button>
-            <button class="nav-arrow">&gt;</button>
+            <button class="nav-arrow" aria-label="Destino anterior">&lt;</button>
+            <button class="nav-arrow" aria-label="Destino siguiente">&gt;</button>
           </div>
         </div>
 

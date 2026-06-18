@@ -85,3 +85,9 @@
     height: 150px;
   }
 }
+
+.destination-card:focus,
+.destination-card:focus-visible {
+  outline: 3px solid #1a73e8;
+  outline-offset: 2px;
+}

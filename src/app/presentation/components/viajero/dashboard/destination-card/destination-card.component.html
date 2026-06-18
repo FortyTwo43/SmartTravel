@@ -1,5 +1,5 @@
 @if (destination()) {
-  <div class="destination-card">
+  <div class="destination-card" tabindex="0">
     @if (destination()!.imagen) {
       <div class="destination-image-container">
         <img [src]="destination()!.imagen" [alt]="destination()!.nombre" class="destination-image" />

@@ -227,6 +227,18 @@
   background: var(--bg-surface-alt);
 }
 
+.nav-arrow:focus,
+.nav-arrow:focus-visible {
+  outline: 3px solid #1a73e8;
+  outline-offset: 2px;
+}
+
+.destination-card:focus,
+.destination-card:focus-visible {
+  outline: 3px solid #1a73e8;
+  outline-offset: 2px;
+}
+
 /* Bottom Layout */
 .bottom-layout {
   display: grid;
