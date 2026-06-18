@@ -9,7 +9,19 @@ export class ResetAccessibilityPreferencesUseCase {
     theme: 'system',
     fontSize: 'normal',
     textSpacing: 'normal',
-    language: 'es'
+    language: 'es',
+    multimedia: {
+      pauseAutoAudio: true,
+      textTranscripts: false,
+      syncCaptions: false,
+      audioDescription: false,
+      realtimeCaptions: false
+    },
+    animations: {
+      tooltipsMenus: false,
+      pauseMotion: false,
+      disableFlashing: false
+    }
   };
 
   /**

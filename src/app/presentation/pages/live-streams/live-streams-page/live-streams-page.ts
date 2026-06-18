@@ -1,9 +1,10 @@
-import { Component, OnDestroy, signal, ChangeDetectorRef, inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnDestroy, signal, ChangeDetectorRef, inject, PLATFORM_ID, effect } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Mic, MicOff, Users, PlayCircle } from 'lucide-angular';
 import { Navbar } from '../../../layouts/navbar/navbar';
 import { Footer } from '../../../layouts/footer/footer';
+import { MultimediaService } from '../../../service/multimedia/multimedia';
 
 @Component({
   selector: 'app-live-streams-page',
@@ -24,6 +25,7 @@ export class LiveStreamsPageComponent implements OnDestroy {
   
   private recognition: any;
   private platformId = inject(PLATFORM_ID);
+  public multimediaService = inject(MultimediaService);
   
   recommendedStreams = [
     { id: 1, titleKey: 'LIVE_STREAMS.SIMULATED_TITLE_1', viewers: 1205, img: 'https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?w=800&q=80', alt: 'Paisaje montañoso en Suiza' },
@@ -34,6 +36,16 @@ export class LiveStreamsPageComponent implements OnDestroy {
 
   constructor(private cdr: ChangeDetectorRef) {
     this.initSpeechRecognition();
+    
+    // Sync with accessibility preferences
+    effect(() => {
+      const isRealtimeActive = this.multimediaService.realtimeCaptions();
+      if (isRealtimeActive && !this.isListening()) {
+        this.startListening();
+      } else if (!isRealtimeActive && this.isListening()) {
+        this.stopListening();
+      }
+    });
   }
 
   ngOnDestroy() {
@@ -84,11 +96,7 @@ export class LiveStreamsPageComponent implements OnDestroy {
   }
 
   toggleListening() {
-    if (this.isListening()) {
-      this.stopListening();
-    } else {
-      this.startListening();
-    }
+    this.multimediaService.toggleRealtimeCaptions();
   }
 
   startListening() {

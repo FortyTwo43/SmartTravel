@@ -5,21 +5,36 @@
     </legend>
     <div class="toggles-container">
       <label class="toggle-option">
-        <input type="checkbox" class="toggle-input" />
+        <input 
+          type="checkbox" 
+          class="toggle-input" 
+          [checked]="selectedAnimations.tooltipsMenus"
+          (change)="onToggle('tooltipsMenus', $event)"
+        />
         <div class="toggle-label-text">
           <span class="toggle-title">{{ 'ACCESSIBILITY.TOOLTIPS_MENUS' | translate }}</span>
           <span class="toggle-desc">{{ 'ACCESSIBILITY.TOOLTIPS_MENUS_DESC' | translate }}</span>
         </div>
       </label>
       <label class="toggle-option">
-        <input type="checkbox" class="toggle-input" />
+        <input 
+          type="checkbox" 
+          class="toggle-input" 
+          [checked]="selectedAnimations.pauseMotion"
+          (change)="onToggle('pauseMotion', $event)"
+        />
         <div class="toggle-label-text">
           <span class="toggle-title">{{ 'ACCESSIBILITY.PAUSE_MOTION' | translate }}</span>
           <span class="toggle-desc">{{ 'ACCESSIBILITY.PAUSE_MOTION_DESC' | translate }}</span>
         </div>
       </label>
       <label class="toggle-option">
-        <input type="checkbox" class="toggle-input" />
+        <input 
+          type="checkbox" 
+          class="toggle-input" 
+          [checked]="selectedAnimations.disableFlashing"
+          (change)="onToggle('disableFlashing', $event)"
+        />
         <div class="toggle-label-text">
           <span class="toggle-title">{{ 'ACCESSIBILITY.DISABLE_FLASHING' | translate }}</span>
           <span class="toggle-desc">{{ 'ACCESSIBILITY.DISABLE_FLASHING_DESC' | translate }}</span>

@@ -24,31 +24,35 @@
           </button>
         </div>
         
-        @if (isAudioDescActive()) {
+        @if (multimediaService.audioDescription()) {
           <video autoplay [muted]="multimediaService.pauseAutoAudio()" controls class="hero-video" crossorigin="anonymous">
             <source src="assets/videos/home_audiodescripcion.mp4" type="video/mp4">
-            <track src="assets/videos/subtitulos_audiodescripcion.vtt" kind="captions" srclang="en" label="English" default>
+            @if (multimediaService.syncCaptions()) {
+              <track src="assets/videos/subtitulos_audiodescripcion.vtt" kind="captions" srclang="en" label="English" default>
+            }
           </video>
         } @else {
           <video autoplay [muted]="multimediaService.pauseAutoAudio()" controls class="hero-video" crossorigin="anonymous">
             <source src="assets/videos/home_video.mp4" type="video/mp4">
-            <track src="assets/videos/subtitulos_video.vtt" kind="captions" srclang="en" label="English" default>
+            @if (multimediaService.syncCaptions()) {
+              <track src="assets/videos/subtitulos_video.vtt" kind="captions" srclang="en" label="English" default>
+            }
           </video>
         }
         
         <div class="video-controls-custom">
           <button class="btn btn-outlined btn-sm custom-control-btn" (click)="toggleAudioDesc()" type="button">
             <lucide-icon name="audio-lines" aria-hidden="true"></lucide-icon>
-            {{ (isAudioDescActive() ? 'HOME.HERO.DISABLE_AD' : 'HOME.HERO.ENABLE_AD') | translate }}
+            {{ (multimediaService.audioDescription() ? 'HOME.HERO.DISABLE_AD' : 'HOME.HERO.ENABLE_AD') | translate }}
           </button>
-          <button class="btn btn-outlined btn-sm custom-control-btn" (click)="toggleTranscript()" type="button" [attr.aria-expanded]="isTranscriptVisible()">
+          <button class="btn btn-outlined btn-sm custom-control-btn" (click)="toggleTranscript()" type="button" [attr.aria-expanded]="multimediaService.textTranscripts()">
             <lucide-icon name="file-text" aria-hidden="true"></lucide-icon>
-            {{ (isTranscriptVisible() ? 'HOME.HERO.HIDE_TRANSCRIPT' : 'HOME.HERO.SHOW_TRANSCRIPT') | translate }}
+            {{ (multimediaService.textTranscripts() ? 'HOME.HERO.HIDE_TRANSCRIPT' : 'HOME.HERO.SHOW_TRANSCRIPT') | translate }}
           </button>
         </div>
       </div>
       
-      @if (isTranscriptVisible()) {
+      @if (multimediaService.textTranscripts()) {
         <div class="transcript-panel">
           <h3 class="transcript-title">{{ 'HOME.HERO.TRANSCRIPT_TITLE' | translate }}</h3>
           <p class="transcript-content">{{ transcriptText() }}</p>

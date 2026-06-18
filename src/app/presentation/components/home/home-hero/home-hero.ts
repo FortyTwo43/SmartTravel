@@ -15,10 +15,8 @@ import { MultimediaService } from '../../../service/multimedia/multimedia';
   styleUrl: './home-hero.css',
 })
 export class HomeHero {
-  isTranscriptVisible = signal(false);
-  isAudioDescActive = signal(false);
-  transcriptText = signal('');
   public multimediaService = inject(MultimediaService);
+  transcriptText = signal('');
 
   constructor() {
     fetch('assets/videos/transcripcion.txt')
@@ -28,10 +26,10 @@ export class HomeHero {
   }
 
   toggleTranscript() {
-    this.isTranscriptVisible.update(v => !v);
+    this.multimediaService.toggleTextTranscripts();
   }
 
   toggleAudioDesc() {
-    this.isAudioDescActive.update(v => !v);
+    this.multimediaService.toggleAudioDescription();
   }
 }

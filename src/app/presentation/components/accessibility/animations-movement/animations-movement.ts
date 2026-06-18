@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
@@ -8,4 +8,16 @@ import { TranslateModule } from '@ngx-translate/core';
   templateUrl: './animations-movement.html',
   styleUrl: './animations-movement.css',
 })
-export class AnimationsMovement {}
+export class AnimationsMovement {
+  @Input() selectedAnimations!: {
+    tooltipsMenus: boolean;
+    pauseMotion: boolean;
+    disableFlashing: boolean;
+  };
+  @Output() animationsChanged = new EventEmitter<{key: string, value: boolean}>();
+
+  onToggle(key: string, event: Event) {
+    const checked = (event.target as HTMLInputElement).checked;
+    this.animationsChanged.emit({ key, value: checked });
+  }
+}

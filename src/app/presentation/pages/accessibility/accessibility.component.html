@@ -29,10 +29,16 @@
   ></app-typography>
 
   <app-contrast-color></app-contrast-color>
-  <app-animations-movement></app-animations-movement>
+  <app-animations-movement
+    [selectedAnimations]="selectedAnimations()"
+    (animationsChanged)="onAnimationsChange($event.key, $event.value)"
+  ></app-animations-movement>
   <app-navigation-focus></app-navigation-focus>
   <app-keyboard-shortcuts></app-keyboard-shortcuts>
-  <app-multimedia></app-multimedia>
+  <app-multimedia
+    [selectedMultimedia]="selectedMultimedia()"
+    (multimediaChanged)="onMultimediaChange($event.key, $event.value)"
+  ></app-multimedia>
 
   <!-- Language Preference Component -->
   <app-language-preference

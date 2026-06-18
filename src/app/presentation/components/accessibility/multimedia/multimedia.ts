@@ -1,6 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { MultimediaService } from '../../../service/multimedia/multimedia';
 
 @Component({
   selector: 'app-multimedia',
@@ -10,5 +9,17 @@ import { MultimediaService } from '../../../service/multimedia/multimedia';
   styleUrl: './multimedia.css',
 })
 export class Multimedia {
-  public multimediaService = inject(MultimediaService);
+  @Input() selectedMultimedia!: {
+    pauseAutoAudio: boolean;
+    textTranscripts: boolean;
+    syncCaptions: boolean;
+    audioDescription: boolean;
+    realtimeCaptions: boolean;
+  };
+  @Output() multimediaChanged = new EventEmitter<{key: string, value: boolean}>();
+
+  onToggle(key: string, event: Event) {
+    const checked = (event.target as HTMLInputElement).checked;
+    this.multimediaChanged.emit({ key, value: checked });
+  }
 }
