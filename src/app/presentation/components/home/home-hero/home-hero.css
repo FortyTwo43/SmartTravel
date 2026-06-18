@@ -130,6 +130,23 @@
   font-weight: 500;
   background: var(--bg-surface);
   color: var(--text-main);
+  transition: all 0.2s ease;
+}
+
+@media (max-width: 768px) {
+  .video-controls-custom {
+    order: 1;
+    gap: 0.5rem;
+  }
+  
+  .hero-video {
+    order: 2;
+  }
+  
+  .custom-control-btn {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+  }
 }
 
 .transcript-panel {
