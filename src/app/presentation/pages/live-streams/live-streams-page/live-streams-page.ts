@@ -5,11 +5,12 @@ import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Mic, MicOff, Use
 import { Navbar } from '../../../layouts/navbar/navbar';
 import { Footer } from '../../../layouts/footer/footer';
 import { MultimediaService } from '../../../service/multimedia/multimedia';
+import { AccessibilityWidget } from '../../../components/accessibility/accessibility-widget/accessibility-widget';
 
 @Component({
   selector: 'app-live-streams-page',
   standalone: true,
-  imports: [CommonModule, TranslateModule, LucideAngularModule, Navbar, Footer],
+  imports: [CommonModule, TranslateModule, LucideAngularModule, Navbar, Footer, AccessibilityWidget],
   providers: [{
     provide: LUCIDE_ICONS,
     multi: true,

@@ -9,7 +9,7 @@ import { HomeInfo } from '../../components/home/home-info/home-info';
 import { HomeDestinations } from '../../components/home/home-destinations/home-destinations';
 import { HomeCta } from '../../components/home/home-cta/home-cta';
 import { HomeTestimonials } from '../../components/home/home-testimonials/home-testimonials';
-import { AccessibilityComponent } from '../accessibility/accessibility.component';
+import { AccessibilityWidget } from '../../components/accessibility/accessibility-widget/accessibility-widget';
 
 @Component({
   selector: 'app-home',
@@ -22,22 +22,17 @@ import { AccessibilityComponent } from '../accessibility/accessibility.component
     HomeDestinations,
     HomeTestimonials,
     HomeCta,
-    AccessibilityComponent,
+    AccessibilityWidget,
     LucideAngularModule,
     TranslateModule
   ],
   providers: [{
     provide: LUCIDE_ICONS,
     multi: true,
-    useValue: new LucideIconProvider({ Accessibility, ArrowLeft })
+    useValue: new LucideIconProvider({})
   }],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
 export class Home {
-  readonly isAccessibilityMenuOpen = signal(false);
-
-  toggleAccessibilityMenu(): void {
-    this.isAccessibilityMenuOpen.update(v => !v);
-  }
 }
