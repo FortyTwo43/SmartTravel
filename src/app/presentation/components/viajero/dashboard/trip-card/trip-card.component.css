@@ -108,10 +108,26 @@
 @media (max-width: 768px) {
   .trip-card {
     flex-direction: column;
-    height: auto;
+    height: 100%;
   }
   .trip-image-container {
     width: 100%;
-    height: 200px;
+    height: 120px;
+  }
+  .trip-content {
+    padding: 1rem;
+  }
+  .trip-title {
+    font-size: 1.1rem;
+  }
+  .trip-meta {
+    font-size: 0.75rem;
+  }
+  .trip-status-top {
+    font-size: 0.75rem;
+  }
+  .details-btn {
+    padding: 0.4rem 1rem;
+    font-size: 0.8rem;
   }
 }

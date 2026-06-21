@@ -351,13 +351,72 @@ app-service-card {
     font-size: 1.25rem;
   }
 
-  .top-section,
+  .top-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .trip-column,
+  .right-column,
+  .cards-row {
+    display: contents;
+  }
+
+  .trip-column .section-header {
+    grid-column: 1 / -1;
+    margin-bottom: 0;
+  }
+
   .bottom-layout {
     grid-template-columns: 1fr;
   }
 
-  .cards-row {
-    grid-template-columns: 1fr;
+  /* Compact Info Cards */
+  .info-card {
+    padding: 1rem;
+    gap: 0.5rem;
+  }
+
+  .card-value {
+    font-size: 1.5rem;
+  }
+
+  .card-header {
+    font-size: 0.65rem;
+  }
+
+  /* Compact Assistance Card */
+  .info-card.assistance-card {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 0.5rem;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .assistance-icon-container {
+    width: 36px;
+    height: 36px;
+  }
+
+  .assistance-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .assistance-content h3 {
+    font-size: 0.85rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .assistance-content p {
+    font-size: 0.75rem;
+  }
+
+  .arrow-icon {
+    display: none;
   }
 
   .destinations-grid {
