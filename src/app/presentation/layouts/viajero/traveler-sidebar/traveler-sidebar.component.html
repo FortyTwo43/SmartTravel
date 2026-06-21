@@ -1,6 +1,10 @@
-<aside class="traveler-sidebar">
+<aside class="traveler-sidebar" [class.open]="isOpen()">
   <div class="sidebar-header">
     <h1 class="sidebar-title">SmartTravel</h1>
+    <button class="mobile-back-btn" (click)="closeSidebar.emit()" aria-label="Cerrar menú">
+      <span>{{ 'COMMON.BACK' | translate }}</span>
+      <lucide-icon name="arrow-right" class="icon-sm"></lucide-icon>
+    </button>
   </div>
 
   <nav class="sidebar-nav">

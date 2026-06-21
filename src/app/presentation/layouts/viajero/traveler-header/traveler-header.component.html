@@ -1,8 +1,13 @@
 <header class="traveler-header">
   <div class="header-content">
-    <div class="greeting">
-      <h1 class="greeting-title">{{ 'TRAVELER_DASHBOARD.HELLO' | translate }}, {{ getUserName() }}</h1>
-      <p class="greeting-subtitle">{{ 'TRAVELER_DASHBOARD.CURIOSITY' | translate }}</p>
+    <div class="header-left">
+      <button class="mobile-menu-btn" (click)="toggleSidebar.emit()" aria-label="Abrir menú">
+        <lucide-icon name="menu" class="icon-md"></lucide-icon>
+      </button>
+      <div class="greeting">
+        <h1 class="greeting-title">{{ 'TRAVELER_DASHBOARD.HELLO' | translate }}, {{ getUserName() }}</h1>
+        <p class="greeting-subtitle">{{ 'TRAVELER_DASHBOARD.CURIOSITY' | translate }}</p>
+      </div>
     </div>
 
     <div class="header-actions">

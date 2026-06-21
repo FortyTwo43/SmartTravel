@@ -154,6 +154,26 @@
   margin: 0.25rem 0 0 0;
 }
 
+/* Mobile Back Button */
+.mobile-back-btn {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  border: none;
+  color: var(--text-main);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: var(--radius-sm);
+}
+
+.mobile-back-btn:hover {
+  background-color: var(--bg-surface-alt);
+}
+
 /* Dark Mode */
 [data-theme='dark'] .traveler-sidebar {
   background-color: var(--bg-surface);
@@ -166,42 +186,60 @@
 /* Responsive */
 @media (max-width: 768px) {
   .traveler-sidebar {
-    width: 100%;
-    height: auto;
-    flex-direction: row;
-    border-right: none;
-    border-bottom: 1px solid var(--border-color);
-    padding: 1rem;
-    overflow-x: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 80vw;
+    height: 100vh;
+    max-width: 24rem;
+    transform: translateX(-100%);
+    box-shadow: 5px 0 25px rgba(0,0,0,0.1);
+    z-index: 50;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .traveler-sidebar.open {
+    transform: translateX(0);
   }
 
   .sidebar-header {
-    margin-bottom: 0;
-    margin-right: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .sidebar-title {
+    font-size: 1.25rem;
+  }
+
+  .mobile-back-btn {
+    display: flex;
   }
 
   .sidebar-nav {
-    flex-direction: row;
-    margin-bottom: 0;
-    gap: 1rem;
+    flex-direction: column;
+    margin-bottom: 2rem;
+    gap: 0.5rem;
   }
 
   .nav-label {
-    display: none;
+    display: block;
   }
 
   .sidebar-footer {
-    margin-bottom: 0;
-    flex-direction: row;
-    border-left: 1px solid var(--border-color);
-    border-top: none;
-    padding-left: 1rem;
-    padding-top: 0;
-    gap: 1rem;
-    margin-left: auto;
+    margin-bottom: 2rem;
+    flex-direction: column;
+    border-top: 1px solid var(--border-color);
+    border-left: none;
+    padding-left: 0;
+    padding-top: 1rem;
+    gap: 0.5rem;
+    margin-left: 0;
   }
 
   .sidebar-profile {
-    display: none;
+    display: flex;
   }
 }

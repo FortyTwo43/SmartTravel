@@ -1,8 +1,8 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, input, output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, LayoutDashboard, MapPin, Compass, Map, Heart, BookOpen, Settings, LogOut } from 'lucide-angular';
+import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, LayoutDashboard, MapPin, Compass, Map, Heart, BookOpen, Settings, LogOut, ArrowRight } from 'lucide-angular';
 
 
 interface NavItem {
@@ -20,7 +20,7 @@ interface NavItem {
     {
       provide: LUCIDE_ICONS,
       multi: true,
-      useValue: new LucideIconProvider({ LayoutDashboard, MapPin, Compass, Map, Heart, BookOpen, Settings, LogOut })
+      useValue: new LucideIconProvider({ LayoutDashboard, MapPin, Compass, Map, Heart, BookOpen, Settings, LogOut, ArrowRight })
     }
   ],
   templateUrl: './traveler-sidebar.component.html',
@@ -29,6 +29,9 @@ interface NavItem {
 )
 export class TravelerSidebarComponent {
   private readonly router = inject(Router);
+
+  isOpen = input<boolean>(false);
+  closeSidebar = output<void>();
 
   currentRoute = signal('/traveler/dashboard');
 
@@ -48,6 +51,7 @@ export class TravelerSidebarComponent {
   navigate(route: string): void {
     this.currentRoute.set(route);
     this.router.navigate([route]);
+    this.closeSidebar.emit();
   }
 
   logout(): void {
@@ -55,3 +59,4 @@ export class TravelerSidebarComponent {
     this.router.navigate(['/login']);
   }
 }
+
