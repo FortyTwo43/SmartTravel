@@ -58,12 +58,12 @@
                 <label class="form-group" for="nombre">
                   <span class="form-label">{{ 'REGISTER.FIRST_NAME' | translate }}</span>
                   <input id="nombre" type="text" class="form-input" [placeholder]="'REGISTER.PLACEHOLDER_FIRST_NAME' | translate"
-                    [(ngModel)]="nombre" name="nombre" />
+                    [(ngModel)]="nombre" name="nombre" autocomplete="given-name" />
                 </label>
                 <label class="form-group" for="apellido">
                   <span class="form-label">{{ 'REGISTER.LAST_NAME' | translate }}</span>
                   <input id="apellido" type="text" class="form-input" [placeholder]="'REGISTER.PLACEHOLDER_LAST_NAME' | translate"
-                    [(ngModel)]="apellido" name="apellido" />
+                    [(ngModel)]="apellido" name="apellido" autocomplete="family-name" />
                 </label>
               </div>
 
@@ -71,7 +71,7 @@
                 <span class="form-label">{{ 'AUTH.EMAIL' | translate }}</span>
                 <input id="email" type="email" class="form-input" [class.ng-invalid-custom]="emailInvalid"
                   [placeholder]="'AUTH.PLACEHOLDER_EMAIL' | translate" [(ngModel)]="email" name="email" 
-                  [attr.aria-describedby]="emailInvalid ? 'email-error' : null" />
+                  [attr.aria-describedby]="emailInvalid ? 'email-error' : null" autocomplete="email" />
                 <div aria-live="polite">
                   @if (emailInvalid) {
                   <div id="email-error" class="input-error-message">{{ 'REGISTER.ERROR_INVALID_EMAIL_FORMAT' | translate }}</div>
@@ -85,7 +85,7 @@
                   <div class="password-wrapper">
                     <input id="password" [type]="passwordVisible() ? 'text' : 'password'" class="form-input"
                       [class.ng-invalid-custom]="passwordInvalid" placeholder="••••••••" [(ngModel)]="password"
-                      name="password" [attr.aria-describedby]="passwordInvalid ? 'password-error' : null" />
+                      name="password" [attr.aria-describedby]="passwordInvalid ? 'password-error' : null" autocomplete="new-password" />
                     <button type="button" (click)="togglePasswordVisibility()" class="password-toggle"
                       [attr.aria-label]="(passwordVisible() ? 'REGISTER.HIDE_PASSWORD' : 'REGISTER.SHOW_PASSWORD') | translate">
                       <lucide-icon [name]="passwordVisible() ? 'eye_off' : 'eye'" aria-hidden="true"></lucide-icon>
@@ -102,7 +102,7 @@
                   <div class="password-wrapper">
                     <input id="confirmPassword" [type]="confirmPasswordVisible() ? 'text' : 'password'" class="form-input"
                       [class.ng-invalid-custom]="passwordsMismatch" placeholder="••••••••" [(ngModel)]="confirmPassword"
-                      name="confirmPassword" [attr.aria-describedby]="passwordsMismatch ? 'confirm-error' : null" />
+                      name="confirmPassword" [attr.aria-describedby]="passwordsMismatch ? 'confirm-error' : null" autocomplete="new-password" />
                     <button type="button" (click)="toggleConfirmPasswordVisibility()" class="password-toggle"
                       [attr.aria-label]="(confirmPasswordVisible() ? 'REGISTER.HIDE_PASSWORD' : 'REGISTER.SHOW_PASSWORD') | translate">
                       <lucide-icon [name]="confirmPasswordVisible() ? 'eye_off' : 'eye'" aria-hidden="true"></lucide-icon>
@@ -171,7 +171,7 @@
                 <label class="form-group" for="telefono">
                   <span class="form-label">{{ 'REGISTER.PHONE' | translate }}</span>
                   <input id="telefono" type="tel" class="form-input" [class.ng-invalid-custom]="phoneInvalid"
-                    [placeholder]="'REGISTER.PLACEHOLDER_PHONE' | translate" [(ngModel)]="telefono" name="telefono" />
+                    [placeholder]="'REGISTER.PLACEHOLDER_PHONE' | translate" [(ngModel)]="telefono" name="telefono" autocomplete="tel" />
                   @if (phoneInvalid) {
                   <div class="input-error-message">{{ 'REGISTER.ERROR_PHONE_10_DIGITS' | translate }}</div>
                   }

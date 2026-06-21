@@ -11,7 +11,7 @@
 
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
         <app-ui-input formControlName="email" [label]="'AUTH.EMAIL' | translate"
-          [placeholder]="'AUTH.PLACEHOLDER_EMAIL' | translate" type="email" icon="mail"></app-ui-input>
+          [placeholder]="'AUTH.PLACEHOLDER_EMAIL' | translate" type="email" icon="mail" autocomplete="email"></app-ui-input>
 
         <div class="password-group">
           <div class="password-header">
@@ -19,7 +19,7 @@
             <a href="#" class="forgot-link">{{ 'AUTH.FORGOT_PASSWORD' | translate }}</a>
           </div>
           <app-ui-input id="password-input" formControlName="password" [placeholder]="'AUTH.PLACEHOLDER_PASSWORD' | translate"
-            type="password" icon="lock"></app-ui-input>
+            type="password" icon="lock" autocomplete="current-password"></app-ui-input>
         </div>
 
         <div aria-live="assertive" aria-atomic="true">

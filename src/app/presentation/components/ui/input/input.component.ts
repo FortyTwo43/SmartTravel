@@ -34,6 +34,7 @@ export class InputComponent implements ControlValueAccessor {
   type = input<'text' | 'password' | 'email'>('text');
   placeholder = input<string>('');
   icon = input<string | null>(null);
+  autocomplete = input<string | undefined>(undefined);
 
   value = signal<string>('');
   showPassword = signal(false);
