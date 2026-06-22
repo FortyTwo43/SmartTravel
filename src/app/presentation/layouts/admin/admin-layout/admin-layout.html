@@ -1,11 +1,15 @@
 <div class="admin-layout-wrapper">
+  @if (isSidebarOpen()) {
+    <div class="sidebar-backdrop" (click)="closeSidebar()"></div>
+  }
+
   <!-- Sidebar -->
-  <app-admin-sidebar></app-admin-sidebar>
+  <app-admin-sidebar [isOpen]="isSidebarOpen()" (closeSidebar)="closeSidebar()"></app-admin-sidebar>
 
   <!-- Main Content with Router Outlet -->
   <main class="admin-layout-container">
     <!-- Header -->
-    <app-admin-header></app-admin-header>
+    <app-admin-header (toggleSidebar)="toggleSidebar()"></app-admin-header>
 
     <!-- Content - Routes rendered here -->
     <div class="admin-content-area">

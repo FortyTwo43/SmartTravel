@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AdminSidebarComponent } from '../admin-sidebar/admin-sidebar';
 import { AdminHeaderComponent } from '../admin-header/admin-header';
@@ -12,5 +12,13 @@ import { Footer } from '../../footer/footer';
   styleUrl: './admin-layout.css'
 })
 export class AdminLayoutComponent {
+  isSidebarOpen = signal(false);
 
+  toggleSidebar() {
+    this.isSidebarOpen.update(v => !v);
+  }
+
+  closeSidebar() {
+    this.isSidebarOpen.set(false);
+  }
 }

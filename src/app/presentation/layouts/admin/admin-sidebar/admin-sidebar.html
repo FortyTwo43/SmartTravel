@@ -1,8 +1,11 @@
-<aside class="sidebar-container">
+<aside class="sidebar-container" [class.sidebar-open]="isOpen()">
   <div class="sidebar-header">
     <div class="logo-container">
       <h2 class="sidebar-title">SmartTravel</h2>
     </div>
+    <button class="close-sidebar-btn" aria-label="Close sidebar" (click)="closeSidebar.emit()">
+      <lucide-icon name="X" class="icon-sm"></lucide-icon>
+    </button>
   </div>
 
   <nav class="sidebar-nav">

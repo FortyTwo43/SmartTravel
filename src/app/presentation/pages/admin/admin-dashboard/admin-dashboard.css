@@ -212,3 +212,74 @@
   text-align: center;
   color: var(--text-muted);
 }
+
+/* =========================================
+   RESPONSIVIDAD MÓVIL
+   ========================================= */
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 1rem;
+  }
+
+  .page-title {
+    font-size: 1.5rem;
+  }
+
+  /* 1. KPIs en Malla 2x2 */
+  .kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .kpi-card {
+    padding: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .kpi-icon-container {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .kpi-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .kpi-label {
+    font-size: 0.75rem;
+    margin-bottom: 0.15rem;
+  }
+
+  .kpi-value {
+    font-size: 1.25rem;
+  }
+
+  /* 2. Listas adaptadas a pantallas pequeñas */
+  .lists-grid {
+    grid-template-columns: 1fr; /* Una sola columna en móvil */
+    gap: 1rem;
+  }
+
+  .card-header {
+    padding: 1rem;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+  }
+
+  .list-item {
+    padding: 0.75rem 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .item-meta, .item-status {
+    align-self: flex-start; /* Alinear a la izquierda cuando colapsa */
+  }
+}

@@ -13,6 +13,27 @@
   box-shadow: var(--shadow-sm);
 }
 
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.menu-btn {
+  display: none; /* Oculto en desktop */
+  background: none;
+  border: none;
+  color: var(--text-main);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: var(--radius-md);
+  transition: background-color 0.2s;
+}
+
+.menu-btn:hover {
+  background-color: var(--bg-surface-alt);
+}
+
 .header-title {
   font-family: var(--font-headline);
   font-size: 1.5rem;
@@ -88,5 +109,16 @@
   }
   .header-title {
     font-size: 1.125rem;
+  }
+  .menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .status-text {
+    display: none; /* Ocultar texto de estado en móvil para ahorrar espacio */
+  }
+  .status-badge {
+    padding: 0.5rem;
   }
 }
