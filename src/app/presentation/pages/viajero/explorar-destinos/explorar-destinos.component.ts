@@ -1,13 +1,13 @@
-import { Component, OnInit, signal, inject } from '@angular/core';
+import { Component, OnInit, signal, inject, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { GetExplorarDestinosUseCase, ExploreDestination } from '../../../../useCase/viajero/explorar-destinos/GetExplorarDestinosUseCase';
+import { GetExplorarDestinosUseCase, ExploreDestination, ExploreFilter } from '../../../../useCase/viajero/explorar-destinos/GetExplorarDestinosUseCase';
 import { GetImageUrlUseCase } from '../../../../useCase/upload/GetImageUrlUseCase';
-
 
 import { TravelerFilterSidebarComponent } from '../../../components/viajero/explorar-destinos/traveler-filter-sidebar/traveler-filter-sidebar.component';
 import { DestinationGridComponent } from '../../../components/viajero/explorar-destinos/destination-grid/destination-grid.component';
+import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, SlidersHorizontal } from 'lucide-angular';
 
 @Component({
   selector: 'app-explorar-destinos',
@@ -16,8 +16,14 @@ import { DestinationGridComponent } from '../../../components/viajero/explorar-d
     CommonModule,
     TranslateModule,
     TravelerFilterSidebarComponent,
-    DestinationGridComponent
+    DestinationGridComponent,
+    LucideAngularModule
   ],
+  providers: [{
+    provide: LUCIDE_ICONS,
+    multi: true,
+    useValue: new LucideIconProvider({ SlidersHorizontal })
+  }],
   templateUrl: './explorar-destinos.component.html',
   styleUrl: './explorar-destinos.component.css'
 })
@@ -29,11 +35,37 @@ export class ExplorarDestinosComponent implements OnInit {
   isLoading = signal(false);
   error = signal<string | null>(null);
 
-  // filtros simples como ejemplo
+  // Control del Bottom Sheet en móvil
+  isMobileFiltersOpen = signal(false);
+
+  // Referencia al sidebar para leer activeFiltersCount
+  // (se usa un contador local paralelo para el badge del botón)
+  _activePaises = signal<string[]>([]);
+  _activeIntereses = signal<string[]>([]);
+  _activeRating = signal<string | null>(null);
+  _activeExperiencia = signal<string | null>(null);
+
+  activeFiltersCount = computed(() => {
+    let count = 0;
+    if (this._activePaises().length) count++;
+    if (this._activeIntereses().length) count++;
+    if (this._activeRating()) count++;
+    if (this._activeExperiencia()) count++;
+    return count;
+  });
+
   filtroCategorias = signal<string[]>([]);
 
   async ngOnInit(): Promise<void> {
     await this.loadDestinos();
+  }
+
+  openMobileFilters() {
+    this.isMobileFiltersOpen.set(true);
+  }
+
+  closeMobileFilters() {
+    this.isMobileFiltersOpen.set(false);
   }
 
   async loadDestinos(): Promise<void> {
@@ -48,15 +80,15 @@ export class ExplorarDestinosComponent implements OnInit {
         }))
       );
       this.destinos.set(destinosWithImages);
-    } catch (err: any) {
-      console.error(err);
-      this.error.set(err?.message || 'Error al cargar destinos');
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Error al cargar destinos';
+      this.error.set(message);
     } finally {
       this.isLoading.set(false);
     }
   }
 
-  onApplyFilters(filters: any): void {
+  onApplyFilters(filters: ExploreFilter): void {
     this.isLoading.set(true);
     this.error.set(null);
     this.useCase.execute(filters)
@@ -73,8 +105,8 @@ export class ExplorarDestinosComponent implements OnInit {
         }
       })
       .catch(err => {
-        console.error(err);
-        this.error.set(err?.message || 'Error al aplicar filtros');
+        const message = err instanceof Error ? err.message : 'Error al aplicar filtros';
+        this.error.set(message);
       })
       .finally(() => this.isLoading.set(false));
   }

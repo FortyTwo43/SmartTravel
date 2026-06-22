@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, signal, computed } from '@angular/core';
+import { Component, EventEmitter, Output, signal, computed, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
@@ -19,7 +19,12 @@ import {
   Coffee,
   Camera,
   Compass,
-  Star 
+  Star,
+  ChevronDown,
+  ChevronUp,
+  X,
+  Plus,
+  SlidersHorizontal
 } from 'lucide-angular';
 
 @Component({
@@ -29,6 +34,7 @@ import {
   providers: [
     {
       provide: LUCIDE_ICONS,
+      multi: true,
       useValue: new LucideIconProvider({ 
         Activity,
         Utensils,
@@ -41,7 +47,12 @@ import {
         Coffee,
         Camera,
         Compass,
-        Star 
+        Star,
+        ChevronDown,
+        ChevronUp,
+        X,
+        Plus,
+        SlidersHorizontal
       })
     }
   ],
@@ -50,28 +61,41 @@ import {
 })
 export class TravelerFilterSidebarComponent {
   @Output() applyFilters = new EventEmitter<ExploreFilter>();
+  @Output() closeSheet = new EventEmitter<void>();
+
+  // Input para controlar si está abierto en móvil (Bottom Sheet)
+  isOpen = input<boolean>(false);
 
   // Constante de intereses disponibles
   readonly INTERESTS = INTERESTS;
-  readonly VISIBLE_COUNT = 6; // Mostrar 6 inicialmente
 
-  // Signals
-  intereses = signal<string[]>([]); // IDs de intereses seleccionados
-  isExpandedIntereses = signal<boolean>(false);
+  // Signals de filtros
+  intereses = signal<string[]>([]);
   experiencia = signal<string | null>(null);
   paises = signal<string[]>([]);
   ratingFilter = signal<'4-5' | '3-1' | null>(null);
 
-  // Computed: mostrar 6 u 11 intereses según estado expandido
-  visibleIntereses = computed(() => {
-    const expanded = this.isExpandedIntereses();
-    return expanded ? this.INTERESTS : this.INTERESTS.slice(0, this.VISIBLE_COUNT);
-  });
+  // Accordion: sección activa (null = todas cerradas)
+  expandedSection = signal<string | null>('paises');
 
-  // Computed: cantidad de intereses ocultos
-  hiddenInteresesCount = computed(() => {
-    return this.INTERESTS.length - this.VISIBLE_COUNT;
-  });
+  // Modal de intereses
+  isInterestsModalOpen = signal<boolean>(false);
+
+  toggleSection(section: string) {
+    this.expandedSection.update(current => current === section ? null : section);
+  }
+
+  isSectionOpen(section: string): boolean {
+    return this.expandedSection() === section;
+  }
+
+  openInterestsModal() {
+    this.isInterestsModalOpen.set(true);
+  }
+
+  closeInterestsModal() {
+    this.isInterestsModalOpen.set(false);
+  }
 
   toggleIntereses(interesId: string) {
     const current = this.intereses();
@@ -83,13 +107,9 @@ export class TravelerFilterSidebarComponent {
     this.emitFilters();
   }
 
-  toggleExpandIntereses() {
-    this.isExpandedIntereses.update(v => !v);
-  }
-
   setRating(rating: '4-5' | '3-1' | null) {
     if (this.ratingFilter() === rating) {
-      this.ratingFilter.set(null); // deselect
+      this.ratingFilter.set(null);
     } else {
       this.ratingFilter.set(rating);
     }
@@ -98,7 +118,7 @@ export class TravelerFilterSidebarComponent {
 
   setExperiencia(exp: string | null) {
     if (this.experiencia() === exp) {
-      this.experiencia.set(null); // deselect
+      this.experiencia.set(null);
     } else {
       this.experiencia.set(exp);
     }
@@ -117,7 +137,6 @@ export class TravelerFilterSidebarComponent {
 
   clearFilters() {
     this.intereses.set([]);
-    this.isExpandedIntereses.set(false);
     this.experiencia.set(null);
     this.ratingFilter.set(null);
     this.paises.set([]);
@@ -139,4 +158,23 @@ export class TravelerFilterSidebarComponent {
     } as ExploreFilter;
     this.applyFilters.emit(payload);
   }
+
+  onApplyAndClose() {
+    this.emitFilters();
+    this.closeSheet.emit();
+  }
+
+  // Computed para chip resumen de intereses seleccionados
+  selectedInteresesLabels = computed(() =>
+    this.INTERESTS.filter(i => this.intereses().includes(i.id)).map(i => i.label)
+  );
+
+  activeFiltersCount = computed(() => {
+    let count = 0;
+    if (this.paises().length) count++;
+    if (this.intereses().length) count++;
+    if (this.ratingFilter()) count++;
+    if (this.experiencia()) count++;
+    return count;
+  });
 }

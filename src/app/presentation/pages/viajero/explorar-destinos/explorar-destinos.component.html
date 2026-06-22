@@ -1,9 +1,27 @@
 <main id="main-content" class="explorar-destinos-page">
+
+  <!-- Barra de filtros: solo visible en móvil, parte del flujo de scroll -->
+  <div class="mobile-filter-bar">
+    <button class="mobile-filter-btn" (click)="openMobileFilters()" aria-label="Abrir filtros">
+      <lucide-icon name="SlidersHorizontal" size="18"></lucide-icon>
+      Filtros
+      @if (activeFiltersCount() > 0) {
+        <span class="filter-count-badge">{{ activeFiltersCount() }}</span>
+      }
+    </button>
+  </div>
+
   <div class="content-area">
+    <!-- Filtros: sidebar en desktop / bottom-sheet (fixed) en móvil -->
     <aside class="filters-column">
-      <app-traveler-filter-sidebar (applyFilters)="onApplyFilters($event)"></app-traveler-filter-sidebar>
+      <app-traveler-filter-sidebar
+        [isOpen]="isMobileFiltersOpen()"
+        (applyFilters)="onApplyFilters($event)"
+        (closeSheet)="closeMobileFilters()"
+      ></app-traveler-filter-sidebar>
     </aside>
 
+    <!-- Resultados -->
     <section class="results-column">
       <div aria-live="polite" aria-atomic="true" class="status-messages">
         @if (isLoading()) {
@@ -17,4 +35,9 @@
       }
     </section>
   </div>
+
+  <!-- Backdrop: oscurece la pantalla cuando el bottom-sheet está abierto (solo móvil) -->
+  @if (isMobileFiltersOpen()) {
+    <div class="mobile-backdrop" (click)="closeMobileFilters()" aria-hidden="true"></div>
+  }
 </main>

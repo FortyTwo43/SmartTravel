@@ -1,138 +1,198 @@
-<div class="filters">
-  <h2 class="filters-title">Filtros</h2>
+<div class="filters" [class.bottom-sheet-open]="isOpen()">
+  <!-- Bottom Sheet Handle (solo móvil) -->
+  <div class="sheet-handle-bar" aria-hidden="true"></div>
 
-  <fieldset class="filter-group" style="border:none; padding:0; margin:0;">
-    <legend class="filter-label">Países</legend>
-    <div class="exps-pills">
-      <button 
-        class="pill-btn" 
-        [class.active]="paises().includes('Ecuador')"
-        [attr.aria-pressed]="paises().includes('Ecuador')"
-        (click)="togglePais('Ecuador')"
-      >
-        Ecuador
-      </button>
-      <button 
-        class="pill-btn" 
-        [class.active]="paises().includes('Italia')"
-        [attr.aria-pressed]="paises().includes('Italia')"
-        (click)="togglePais('Italia')"
-      >
-        Italia
-      </button>
-      <button 
-        class="pill-btn" 
-        [class.active]="paises().includes('España')"
-        [attr.aria-pressed]="paises().includes('España')"
-        (click)="togglePais('España')"
-      >
-        España
-      </button>
-      <button 
-        class="pill-btn" 
-        [class.active]="paises().includes('Japón')"
-        [attr.aria-pressed]="paises().includes('Japón')"
-        (click)="togglePais('Japón')"
-      >
-        Japón
-      </button>
-    </div>
-    <hr class="divider" />
-  </fieldset>
-
-  <fieldset class="filter-group" style="border:none; padding:0; margin:0;">
-    <legend class="filter-label">Intereses</legend>
-    <div class="interests-grid">
-      @for (interest of visibleIntereses(); track interest.id) {
-        <button 
-          class="interest-btn" 
-          [class.active]="intereses().includes(interest.id)"
-          [attr.aria-pressed]="intereses().includes(interest.id)"
-          (click)="toggleIntereses(interest.id)"
-          [attr.aria-label]="interest.label | translate"
-        >
-          <lucide-icon [name]="interest.icon" size="20"></lucide-icon>
-          <span>{{ interest.label | translate }}</span>
-        </button>
+  <!-- Header del sheet -->
+  <div class="filters-header">
+    <h2 class="filters-title">Filtros
+      @if (activeFiltersCount() > 0) {
+        <span class="active-badge">{{ activeFiltersCount() }}</span>
       }
-    </div>
-    
-    @if (!isExpandedIntereses() && hiddenInteresesCount() > 0) {
-      <button class="btn-view-more" (click)="toggleExpandIntereses()">
-        Ver más (+{{ hiddenInteresesCount() }})
-      </button>
-    } @else if (isExpandedIntereses()) {
-      <button class="btn-view-less" (click)="toggleExpandIntereses()">
-        Ver menos
-      </button>
-    }
-    <hr class="divider" />
-  </fieldset>
+    </h2>
+    <button class="close-sheet-btn" (click)="closeSheet.emit()" aria-label="Cerrar filtros">
+      <lucide-icon name="X" size="20"></lucide-icon>
+    </button>
+  </div>
 
-  <fieldset class="filter-group" style="border:none; padding:0; margin:0;">
-    <legend class="filter-label">Calificación</legend>
-    <div class="rating-buttons">
-      <button 
-        class="rating-btn" 
-        [class.active]="ratingFilter() === '4-5'"
-        [attr.aria-pressed]="ratingFilter() === '4-5'"
-        (click)="setRating('4-5')"
-      >
-        <lucide-icon name="star" size="16"></lucide-icon>
-        4+ ★
-      </button>
-      <button 
-        class="rating-btn" 
-        [class.active]="ratingFilter() === '3-1'"
-        [attr.aria-pressed]="ratingFilter() === '3-1'"
-        (click)="setRating('3-1')"
-      >
-        <lucide-icon name="star" size="16"></lucide-icon>
-        3- ★
-      </button>
-    </div>
-    <hr class="divider" />
-  </fieldset>
+  <!-- Scroll area -->
+  <div class="filters-scroll-area">
 
-  <fieldset class="filter-group" style="border:none; padding:0; margin:0;">
-    <legend class="filter-label">Experiencia</legend>
-    <div class="exps-pills">
-      <button 
-        class="pill-btn" 
-        [class.active]="experiencia() === 'relajante'"
-        [attr.aria-pressed]="experiencia() === 'relajante'"
-        (click)="setExperiencia('relajante')"
+    <!-- SECCIÓN: Países -->
+    <div class="accordion-item">
+      <button
+        class="accordion-header"
+        [class.open]="isSectionOpen('paises')"
+        (click)="toggleSection('paises')"
+        [attr.aria-expanded]="isSectionOpen('paises')"
       >
-        Relajante
+        <span>Países</span>
+        @if (paises().length > 0) {
+          <span class="section-badge">{{ paises().length }}</span>
+        }
+        <lucide-icon [name]="isSectionOpen('paises') ? 'ChevronUp' : 'ChevronDown'" size="16" class="chevron accordion-only"></lucide-icon>
       </button>
-      <button 
-        class="pill-btn" 
-        [class.active]="experiencia() === 'aventura'"
-        [attr.aria-pressed]="experiencia() === 'aventura'"
-        (click)="setExperiencia('aventura')"
-      >
-        Aventura
-      </button>
-      <button 
-        class="pill-btn" 
-        [class.active]="experiencia() === 'familiar'"
-        [attr.aria-pressed]="experiencia() === 'familiar'"
-        (click)="setExperiencia('familiar')"
-      >
-        Familiar
-      </button>
-      <button 
-        class="pill-btn" 
-        [class.active]="experiencia() === 'lujo'"
-        [attr.aria-pressed]="experiencia() === 'lujo'"
-        (click)="setExperiencia('lujo')"
-      >
-        Lujo
-      </button>
+      <div class="accordion-body" [class.collapsed]="!isSectionOpen('paises')">
+        <fieldset style="border:none; padding:0; margin:0;">
+          <legend class="sr-only">Países</legend>
+          <div class="exps-pills">
+            <button class="pill-btn" [class.active]="paises().includes('Ecuador')" [attr.aria-pressed]="paises().includes('Ecuador')" (click)="togglePais('Ecuador')">Ecuador</button>
+            <button class="pill-btn" [class.active]="paises().includes('Italia')" [attr.aria-pressed]="paises().includes('Italia')" (click)="togglePais('Italia')">Italia</button>
+            <button class="pill-btn" [class.active]="paises().includes('España')" [attr.aria-pressed]="paises().includes('España')" (click)="togglePais('España')">España</button>
+            <button class="pill-btn" [class.active]="paises().includes('Japón')" [attr.aria-pressed]="paises().includes('Japón')" (click)="togglePais('Japón')">Japón</button>
+          </div>
+        </fieldset>
+      </div>
     </div>
-  </fieldset>
 
-  <button class="btn-clear-filters" (click)="clearFilters()">
-    Limpiar filtros
-  </button>
+    <hr class="divider desktop-divider" />
+
+    <!-- SECCIÓN: Intereses -->
+    <div class="accordion-item">
+      <button
+        class="accordion-header"
+        [class.open]="isSectionOpen('intereses')"
+        (click)="toggleSection('intereses')"
+        [attr.aria-expanded]="isSectionOpen('intereses')"
+      >
+        <span>Intereses</span>
+        @if (intereses().length > 0) {
+          <span class="section-badge">{{ intereses().length }}</span>
+        }
+        <lucide-icon [name]="isSectionOpen('intereses') ? 'ChevronUp' : 'ChevronDown'" size="16" class="chevron accordion-only"></lucide-icon>
+      </button>
+      <div class="accordion-body" [class.collapsed]="!isSectionOpen('intereses')">
+        <!-- Vista Desktop: grid de botones directamente -->
+        <div class="interests-grid desktop-interests">
+          @for (interest of INTERESTS; track interest.id) {
+            <button
+              class="interest-btn"
+              [class.active]="intereses().includes(interest.id)"
+              [attr.aria-pressed]="intereses().includes(interest.id)"
+              (click)="toggleIntereses(interest.id)"
+              [attr.aria-label]="interest.label | translate"
+            >
+              <lucide-icon [name]="interest.icon" size="20"></lucide-icon>
+              <span>{{ interest.label | translate }}</span>
+            </button>
+          }
+        </div>
+
+        <!-- Vista Móvil: chips + botón modal -->
+        <div class="mobile-interests">
+          @if (intereses().length > 0) {
+            <div class="selected-chips">
+              @for (label of selectedInteresesLabels(); track label) {
+                <span class="chip">{{ label | translate }}</span>
+              }
+            </div>
+          }
+          <button class="btn-open-interests-modal" (click)="openInterestsModal()">
+            <lucide-icon name="Plus" size="16"></lucide-icon>
+            Elegir intereses
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider desktop-divider" />
+
+    <!-- SECCIÓN: Calificación -->
+    <div class="accordion-item">
+      <button
+        class="accordion-header"
+        [class.open]="isSectionOpen('rating')"
+        (click)="toggleSection('rating')"
+        [attr.aria-expanded]="isSectionOpen('rating')"
+      >
+        <span>Calificación</span>
+        @if (ratingFilter()) {
+          <span class="section-badge">1</span>
+        }
+        <lucide-icon [name]="isSectionOpen('rating') ? 'ChevronUp' : 'ChevronDown'" size="16" class="chevron accordion-only"></lucide-icon>
+      </button>
+      <div class="accordion-body" [class.collapsed]="!isSectionOpen('rating')">
+        <fieldset style="border:none; padding:0; margin:0;">
+          <legend class="sr-only">Calificación</legend>
+          <div class="rating-buttons">
+            <button class="rating-btn" [class.active]="ratingFilter() === '4-5'" [attr.aria-pressed]="ratingFilter() === '4-5'" (click)="setRating('4-5')">
+              <lucide-icon name="star" size="16"></lucide-icon> 4+ ★
+            </button>
+            <button class="rating-btn" [class.active]="ratingFilter() === '3-1'" [attr.aria-pressed]="ratingFilter() === '3-1'" (click)="setRating('3-1')">
+              <lucide-icon name="star" size="16"></lucide-icon> 3- ★
+            </button>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+
+    <hr class="divider desktop-divider" />
+
+    <!-- SECCIÓN: Experiencia -->
+    <div class="accordion-item">
+      <button
+        class="accordion-header"
+        [class.open]="isSectionOpen('experiencia')"
+        (click)="toggleSection('experiencia')"
+        [attr.aria-expanded]="isSectionOpen('experiencia')"
+      >
+        <span>Experiencia</span>
+        @if (experiencia()) {
+          <span class="section-badge">1</span>
+        }
+        <lucide-icon [name]="isSectionOpen('experiencia') ? 'ChevronUp' : 'ChevronDown'" size="16" class="chevron accordion-only"></lucide-icon>
+      </button>
+      <div class="accordion-body" [class.collapsed]="!isSectionOpen('experiencia')">
+        <fieldset style="border:none; padding:0; margin:0;">
+          <legend class="sr-only">Experiencia</legend>
+          <div class="exps-pills">
+            <button class="pill-btn" [class.active]="experiencia() === 'relajante'" [attr.aria-pressed]="experiencia() === 'relajante'" (click)="setExperiencia('relajante')">Relajante</button>
+            <button class="pill-btn" [class.active]="experiencia() === 'aventura'" [attr.aria-pressed]="experiencia() === 'aventura'" (click)="setExperiencia('aventura')">Aventura</button>
+            <button class="pill-btn" [class.active]="experiencia() === 'familiar'" [attr.aria-pressed]="experiencia() === 'familiar'" (click)="setExperiencia('familiar')">Familiar</button>
+            <button class="pill-btn" [class.active]="experiencia() === 'lujo'" [attr.aria-pressed]="experiencia() === 'lujo'" (click)="setExperiencia('lujo')">Lujo</button>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+
+    <!-- Botón limpiar (desktop) -->
+    <button class="btn-clear-filters desktop-clear" (click)="clearFilters()">Limpiar filtros</button>
+
+  </div><!-- /filters-scroll-area -->
+
+  <!-- Acciones fijas al fondo del sheet (solo móvil) -->
+  <div class="filters-footer">
+    <button class="btn-clear-filters" (click)="clearFilters()">Limpiar</button>
+    <button class="btn-apply-filters" (click)="onApplyAndClose()">Aplicar filtros</button>
+  </div>
 </div>
+
+<!-- MODAL de Intereses (solo móvil) -->
+@if (isInterestsModalOpen()) {
+  <div class="modal-backdrop" (click)="closeInterestsModal()" role="dialog" aria-modal="true" aria-label="Seleccionar intereses">
+    <div class="interests-modal" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h3>Intereses</h3>
+        <button class="close-modal-btn" (click)="closeInterestsModal()" aria-label="Cerrar modal">
+          <lucide-icon name="X" size="20"></lucide-icon>
+        </button>
+      </div>
+      <div class="interests-grid modal-interests-grid">
+        @for (interest of INTERESTS; track interest.id) {
+          <button
+            class="interest-btn"
+            [class.active]="intereses().includes(interest.id)"
+            [attr.aria-pressed]="intereses().includes(interest.id)"
+            (click)="toggleIntereses(interest.id)"
+            [attr.aria-label]="interest.label | translate"
+          >
+            <lucide-icon [name]="interest.icon" size="20"></lucide-icon>
+            <span>{{ interest.label | translate }}</span>
+          </button>
+        }
+      </div>
+      <div class="modal-footer">
+        <button class="btn-apply-filters" (click)="closeInterestsModal()">Listo ({{ intereses().length }} seleccionados)</button>
+      </div>
+    </div>
+  </div>
+}
