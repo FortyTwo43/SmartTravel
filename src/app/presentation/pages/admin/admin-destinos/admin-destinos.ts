@@ -1,5 +1,6 @@
 import { Component, inject, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Plus, Search } from 'lucide-angular';
 import { DestinoCardComponent } from '../../../components/admin/destinos/destino-card/destino-card';
@@ -10,7 +11,7 @@ import { GetImageUrlUseCase } from '../../../../useCase/upload/GetImageUrlUseCas
 @Component({
   selector: 'app-admin-destinos',
   standalone: true,
-  imports: [CommonModule, TranslateModule, LucideAngularModule, DestinoCardComponent],
+  imports: [CommonModule, RouterLink, TranslateModule, LucideAngularModule, DestinoCardComponent],
   providers: [{
     provide: LUCIDE_ICONS,
     multi: true,
