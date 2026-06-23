@@ -17,7 +17,7 @@ export class GetAdminSolicitudesUseCase {
   async execute(): Promise<AdminSolicitudesData> {
     const solicitudes = await this.solicitudRepository.getAll();
     const sortedSolicitudes = solicitudes.sort(
-      (a, b) => b.fecha_solicitud.getTime() - a.fecha_solicitud.getTime()
+      (a, b) => this.getDateTime(b.fecha_solicitud) - this.getDateTime(a.fecha_solicitud)
     );
 
     return {
@@ -28,5 +28,11 @@ export class GetAdminSolicitudesUseCase {
         rechazado: sortedSolicitudes.filter((solicitud) => solicitud.estado === 'rechazado').length
       }
     };
+  }
+
+  private getDateTime(date: Date): number {
+    const dateTime = date.getTime();
+
+    return Number.isNaN(dateTime) ? 0 : dateTime;
   }
 }

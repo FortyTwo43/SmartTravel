@@ -7,6 +7,8 @@ import { SupabaseCrudRepository } from './SupabaseCrudRepository';
 import { buildSupabaseError } from './supabaseUtils/supabase-error';
 import { mapDateFromDb, mapDateToIso } from './supabaseUtils/mapper-helpers';
 
+type SolicitudProveedorEstado = SolicitudProveedor['estado'];
+
 @Injectable({
   providedIn: 'root'
 })
@@ -43,7 +45,22 @@ export class SupabaseSolicitudProveedorRepository
   protected override mapFromRow(row: SolicitudProveedor): SolicitudProveedor {
     return {
       ...row,
+      estado: this.mapEstadoFromDb(row.estado),
       fecha_solicitud: mapDateFromDb(row.fecha_solicitud)
     };
+  }
+
+  private mapEstadoFromDb(estado: string | null | undefined): SolicitudProveedorEstado {
+    const normalizedEstado = (estado ?? '').trim().toLowerCase();
+
+    if (
+      normalizedEstado === 'pendiente' ||
+      normalizedEstado === 'aceptado' ||
+      normalizedEstado === 'rechazado'
+    ) {
+      return normalizedEstado;
+    }
+
+    return 'pendiente';
   }
 }

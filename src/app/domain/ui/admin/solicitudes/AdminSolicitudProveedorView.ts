@@ -1,4 +1,5 @@
 import { SolicitudProveedor } from '../../../entities/SolicitudProveedor';
+import { Perfil } from '../../../entities/Perfil';
 
 export type SolicitudProveedorEstado = SolicitudProveedor['estado'];
 
@@ -14,5 +15,6 @@ export interface SolicitudProveedorDocumento {
 
 export interface AdminSolicitudProveedorView {
   solicitud: SolicitudProveedor;
+  perfil: Perfil | null;
   documento: SolicitudProveedorDocumento;
 }

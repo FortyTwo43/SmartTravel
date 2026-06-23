@@ -53,6 +53,16 @@
             <dd>{{ detail()!.solicitud.fecha_solicitud | date:'medium' }}</dd>
           </div>
           <div>
+            <dt>Perfil asociado</dt>
+            <dd>
+              @if (detail()!.perfil; as perfil) {
+                {{ perfil.nombre }} {{ perfil.apellido }}
+              } @else {
+                Perfil no encontrado
+              }
+            </dd>
+          </div>
+          <div>
             <dt>ID perfil</dt>
             <dd>{{ detail()!.solicitud.id_perfil }}</dd>
           </div>

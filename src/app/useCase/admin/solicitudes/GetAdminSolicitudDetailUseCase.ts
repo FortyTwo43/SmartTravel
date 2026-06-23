@@ -3,6 +3,7 @@ import {
   AdminSolicitudProveedorView,
   SolicitudProveedorDocumento
 } from '../../../domain/ui/admin/solicitudes/AdminSolicitudProveedorView';
+import { SupabasePerfilRepository } from '../../../infrastructure/repositories/supabase/SupabasePerfilRepository';
 import { SupabaseSolicitudProveedorRepository } from '../../../infrastructure/repositories/supabase/SupabaseSolicitudProveedorRepository';
 import { SupabaseStorageRepository } from '../../../infrastructure/repositories/supabase/SupabaseStorageRepository';
 
@@ -13,6 +14,7 @@ const DOCUMENTOS_PROVEEDOR_BUCKET = 'documentos_proveedor';
 })
 export class GetAdminSolicitudDetailUseCase {
   private readonly solicitudRepository = inject(SupabaseSolicitudProveedorRepository);
+  private readonly perfilRepository = inject(SupabasePerfilRepository);
   private readonly storageRepository = inject(SupabaseStorageRepository);
 
   async execute(id: string): Promise<AdminSolicitudProveedorView | null> {
@@ -22,10 +24,14 @@ export class GetAdminSolicitudDetailUseCase {
       return null;
     }
 
-    const signedUrl = await this.resolveDocumentUrl(solicitud.documento_url);
+    const [perfil, signedUrl] = await Promise.all([
+      this.perfilRepository.getById(solicitud.id_perfil),
+      this.resolveDocumentUrl(solicitud.documento_url)
+    ]);
 
     return {
       solicitud,
+      perfil,
       documento: this.buildDocumento(solicitud.documento_url, signedUrl)
     };
   }
