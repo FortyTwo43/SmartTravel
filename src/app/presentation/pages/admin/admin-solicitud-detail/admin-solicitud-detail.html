@@ -1,0 +1,115 @@
+<section class="detail-page">
+  <a class="back-link" routerLink="/admin/solicitudes">
+    <lucide-icon name="ArrowLeft"></lucide-icon>
+    Volver a solicitudes
+  </a>
+
+  @if (isLoading()) {
+    <div class="state-container">
+      <div class="spinner"></div>
+      <p>Cargando solicitud...</p>
+    </div>
+  } @else if (error() && !detail()) {
+    <div class="state-container error-state">
+      <lucide-icon name="AlertCircle" class="state-icon"></lucide-icon>
+      <p>{{ error() }}</p>
+      <button type="button" class="btn btn-primary" (click)="loadSolicitud()">Reintentar</button>
+    </div>
+  } @else if (detail()) {
+    <header class="detail-header">
+      <div>
+        <p class="eyebrow">{{ detail()!.solicitud.tipo_negocio }}</p>
+        <h1>{{ detail()!.solicitud.nombre_negocio }}</h1>
+        <p>{{ detail()!.solicitud.ubicacion }}</p>
+      </div>
+      <span
+        class="status-badge"
+        [class.pendiente]="detail()!.solicitud.estado === 'pendiente'"
+        [class.aceptado]="detail()!.solicitud.estado === 'aceptado'"
+        [class.rechazado]="detail()!.solicitud.estado === 'rechazado'">
+        {{ detail()!.solicitud.estado }}
+      </span>
+    </header>
+
+    @if (error()) {
+      <p class="inline-error">{{ error() }}</p>
+    }
+
+    <div class="detail-grid">
+      <article class="info-panel">
+        <h2>Datos de la solicitud</h2>
+
+        <dl class="info-list">
+          <div>
+            <dt>Descripcion</dt>
+            <dd>{{ detail()!.solicitud.descripcion }}</dd>
+          </div>
+          <div>
+            <dt>Telefono</dt>
+            <dd>{{ detail()!.solicitud.telefono }}</dd>
+          </div>
+          <div>
+            <dt>Fecha de solicitud</dt>
+            <dd>{{ detail()!.solicitud.fecha_solicitud | date:'medium' }}</dd>
+          </div>
+          <div>
+            <dt>ID perfil</dt>
+            <dd>{{ detail()!.solicitud.id_perfil }}</dd>
+          </div>
+        </dl>
+
+        <footer class="actions">
+          <button
+            type="button"
+            class="btn btn-success"
+            [disabled]="isUpdating() || detail()!.solicitud.estado === 'aceptado'"
+            (click)="changeStatus('aceptado')">
+            <lucide-icon name="CheckCircle2"></lucide-icon>
+            Aceptar
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            [disabled]="isUpdating() || detail()!.solicitud.estado === 'rechazado'"
+            (click)="changeStatus('rechazado')">
+            <lucide-icon name="XCircle"></lucide-icon>
+            Rechazar
+          </button>
+        </footer>
+      </article>
+
+      <article class="document-panel">
+        <header class="document-header">
+          <div>
+            <h2>Documento adjunto</h2>
+            <p>{{ detail()!.documento.fileName }}</p>
+          </div>
+          @if (detail()!.documento.signedUrl) {
+            <a class="icon-link" [href]="detail()!.documento.signedUrl" target="_blank" rel="noopener">
+              <lucide-icon name="Download"></lucide-icon>
+              Abrir
+            </a>
+          }
+        </header>
+
+        <div class="document-viewer">
+          @if (!detail()!.documento.signedUrl) {
+            <div class="unsupported-document">
+              <lucide-icon name="FileText"></lucide-icon>
+              <p>El documento no tiene una URL disponible.</p>
+            </div>
+          } @else if (detail()!.documento.tipo === 'image') {
+            <img [src]="detail()!.documento.signedUrl" [alt]="'Documento de ' + detail()!.solicitud.nombre_negocio">
+          } @else if (detail()!.documento.tipo === 'pdf' && safeDocumentUrl()) {
+            <iframe [src]="safeDocumentUrl()" title="Documento PDF de proveedor"></iframe>
+          } @else {
+            <div class="unsupported-document">
+              <lucide-icon name="FileText"></lucide-icon>
+              <p>Formato no reconocido. Puedes abrir el archivo en una pestana nueva.</p>
+            </div>
+          }
+        </div>
+      </article>
+    </div>
+  }
+</section>

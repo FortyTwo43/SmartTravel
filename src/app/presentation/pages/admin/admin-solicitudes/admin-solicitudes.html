@@ -1,0 +1,67 @@
+<section class="admin-page-container">
+  <header class="page-header">
+    <div class="header-content">
+      <h1 class="page-title">Solicitudes de proveedores</h1>
+      <p class="page-subtitle">Revisa las postulaciones y sus documentos de validacion.</p>
+    </div>
+  </header>
+
+  <nav class="status-tabs" aria-label="Estados de solicitudes">
+    @for (option of statusOptions; track option.value) {
+      <button
+        type="button"
+        class="status-tab"
+        [class.active]="selectedStatus() === option.value"
+        (click)="selectStatus(option.value)">
+        <lucide-icon [name]="option.icon" class="tab-icon"></lucide-icon>
+        <span>{{ option.label }}</span>
+        <strong>{{ getTotal(option.value) }}</strong>
+      </button>
+    }
+  </nav>
+
+  @if (isLoading()) {
+    <div class="state-container">
+      <div class="spinner"></div>
+      <p>Cargando solicitudes...</p>
+    </div>
+  } @else if (error()) {
+    <div class="state-container error-state">
+      <lucide-icon name="AlertCircle" class="state-icon"></lucide-icon>
+      <p>{{ error() }}</p>
+      <button type="button" class="btn btn-primary" (click)="loadSolicitudes()">Reintentar</button>
+    </div>
+  } @else if (solicitudes().length > 0) {
+    <div class="solicitudes-list" aria-label="Lista de solicitudes">
+      @for (solicitud of solicitudes(); track solicitud.id) {
+        <a class="solicitud-row" [routerLink]="['/admin/solicitudes', solicitud.id]">
+          <span class="document-icon">
+            <lucide-icon name="FileText"></lucide-icon>
+          </span>
+          <span class="solicitud-main">
+            <strong>{{ solicitud.nombre_negocio }}</strong>
+            <small>{{ solicitud.tipo_negocio }} · {{ solicitud.ubicacion }}</small>
+          </span>
+          <span class="solicitud-meta">
+            <span
+              class="status-badge"
+              [class.pendiente]="solicitud.estado === 'pendiente'"
+              [class.aceptado]="solicitud.estado === 'aceptado'"
+              [class.rechazado]="solicitud.estado === 'rechazado'">
+              {{ solicitud.estado }}
+            </span>
+            <time [dateTime]="solicitud.fecha_solicitud.toISOString()">
+              {{ solicitud.fecha_solicitud | date:'mediumDate' }}
+            </time>
+          </span>
+        </a>
+      }
+    </div>
+  } @else {
+    <div class="state-container empty-state">
+      <lucide-icon name="Inbox" class="state-icon"></lucide-icon>
+      <h2>No hay solicitudes {{ selectedStatus() }}</h2>
+      <p>Cuando existan solicitudes en este estado apareceran aqui.</p>
+    </div>
+  }
+</section>

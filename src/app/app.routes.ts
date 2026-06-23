@@ -102,6 +102,14 @@ export const routes: Routes = [
         loadComponent: () => import('./presentation/pages/admin/admin-destinos/admin-destinos').then(m => m.AdminDestinosComponent)
       },
       {
+        path: 'solicitudes',
+        loadComponent: () => import('./presentation/pages/admin/admin-solicitudes/admin-solicitudes').then(m => m.AdminSolicitudesComponent)
+      },
+      {
+        path: 'solicitudes/:id',
+        loadComponent: () => import('./presentation/pages/admin/admin-solicitud-detail/admin-solicitud-detail').then(m => m.AdminSolicitudDetailComponent)
+      },
+      {
         path: 'destinos/new',
         loadComponent: () => import('./presentation/pages/admin/admin-destino-create/admin-destino-create').then(m => m.AdminDestinoCreateComponent)
       }

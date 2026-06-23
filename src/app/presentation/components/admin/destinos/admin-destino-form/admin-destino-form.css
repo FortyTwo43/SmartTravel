@@ -34,7 +34,8 @@
   }
 }
 
-label, .form-label {
+label,
+.form-label {
   font-weight: 500;
   color: var(--text-main);
   font-size: 0.875rem;
@@ -88,7 +89,8 @@ label, .form-label {
   color: var(--text-muted);
 }
 
-.file-upload-area:hover, .file-upload-area.dragging {
+.file-upload-area:hover,
+.file-upload-area.dragging {
   border-color: var(--color-primary);
   background-color: rgba(2, 136, 209, 0.05);
   color: var(--color-primary);
@@ -155,7 +157,8 @@ label, .form-label {
   border-top: 1px solid var(--border-color);
 }
 
-.btn-cancel, .btn-submit {
+.btn-cancel,
+.btn-submit {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -205,7 +208,9 @@ label, .form-label {
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .alert--error {

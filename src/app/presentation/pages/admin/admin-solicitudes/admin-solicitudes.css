@@ -1,0 +1,263 @@
+.admin-page-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.page-title {
+  color: var(--text-main);
+  font-family: var(--font-headline);
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.page-subtitle {
+  color: var(--text-muted);
+  font-size: 1rem;
+  margin: 0;
+}
+
+.status-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.status-tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 3.25rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  color: var(--text-muted);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  transition: border-color 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.status-tab.active {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.status-tab strong {
+  min-width: 1.5rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-full);
+  background: var(--bg-surface-alt);
+  color: var(--text-main);
+  font-size: 0.8rem;
+}
+
+.tab-icon,
+.state-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.solicitudes-list {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.solicitud-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.2s;
+}
+
+.solicitud-row:last-child {
+  border-bottom: 0;
+}
+
+.solicitud-row:hover,
+.solicitud-row:focus-visible {
+  background-color: var(--bg-main);
+  outline: none;
+}
+
+.document-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: var(--radius-md);
+  color: var(--color-primary);
+  background: rgba(2, 136, 209, 0.12);
+}
+
+.document-icon lucide-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.solicitud-main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 0.25rem;
+}
+
+.solicitud-main strong {
+  color: var(--text-main);
+  font-size: 1rem;
+}
+
+.solicitud-main small,
+.solicitud-meta time {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.solicitud-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.4rem;
+}
+
+.status-badge {
+  width: fit-content;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.status-badge.pendiente {
+  background: rgba(245, 158, 11, 0.14);
+  color: #b45309;
+}
+
+.status-badge.aceptado {
+  background: rgba(34, 197, 94, 0.14);
+  color: #15803d;
+}
+
+.status-badge.rechazado {
+  background: rgba(239, 68, 68, 0.14);
+  color: #b91c1c;
+}
+
+.state-container {
+  display: flex;
+  min-height: 22rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 3rem 2rem;
+  border: 1px dashed var(--border-color);
+  border-radius: var(--radius-lg);
+  background: var(--bg-surface);
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.state-container h2 {
+  margin: 0;
+  color: var(--text-main);
+  font-family: var(--font-headline);
+  font-size: 1.25rem;
+}
+
+.state-container p {
+  margin: 0;
+}
+
+.error-state .state-icon {
+  color: #b91c1c;
+}
+
+.empty-state .state-icon {
+  color: var(--text-muted);
+  width: 2rem;
+  height: 2rem;
+}
+
+.spinner {
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 3px solid rgba(var(--color-primary-rgb), 0.25);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0 1.25rem;
+  border: 0;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: var(--text-on-primary);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-page-container {
+    padding: 1rem;
+  }
+
+  .status-tabs {
+    grid-template-columns: 1fr;
+  }
+
+  .solicitud-row {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .solicitud-meta {
+    grid-column: 2;
+    align-items: flex-start;
+  }
+}
