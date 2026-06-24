@@ -29,7 +29,7 @@
 @media (max-width: 768px) {
   .chart,
   .empty-chart {
-    height: 20rem;
-    min-height: 20rem;
+    height: 24rem;
+    min-height: 24rem;
   }
 }

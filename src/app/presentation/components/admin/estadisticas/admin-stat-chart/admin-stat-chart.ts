@@ -71,18 +71,23 @@ export class AdminStatChartComponent implements OnChanges {
     const labels = this.data.map(point => point.label);
     const values = this.data.map(point => point.value);
     const axisChartType: 'line' | 'bar' = this.chartType === 'line' ? 'line' : 'bar';
+    const showEveryLabel = this.shouldShowEveryLabel(labels.length);
+    const maxLabelLength = this.getMaxLabelLength(labels);
 
     return {
       title: this.buildTitle(tokens),
       tooltip: this.buildAxisTooltip(tokens),
-      grid: this.buildGrid(),
+      grid: this.buildGrid('axis'),
       xAxis: {
         type: 'category',
         data: labels,
         axisLabel: {
           ...this.buildTextStyle(tokens.textColor),
-          interval: 0,
-          rotate: labels.some(label => label.length > 10) ? 24 : 0
+          interval: 'auto',
+          hideOverlap: true,
+          rotate: maxLabelLength > 10 ? 30 : 0,
+          width: maxLabelLength > 14 ? 84 : undefined,
+          overflow: maxLabelLength > 14 ? 'truncate' : 'none'
         },
         axisLine: this.buildAxisLine(tokens),
         axisTick: this.buildAxisLine(tokens)
@@ -119,7 +124,7 @@ export class AdminStatChartComponent implements OnChanges {
                 opacity: 0.1
               }
             : undefined
-        }
+        } as SeriesOption
       ]
     };
   }
@@ -150,17 +155,29 @@ export class AdminStatChartComponent implements OnChanges {
       color: palette,
       tooltip: this.buildAxisTooltip(tokens),
       legend: {
-        top: 36,
+        top: 30,
+        left: 'center',
+        type: 'plain',
+        width: '95%',
+        itemWidth: 14,
+        itemHeight: 10,
+        itemGap: 12,
         textStyle: this.buildTextStyle(tokens.textColor)
       },
       grid: {
-        ...this.buildGrid(),
-        top: 84
+        ...this.buildGrid('multi-line'),
+        top: 100,
+        bottom: 64
       },
       xAxis: {
         type: 'category',
         data: labels,
-        axisLabel: this.buildTextStyle(tokens.textColor),
+        axisLabel: {
+          ...this.buildTextStyle(tokens.textColor),
+          interval: 'auto',
+          hideOverlap: true,
+          rotate: labels.some(label => label.length > 9) ? 24 : 0,
+        },
         axisLine: this.buildAxisLine(tokens),
         axisTick: this.buildAxisLine(tokens)
       },
@@ -181,11 +198,26 @@ export class AdminStatChartComponent implements OnChanges {
 
   private buildPieChart(tokens: ChartTokens): EChartsOption {
     const palette = [tokens.primary, tokens.secondary, tokens.tertiary, tokens.negative, tokens.textMuted];
+    const isDonut = this.chartType === 'donut';
+    const pieData = this.data.map(point => ({
+      name: point.label,
+      value: point.value
+    }));
+    const hasLongLabels = pieData.some(item => item.name.length > 14);
 
     return {
       title: {
         ...this.buildTitle(tokens),
-        left: 'center'
+        left: 'center',
+        top: 8,
+        textStyle: {
+          ...this.buildTextStyle(tokens.textColor, 14),
+          fontFamily: tokens.fontHeadline,
+          fontWeight: 700,
+          width: 250,
+          overflow: 'break',
+          lineHeight: 20
+        }
       },
       tooltip: {
         trigger: 'item',
@@ -196,32 +228,50 @@ export class AdminStatChartComponent implements OnChanges {
         textStyle: this.buildTextStyle(tokens.textColor, 14)
       },
       legend: {
-        bottom: 0,
+        bottom: isDonut ? 12 : 4,
         left: 'center',
-        textStyle: this.buildTextStyle(tokens.textColor),
-        itemGap: 14
+        width: '95%',
+        orient: 'horizontal',
+        type: 'plain',
+        itemWidth: 14,
+        itemHeight: 10,
+        itemGap: hasLongLabels ? 8 : 14,
+        textStyle: {
+          ...this.buildTextStyle(tokens.textColor)
+        }
       },
       color: palette,
       series: [
         {
           name: this.seriesName,
           type: 'pie',
-          radius: this.chartType === 'donut' ? ['42%', '68%'] : '62%',
-          center: ['50%', '48%'],
+          radius: isDonut ? ['40%', '60%'] : '58%',
+          center: isDonut ? ['50%', '52%'] : ['50%', '50%'],
           avoidLabelOverlap: true,
           itemStyle: {
             borderRadius: 8,
             borderColor: tokens.bgSurface,
             borderWidth: 2
           },
-          label: {
-            color: tokens.textColor,
-            fontFamily: tokens.fontBody
-          },
-          data: this.data.map(point => ({
-            name: point.label,
-            value: point.value
-          }))
+          label: isDonut
+            ? {
+                show: false
+              }
+            : {
+                color: tokens.textColor,
+                fontFamily: tokens.fontBody,
+                width: 90,
+                overflow: 'truncate'
+              },
+          labelLine: isDonut
+            ? {
+                show: false
+              }
+            : {
+                length: 10,
+                length2: 10
+              },
+          data: pieData
         }
       ]
     };
@@ -248,14 +298,22 @@ export class AdminStatChartComponent implements OnChanges {
     };
   }
 
-  private buildGrid() {
+  private buildGrid(kind: 'axis' | 'multi-line' = 'axis') {
     return {
-      top: 64,
-      right: 20,
-      bottom: 56,
-      left: 44,
+      top: kind === 'multi-line' ? 78 : 64,
+      right: 16,
+      bottom: kind === 'multi-line' ? 58 : 64,
+      left: kind === 'multi-line' ? 40 : 48,
       containLabel: true
     };
+  }
+
+  private shouldShowEveryLabel(length: number): boolean {
+    return length <= 8;
+  }
+
+  private getMaxLabelLength(labels: string[]): number {
+    return labels.reduce((max, label) => Math.max(max, label.length), 0);
   }
 
   private buildAxisLine(tokens: ChartTokens) {
