@@ -514,6 +514,68 @@
     "SUCCESS": "Destino creado exitosamente",
     "ERROR": "Error al crear el destino"
   },
+  "ADMIN_STATISTICS": {
+    "EYEBROW": "Panel administrativo",
+    "TITLE": "Estadisticas",
+    "SUBTITLE": "Indicadores de usuarios, destinos, reservas y solicitudes de proveedor.",
+    "UPDATE": "Actualizar",
+    "LOADING": "Cargando estadisticas...",
+    "ERROR": "No se pudieron cargar las estadisticas del administrador.",
+    "NO_DATA": "No hay datos suficientes para mostrar este grafico.",
+    "SUMMARY_ARIA": "Resumen de estadisticas",
+    "SUMMARY": {
+      "TOTAL_USERS": "Total usuarios",
+      "DESTINATION_RESERVATIONS": "Reservas con destino",
+      "TOTAL_RESERVATIONS": "Total reservas",
+      "PROVIDER_REQUESTS": "Solicitudes proveedor"
+    },
+    "USERS_SECTION": {
+      "TITLE": "Estadisticas de Usuarios",
+      "SUBTITLE": "Crecimiento de registros y distribucion por rol.",
+      "PERIOD_ARIA": "Periodo de crecimiento de usuarios",
+      "GROWTH_CHART": "Crecimiento de usuarios",
+      "DISTRIBUTION_CHART": "Distribucion de usuarios"
+    },
+    "DESTINATIONS_SECTION": {
+      "TITLE": "Estadisticas de Destinos",
+      "SUBTITLE": "Destinos y tipos de experiencia con mayor movimiento.",
+      "POPULAR_CHART": "Destinos mas reservados",
+      "EXPERIENCE_CHART": "Tipos de experiencias mas reservados"
+    },
+    "RESERVATIONS_SECTION": {
+      "TITLE": "Estadisticas de Reservas",
+      "SUBTITLE": "Volumen diario, mensual y estado operacional de las reservas.",
+      "DAY_CHART": "Reservas por dia",
+      "MONTH_CHART": "Reservas por mes",
+      "STATUS_CHART": "Reservas completadas, canceladas y pendientes"
+    },
+    "PROVIDERS_SECTION": {
+      "TITLE": "Estadisticas de Proveedores",
+      "SUBTITLE": "Estado de solicitudes y evolucion mensual de aprobaciones.",
+      "REQUESTS_CHART": "Solicitudes de proveedor",
+      "TEMPORAL_CHART": "Solicitudes y aprobaciones por mes"
+    },
+    "SERIES": {
+      "REGISTRATIONS": "Registros",
+      "USERS": "Usuarios",
+      "RESERVATIONS": "Reservas",
+      "REQUESTS": "Solicitudes"
+    },
+    "PROVIDERS_CHART": {
+      "REQUESTS_RECEIVED": "Solicitudes recibidas",
+      "APPROVED_PROVIDERS": "Proveedores aprobados"
+    },
+    "LABELS": {
+      "TRAVELERS": "Viajeros",
+      "PROVIDERS": "Proveedores",
+      "ADMINS": "Administradores",
+      "COMPLETED": "Completadas",
+      "CANCELED": "Canceladas",
+      "PENDING": "Pendientes",
+      "APPROVED": "Aprobadas",
+      "REJECTED": "Rechazadas"
+    }
+  },
   "PROVIDER_RESERVATIONS": {
     "TITLE": "Reservas",
     "SUBTITLE": "Gestiona y visualiza las reservas de tus servicios",

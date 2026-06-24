@@ -514,6 +514,68 @@
     "SUCCESS": "Destination created successfully",
     "ERROR": "Error creating destination"
   },
+  "ADMIN_STATISTICS": {
+    "EYEBROW": "Admin panel",
+    "TITLE": "Statistics",
+    "SUBTITLE": "Indicators for users, destinations, reservations, and provider requests.",
+    "UPDATE": "Update",
+    "LOADING": "Loading statistics...",
+    "ERROR": "The administrator statistics could not be loaded.",
+    "NO_DATA": "Not enough data to display this chart.",
+    "SUMMARY_ARIA": "Statistics summary",
+    "SUMMARY": {
+      "TOTAL_USERS": "Total users",
+      "DESTINATION_RESERVATIONS": "Reservations with destination",
+      "TOTAL_RESERVATIONS": "Total reservations",
+      "PROVIDER_REQUESTS": "Provider requests"
+    },
+    "USERS_SECTION": {
+      "TITLE": "User Statistics",
+      "SUBTITLE": "Registration growth and role distribution.",
+      "PERIOD_ARIA": "User growth period",
+      "GROWTH_CHART": "User growth",
+      "DISTRIBUTION_CHART": "User distribution"
+    },
+    "DESTINATIONS_SECTION": {
+      "TITLE": "Destination Statistics",
+      "SUBTITLE": "Destinations and experience types with the most activity.",
+      "POPULAR_CHART": "Most reserved destinations",
+      "EXPERIENCE_CHART": "Most reserved experience types"
+    },
+    "RESERVATIONS_SECTION": {
+      "TITLE": "Reservation Statistics",
+      "SUBTITLE": "Daily and monthly volume plus reservation operational status.",
+      "DAY_CHART": "Reservations by day",
+      "MONTH_CHART": "Reservations by month",
+      "STATUS_CHART": "Completed, canceled, and pending reservations"
+    },
+    "PROVIDERS_SECTION": {
+      "TITLE": "Provider Statistics",
+      "SUBTITLE": "Request status and monthly approval trends.",
+      "REQUESTS_CHART": "Provider requests",
+      "TEMPORAL_CHART": "Requests and approvals by month"
+    },
+    "SERIES": {
+      "REGISTRATIONS": "Registrations",
+      "USERS": "Users",
+      "RESERVATIONS": "Reservations",
+      "REQUESTS": "Requests"
+    },
+    "PROVIDERS_CHART": {
+      "REQUESTS_RECEIVED": "Requests received",
+      "APPROVED_PROVIDERS": "Approved providers"
+    },
+    "LABELS": {
+      "TRAVELERS": "Travelers",
+      "PROVIDERS": "Providers",
+      "ADMINS": "Administrators",
+      "COMPLETED": "Completed",
+      "CANCELED": "Canceled",
+      "PENDING": "Pending",
+      "APPROVED": "Approved",
+      "REJECTED": "Rejected"
+    }
+  },
   "PROVIDER_STATISTICS": {
     "TITLE": "Establishment Statistics",
     "SUBTITLE": "Analyze the performance of your services and reservations",

@@ -1,0 +1,8 @@
+@if (hasData) {
+  <div echarts [options]="chartOption" class="chart"></div>
+} @else {
+  <section class="empty-chart">
+    <h3>{{ title }}</h3>
+    <p>{{ 'ADMIN_STATISTICS.NO_DATA' | translate }}</p>
+  </section>
+}

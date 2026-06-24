@@ -110,6 +110,10 @@ export const routes: Routes = [
         loadComponent: () => import('./presentation/pages/admin/admin-solicitud-detail/admin-solicitud-detail').then(m => m.AdminSolicitudDetailComponent)
       },
       {
+        path: 'estadisticas',
+        loadComponent: () => import('./presentation/pages/admin/admin-estadisticas/admin-estadisticas').then(m => m.AdminEstadisticasComponent)
+      },
+      {
         path: 'destinos/new',
         loadComponent: () => import('./presentation/pages/admin/admin-destino-create/admin-destino-create').then(m => m.AdminDestinoCreateComponent)
       }

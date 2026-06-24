@@ -1,0 +1,222 @@
+<main class="statistics-page">
+  <header class="page-header">
+    <div>
+      <p class="eyebrow">{{ 'ADMIN_STATISTICS.EYEBROW' | translate }}</p>
+      <h1>{{ 'ADMIN_STATISTICS.TITLE' | translate }}</h1>
+      <p class="subtitle">{{ 'ADMIN_STATISTICS.SUBTITLE' | translate }}</p>
+    </div>
+
+    <button type="button" class="refresh-button" (click)="loadData()" [disabled]="isLoading()">
+      <lucide-icon name="RefreshCw" class="button-icon"></lucide-icon>
+      {{ 'ADMIN_STATISTICS.UPDATE' | translate }}
+    </button>
+  </header>
+
+  @if (isLoading()) {
+    <section class="state-container" aria-live="polite">
+      <div class="spinner"></div>
+      <p>{{ 'ADMIN_STATISTICS.LOADING' | translate }}</p>
+    </section>
+  } @else if (error()) {
+    <section class="state-container">
+      <p>{{ error()! | translate }}</p>
+      <button type="button" class="refresh-button" (click)="loadData()">
+        <lucide-icon name="RefreshCw" class="button-icon"></lucide-icon>
+        {{ 'COMMON.RETRY' | translate }}
+      </button>
+    </section>
+  } @else if (data()) {
+    <section class="summary-grid" [attr.aria-label]="'ADMIN_STATISTICS.SUMMARY_ARIA' | translate">
+      <article class="summary-card">
+        <div class="summary-icon users">
+          <lucide-icon name="Users"></lucide-icon>
+        </div>
+        <div>
+          <p>{{ 'ADMIN_STATISTICS.SUMMARY.TOTAL_USERS' | translate }}</p>
+          <strong>{{ totalUsuarios() }}</strong>
+        </div>
+      </article>
+
+      <article class="summary-card">
+        <div class="summary-icon destinations">
+          <lucide-icon name="MapPin"></lucide-icon>
+        </div>
+        <div>
+          <p>{{ 'ADMIN_STATISTICS.SUMMARY.DESTINATION_RESERVATIONS' | translate }}</p>
+          <strong>{{ totalDestinosReservados() }}</strong>
+        </div>
+      </article>
+
+      <article class="summary-card">
+        <div class="summary-icon reservations">
+          <lucide-icon name="CalendarCheck"></lucide-icon>
+        </div>
+        <div>
+          <p>{{ 'ADMIN_STATISTICS.SUMMARY.TOTAL_RESERVATIONS' | translate }}</p>
+          <strong>{{ totalReservas() }}</strong>
+        </div>
+      </article>
+
+      <article class="summary-card">
+        <div class="summary-icon providers">
+          <lucide-icon name="BarChart3"></lucide-icon>
+        </div>
+        <div>
+          <p>{{ 'ADMIN_STATISTICS.SUMMARY.PROVIDER_REQUESTS' | translate }}</p>
+          <strong>{{ totalSolicitudes() }}</strong>
+        </div>
+      </article>
+    </section>
+
+    <section class="statistics-section" aria-labelledby="usuarios-title">
+      <div class="section-header">
+        <div>
+          <h2 id="usuarios-title">{{ 'ADMIN_STATISTICS.USERS_SECTION.TITLE' | translate }}</h2>
+          <p>{{ 'ADMIN_STATISTICS.USERS_SECTION.SUBTITLE' | translate }}</p>
+        </div>
+
+        <div class="period-selector" [attr.aria-label]="'ADMIN_STATISTICS.USERS_SECTION.PERIOD_ARIA' | translate">
+          <button
+            type="button"
+            [class.active]="periodoUsuarios() === 'dia'"
+            [attr.aria-pressed]="periodoUsuarios() === 'dia'"
+            (click)="changePeriodoUsuarios('dia')"
+          >
+            {{ 'PROVIDER_STATISTICS.PERIOD.DAY' | translate }}
+          </button>
+          <button
+            type="button"
+            [class.active]="periodoUsuarios() === 'semana'"
+            [attr.aria-pressed]="periodoUsuarios() === 'semana'"
+            (click)="changePeriodoUsuarios('semana')"
+          >
+            {{ 'PROVIDER_STATISTICS.PERIOD.WEEK' | translate }}
+          </button>
+          <button
+            type="button"
+            [class.active]="periodoUsuarios() === 'mes'"
+            [attr.aria-pressed]="periodoUsuarios() === 'mes'"
+            (click)="changePeriodoUsuarios('mes')"
+          >
+            {{ 'PROVIDER_STATISTICS.PERIOD.MONTH' | translate }}
+          </button>
+        </div>
+      </div>
+
+      <div class="charts-grid">
+        <article class="chart-card">
+          <app-admin-stat-chart
+            [data]="crecimientoUsuarios()"
+            [title]="'ADMIN_STATISTICS.USERS_SECTION.GROWTH_CHART' | translate"
+            [seriesName]="'ADMIN_STATISTICS.SERIES.REGISTRATIONS' | translate"
+            chartType="line"
+          ></app-admin-stat-chart>
+        </article>
+
+        <article class="chart-card">
+          <app-admin-stat-chart
+            [data]="distribucionUsuarios()"
+            [title]="'ADMIN_STATISTICS.USERS_SECTION.DISTRIBUTION_CHART' | translate"
+            [seriesName]="'ADMIN_STATISTICS.SERIES.USERS' | translate"
+            chartType="pie"
+          ></app-admin-stat-chart>
+        </article>
+      </div>
+    </section>
+
+    <section class="statistics-section" aria-labelledby="destinos-title">
+      <div class="section-header">
+        <div>
+          <h2 id="destinos-title">{{ 'ADMIN_STATISTICS.DESTINATIONS_SECTION.TITLE' | translate }}</h2>
+          <p>{{ 'ADMIN_STATISTICS.DESTINATIONS_SECTION.SUBTITLE' | translate }}</p>
+        </div>
+      </div>
+
+      <div class="charts-grid">
+        <article class="chart-card">
+          <app-admin-stat-chart
+            [data]="destinosMasPopulares()"
+            [title]="'ADMIN_STATISTICS.DESTINATIONS_SECTION.POPULAR_CHART' | translate"
+            [seriesName]="'ADMIN_STATISTICS.SERIES.RESERVATIONS' | translate"
+            chartType="bar"
+          ></app-admin-stat-chart>
+        </article>
+
+        <article class="chart-card">
+          <app-admin-stat-chart
+            [data]="tiposExperienciaMasReservados()"
+            [title]="'ADMIN_STATISTICS.DESTINATIONS_SECTION.EXPERIENCE_CHART' | translate"
+            [seriesName]="'ADMIN_STATISTICS.SERIES.RESERVATIONS' | translate"
+            chartType="bar"
+          ></app-admin-stat-chart>
+        </article>
+      </div>
+    </section>
+
+    <section class="statistics-section" aria-labelledby="reservas-title">
+      <div class="section-header">
+        <div>
+          <h2 id="reservas-title">{{ 'ADMIN_STATISTICS.RESERVATIONS_SECTION.TITLE' | translate }}</h2>
+          <p>{{ 'ADMIN_STATISTICS.RESERVATIONS_SECTION.SUBTITLE' | translate }}</p>
+        </div>
+      </div>
+
+      <div class="charts-grid">
+        <article class="chart-card">
+          <app-admin-stat-chart
+            [data]="reservasPorDia()"
+            [title]="'ADMIN_STATISTICS.RESERVATIONS_SECTION.DAY_CHART' | translate"
+            [seriesName]="'ADMIN_STATISTICS.SERIES.RESERVATIONS' | translate"
+            chartType="line"
+          ></app-admin-stat-chart>
+        </article>
+
+        <article class="chart-card">
+          <app-admin-stat-chart
+            [data]="reservasPorMes()"
+            [title]="'ADMIN_STATISTICS.RESERVATIONS_SECTION.MONTH_CHART' | translate"
+            [seriesName]="'ADMIN_STATISTICS.SERIES.RESERVATIONS' | translate"
+            chartType="bar"
+          ></app-admin-stat-chart>
+        </article>
+
+        <article class="chart-card full-width">
+          <app-admin-stat-chart
+            [data]="reservasPorEstado()"
+            [title]="'ADMIN_STATISTICS.RESERVATIONS_SECTION.STATUS_CHART' | translate"
+            [seriesName]="'ADMIN_STATISTICS.SERIES.RESERVATIONS' | translate"
+            chartType="donut"
+          ></app-admin-stat-chart>
+        </article>
+      </div>
+    </section>
+
+    <section class="statistics-section" aria-labelledby="proveedores-title">
+      <div class="section-header">
+        <div>
+          <h2 id="proveedores-title">{{ 'ADMIN_STATISTICS.PROVIDERS_SECTION.TITLE' | translate }}</h2>
+          <p>{{ 'ADMIN_STATISTICS.PROVIDERS_SECTION.SUBTITLE' | translate }}</p>
+        </div>
+      </div>
+
+      <div class="charts-grid">
+        <article class="chart-card">
+          <app-admin-stat-chart
+            [data]="solicitudesProveedorPorEstado()"
+            [title]="'ADMIN_STATISTICS.PROVIDERS_SECTION.REQUESTS_CHART' | translate"
+            [seriesName]="'ADMIN_STATISTICS.SERIES.REQUESTS' | translate"
+            chartType="pie"
+          ></app-admin-stat-chart>
+        </article>
+
+        <article class="chart-card">
+          <app-admin-stat-chart
+            [temporalSeries]="solicitudesProveedorTemporal()"
+            [title]="'ADMIN_STATISTICS.PROVIDERS_SECTION.TEMPORAL_CHART' | translate"
+            chartType="multi-line"
+          ></app-admin-stat-chart>
+        </article>
+      </div>
+    </section>
+  }
+</main>
