@@ -243,3 +243,15 @@
     display: flex;
   }
 }
+
+@media (max-height: 700px) {
+  .traveler-sidebar {
+    overflow-y: auto;
+  }
+  .sidebar-header,
+  .sidebar-nav,
+  .sidebar-footer,
+  .sidebar-profile {
+    flex-shrink: 0;
+  }
+}

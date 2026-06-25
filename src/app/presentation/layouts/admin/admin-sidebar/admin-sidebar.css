@@ -181,3 +181,14 @@
     justify-content: center;
   }
 }
+
+@media (max-height: 700px) {
+  .sidebar-container {
+    overflow-y: auto;
+  }
+  .sidebar-header,
+  .sidebar-nav,
+  .sidebar-footer {
+    flex-shrink: 0;
+  }
+}

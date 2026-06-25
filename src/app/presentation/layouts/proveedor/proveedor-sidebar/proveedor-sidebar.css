@@ -160,3 +160,17 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+@media (max-height: 700px) {
+  .sidebar-container {
+    overflow-y: auto;
+  }
+  .sidebar-header,
+  .sidebar-nav,
+  .sidebar-footer {
+    flex-shrink: 0;
+  }
+  .sidebar-nav {
+    overflow-y: visible;
+  }
+}
