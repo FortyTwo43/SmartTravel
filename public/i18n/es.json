@@ -46,6 +46,12 @@
     "SEE_ALL": "Ver Todos",
     "PEOPLE": "personas"
   },
+  "SESSION": {
+    "WARNING_TITLE": "Sesión por expirar",
+    "WARNING_MESSAGE": "Tu sesión expirará en 2 minutos por inactividad. ¿Deseas continuar?",
+    "CONTINUE_BUTTON": "Continuar sesión",
+    "LOGOUT_BUTTON": "Cerrar sesión"
+  },
   "NAVBAR": {
     "TITLE": "Smart Travel",
     "DESTINATIONS": "Destinos",

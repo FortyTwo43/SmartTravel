@@ -5,12 +5,15 @@ import { AVAILABLE_LANGUAGE_CODES, DEFAULT_LANGUAGE, LanguageCode } from './pres
 import { ThemeService } from './presentation/service/theme/theme.service';
 import { FontSizeService } from './presentation/service/font-size/font-size.service';
 import { TextSpacingService } from './presentation/service/text-spacing/text-spacing.service';
+import { SessionService } from './presentation/service/session/session.service';
+import { SessionWarningModalComponent } from './presentation/components/ui/session-warning-modal/session-warning-modal';
 
 @Component({
   selector: 'app-root',
   imports: [
     RouterOutlet, 
-    TranslateModule
+    TranslateModule,
+    SessionWarningModalComponent
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'
@@ -21,6 +24,7 @@ export class App {
   protected readonly themeService = inject(ThemeService);
   protected readonly fontSizeService = inject(FontSizeService);
   private readonly router = inject(Router);
+  private readonly sessionService = inject(SessionService);
 
   currentUrl = '';
   protected readonly textSpacingService = inject(TextSpacingService);
