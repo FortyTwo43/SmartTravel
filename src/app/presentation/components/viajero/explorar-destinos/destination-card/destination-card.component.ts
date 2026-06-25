@@ -1,6 +1,6 @@
 import { Component, input, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import type { ExploreDestination } from '../../../../../useCase/viajero/explorar-destinos/GetExplorarDestinosUseCase';
 import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Heart } from 'lucide-angular';
@@ -8,7 +8,7 @@ import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Heart } from 'lu
 @Component({
   selector: 'app-explore-destination-card',
   standalone: true,
-  imports: [CommonModule, TranslateModule, LucideAngularModule],
+  imports: [CommonModule, TranslateModule, LucideAngularModule, RouterModule],
   providers: [
     {
       provide: LUCIDE_ICONS,

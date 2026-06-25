@@ -1,23 +1,31 @@
 /* Application styles */
+/* WCAG 2.4.1 — Skip link: invisible hasta recibir foco, aparece con la paleta del proyecto */
 .skip-link {
   position: absolute;
   top: -60px;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--color-primary, #1a73e8);
-  color: white;
-  padding: 10px 24px;
-  border-radius: 8px;
-  font-size: 14px;
+  background: var(--color-primary);
+  color: var(--text-on-primary);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
   font-weight: 600;
   text-decoration: none;
   z-index: 9999;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  box-shadow: var(--shadow-lg);
   transition: top 0.2s ease;
+  /* Garantiza que sea visible al recibir foco */
+  white-space: nowrap;
 }
 
-.skip-link:focus {
-  top: 16px;
+.skip-link:focus,
+.skip-link:focus-visible {
+  top: 1rem;
+  /* WCAG 2.4.7 — Anillo adicional de foco para máxima visibilidad */
+  outline: 3px solid var(--text-on-primary);
+  outline-offset: 2px;
 }
 
 .sr-only {

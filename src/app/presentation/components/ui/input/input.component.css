@@ -40,10 +40,22 @@ label {
   cursor: pointer;
   display: flex;
   align-items: center;
-  padding: 0;
+  justify-content: center;
+  /* WCAG 2.5.8 — Área táctil mínima de 24x24px */
+  min-width: 24px;
+  min-height: 24px;
+  padding: 4px;
 }
 
 .toggle-password:hover {
+  color: var(--text-main);
+}
+
+/* WCAG 2.4.7 — Foco visible en botón mostrar/ocultar contraseña */
+.toggle-password:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
   color: var(--text-main);
 }
 
@@ -51,3 +63,12 @@ label {
   width: 0.875rem;
   height: 0.875rem;
 }
+
+/* WCAG 3.3.1 — Mensaje de error accesible vinculado al input */
+.input-error-hint {
+  font-size: 0.75rem;
+  color: var(--color-negative);
+  margin-top: 0.25rem;
+  line-height: 1.4;
+}
+

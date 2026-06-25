@@ -24,7 +24,12 @@
     <hr class="card-divider" />
 
     <div class="card-footer">
-      <a href="javascript:void(0)" class="btn-primary" (click)="navigateToDetail()" [attr.aria-label]="'Ver detalles de ' + destination()!.nombre">Ver detalles</a>
+      <!-- WCAG 2.4.4 + 2.1.1 — Enlace real (routerLink) para acceso por teclado y propósito claro -->
+      <a
+        [routerLink]="['/traveler/destinations', destination()!.id]"
+        class="btn-primary"
+        [attr.aria-label]="'Ver detalles de ' + destination()!.nombre"
+      >Ver detalles</a>
     </div>
   </div>
 </div>
