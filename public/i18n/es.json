@@ -29,6 +29,8 @@
   },
   "COMMON": {
     "BACK": "Atrás",
+    "AVAILABLE": "Disponible",
+    "UNAVAILABLE": "No disponible",
     "SAVE": "Guardar",
     "CANCEL": "Cancelar",
     "DELETE": "Eliminar",

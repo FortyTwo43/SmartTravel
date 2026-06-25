@@ -14,7 +14,10 @@
           <div class="icon-container">
             <span class="text-primary font-bold">{{ s.nombre_servicio.charAt(0) }}</span>
           </div>
-          <span class="availability-dot" [style.background-color]="s.disponibilidad ? 'var(--color-secondary)' : 'var(--color-tertiary)'" [title]="s.disponibilidad ? 'Disponible' : 'No disponible'"></span>
+          <div class="availability-indicator" [style.color]="s.disponibilidad ? 'var(--color-secondary)' : 'var(--color-tertiary)'">
+            <span class="availability-dot" [style.background-color]="s.disponibilidad ? 'var(--color-secondary)' : 'var(--color-tertiary)'"></span>
+            <span class="availability-text">{{ (s.disponibilidad ? 'COMMON.AVAILABLE' : 'COMMON.UNAVAILABLE') | translate }}</span>
+          </div>
         </div>
         
         <h5 class="service-name">{{s.nombre_servicio}}</h5>

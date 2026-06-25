@@ -4,9 +4,15 @@
   </div>
 }
 
-<form [formGroup]="destinoForm" (ngSubmit)="onSubmit()" class="service-form">
+<form [formGroup]="destinoForm" (ngSubmit)="onSubmit()" class="service-form" novalidate>
+  <p id="mandatory-note" class="mandatory-note">
+    {{ 'PROVIDER_SERVICES.FORM.MANDATORY_NOTE' | translate }}
+  </p>
   <div class="form-group">
-    <label for="nombre">{{ 'ADMIN_DESTINO_FORM.NAME' | translate }}</label>
+    <label for="nombre">
+      {{ 'ADMIN_DESTINO_FORM.NAME' | translate }}
+      <span class="required-asterisk" aria-hidden="true">*</span>
+    </label>
     <input 
       type="text" 
       id="nombre" 
@@ -18,7 +24,10 @@
 
   <div class="form-group form-group--inline">
     <div class="form-field">
-      <label for="ciudad">{{ 'ADMIN_DESTINO_FORM.CITY' | translate }}</label>
+      <label for="ciudad">
+        {{ 'ADMIN_DESTINO_FORM.CITY' | translate }}
+        <span class="required-asterisk" aria-hidden="true">*</span>
+      </label>
       <input 
         type="text" 
         id="ciudad" 
@@ -29,7 +38,10 @@
     </div>
 
     <div class="form-field">
-      <label for="pais">{{ 'ADMIN_DESTINO_FORM.COUNTRY' | translate }}</label>
+      <label for="pais">
+        {{ 'ADMIN_DESTINO_FORM.COUNTRY' | translate }}
+        <span class="required-asterisk" aria-hidden="true">*</span>
+      </label>
       <input 
         type="text" 
         id="pais" 
@@ -41,7 +53,10 @@
   </div>
 
   <div class="form-group">
-    <label for="descripcion">{{ 'ADMIN_DESTINO_FORM.DESCRIPTION' | translate }}</label>
+    <label for="descripcion">
+      {{ 'ADMIN_DESTINO_FORM.DESCRIPTION' | translate }}
+      <span class="required-asterisk" aria-hidden="true">*</span>
+    </label>
     <textarea 
       id="descripcion" 
       formControlName="descripcion" 
@@ -52,7 +67,10 @@
   </div>
 
   <div class="form-group">
-    <label for="tipo_experiencia">{{ 'ADMIN_DESTINO_FORM.EXPERIENCE' | translate }}</label>
+    <label for="tipo_experiencia">
+      {{ 'ADMIN_DESTINO_FORM.EXPERIENCE' | translate }}
+      <span class="required-asterisk" aria-hidden="true">*</span>
+    </label>
     <select id="tipo_experiencia" formControlName="tipo_experiencia" class="form-input form-select">
       <option value="" disabled>{{ 'ADMIN_DESTINO_FORM.EXPERIENCE_PLACEHOLDER' | translate }}</option>
       @for (interest of interests; track interest.id) {
@@ -62,7 +80,10 @@
   </div>
 
   <div class="form-group">
-    <span class="form-label" id="image-upload-label">{{ 'ADMIN_DESTINO_FORM.IMAGE' | translate }}</span>
+    <span class="form-label" id="image-upload-label">
+      {{ 'ADMIN_DESTINO_FORM.IMAGE' | translate }}
+      <span class="required-asterisk" aria-hidden="true">*</span>
+    </span>
 
     @if (!selectedFile()) {
       <label 
