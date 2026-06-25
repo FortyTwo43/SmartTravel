@@ -65,3 +65,36 @@
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.5);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.6), 0 4px 6px -4px rgb(0 0 0 / 0.6);
 }
+
+/* Accessibility: High Contrast Mode */
+:root[data-high-contrast="true"] {
+  --bg-main: #000000;
+  --bg-surface: #000000;
+  --bg-surface-alt: #111111;
+  
+  --text-main: #FFFFFF;
+  --text-muted: #E0E0E0;
+  --text-on-primary: #000000;
+  
+  --color-primary: #FFFF00;
+  --color-secondary: #00FF00;
+  --color-tertiary: #FF00FF;
+  --color-neutral: #FFFFFF;
+  --color-negative: #FF4444;
+  
+  --border-color: #FFFFFF;
+  --input-bg: #000000;
+  
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+}
+
+/* Accessibility: Border Contrast Mode */
+:root[data-border-contrast="true"] {
+  --border-color: #000000;
+}
+
+:root[data-theme='dark'][data-border-contrast="true"] {
+  --border-color: #FFFFFF;
+}

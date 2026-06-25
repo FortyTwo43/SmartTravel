@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
+import { ContrastService } from '../../../service/contrast/contrast.service';
 
 @Component({
   selector: 'app-contrast-color',
@@ -8,4 +9,6 @@ import { TranslateModule } from '@ngx-translate/core';
   templateUrl: './contrast-color.html',
   styleUrl: './contrast-color.css',
 })
-export class ContrastColor {}
+export class ContrastColor {
+  contrastService = inject(ContrastService);
+}
