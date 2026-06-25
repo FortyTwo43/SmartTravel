@@ -372,7 +372,7 @@
 /* ====================================================
    MÓVIL: Bottom Sheet — solo aplica en ≤768px
    ==================================================== */
-@media (max-width: 768px) {
+@media (max-width: 768px) or (orientation: landscape) {
 
   /* Resetear estilos desktop */
   .filters {

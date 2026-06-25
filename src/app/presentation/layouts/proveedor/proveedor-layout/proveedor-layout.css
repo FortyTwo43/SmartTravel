@@ -44,7 +44,7 @@
   to { opacity: 1; }
 }
 
-@media (min-width: 769px) {
+@media (min-width: 1024px) {
   .sidebar-backdrop {
     display: none;
   }

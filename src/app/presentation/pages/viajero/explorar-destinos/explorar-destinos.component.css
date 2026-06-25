@@ -35,7 +35,7 @@
 /* ========================
    MÓVIL ≤768px
    ======================== */
-@media (max-width: 768px) {
+@media (max-width: 768px) or (orientation: landscape) {
   .explorar-destinos-page {
     padding: 0;
   }

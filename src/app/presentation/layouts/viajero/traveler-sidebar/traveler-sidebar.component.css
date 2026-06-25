@@ -184,7 +184,7 @@
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .traveler-sidebar {
     position: fixed;
     top: 0;
