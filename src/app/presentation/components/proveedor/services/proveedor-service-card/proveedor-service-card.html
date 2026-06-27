@@ -35,7 +35,7 @@
   <footer class="service-card__footer">
     <button type="button" class="service-card__toggle" (click)="toggleAvailability()"
       [attr.aria-pressed]="service().disponibilidad">
-      <lucide-icon name="Power"></lucide-icon>
+      <lucide-icon name="Power" aria-hidden="true"></lucide-icon>
       <span>{{ service().disponibilidad ? ('PROVIDER_SERVICES.CARD.DISABLE' | translate) :
         ('PROVIDER_SERVICES.CARD.ENABLE' | translate) }}</span>
     </button>
@@ -44,13 +44,13 @@
       <button type="button" class="service-card__action-btn service-card__action-btn--primary"
         [routerLink]="['/provider/services/edit', service().id]"
         [attr.aria-label]="'COMMON.EDIT' | translate">
-        <lucide-icon name="Edit2"></lucide-icon>
+        <lucide-icon name="Edit2" aria-hidden="true"></lucide-icon>
         <span>{{ 'COMMON.EDIT' | translate }}</span>
       </button>
 
       <button type="button" class="service-card__action-btn service-card__action-btn--danger"
         [attr.aria-label]="'PROVIDER_SERVICES.CARD.DELETE' | translate">
-        <lucide-icon name="Trash2"></lucide-icon>
+        <lucide-icon name="Trash2" aria-hidden="true"></lucide-icon>
       </button>
     </div>
   </footer>

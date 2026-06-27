@@ -24,9 +24,13 @@
 
         <div class="stream-controls">
           <button 
+            type="button"
             class="btn btn-primary btn-mic" 
             [class.listening]="isListening()"
-            (click)="toggleListening()">
+            (click)="toggleListening()"
+            [attr.aria-label]="(isListening() ? 'LIVE_STREAMS.STOP_MIC' : 'LIVE_STREAMS.START_MIC') | translate"
+            [attr.aria-pressed]="isListening()"
+          >
             @if (isListening()) {
               <lucide-icon name="mic" aria-hidden="true"></lucide-icon>
               {{ 'LIVE_STREAMS.STOP_MIC' | translate }}
@@ -48,12 +52,12 @@
             <article class="stream-card">
               <div class="stream-thumbnail-wrapper">
                 <img [src]="stream.img" [alt]="stream.alt" class="stream-thumbnail">
-                <div class="stream-badge live-badge">LIVE</div>
+                <div class="stream-badge live-badge" aria-label="En vivo">LIVE</div>
                 <div class="stream-viewers">
                   <lucide-icon name="users" class="viewer-icon" aria-hidden="true"></lucide-icon>
                   {{ stream.viewers }} {{ 'LIVE_STREAMS.VIEWERS' | translate }}
                 </div>
-                <div class="play-overlay">
+                <div class="play-overlay" aria-hidden="true">
                   <lucide-icon name="play-circle" aria-hidden="true"></lucide-icon>
                 </div>
               </div>

@@ -1,13 +1,14 @@
 <div class="form-row">
   <!-- Travel Type -->
   <div class="form-card">
-    <h3 class="card-subtitle">{{ 'TRAVELER_ONBOARDING.TRAVEL_TYPE_HEADING' | translate }}</h3>
-    <div class="travel-type-buttons">
+    <h3 id="travel-type-heading" class="card-subtitle">{{ 'TRAVELER_ONBOARDING.TRAVEL_TYPE_HEADING' | translate }}</h3>
+    <div class="travel-type-buttons" role="group" aria-labelledby="travel-type-heading">
       @for (type of travelTypes(); track type.id) {
         <button
           type="button"
           class="travel-type-button"
           [class.active]="selectedTravelType() === type.id"
+          [attr.aria-pressed]="selectedTravelType() === type.id"
           (click)="select(type.id)"
         >
           {{ type.label | translate }}
@@ -21,18 +22,20 @@
     <h3 class="card-subtitle">{{ 'TRAVELER_ONBOARDING.BUDGET_HEADING' | translate }}</h3>
 
     <div class="budget-container">
-      <label class="budget-label">{{ 'TRAVELER_ONBOARDING.ESTIMATED_BUDGET' | translate }}</label>
+      <label class="budget-label" for="budget-slider">{{ 'TRAVELER_ONBOARDING.ESTIMATED_BUDGET' | translate }}</label>
 
       <div class="slider-container">
         <input
           type="range"
+          id="budget-slider"
           class="budget-slider"
           min="500"
           max="10000"
           step="100"
           formControlName="presupuesto"
+          [attr.aria-valuetext]="budgetFormatted()"
         />
-        <div class="slider-labels">
+        <div class="slider-labels" aria-hidden="true">
           <span>€500</span>
           <span class="current-value">{{ budgetFormatted() }}</span>
           <span>€10,000+</span>

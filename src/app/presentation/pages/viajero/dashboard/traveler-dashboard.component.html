@@ -5,9 +5,9 @@
     <p>{{ 'COMMON.LOADING' | translate }}</p>
   </div>
 } @else if (error()) {
-  <div class="error-container">
+  <div class="error-container" role="alert">
     <p>{{ error() }}</p>
-    <button (click)="reloadDashboard()" class="reload-btn">
+    <button type="button" (click)="reloadDashboard()" class="reload-btn">
       {{ 'COMMON.RETRY' | translate }}
     </button>
   </div>
@@ -20,7 +20,7 @@
         <div class="trip-column">
           <div class="section-header">
             <h2 class="section-title">Próximos Viajes</h2>
-            <a href="#" class="see-all">Ver todos</a>
+            <button type="button" class="see-all" aria-label="Ver todos los viajes">Ver todos</button>
           </div>
           @if (dashboardData()!.proximosViajes.length > 0) {
             <app-trip-card [trip]="dashboardData()!.proximosViajes[0]"></app-trip-card>
@@ -34,45 +34,45 @@
           <!-- Top Cards: Credits & Miles -->
           <div class="cards-row">
             <!-- Viajes completados -->
-            <div class="info-card credits-card">
+            <article class="info-card credits-card" aria-label="Viajes completados: {{ dashboardData()!.estadisticas.viajes_completados }}">
               <div class="card-header">
-                <span class="card-icon">✅</span>
+                <span class="card-icon" aria-hidden="true">✅</span>
                 <span class="card-label">VIAJES COMPLETADOS</span>
               </div>
-              <div class="card-value">{{ dashboardData()!.estadisticas.viajes_completados }}</div>
-            </div>
+              <div class="card-value" aria-hidden="true">{{ dashboardData()!.estadisticas.viajes_completados }}</div>
+            </article>
 
             <!-- Presupuesto -->
-            <div class="info-card miles-card">
+            <article class="info-card miles-card" aria-label="Presupuesto: €{{ dashboardData()!.estadisticas.presupuesto | number }}">
               <div class="card-header">
-                <span class="card-icon">💶</span>
+                <span class="card-icon" aria-hidden="true">💶</span>
                 <span class="card-label">PRESUPUESTO</span>
               </div>
-              <div class="card-value">€{{ dashboardData()!.estadisticas.presupuesto | number }}</div>
-            </div>
+              <div class="card-value" aria-hidden="true">€{{ dashboardData()!.estadisticas.presupuesto | number }}</div>
+            </article>
           </div>
 
           <!-- Assistance Card -->
           <div class="info-card assistance-card">
-            <div class="assistance-icon-container">
+            <div class="assistance-icon-container" aria-hidden="true">
               <lucide-icon name="Headset" class="assistance-icon"></lucide-icon>
             </div>
             <div class="assistance-content">
               <h3>Asistencia 24/7</h3>
               <p>Chat premium activado</p>
             </div>
-            <lucide-icon name="ChevronRight" class="arrow-icon"></lucide-icon>
+            <lucide-icon name="ChevronRight" class="arrow-icon" aria-hidden="true"></lucide-icon>
           </div>
         </div>
       </div>
 
       <!-- Destinos Recomendados -->
-      <section class="section">
+      <section class="section" aria-labelledby="destinos-recomendados-heading">
         <div class="section-header">
-          <h2 class="section-title">Destinos Recomendados</h2>
+          <h2 id="destinos-recomendados-heading" class="section-title">Destinos Recomendados</h2>
           <div class="nav-arrows">
-            <button class="nav-arrow" aria-label="Destino anterior">&lt;</button>
-            <button class="nav-arrow" aria-label="Destino siguiente">&gt;</button>
+            <button type="button" class="nav-arrow" aria-label="Destino anterior">&lt;</button>
+            <button type="button" class="nav-arrow" aria-label="Destino siguiente">&gt;</button>
           </div>
         </div>
 

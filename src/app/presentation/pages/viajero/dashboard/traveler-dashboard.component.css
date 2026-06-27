@@ -178,6 +178,11 @@
   font-weight: 600;
   font-size: 0.875rem;
   transition: opacity 0.2s;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
 }
 
 .nav-arrows {

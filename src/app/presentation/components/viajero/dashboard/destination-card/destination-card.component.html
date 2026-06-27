@@ -1,5 +1,5 @@
 @if (destination()) {
-  <div class="destination-card" tabindex="0">
+  <article class="destination-card" [attr.aria-label]="destination()!.nombre" tabindex="0">
     @if (destination()!.imagen) {
       <div class="destination-image-container">
         <img [src]="destination()!.imagen" [alt]="destination()!.nombre" class="destination-image" />
@@ -12,5 +12,5 @@
       <h3 class="destination-title">{{ destination()!.nombre }}</h3>
       <p class="destination-country">{{ destination()!.ciudad }}, {{ destination()!.pais }}</p>
     </div>
-  </div>
+  </article>
 }

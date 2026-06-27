@@ -465,8 +465,14 @@
     "AUDIO_DESCRIPTION_DESC": "Activates the audio description track in pre-recorded videos.",
     "REALTIME_CAPTIONS": "Real-time captions",
     "REALTIME_CAPTIONS_DESC": "Activates the real-time captions feature for live broadcasts."
-  }
-  ,
+  },
+  "EXPLORE": {
+    "RESULTS_FOUND": "destinations found",
+    "GRID_LABEL": "Destinations grid",
+    "NO_RESULTS": "No destinations found",
+    "NO_RATING": "No rating",
+    "VIEW_DETAILS": "View details"
+  },
   "TRAVELER_EXPLORAR": {
     "TITLE": "Explore Destinations",
     "FILTERS": "Filters",

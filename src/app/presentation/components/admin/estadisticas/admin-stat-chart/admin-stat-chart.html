@@ -1,8 +1,14 @@
 @if (hasData) {
-  <div echarts [options]="chartOption" class="chart"></div>
+  <div
+    echarts
+    [options]="chartOption"
+    class="chart"
+    role="img"
+    [attr.aria-label]="title"
+  ></div>
 } @else {
-  <section class="empty-chart">
-    <h3>{{ title }}</h3>
+  <section class="empty-chart" aria-labelledby="chart-empty-title">
+    <h3 id="chart-empty-title">{{ title }}</h3>
     <p>{{ 'ADMIN_STATISTICS.NO_DATA' | translate }}</p>
   </section>
 }

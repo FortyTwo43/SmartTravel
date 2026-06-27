@@ -467,8 +467,7 @@
     "AUDIO_DESCRIPTION_DESC": "Activa la pista de audiodescripción en videos pregrabados.",
     "REALTIME_CAPTIONS": "Subtítulos en tiempo real",
     "REALTIME_CAPTIONS_DESC": "Activa la función de subtítulos en tiempo real para transmisiones en directo."
-  }
-  ,
+  },
   "TRAVELER_EXPLORAR": {
     "TITLE": "Explorar Destinos",
     "FILTERS": "Filtros",
@@ -665,5 +664,12 @@
     "ERROR_MSG": "Error al actualizar el establecimiento",
     "SAVE": "Guardar Cambios",
     "CANCEL": "Cancelar"
+  },
+  "EXPLORE": {
+    "RESULTS_FOUND": "destinos encontrados",
+    "GRID_LABEL": "Cuadrícula de destinos",
+    "NO_RESULTS": "No se encontraron destinos",
+    "NO_RATING": "Sin calificación",
+    "VIEW_DETAILS": "Ver detalles"
   }
 }

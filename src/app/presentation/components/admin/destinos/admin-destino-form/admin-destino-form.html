@@ -99,14 +99,14 @@
           accept="image/png, image/jpeg"
           (change)="onFileSelected($event)" 
         />
-        <lucide-icon name="cloud-upload"></lucide-icon>
+        <lucide-icon name="cloud-upload" aria-hidden="true"></lucide-icon>
         <p><span class="file-upload-highlight">{{ 'REGISTER.UPLOAD_FILES' | translate }}</span> {{ 'REGISTER.OR_DRAG_DROP' | translate }}</p>
         <p class="file-upload-hint">{{ 'REGISTER.FILE_HINT' | translate }} (Max 5MB)</p>
       </label>
     } @else {
       <div class="selected-file-area">
         <div class="file-info">
-          <lucide-icon name="image" [size]="20"></lucide-icon>
+          <lucide-icon name="image" [size]="20" aria-hidden="true"></lucide-icon>
           <span>{{ selectedFile()?.name }}</span>
         </div>
         <button type="button" class="remove-file-btn" (click)="removeFile()" [attr.aria-label]="'REGISTER.REMOVE_FILE' | translate">
@@ -120,12 +120,12 @@
     <button type="button" class="btn-cancel" routerLink="/admin/destinos">
       {{ 'COMMON.CANCEL' | translate }}
     </button>
-    <button type="submit" class="btn-submit" [disabled]="destinoForm.invalid || !selectedFile() || loading()">
+    <button type="submit" class="btn-submit" [disabled]="destinoForm.invalid || !selectedFile() || loading()" [attr.aria-busy]="loading()">
       @if (loading()) {
-        <span class="spinner"></span>
+        <span class="spinner" aria-hidden="true"></span>
         {{ 'COMMON.LOADING' | translate }}
       } @else {
-        <lucide-icon name="save" [size]="18"></lucide-icon>
+        <lucide-icon name="save" [size]="18" aria-hidden="true"></lucide-icon>
         <span>{{ 'ADMIN_DESTINO_FORM.SUBMIT' | translate }}</span>
       }
     </button>
