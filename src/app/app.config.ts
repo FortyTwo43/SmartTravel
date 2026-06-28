@@ -1,4 +1,4 @@
-import { ApplicationConfig, importProvidersFrom, provideBrowserGlobalErrorListeners, provideAppInitializer, inject } from '@angular/core';
+import { ApplicationConfig, InjectionToken, importProvidersFrom, provideBrowserGlobalErrorListeners, provideAppInitializer, inject } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';
@@ -9,7 +9,9 @@ import { routes } from './app.routes';
 import { i18nConfig, i18nProviders } from './presentation/i18n/i18n.config';
 import { LanguageService } from './presentation/service/language/language.service';
 
-export const createAppConfig = (supabase: SupabaseClient): ApplicationConfig => ({
+export const RECOMMENDATIONS_API_URL = new InjectionToken<string>('RECOMMENDATIONS_API_URL');
+
+export const createAppConfig = (supabase: SupabaseClient, recommendationsApiUrl: string): ApplicationConfig => ({
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
@@ -23,6 +25,7 @@ export const createAppConfig = (supabase: SupabaseClient): ApplicationConfig => 
     }),
     ...i18nProviders,
     { provide: SupabaseClient, useValue: supabase },
+    { provide: RECOMMENDATIONS_API_URL, useValue: recommendationsApiUrl },
     provideEchartsCore({ echarts: () => import('echarts') })
   ]
 });
