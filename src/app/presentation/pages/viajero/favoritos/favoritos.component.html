@@ -1,0 +1,34 @@
+<main id="main-content" class="favoritos-page">
+  <div class="header-section">
+    <h1>Tus Destinos Favoritos</h1>
+    <p>Todos los lugares increíbles que has guardado para tus próximos viajes.</p>
+  </div>
+
+  <div aria-live="polite" aria-atomic="true" class="status-messages">
+    @if (isLoading()) {
+      <div class="loading">{{ 'COMMON.LOADING' | translate }}</div>
+    } @else if (error()) {
+      <div class="error">{{ error() }}</div>
+    }
+  </div>
+
+  @if (!isLoading() && !error()) {
+    @if (destinos().length > 0) {
+      <div class="destinations-grid">
+        @for (destino of destinos(); track destino.id) {
+          <app-explore-destination-card [destination]="destino"></app-explore-destination-card>
+        }
+      </div>
+    } @else {
+      <!-- Empty State -->
+      <div class="empty-state">
+        <div class="empty-icon-wrapper">
+          <lucide-icon name="Heart" size="48" class="empty-icon" aria-hidden="true"></lucide-icon>
+        </div>
+        <h2>Aún no tienes favoritos</h2>
+        <p>Explora el mundo y guarda los destinos que más te gusten presionando el corazón.</p>
+        <a routerLink="/traveler/explorar-destinos" class="btn-primary">Explorar destinos</a>
+      </div>
+    }
+  }
+</main>

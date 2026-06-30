@@ -10,30 +10,31 @@
   <!-- WCAG 2.4.3 — aria-current="page" marca la ruta activa para lectores de pantalla -->
   <nav class="sidebar-nav" aria-label="Navegación principal">
     @for (item of navItems; track item.id) {
-      <button
+      <a
         class="nav-item"
-        [class.active]="isActiveRoute(item.route)"
-        (click)="navigate(item.route)"
-        type="button"
-        [attr.aria-current]="isActiveRoute(item.route) ? 'page' : null"
+        [routerLink]="[item.route]"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: false }"
+        (click)="closeSidebar.emit()"
       >
         <lucide-icon [name]="item.icon" class="nav-icon" aria-hidden="true"></lucide-icon>
         <span class="nav-label">{{ item.label | translate }}</span>
-      </button>
+      </a>
     }
   </nav>
 
   <div class="sidebar-footer">
     <!-- WCAG 4.1.2 — aria-label en lugar de title= (title no es expuesto por todos los AT) -->
-    <button
+    <a
       class="settings-btn nav-item"
-      (click)="navigate('/traveler/accessibility')"
-      type="button"
+      routerLink="/traveler/accessibility"
+      routerLinkActive="active"
+      (click)="closeSidebar.emit()"
       aria-label="Configuración de accesibilidad"
     >
       <lucide-icon name="Settings" class="nav-icon" aria-hidden="true"></lucide-icon>
       <span class="nav-label">{{ 'COMMON.SETTINGS' | translate }}</span>
-    </button>
+    </a>
 
     <button
       class="logout-btn nav-item"

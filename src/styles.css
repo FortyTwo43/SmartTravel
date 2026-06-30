@@ -141,3 +141,25 @@ main,
     overflow-wrap: break-word !important;
   }
 }
+
+/* Secondary Action Buttons */
+.btn-secondary-action {
+  padding: 0.55rem 1.25rem;
+  background: #0f172a;
+  border: 1px solid #334155;
+  color: #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: border-color 0.2s, background 0.2s;
+}
+.btn-secondary-action:hover {
+  border-color: #0ea5e9;
+  background: #1e293b;
+  color: #f1f5f9;
+}
+.btn-full-width {
+  width: 100%;
+  margin-top: 0.75rem;
+}
