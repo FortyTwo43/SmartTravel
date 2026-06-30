@@ -1,16 +1,28 @@
-<section class="adjustments-section">
+<section class="adjustments-section shortcuts-panel">
   <fieldset class="adjustments-fieldset">
-    <legend class="section-title">
+    <legend class="section-title shortcuts-header-title">
       {{ 'ACCESSIBILITY.KEYBOARD_SHORTCUTS' | translate }}
     </legend>
-    <div class="toggles-container">
-      <label class="toggle-option">
-        <input type="checkbox" class="toggle-input" />
-        <div class="toggle-label-text">
-          <span class="toggle-title">{{ 'ACCESSIBILITY.DISABLE_SINGLE_KEY' | translate }}</span>
-          <span class="toggle-desc">{{ 'ACCESSIBILITY.DISABLE_SINGLE_KEY_DESC' | translate }}</span>
-        </div>
+    
+    <div class="shortcuts-header">
+      <p class="shortcuts-status">
+        {{ shortcutsService.shortcutsEnabled() ? '✅ Atajos activados' : '⏸ Atajos desactivados' }}
+      </p>
+      <label class="toggle-switch">
+        <input type="checkbox"
+               [checked]="shortcutsService.shortcutsEnabled()"
+               (change)="shortcutsService.toggle()" />
+        <span class="toggle-slider"></span>
       </label>
+    </div>
+
+    <div class="shortcuts-list">
+      @for (shortcut of shortcuts; track shortcut.key) {
+        <div class="shortcut-row">
+          <span class="shortcut-desc">{{ shortcut.description }}</span>
+          <kbd class="shortcut-key">Alt + {{ shortcut.key }}</kbd>
+        </div>
+      }
     </div>
   </fieldset>
 </section>
