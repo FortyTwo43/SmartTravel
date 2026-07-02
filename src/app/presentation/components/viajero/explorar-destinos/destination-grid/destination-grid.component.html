@@ -1,12 +1,16 @@
 @if (destinos() && destinos()!.length > 0) {
   <div class="results-header">
-    <div class="results-count"><strong>{{ destinos()!.length }}</strong> destinos encontrados</div>
+    <div class="results-count" aria-live="polite" aria-atomic="true">
+      <strong>{{ destinos()!.length }}</strong> {{ 'EXPLORE.RESULTS_FOUND' | translate }}
+    </div>
   </div>
-  <div class="grid">
+  <ul class="grid" aria-label="{{ 'EXPLORE.GRID_LABEL' | translate }}">
     @for (d of destinos()!; track d.id) {
-      <app-explore-destination-card [destination]="d"></app-explore-destination-card>
+      <li>
+        <app-explore-destination-card [destination]="d"></app-explore-destination-card>
+      </li>
     }
-  </div>
+  </ul>
 } @else {
-  <div class="empty">No se encontraron destinos</div>
+  <div class="empty" role="status">{{ 'EXPLORE.NO_RESULTS' | translate }}</div>
 }

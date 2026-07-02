@@ -48,7 +48,7 @@
 
         <!-- Error Message -->
         @if (errorMessage()) {
-          <div class="error-box">
+          <div class="error-box" role="alert">
             {{ errorMessage() | translate }}
           </div>
         }
@@ -59,7 +59,7 @@
         <!-- Profile Card -->
         <div class="sidebar-card profile-card">
           <div class="profile-header">
-            <span class="info-icon">
+            <span class="info-icon" aria-hidden="true">
               <lucide-icon name="info"></lucide-icon>
             </span>
             <h3 class="profile-title">{{ 'TRAVELER_ONBOARDING.YOUR_PROFILE' | translate }}</h3>

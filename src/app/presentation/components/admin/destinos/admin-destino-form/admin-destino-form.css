@@ -9,6 +9,17 @@
   border: 1px solid var(--border-color);
 }
 
+.mandatory-note {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.required-asterisk {
+  color: var(--color-negative);
+  margin-left: 0.25rem;
+}
+
 .form-group {
   display: flex;
   flex-direction: column;

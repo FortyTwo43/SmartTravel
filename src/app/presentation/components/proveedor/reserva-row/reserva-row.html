@@ -1,27 +1,32 @@
-<div class="reserva-row" [ngClass]="'status-border-' + reserva().estado">
-  <div class="row-cell service-cell">
+<article
+  class="reserva-row"
+  [ngClass]="'status-border-' + reserva().estado"
+  [attr.aria-label]="reserva().nombre_servicio"
+  role="row"
+>
+  <div class="row-cell service-cell" role="cell">
     <span class="mobile-label">{{ 'PROVIDER_RESERVATIONS.CARD.SERVICE' | translate }}</span>
     <span class="service-name">{{ reserva().nombre_servicio }}</span>
   </div>
   
-  <div class="row-cell date-cell">
+  <div class="row-cell date-cell" role="cell">
     <span class="mobile-label">{{ 'PROVIDER_RESERVATIONS.CARD.DATE' | translate }}</span>
     <span>{{ reserva().fecha_reserva | date:'mediumDate' }}</span>
   </div>
   
-  <div class="row-cell pax-cell">
+  <div class="row-cell pax-cell" role="cell">
     <span class="mobile-label">{{ 'PROVIDER_RESERVATIONS.CARD.PAX' | translate }}</span>
     <span>{{ reserva().cantidad_personas }} {{ 'COMMON.PEOPLE' | translate }}</span>
   </div>
   
-  <div class="row-cell total-cell">
+  <div class="row-cell total-cell" role="cell">
     <span class="mobile-label">{{ 'PROVIDER_RESERVATIONS.CARD.TOTAL' | translate }}</span>
     <span class="price">{{ reserva().precio_total | currency }}</span>
   </div>
   
-  <div class="row-cell status-cell">
+  <div class="row-cell status-cell" role="cell">
     <span class="mobile-label">{{ 'PROVIDER_RESERVATIONS.CARD.STATUS' | translate }}</span>
-    <div class="status-badge" [ngClass]="'status-' + reserva().estado">
+    <div class="status-badge" [ngClass]="'status-' + reserva().estado" role="status">
       @if (reserva().estado === 'pendiente') {
         {{ 'PROVIDER_RESERVATIONS.FILTERS.STATUS_PENDING' | translate }}
       } @else if (reserva().estado === 'aceptado') {
@@ -31,4 +36,4 @@
       }
     </div>
   </div>
-</div>
+</article>

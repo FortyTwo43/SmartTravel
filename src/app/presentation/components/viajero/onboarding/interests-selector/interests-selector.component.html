@@ -1,6 +1,10 @@
-<div class="form-card">
-  <h2 class="card-title">{{ 'TRAVELER_ONBOARDING.INTERESTS_HEADING' | translate }}</h2>
-  <div class="interests-grid">
+<section class="form-card">
+  <h2 id="interests-heading" class="card-title">{{ 'TRAVELER_ONBOARDING.INTERESTS_HEADING' | translate }}</h2>
+  <div
+    class="interests-grid"
+    role="group"
+    aria-labelledby="interests-heading"
+  >
     @for (interest of interests(); track interest.id) {
       <label
         class="interest-item"
@@ -13,13 +17,13 @@
           (change)="toggle(interest.id)"
           hidden
         />
-        <span class="interest-icon">
+        <span class="interest-icon" aria-hidden="true">
           <lucide-icon [name]="interest.icon"></lucide-icon>
         </span>
         <span class="interest-label">{{ interest.label | translate }}</span>
         @if (isSelected(interest.id)) {
-          <span class="interest-check">
-            <svg class="check-icon" viewBox="0 0 24 24" fill="currentColor">
+          <span class="interest-check" aria-hidden="true">
+            <svg class="check-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
             </svg>
           </span>
@@ -27,4 +31,4 @@
       </label>
     }
   </div>
-</div>
+</section>
