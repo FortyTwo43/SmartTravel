@@ -39,6 +39,10 @@
     [selectedMultimedia]="selectedMultimedia()"
     (multimediaChanged)="onMultimediaChange($event.key, $event.value)"
   ></app-multimedia>
+  <app-screen-reader-options
+    [selectedScreenReader]="selectedScreenReader()"
+    (screenReaderChanged)="onScreenReaderChange($event)"
+  ></app-screen-reader-options>
 
   <!-- Language Preference Component -->
   <app-language-preference

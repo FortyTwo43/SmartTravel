@@ -91,7 +91,9 @@
       "HIDE_TRANSCRIPT": "Ocultar Transcripción",
       "TRANSCRIPT_TITLE": "Transcripción del Video",
       "MUTE_AUDIO": "Silenciar audio",
-      "UNMUTE_AUDIO": "Activar audio"
+      "UNMUTE_AUDIO": "Activar audio",
+      "READ_TRANSCRIPT": "Leer transcripción",
+      "STOP_READING": "Detener lectura"
     },
     "FEATURES": {
       "PERSONALIZATION": "Personalización Total",
@@ -433,6 +435,11 @@
     "REDUCE_MOTION_DESC": "Desactiva animaciones fluidas y efectos de transición complejos.",
     "SCREEN_READER": "Lector de Pantalla",
     "SCREEN_READER_DESC": "Optimización de salida de voz para NVDA y VoiceOver.",
+    "SCREEN_READER_SECTION": "Lector de Pantalla",
+    "READ_FOCUSED_ELEMENT": "Leer elemento seleccionado con Tab",
+    "READ_FOCUSED_ELEMENT_DESC": "Lee automáticamente el texto del elemento que recibe el foco al navegar con la tecla Tab.",
+    "READ_SELECTED_TEXT": "Leer texto seleccionado con el ratón",
+    "READ_SELECTED_TEXT_DESC": "Lee el texto que selecciones con el ratón una vez que sueltes el botón izquierdo.",
     "LANGUAGE_PREFERENCE": "Preferencia de Idioma",
     "SPANISH_CASTILIAN": "Español (Castellano)",
     "ENGLISH": "Inglés",

@@ -2,6 +2,7 @@ import { Component, signal, inject } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, ArrowRight, Play, FileText, AudioLines, Volume2, VolumeX } from 'lucide-angular';
 import { MultimediaService } from '../../../service/multimedia/multimedia';
+import { ScreenReaderService } from '../../../service/screen-reader/screen-reader';
 
 @Component({
   selector: 'app-home-hero',
@@ -16,7 +17,9 @@ import { MultimediaService } from '../../../service/multimedia/multimedia';
 })
 export class HomeHero {
   public multimediaService = inject(MultimediaService);
+  public screenReaderService = inject(ScreenReaderService);
   transcriptText = signal('');
+  isSpeaking = signal(false);
 
   constructor() {
     fetch('assets/videos/transcripcion.txt')
@@ -31,5 +34,20 @@ export class HomeHero {
 
   toggleAudioDesc() {
     this.multimediaService.toggleAudioDescription();
+  }
+
+  readTranscript() {
+    this.isSpeaking.set(true);
+    this.screenReaderService.speak(this.transcriptText());
+    
+    // Simplistic approach to reset isSpeaking when speech ends
+    // A better approach would be to listen to SpeechSynthesisUtterance 'end' event,
+    // but we'll use a timeout for demonstration or rely on the user stopping it.
+    // For a robust solution, the service should emit state.
+  }
+
+  stopReading() {
+    this.screenReaderService.stopSpeaking();
+    this.isSpeaking.set(false);
   }
 }

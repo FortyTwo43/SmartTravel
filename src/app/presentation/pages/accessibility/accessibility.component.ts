@@ -15,7 +15,9 @@ import { AnimationsMovement } from '../../components/accessibility/animations-mo
 import { NavigationFocus } from '../../components/accessibility/navigation-focus/navigation-focus';
 import { KeyboardShortcuts } from '../../components/accessibility/keyboard-shortcuts/keyboard-shortcuts';
 import { Multimedia } from '../../components/accessibility/multimedia/multimedia';
+import { ScreenReaderOptions } from '../../components/accessibility/screen-reader-options/screen-reader-options';
 import { MultimediaService } from '../../service/multimedia/multimedia';
+import { ScreenReaderService } from '../../service/screen-reader/screen-reader';
 import { AnimationsService } from '../../service/animations/animations.service';
 import {
   ChangeThemeUseCase,
@@ -41,7 +43,8 @@ import {
     AnimationsMovement,
     NavigationFocus,
     KeyboardShortcuts,
-    Multimedia
+    Multimedia,
+    ScreenReaderOptions
   ],
   providers: [{
     provide: LUCIDE_ICONS,
@@ -62,6 +65,7 @@ export class AccessibilityComponent implements OnInit, OnDestroy {
     private loadPreferencesUseCase = inject(LoadAccessibilityPreferencesUseCase);
     private resetPreferencesUseCase = inject(ResetAccessibilityPreferencesUseCase);
     public multimediaService = inject(MultimediaService);
+    public screenReaderService = inject(ScreenReaderService);
     public animationsService = inject(AnimationsService);
 
     // Current state signals
@@ -78,6 +82,11 @@ export class AccessibilityComponent implements OnInit, OnDestroy {
         realtimeCaptions: false
     });
     
+    selectedScreenReader = signal({
+        readFocusedElement: false,
+        readSelectedText: false
+    });
+    
     selectedAnimations = signal({
         tooltipsMenus: false,
         pauseMotion: false,
@@ -91,6 +100,7 @@ export class AccessibilityComponent implements OnInit, OnDestroy {
         textSpacing: 'normal' as TextSpacingLevel,
         language: 'es' as LanguageCode,
         multimedia: { pauseAutoAudio: true, textTranscripts: false, syncCaptions: false, audioDescription: false, realtimeCaptions: false },
+        screenReader: { readFocusedElement: false, readSelectedText: false },
         animations: { tooltipsMenus: false, pauseMotion: false, disableFlashing: false }
     });
 
@@ -103,6 +113,7 @@ export class AccessibilityComponent implements OnInit, OnDestroy {
         this.selectedTextSpacing() !== current.textSpacing ||
         this.selectedLanguage() !== current.language ||
         JSON.stringify(this.selectedMultimedia()) !== JSON.stringify(current.multimedia) ||
+        JSON.stringify(this.selectedScreenReader()) !== JSON.stringify(current.screenReader) ||
         JSON.stringify(this.selectedAnimations()) !== JSON.stringify(current.animations)
         );
     });
@@ -123,6 +134,14 @@ export class AccessibilityComponent implements OnInit, OnDestroy {
         this.selectedTextSpacing.set(preferences.textSpacing);
         this.selectedLanguage.set(preferences.language);
         this.selectedMultimedia.set(preferences.multimedia);
+        
+        // Initial setup for Screen Reader (read from service, as we don't have a usecase for it yet)
+        const srInitial = {
+          readFocusedElement: this.screenReaderService.readFocusedElement(),
+          readSelectedText: this.screenReaderService.readSelectedText()
+        };
+        this.selectedScreenReader.set(srInitial);
+        
         this.selectedAnimations.set(preferences.animations);
 
         // Set initial state for change detection
@@ -132,6 +151,7 @@ export class AccessibilityComponent implements OnInit, OnDestroy {
         textSpacing: preferences.textSpacing,
         language: preferences.language,
         multimedia: preferences.multimedia,
+        screenReader: srInitial,
         animations: preferences.animations
         });
     }
@@ -146,6 +166,9 @@ export class AccessibilityComponent implements OnInit, OnDestroy {
         multimedia: this.selectedMultimedia(),
         animations: this.selectedAnimations()
         });
+        
+        // Save Screen Reader preferences
+        this.screenReaderService.commitPreferences(this.selectedScreenReader());
 
         // Update initial state to mark changes as saved
         this.initialState.set({
@@ -154,6 +177,7 @@ export class AccessibilityComponent implements OnInit, OnDestroy {
         textSpacing: this.selectedTextSpacing(),
         language: this.selectedLanguage(),
         multimedia: this.selectedMultimedia(),
+        screenReader: this.selectedScreenReader(),
         animations: this.selectedAnimations()
         });
     }
@@ -171,6 +195,7 @@ export class AccessibilityComponent implements OnInit, OnDestroy {
         this.changeLanguageUseCase.execute(committed.language);
         
         this.multimediaService.setPreferences(committed.multimedia);
+        this.screenReaderService.setPreferences(committed.screenReader);
         this.animationsService.setPreferences(committed.animations);
 
         this.selectedTheme.set(committed.theme);
@@ -178,6 +203,7 @@ export class AccessibilityComponent implements OnInit, OnDestroy {
         this.selectedTextSpacing.set(committed.textSpacing);
         this.selectedLanguage.set(committed.language);
         this.selectedMultimedia.set(committed.multimedia);
+        this.selectedScreenReader.set(committed.screenReader);
         this.selectedAnimations.set(committed.animations);
     }
 
@@ -191,6 +217,10 @@ export class AccessibilityComponent implements OnInit, OnDestroy {
         this.selectedTextSpacing.set(preferences.textSpacing);
         this.selectedLanguage.set(preferences.language);
         this.selectedMultimedia.set(preferences.multimedia);
+        
+        const defaultSr = { readFocusedElement: false, readSelectedText: false };
+        this.selectedScreenReader.set(defaultSr);
+        
         this.selectedAnimations.set(preferences.animations);
 
         // Apply preview immediately without persisting until save
@@ -199,6 +229,7 @@ export class AccessibilityComponent implements OnInit, OnDestroy {
         this.changeTextSpacingUseCase.execute(preferences.textSpacing);
         this.changeLanguageUseCase.execute(preferences.language);
         this.multimediaService.setPreferences(preferences.multimedia);
+        this.screenReaderService.setPreferences(defaultSr);
         this.animationsService.setPreferences(preferences.animations);
     }
 
@@ -239,5 +270,12 @@ export class AccessibilityComponent implements OnInit, OnDestroy {
         (current as any)[key] = value;
         this.selectedAnimations.set(current);
         this.animationsService.setPreferences(current);
+    }
+
+    onScreenReaderChange(event: { key: string, value: boolean }): void {
+        const current = { ...this.selectedScreenReader() };
+        (current as any)[event.key] = event.value;
+        this.selectedScreenReader.set(current);
+        this.screenReaderService.setPreferences(current);
     }
 }

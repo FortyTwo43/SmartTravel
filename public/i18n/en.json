@@ -89,7 +89,9 @@
       "HIDE_TRANSCRIPT": "Hide Transcript",
       "TRANSCRIPT_TITLE": "Video Transcript",
       "MUTE_AUDIO": "Mute audio",
-      "UNMUTE_AUDIO": "Unmute audio"
+      "UNMUTE_AUDIO": "Unmute audio",
+      "READ_TRANSCRIPT": "Read transcript",
+      "STOP_READING": "Stop reading"
     },
     "FEATURES": {
       "PERSONALIZATION": "Total Personalization",
@@ -431,6 +433,11 @@
     "REDUCE_MOTION_DESC": "Disables smooth animations and complex transition effects.",
     "SCREEN_READER": "Screen Reader",
     "SCREEN_READER_DESC": "Speech output optimization for NVDA and VoiceOver.",
+    "SCREEN_READER_SECTION": "Screen Reader",
+    "READ_FOCUSED_ELEMENT": "Read element focused with Tab",
+    "READ_FOCUSED_ELEMENT_DESC": "Automatically reads the text of the element that receives focus when navigating with the Tab key.",
+    "READ_SELECTED_TEXT": "Read text selected with mouse",
+    "READ_SELECTED_TEXT_DESC": "Reads the text you select with the mouse once you release the left button.",
     "LANGUAGE_PREFERENCE": "Language Preference",
     "SPANISH_CASTILIAN": "Spanish (Castilian)",
     "ENGLISH": "English",

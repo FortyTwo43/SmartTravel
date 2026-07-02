@@ -54,7 +54,18 @@
       
       @if (multimediaService.textTranscripts()) {
         <div class="transcript-panel">
-          <h3 class="transcript-title">{{ 'HOME.HERO.TRANSCRIPT_TITLE' | translate }}</h3>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h3 class="transcript-title">{{ 'HOME.HERO.TRANSCRIPT_TITLE' | translate }}</h3>
+            @if (!isSpeaking()) {
+              <button class="btn btn-sm" (click)="readTranscript()" [attr.aria-label]="'HOME.HERO.READ_TRANSCRIPT' | translate" style="background: none; border: none; cursor: pointer; color: var(--text-main);">
+                <lucide-icon name="volume-2" aria-hidden="true" size="20"></lucide-icon>
+              </button>
+            } @else {
+              <button class="btn btn-sm" (click)="stopReading()" [attr.aria-label]="'HOME.HERO.STOP_READING' | translate" style="background: none; border: none; cursor: pointer; color: var(--color-primary);">
+                <lucide-icon name="volume-x" aria-hidden="true" size="20"></lucide-icon>
+              </button>
+            }
+          </div>
           <p class="transcript-content">{{ transcriptText() }}</p>
         </div>
       }
