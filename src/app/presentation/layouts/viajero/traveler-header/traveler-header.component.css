@@ -90,6 +90,14 @@
   background-color: var(--bg-surface);
 }
 
+/* WCAG 2.4.7 — Foco visible en input de búsqueda con acento del proyecto */
+.search-input:focus-visible {
+  border-color: var(--color-primary);
+  outline: 2px solid var(--color-primary);
+  outline-offset: 0;
+  background-color: var(--bg-surface);
+}
+
 .notification-btn {
   position: relative;
   width: 40px;

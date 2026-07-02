@@ -98,6 +98,34 @@ h1, h2, h3, h4, h5, h6 {
   border-color: var(--color-primary);
 }
 
+/* ═══════════════════════════════════════════════════════
+   WCAG 2.4.7 — Foco visible global con acento del proyecto
+   Aplica a TODOS los elementos interactivos de la app
+   ═══════════════════════════════════════════════════════ */
+*:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Eliminar outline default solo cuando :focus-visible está soportado
+   (browsers modernos lo manejan automáticamente, pero esto es seguro) */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ═══════════════════════════════════════════════════════
+   WCAG 2.4.11 — Foco no oculto por header sticky
+   El header del traveler-layout mide ~72-80px en desktop.
+   scroll-margin-top garantiza que el elemento enfocado
+   no quede tapado por la barra pegajosa.
+   ═══════════════════════════════════════════════════════ */
+#main-content,
+main,
+[id] {
+  scroll-margin-top: 5rem;
+}
+
 .chart-tooltip {
   line-height: var(--text-line-height) !important;
   letter-spacing: var(--text-letter-spacing) !important;
@@ -112,4 +140,26 @@ h1, h2, h3, h4, h5, h6 {
     word-wrap: break-word !important;
     overflow-wrap: break-word !important;
   }
+}
+
+/* Secondary Action Buttons */
+.btn-secondary-action {
+  padding: 0.55rem 1.25rem;
+  background: #0f172a;
+  border: 1px solid #334155;
+  color: #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: border-color 0.2s, background 0.2s;
+}
+.btn-secondary-action:hover {
+  border-color: #0ea5e9;
+  background: #1e293b;
+  color: #f1f5f9;
+}
+.btn-full-width {
+  width: 100%;
+  margin-top: 0.75rem;
 }

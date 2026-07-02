@@ -46,6 +46,7 @@
   font-weight: 500;
   transition: all 0.2s;
   text-align: left;
+  text-decoration: none;
 }
 
 .nav-item:hover {
@@ -53,9 +54,23 @@
   color: var(--text-main);
 }
 
+/* WCAG 2.4.7 — Anillo de foco visible al navegar por teclado */
+.nav-item:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+}
+
 .nav-item.active {
   background-color: var(--color-primary);
   color: white;
+}
+
+/* El ítem activo ya tiene contraste suficiente; el foco lo realza con offset */
+.nav-item.active:focus-visible {
+  outline-color: var(--color-primary);
+  outline-offset: 2px;
 }
 
 .nav-item.active::before {

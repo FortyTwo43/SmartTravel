@@ -33,14 +33,14 @@
     <hr class="card-divider" />
 
     <div class="card-footer">
-      <button
-        type="button"
+      <!-- WCAG 2.4.4 + 2.1.1 — Enlace real (routerLink) para acceso por teclado y propósito claro -->
+      <a
+        [routerLink]="['/traveler/destinations', destination()!.id]"
         class="btn-primary"
-        (click)="navigateToDetail()"
         [attr.aria-label]="'Ver detalles de ' + destination()!.nombre"
       >
         {{ 'EXPLORE.VIEW_DETAILS' | translate }}
-      </button>
+      </a>
     </div>
   </div>
 </article>

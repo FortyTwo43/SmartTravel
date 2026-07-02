@@ -1,3 +1,16 @@
 <a href="#main-content" class="skip-link" (click)="onSkipLinkClick($event)">Saltar al contenido principal</a>
+
+<!-- WCAG 4.1.3 — Región aria-live global para mensajes de estado (toasts, alertas asíncronas).
+     Se encuentra aquí, en app-root, para no duplicarse en ninguna subruta.
+     Los servicios de notificación inyectan contenido aquí vía documento o servicio compartido. -->
+<div
+  id="global-status-region"
+  aria-live="polite"
+  aria-atomic="true"
+  aria-relevant="additions text"
+  class="sr-only"
+  role="status"
+></div>
+
 <router-outlet />
 <app-session-warning-modal></app-session-warning-modal>

@@ -1,50 +1,54 @@
-<aside class="traveler-sidebar" [class.open]="isOpen()">
+<aside class="traveler-sidebar" [class.open]="isOpen()" role="complementary" aria-label="Menú de navegación">
   <div class="sidebar-header">
     <h1 class="sidebar-title">SmartTravel</h1>
     <button class="mobile-back-btn" (click)="closeSidebar.emit()" aria-label="Cerrar menú">
       <span>{{ 'COMMON.BACK' | translate }}</span>
-      <lucide-icon name="arrow-right" class="icon-sm"></lucide-icon>
+      <lucide-icon name="arrow-right" class="icon-sm" aria-hidden="true"></lucide-icon>
     </button>
   </div>
 
-  <nav class="sidebar-nav">
+  <!-- WCAG 2.4.3 — aria-current="page" marca la ruta activa para lectores de pantalla -->
+  <nav class="sidebar-nav" aria-label="Navegación principal">
     @for (item of navItems; track item.id) {
-      <button
+      <a
         class="nav-item"
-        [class.active]="isActiveRoute(item.route)"
-        (click)="navigate(item.route)"
-        type="button"
+        [routerLink]="[item.route]"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: false }"
+        (click)="closeSidebar.emit()"
       >
-        <lucide-icon [name]="item.icon" class="nav-icon"></lucide-icon>
+        <lucide-icon [name]="item.icon" class="nav-icon" aria-hidden="true"></lucide-icon>
         <span class="nav-label">{{ item.label | translate }}</span>
-      </button>
+      </a>
     }
   </nav>
 
   <div class="sidebar-footer">
-    <button
+    <!-- WCAG 4.1.2 — aria-label en lugar de title= (title no es expuesto por todos los AT) -->
+    <a
       class="settings-btn nav-item"
-      (click)="navigate('/traveler/accessibility')"
-      type="button"
-      title="Settings"
+      routerLink="/traveler/accessibility"
+      routerLinkActive="active"
+      (click)="closeSidebar.emit()"
+      aria-label="Configuración de accesibilidad"
     >
-      <lucide-icon name="Settings" class="nav-icon"></lucide-icon>
+      <lucide-icon name="Settings" class="nav-icon" aria-hidden="true"></lucide-icon>
       <span class="nav-label">{{ 'COMMON.SETTINGS' | translate }}</span>
-    </button>
+    </a>
 
     <button
       class="logout-btn nav-item"
       (click)="logout()"
       type="button"
-      title="Logout"
+      aria-label="Cerrar sesión"
     >
-      <lucide-icon name="LogOut" class="nav-icon"></lucide-icon>
+      <lucide-icon name="LogOut" class="nav-icon" aria-hidden="true"></lucide-icon>
       <span class="nav-label">{{ 'COMMON.LOGOUT' | translate }}</span>
     </button>
   </div>
 
   <div class="sidebar-profile">
-    <div class="profile-avatar">
+    <div class="profile-avatar" aria-hidden="true">
       <span>TV</span>
     </div>
     <div class="profile-info">
@@ -53,3 +57,4 @@
     </div>
   </div>
 </aside>
+

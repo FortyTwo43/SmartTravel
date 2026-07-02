@@ -23,6 +23,17 @@
 
     <!-- Resultados -->
     <section class="results-column">
+      <!-- Contador de resultados -->
+      <p class="results-count">
+        @if (searchService.searchTerm()) {
+          {{ filteredDestinations().length }} resultado(s) para
+          "<strong>{{ searchService.searchTerm() }}</strong>"
+          <button class="btn-clear" (click)="searchService.clearSearch()">✕ Limpiar</button>
+        } @else {
+          {{ filteredDestinations().length }} destinos encontrados
+        }
+      </p>
+
       <div aria-live="polite" aria-atomic="true" class="status-messages">
         @if (isLoading()) {
           <div class="loading">{{ 'COMMON.LOADING' | translate }}</div>
@@ -31,7 +42,18 @@
         }
       </div>
       @if (!isLoading() && !error()) {
-        <app-destination-grid [destinos]="destinos()"></app-destination-grid>
+        @if (filteredDestinations().length > 0) {
+          <app-destination-grid [destinos]="filteredDestinations()"></app-destination-grid>
+        } @else {
+          <div class="search-empty">
+            <span class="search-empty-icon">🔍</span>
+            <h3>Sin resultados</h3>
+            <p>No encontramos destinos para "{{ searchService.searchTerm() }}"</p>
+            <button class="btn-primary" (click)="searchService.clearSearch()">
+              Ver todos los destinos
+            </button>
+          </div>
+        }
       }
     </section>
   </div>

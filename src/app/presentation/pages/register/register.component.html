@@ -69,12 +69,14 @@
 
               <label class="form-group" for="email">
                 <span class="form-label">{{ 'AUTH.EMAIL' | translate }}</span>
+                <!-- WCAG 3.3.1 — aria-invalid anuncia el campo inválido a lectores de pantalla -->
                 <input id="email" type="email" class="form-input" [class.ng-invalid-custom]="emailInvalid"
                   [placeholder]="'AUTH.PLACEHOLDER_EMAIL' | translate" [(ngModel)]="email" name="email" 
+                  [attr.aria-invalid]="emailInvalid ? 'true' : null"
                   [attr.aria-describedby]="emailInvalid ? 'email-error' : null" autocomplete="email" />
                 <div aria-live="polite">
                   @if (emailInvalid) {
-                  <div id="email-error" class="input-error-message">{{ 'REGISTER.ERROR_INVALID_EMAIL_FORMAT' | translate }}</div>
+                  <div id="email-error" class="input-error-message" role="alert">{{ 'REGISTER.ERROR_INVALID_EMAIL_FORMAT' | translate }}</div>
                   }
                 </div>
               </label>
@@ -83,9 +85,12 @@
                 <label class="form-group" for="password">
                   <span class="form-label">{{ 'REGISTER.PASSWORD' | translate }}</span>
                   <div class="password-wrapper">
+                    <!-- WCAG 3.3.1 — aria-invalid en campo de contraseña -->
                     <input id="password" [type]="passwordVisible() ? 'text' : 'password'" class="form-input"
                       [class.ng-invalid-custom]="passwordInvalid" placeholder="••••••••" [(ngModel)]="password"
-                      name="password" [attr.aria-describedby]="passwordInvalid ? 'password-error' : null" autocomplete="new-password" />
+                      name="password"
+                      [attr.aria-invalid]="passwordInvalid ? 'true' : null"
+                      [attr.aria-describedby]="passwordInvalid ? 'password-error' : null" autocomplete="new-password" />
                     <button type="button" (click)="togglePasswordVisibility()" class="password-toggle"
                       [attr.aria-label]="(passwordVisible() ? 'REGISTER.HIDE_PASSWORD' : 'REGISTER.SHOW_PASSWORD') | translate">
                       <lucide-icon [name]="passwordVisible() ? 'eye_off' : 'eye'" aria-hidden="true"></lucide-icon>
@@ -93,16 +98,19 @@
                   </div>
                   <div aria-live="polite">
                     @if (passwordInvalid) {
-                    <div id="password-error" class="input-error-message">{{ 'REGISTER.ERROR_MIN_LENGTH_8' | translate }}</div>
+                    <div id="password-error" class="input-error-message" role="alert">{{ 'REGISTER.ERROR_MIN_LENGTH_8' | translate }}</div>
                     }
                   </div>
                 </label>
                 <label class="form-group" for="confirmPassword">
                   <span class="form-label">{{ 'REGISTER.CONFIRM_PASSWORD' | translate }}</span>
                   <div class="password-wrapper">
+                    <!-- WCAG 3.3.1 — aria-invalid en campo de confirmación de contraseña -->
                     <input id="confirmPassword" [type]="confirmPasswordVisible() ? 'text' : 'password'" class="form-input"
                       [class.ng-invalid-custom]="passwordsMismatch" placeholder="••••••••" [(ngModel)]="confirmPassword"
-                      name="confirmPassword" [attr.aria-describedby]="passwordsMismatch ? 'confirm-error' : null" autocomplete="new-password" />
+                      name="confirmPassword"
+                      [attr.aria-invalid]="passwordsMismatch ? 'true' : null"
+                      [attr.aria-describedby]="passwordsMismatch ? 'confirm-error' : null" autocomplete="new-password" />
                     <button type="button" (click)="toggleConfirmPasswordVisibility()" class="password-toggle"
                       [attr.aria-label]="(confirmPasswordVisible() ? 'REGISTER.HIDE_PASSWORD' : 'REGISTER.SHOW_PASSWORD') | translate">
                       <lucide-icon [name]="confirmPasswordVisible() ? 'eye_off' : 'eye'" aria-hidden="true"></lucide-icon>
@@ -110,7 +118,7 @@
                   </div>
                   <div aria-live="polite">
                     @if (passwordsMismatch) {
-                    <div id="confirm-error" class="input-error-message">{{ 'REGISTER.ERROR_PASSWORD_MISMATCH' | translate }}</div>
+                    <div id="confirm-error" class="input-error-message" role="alert">{{ 'REGISTER.ERROR_PASSWORD_MISMATCH' | translate }}</div>
                     }
                   </div>
                 </label>
@@ -170,10 +178,14 @@
               <div class="form-row two-columns">
                 <label class="form-group" for="telefono">
                   <span class="form-label">{{ 'REGISTER.PHONE' | translate }}</span>
+                  <!-- WCAG 3.3.1 — aria-invalid + aria-describedby en campo de teléfono -->
                   <input id="telefono" type="tel" class="form-input" [class.ng-invalid-custom]="phoneInvalid"
-                    [placeholder]="'REGISTER.PLACEHOLDER_PHONE' | translate" [(ngModel)]="telefono" name="telefono" autocomplete="tel" />
+                    [placeholder]="'REGISTER.PLACEHOLDER_PHONE' | translate" [(ngModel)]="telefono" name="telefono"
+                    [attr.aria-invalid]="phoneInvalid ? 'true' : null"
+                    [attr.aria-describedby]="phoneInvalid ? 'telefono-error' : null"
+                    autocomplete="tel" />
                   @if (phoneInvalid) {
-                  <div class="input-error-message">{{ 'REGISTER.ERROR_PHONE_10_DIGITS' | translate }}</div>
+                  <div id="telefono-error" class="input-error-message" role="alert">{{ 'REGISTER.ERROR_PHONE_10_DIGITS' | translate }}</div>
                   }
                 </label>
                 <label class="form-group" for="ubicacion">

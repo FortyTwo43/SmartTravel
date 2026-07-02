@@ -1,0 +1,69 @@
+<main id="main-content" class="itinerarios-page">
+  <div class="header-section flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
+    <div>
+      <h1 class="text-4xl font-bold text-white mb-2">{{ data()?.title }}</h1>
+      <p class="text-lg text-gray-400">{{ data()?.subtitle }}</p>
+    </div>
+
+    <div class="itinerary-actions">
+      <button class="btn-outline">
+        <lucide-icon name="share-2" size="15" aria-hidden="true"></lucide-icon>
+        Share
+      </button>
+      <button class="btn-primary">
+        <lucide-icon name="plus" size="15" aria-hidden="true"></lucide-icon>
+        Add Event
+      </button>
+    </div>
+  </div>
+
+  <div class="itinerarios-layout">
+    <aside class="itinerarios-sidebar">
+      <app-calendar-widget [month]="data()?.activeMonth || ''" [activeDay]="data()?.activeDay || 1"></app-calendar-widget>
+      <app-trip-summary [summary]="data()?.summary"></app-trip-summary>
+
+      <div class="map-card card p-0 overflow-hidden relative mb-6">
+        <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=400&q=80" alt="Map view" class="w-full h-48 object-cover filter brightness-90">
+        <div class="absolute inset-0 bg-blue-900 bg-opacity-20 flex items-end p-4">
+          <button class="btn-secondary-action btn-full-width">
+            View Full Map
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <section class="itinerarios-content">
+      <div class="card p-4 sm:p-8 border border-gray-700 shadow-sm">
+        <div class="flex justify-between items-center mb-8">
+          <div class="flex items-center gap-4">
+            <div class="bg-blue-700 text-white flex flex-col items-center justify-center w-14 h-14 rounded-xl shadow-md">
+              <span class="text-xs font-bold uppercase tracking-widest opacity-80 mb-0.5">{{ data()?.activeMonth | slice:0:3 }}</span>
+              <span class="text-xl font-black leading-none">{{ data()?.activeDay !== undefined && data()!.activeDay < 10 ? '0' : '' }}{{ data()?.activeDay }}</span>
+            </div>
+            <div>
+              <h2 class="text-2xl font-bold text-white">Day 4: Paris to Amsterdam</h2>
+              <p class="text-gray-400">{{ data()?.events?.length }} Events scheduled</p>
+            </div>
+          </div>
+
+          <button class="p-2 border border-gray-600 rounded-full text-gray-400 hover:bg-gray-700 transition-colors" aria-label="More options">
+            <lucide-icon name="more-vertical" size="18" aria-hidden="true"></lucide-icon>
+          </button>
+        </div>
+
+        <div class="timeline-container border-t border-gray-700 pt-8">
+          @for (event of data()?.events; track event.id; let i = $index) {
+            <app-timeline-event [event]="event" [isLast]="i === (data()?.events?.length || 0) - 1"></app-timeline-event>
+          }
+        </div>
+
+        <div class="border-t border-gray-700 pt-6 mt-4 text-center">
+          <button class="btn-secondary-action">
+            View Next Day (Sep 06)
+          </button>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+

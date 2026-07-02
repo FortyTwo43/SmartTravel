@@ -1,6 +1,6 @@
 import { Component, inject, input, output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Router } from '@angular/router';
+import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, LayoutDashboard, MapPin, Compass, Map, Heart, BookOpen, Settings, LogOut, ArrowRight } from 'lucide-angular';
 
@@ -15,7 +15,7 @@ interface NavItem {
 @Component({
   selector: 'app-traveler-sidebar',
   standalone: true,
-  imports: [CommonModule, RouterModule, TranslateModule, LucideAngularModule],
+  imports: [CommonModule, RouterLink, RouterLinkActive, TranslateModule, LucideAngularModule],
   providers: [
     {
       provide: LUCIDE_ICONS,
@@ -33,26 +33,14 @@ export class TravelerSidebarComponent {
   isOpen = input<boolean>(false);
   closeSidebar = output<void>();
 
-  currentRoute = signal('/traveler/dashboard');
-
   navItems: NavItem[] = [
     { id: 'dashboard', label: 'TRAVELER_SIDEBAR.DASHBOARD', icon: 'LayoutDashboard', route: '/traveler/dashboard' },
     { id: 'explore', label: 'TRAVELER_SIDEBAR.EXPLORE', icon: 'Compass', route: '/traveler/explorar-destinos' },
-    { id: 'trips', label: 'TRAVELER_SIDEBAR.MY_TRIPS', icon: 'MapPin', route: '/traveler/trips' },
-    { id: 'itineraries', label: 'TRAVELER_SIDEBAR.ITINERARIES', icon: 'Map', route: '/traveler/itineraries' },
-    { id: 'favorites', label: 'TRAVELER_SIDEBAR.FAVORITES', icon: 'Heart', route: '/traveler/favorites' },
-    { id: 'profile', label: 'TRAVELER_SIDEBAR.PROFILE', icon: 'BookOpen', route: '/traveler/profile' },
+    { id: 'trips', label: 'TRAVELER_SIDEBAR.MY_TRIPS', icon: 'MapPin', route: '/traveler/mis-viajes' },
+    { id: 'itineraries', label: 'TRAVELER_SIDEBAR.ITINERARIES', icon: 'Map', route: '/traveler/itinerarios' },
+    { id: 'favorites', label: 'TRAVELER_SIDEBAR.FAVORITES', icon: 'Heart', route: '/traveler/favoritos' },
+    { id: 'profile', label: 'TRAVELER_SIDEBAR.PROFILE', icon: 'BookOpen', route: '/traveler/perfil' },
   ];
-
-  isActiveRoute = (route: string): boolean => {
-    return this.currentRoute() === route;
-  };
-
-  navigate(route: string): void {
-    this.currentRoute.set(route);
-    this.router.navigate([route]);
-    this.closeSidebar.emit();
-  }
 
   logout(): void {
     // TODO: Implement logout

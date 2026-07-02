@@ -1,9 +1,11 @@
 import { Component, OnInit, signal, inject, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { GetExplorarDestinosUseCase, ExploreDestination, ExploreFilter } from '../../../../useCase/viajero/explorar-destinos/GetExplorarDestinosUseCase';
 import { GetImageUrlUseCase } from '../../../../useCase/upload/GetImageUrlUseCase';
+import { SearchService } from '../../../../core/services/search.service';
 
 import { TravelerFilterSidebarComponent } from '../../../components/viajero/explorar-destinos/traveler-filter-sidebar/traveler-filter-sidebar.component';
 import { DestinationGridComponent } from '../../../components/viajero/explorar-destinos/destination-grid/destination-grid.component';
@@ -30,8 +32,23 @@ import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, SlidersHorizonta
 export class ExplorarDestinosComponent implements OnInit {
   private readonly useCase = inject(GetExplorarDestinosUseCase);
   private readonly getImageUrlUseCase = inject(GetImageUrlUseCase);
+  protected readonly searchService = inject(SearchService);
+  private readonly route = inject(ActivatedRoute);
 
   destinos = signal<ReadonlyArray<ExploreDestination>>([]);
+  
+  filteredDestinations = computed(() => {
+    const term = this.searchService.searchTerm();
+    const all = this.destinos();
+    if (!term) return all;
+    return all.filter(d =>
+      d.nombre.toLowerCase().includes(term) ||
+      d.ciudad?.toLowerCase().includes(term) ||
+      d.pais?.toLowerCase().includes(term) ||
+      d.descripcion?.toLowerCase().includes(term)
+    );
+  });
+
   isLoading = signal(false);
   error = signal<string | null>(null);
 
@@ -57,6 +74,12 @@ export class ExplorarDestinosComponent implements OnInit {
   filtroCategorias = signal<string[]>([]);
 
   async ngOnInit(): Promise<void> {
+    this.route.queryParams.subscribe(params => {
+      const q = params['q'];
+      if (q) {
+        this.searchService.setTerm(q);
+      }
+    });
     await this.loadDestinos();
   }
 
