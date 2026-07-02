@@ -4,6 +4,7 @@ import { SupabaseAuthRepository } from '../../../infrastructure/repositories/sup
 import { SupabaseItinerarioRepository } from '../../../infrastructure/repositories/supabase/SupabaseItinerarioRepository';
 import { SupabaseDestinoRepository } from '../../../infrastructure/repositories/supabase/SupabaseDestinoRepository';
 import { SupabaseServicioReservableRepository } from '../../../infrastructure/repositories/supabase/SupabaseServicioReservableRepository';
+import { HttpRecomendacionRepository } from '../../../infrastructure/repositories/HttpRecomendacionRepository';
 import { Itinerario } from '../../../domain/entities/Itinerario';
 import { Destino } from '../../../domain/entities/Destino';
 import { ServicioReservable } from '../../../domain/entities/ServicioReservable';
@@ -29,9 +30,11 @@ export class GetTravelerDashboardUseCase {
   private readonly itinerarioRepository = inject(SupabaseItinerarioRepository);
   private readonly destinoRepository = inject(SupabaseDestinoRepository);
   private readonly servicioRepository = inject(SupabaseServicioReservableRepository);
+  private readonly recomendacionRepository = inject(HttpRecomendacionRepository);
 
   /**
-   * Obtiene datos reales del dashboard del viajero desde Supabase.
+   * Obtiene datos reales del dashboard del viajero desde Supabase
+   * y recomendaciones personalizadas del módulo de IA externo.
    */
   async execute(): Promise<DashboardData> {
     // Obtener usuario autenticado
@@ -47,12 +50,13 @@ export class GetTravelerDashboardUseCase {
       authData.user.email?.split('@')[0] ||
       'Viajero';
 
-    // Cargar datos en paralelo
-    const [itinerarios, destinos, servicios, perfilViajero] = await Promise.allSettled([
+    // Cargar datos en paralelo: itinerarios, destinos (para lookup), servicios, perfil y recomendaciones IA
+    const [itinerarios, destinos, servicios, perfilViajero, recomendaciones] = await Promise.allSettled([
       this.itinerarioRepository.findByPerfilId(userId),
       this.destinoRepository.getAll(),
       this.servicioRepository.getAll(),
-      this.perfilViajeroRepository.getById(userId)
+      this.perfilViajeroRepository.getById(userId),
+      this.recomendacionRepository.getTodayRecommendations(userId)
     ]);
 
     const itinerariosData: Itinerario[] =
@@ -63,6 +67,8 @@ export class GetTravelerDashboardUseCase {
       servicios.status === 'fulfilled' ? servicios.value : [];
     const perfilData =
       perfilViajero.status === 'fulfilled' ? perfilViajero.value : null;
+    const recomendacionesData =
+      recomendaciones.status === 'fulfilled' ? recomendaciones.value : [];
 
     // Separar itinerarios activos/futuros (próximos viajes) de los recientes
     const proximosViajes = itinerariosData
@@ -74,9 +80,21 @@ export class GetTravelerDashboardUseCase {
       .slice(0, 5)
       .map(i => this.mapItinerarioToItineraryItem(i));
 
-    const destinosRecomendados = destinosData
-      .slice(0, 6)
-      .map(d => this.mapDestinoToCard(d));
+    // Construir mapa de destinos para lookup eficiente por id
+    const destinosMap = new Map<string, Destino>(destinosData.map(d => [d.id, d]));
+
+    // Mapear recomendaciones IA → DestinationCard con motivo
+    let destinosRecomendados: DestinationCard[];
+    if (recomendacionesData.length > 0) {
+      destinosRecomendados = recomendacionesData
+        .filter(r => destinosMap.has(r.id_destino))
+        .map(r => this.mapRecomendacionToCard(r.id_destino, r.motivo, destinosMap));
+    } else {
+      // Fallback: mostrar destinos genéricos si el API de IA no está disponible
+      destinosRecomendados = destinosData
+        .slice(0, 6)
+        .map(d => this.mapDestinoToCard(d));
+    }
 
     const serviciosSugeridos = serviciosData
       .filter(s => s.disponibilidad)
@@ -124,6 +142,23 @@ export class GetTravelerDashboardUseCase {
     };
   }
 
+  private mapRecomendacionToCard(
+    idDestino: string,
+    motivo: string,
+    destinosMap: Map<string, Destino>
+  ): DestinationCard {
+    const destino = destinosMap.get(idDestino)!;
+    return {
+      id: destino.id,
+      nombre: destino.nombre,
+      ciudad: destino.ciudad,
+      pais: destino.pais,
+      imagen: destino.imagen,
+      tipo_experiencia: destino.tipo_experiencia,
+      motivo
+    };
+  }
+
   private mapDestinoToCard(destino: Destino): DestinationCard {
     return {
       id: destino.id,
@@ -144,8 +179,6 @@ export class GetTravelerDashboardUseCase {
       disponibilidad: servicio.disponibilidad
     };
   }
-
-
 
   private formatDate(date: Date | string | null | undefined): string {
     if (!date) return '—';

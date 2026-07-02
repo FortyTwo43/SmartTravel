@@ -1,0 +1,23 @@
+<dialog #dialog class="session-modal" aria-labelledby="modal-title" aria-describedby="modal-desc">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="icon-container-warning">
+        <lucide-icon name="alert-triangle" class="warning-icon"></lucide-icon>
+      </div>
+      <h2 id="modal-title" class="modal-title">{{ 'SESSION.WARNING_TITLE' | translate }}</h2>
+    </div>
+    
+    <div class="modal-body">
+      <p id="modal-desc">{{ 'SESSION.WARNING_MESSAGE' | translate }}</p>
+    </div>
+    
+    <div class="modal-footer">
+      <button class="btn-cancel" (click)="logout()">
+        {{ 'SESSION.LOGOUT_BUTTON' | translate }}
+      </button>
+      <button class="btn-submit" (click)="continue()">
+        {{ 'SESSION.CONTINUE_BUTTON' | translate }}
+      </button>
+    </div>
+  </div>
+</dialog>

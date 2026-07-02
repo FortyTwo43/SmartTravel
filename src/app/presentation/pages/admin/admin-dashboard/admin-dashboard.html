@@ -1,74 +1,74 @@
 @if (isLoading()) {
-  <div class="loading-container">
-    <div class="spinner"></div>
+  <div class="loading-container" role="status" aria-live="polite">
+    <div class="spinner" aria-hidden="true"></div>
     <p>Cargando datos del sistema...</p>
   </div>
 } @else if (error()) {
-  <div class="error-container">
+  <div class="error-container" role="alert">
     <p>{{ error() }}</p>
-    <button (click)="loadData()" class="btn-primary">Reintentar</button>
+    <button type="button" (click)="loadData()" class="btn-primary">Reintentar</button>
   </div>
 } @else if (data()) {
-  <div class="dashboard-container">
+  <main class="dashboard-container" aria-label="Panel de administración">
     <div class="dashboard-header">
       <h1 class="page-title">Visión General del Sistema</h1>
       <p class="page-subtitle">Métricas y actividad reciente en SmartTravel</p>
     </div>
 
     <!-- KPIs Section -->
-    <div class="kpi-grid">
+    <section class="kpi-grid" aria-label="Métricas del sistema">
       <!-- Viajeros -->
-      <div class="kpi-card">
-        <div class="kpi-icon-container blue">
+      <article class="kpi-card" aria-label="Total Viajeros: {{ data()!.stats.viajerosCount }}">
+        <div class="kpi-icon-container blue" aria-hidden="true">
           <lucide-icon name="Users" class="kpi-icon"></lucide-icon>
         </div>
         <div class="kpi-info">
           <span class="kpi-label">Total Viajeros</span>
-          <span class="kpi-value">{{ data()!.stats.viajerosCount }}</span>
+          <span class="kpi-value" aria-hidden="true">{{ data()!.stats.viajerosCount }}</span>
         </div>
-      </div>
+      </article>
 
       <!-- Proveedores -->
-      <div class="kpi-card">
-        <div class="kpi-icon-container purple">
+      <article class="kpi-card" aria-label="Proveedores: {{ data()!.stats.proveedoresCount }}">
+        <div class="kpi-icon-container purple" aria-hidden="true">
           <lucide-icon name="Store" class="kpi-icon"></lucide-icon>
         </div>
         <div class="kpi-info">
           <span class="kpi-label">Proveedores</span>
-          <span class="kpi-value">{{ data()!.stats.proveedoresCount }}</span>
+          <span class="kpi-value" aria-hidden="true">{{ data()!.stats.proveedoresCount }}</span>
         </div>
-      </div>
+      </article>
 
       <!-- Establecimientos -->
-      <div class="kpi-card">
-        <div class="kpi-icon-container orange">
+      <article class="kpi-card" aria-label="Establecimientos: {{ data()!.stats.establecimientosCount }}">
+        <div class="kpi-icon-container orange" aria-hidden="true">
           <lucide-icon name="Building2" class="kpi-icon"></lucide-icon>
         </div>
         <div class="kpi-info">
           <span class="kpi-label">Establecimientos</span>
-          <span class="kpi-value">{{ data()!.stats.establecimientosCount }}</span>
+          <span class="kpi-value" aria-hidden="true">{{ data()!.stats.establecimientosCount }}</span>
         </div>
-      </div>
+      </article>
 
       <!-- Reservas -->
-      <div class="kpi-card">
-        <div class="kpi-icon-container green">
+      <article class="kpi-card" aria-label="Total Reservas: {{ data()!.stats.reservasCount }}">
+        <div class="kpi-icon-container green" aria-hidden="true">
           <lucide-icon name="CalendarCheck" class="kpi-icon"></lucide-icon>
         </div>
         <div class="kpi-info">
           <span class="kpi-label">Total Reservas</span>
-          <span class="kpi-value">{{ data()!.stats.reservasCount }}</span>
+          <span class="kpi-value" aria-hidden="true">{{ data()!.stats.reservasCount }}</span>
         </div>
-      </div>
-    </div>
+      </article>
+    </section>
 
     <!-- Lists Section -->
     <div class="lists-grid">
       <!-- Últimas Solicitudes -->
-      <div class="list-card">
+      <section class="list-card" aria-labelledby="solicitudes-heading">
         <div class="card-header">
-          <h2 class="card-title">Solicitudes Pendientes</h2>
-          <lucide-icon name="Clock" class="header-icon text-warning"></lucide-icon>
+          <h2 id="solicitudes-heading" class="card-title">Solicitudes Pendientes</h2>
+          <lucide-icon name="Clock" class="header-icon text-warning" aria-hidden="true"></lucide-icon>
         </div>
         
         <div class="list-content">
@@ -92,13 +92,13 @@
             </div>
           }
         </div>
-      </div>
+      </section>
 
       <!-- Últimos Servicios -->
-      <div class="list-card">
+      <section class="list-card" aria-labelledby="servicios-heading">
         <div class="card-header">
-          <h2 class="card-title">Últimos Servicios Creados</h2>
-          <lucide-icon name="PackagePlus" class="header-icon text-primary"></lucide-icon>
+          <h2 id="servicios-heading" class="card-title">Últimos Servicios Creados</h2>
+          <lucide-icon name="PackagePlus" class="header-icon text-primary" aria-hidden="true"></lucide-icon>
         </div>
         
         <div class="list-content">
@@ -122,7 +122,7 @@
             </div>
           }
         </div>
-      </div>
+      </section>
     </div>
-  </div>
+  </main>
 }

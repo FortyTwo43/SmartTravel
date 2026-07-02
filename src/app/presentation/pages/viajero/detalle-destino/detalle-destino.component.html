@@ -1,4 +1,4 @@
-<div class="detail-page">
+<main class="detail-page">
 
   <!-- ESTADO: CARGANDO -->
   @if (isLoading()) {
@@ -67,8 +67,8 @@
     <div class="detail-grid">
 
       <!-- COLUMNA IZQUIERDA: INFO CARD -->
-      <main class="info-column">
-        <article class="info-card card" aria-label="Información del destino">
+      <section class="info-column" aria-labelledby="info-destino-heading">
+        <article class="info-card card">
 
           <!-- BADGE EXPERIENCIA -->
           <div class="badge-experience">
@@ -77,7 +77,7 @@
           </div>
 
           <!-- TÍTULO ATRACTIVO -->
-          <h2 class="info-title">
+          <h2 id="info-destino-heading" class="info-title">
             {{ 'DESTINATION_DETAIL.EXPLORE_PREFIX' | translate }} {{ destino()!.nombre }}
           </h2>
 
@@ -97,7 +97,7 @@
           </div>
 
         </article>
-      </main>
+      </section>
 
       <!-- COLUMNA DERECHA: SIDEBAR -->
       <aside class="sidebar-column" aria-label="Gestionar viaje">
@@ -150,4 +150,4 @@
     </div>
   }
 
-</div>
+</main>

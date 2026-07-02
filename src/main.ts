@@ -1,10 +1,12 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { App } from './app/app';
 import { createAppConfig } from './app/app.config';
-import { createSupabaseClient } from './app/infrastructure/database/supabase.client';
+import { createAppRuntimeConfig } from './app/infrastructure/database/supabase.client';
 
-createSupabaseClient()
-  .then((supabase) => bootstrapApplication(App, createAppConfig(supabase)))
+createAppRuntimeConfig()
+  .then(({ supabase, recommendationsApiUrl }) =>
+    bootstrapApplication(App, createAppConfig(supabase, recommendationsApiUrl))
+  )
   .catch((err) => {
-    console.error('Supabase initialization failed', err);
+    console.error('App initialization failed', err);
   });

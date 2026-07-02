@@ -4,12 +4,12 @@
 
 export interface CreateRecomendacionDto {
   id_perfil: string;
-  id_establecimiento_turistico: string;
+  id_destino: string;
   motivo: string;
 }
 
 export interface UpdateRecomendacionDto {
   id_perfil?: string;
-  id_establecimiento_turistico?: string;
+  id_destino?: string;
   motivo?: string;
 }

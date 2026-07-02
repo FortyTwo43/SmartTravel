@@ -1,12 +1,12 @@
 @if (trip()) {
-  <div class="trip-card">
+  <article class="trip-card" [attr.aria-label]="trip()!.destino">
     <!-- Status header -->
     <div class="trip-content">
       <div class="trip-header">
         <div class="trip-status-top">
-          <span class="airplane-icon">✈️</span>
+          <span class="airplane-icon" aria-hidden="true">✈️</span>
           <span class="status-text" [class]="trip()!.estado">
-            {{ trip()!.estado === 'activo' ? 'En curso' : trip()!.estado === 'completado' ? 'Completado' : trip()!.estado === 'interes' ? 'Interés' : 'Pausado' }}
+            {{ 'TRIP_CARD.STATUS.' + trip()!.estado.toUpperCase() | translate }}
           </span>
         </div>
         <h3 class="trip-title">{{ trip()!.destino }}</h3>
@@ -14,8 +14,10 @@
       </div>
 
       <div class="trip-footer">
-        <button class="details-btn">Detalles</button>
+        <button type="button" class="details-btn" [attr.aria-label]="('TRIP_CARD.DETAILS' | translate) + ' ' + trip()!.destino">
+          {{ 'TRIP_CARD.DETAILS' | translate }}
+        </button>
       </div>
     </div>
-  </div>
+  </article>
 }

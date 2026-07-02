@@ -29,6 +29,8 @@
   },
   "COMMON": {
     "BACK": "Atrás",
+    "AVAILABLE": "Disponible",
+    "UNAVAILABLE": "No disponible",
     "SAVE": "Guardar",
     "CANCEL": "Cancelar",
     "DELETE": "Eliminar",
@@ -43,6 +45,12 @@
     "SHARE": "Compartir",
     "SEE_ALL": "Ver Todos",
     "PEOPLE": "personas"
+  },
+  "SESSION": {
+    "WARNING_TITLE": "Sesión por expirar",
+    "WARNING_MESSAGE": "Tu sesión expirará en 2 minutos por inactividad. ¿Deseas continuar?",
+    "CONTINUE_BUTTON": "Continuar sesión",
+    "LOGOUT_BUTTON": "Cerrar sesión"
   },
   "NAVBAR": {
     "TITLE": "Smart Travel",
@@ -459,8 +467,7 @@
     "AUDIO_DESCRIPTION_DESC": "Activa la pista de audiodescripción en videos pregrabados.",
     "REALTIME_CAPTIONS": "Subtítulos en tiempo real",
     "REALTIME_CAPTIONS_DESC": "Activa la función de subtítulos en tiempo real para transmisiones en directo."
-  }
-  ,
+  },
   "TRAVELER_EXPLORAR": {
     "TITLE": "Explorar Destinos",
     "FILTERS": "Filtros",
@@ -657,5 +664,12 @@
     "ERROR_MSG": "Error al actualizar el establecimiento",
     "SAVE": "Guardar Cambios",
     "CANCEL": "Cancelar"
+  },
+  "EXPLORE": {
+    "RESULTS_FOUND": "destinos encontrados",
+    "GRID_LABEL": "Cuadrícula de destinos",
+    "NO_RESULTS": "No se encontraron destinos",
+    "NO_RATING": "Sin calificación",
+    "VIEW_DETAILS": "Ver detalles"
   }
 }
