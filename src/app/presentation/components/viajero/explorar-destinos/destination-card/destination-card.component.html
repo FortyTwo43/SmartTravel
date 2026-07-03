@@ -1,21 +1,30 @@
 @if (destination()) {
-<div class="explore-card">
+<article class="explore-card" [attr.aria-label]="destination()!.nombre">
   <div class="image-wrap">
     @if (destination()!.imagen) {
     <img [src]="destination()!.imagen" [alt]="destination()!.nombre" />
     } @else {
-    <div class="placeholder-img"></div>
+    <div class="placeholder-img" aria-hidden="true"></div>
     }
-    <button class="favorite-btn" [class.active]="isFavorite()" (click)="toggleFavorite()" [attr.aria-label]="isFavorite() ? 'Quitar ' + destination()!.nombre + ' de favoritos' : 'Añadir ' + destination()!.nombre + ' a favoritos'"><lucide-icon name="heart" [class.filled]="isFavorite()"></lucide-icon></button>
+    <button
+      class="favorite-btn"
+      type="button"
+      [class.active]="isFavorite()"
+      (click)="toggleFavorite()"
+      [attr.aria-label]="isFavorite() ? 'Quitar ' + destination()!.nombre + ' de favoritos' : 'Añadir ' + destination()!.nombre + ' a favoritos'"
+      [attr.aria-pressed]="isFavorite()"
+    >
+      <lucide-icon name="heart" [class.filled]="isFavorite()" aria-hidden="true"></lucide-icon>
+    </button>
   </div>
   <div class="card-body">
     <div class="card-header">
       <h4 class="card-title">{{ destination()!.nombre }}</h4>
       <div class="rating" [attr.aria-label]="'Calificación: ' + (destination()!.ratingPromedio != null ? destination()!.ratingPromedio : 'Sin calificación') + ' estrellas'">
         @if (destination()!.ratingPromedio != null) {
-        ☆ {{ (destination()!.ratingPromedio | number: '1.1-1') }}
+        <span aria-hidden="true">☆</span> {{ (destination()!.ratingPromedio | number: '1.1-1') }}
         } @else {
-        <span class="no-rating" aria-hidden="true">Sin calificación</span>
+        <span class="no-rating">{{ 'EXPLORE.NO_RATING' | translate }}</span>
         }
       </div>
     </div>
@@ -24,8 +33,15 @@
     <hr class="card-divider" />
 
     <div class="card-footer">
-      <a href="javascript:void(0)" class="btn-primary" (click)="navigateToDetail()" [attr.aria-label]="'Ver detalles de ' + destination()!.nombre">Ver detalles</a>
+      <!-- WCAG 2.4.4 + 2.1.1 — Enlace real (routerLink) para acceso por teclado y propósito claro -->
+      <a
+        [routerLink]="['/traveler/destinations', destination()!.id]"
+        class="btn-primary"
+        [attr.aria-label]="'Ver detalles de ' + destination()!.nombre"
+      >
+        {{ 'EXPLORE.VIEW_DETAILS' | translate }}
+      </a>
     </div>
   </div>
-</div>
+</article>
 }

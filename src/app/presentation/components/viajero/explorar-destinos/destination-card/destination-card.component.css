@@ -34,8 +34,11 @@
   background: rgba(0, 0, 0, 0.3);
   border: none;
   border-radius: 50%;
+  /* WCAG 2.5.8 — Mínimo 24x24px de área interactiva (aquí 32x32) */
   width: 32px;
   height: 32px;
+  min-width: 32px;
+  min-height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -46,6 +49,11 @@
 }
 .favorite-btn:hover {
   background: rgba(0, 0, 0, 0.5);
+}
+/* WCAG 2.4.7 — Foco visible en botón favorito (usa acento del proyecto) */
+.favorite-btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
 }
 .favorite-btn lucide-icon {
   width: 16px;
@@ -127,8 +135,16 @@
   border: none;
   cursor: pointer;
   transition: filter 0.2s;
+  text-decoration: none;
+  display: inline-block;
 }
 .btn-primary:hover {
+  filter: brightness(1.1);
+}
+/* WCAG 2.4.7 — Foco visible en enlace de detalle */
+.btn-primary:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
   filter: brightness(1.1);
 }
 

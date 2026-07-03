@@ -1,0 +1,87 @@
+<main id="main-content" class="perfil-page">
+  <div class="header-section mb-8">
+    <h1 class="text-3xl font-bold text-white mb-2">
+      Hola, {{ fullName() }}
+    </h1>
+    <p class="text-gray-400">¿A dónde te llevará tu curiosidad hoy?</p>
+  </div>
+
+  <div class="perfil-layout">
+
+    <!-- Sidebar Izquierdo -->
+    <aside class="perfil-sidebar">
+
+      <!-- User Profile Card -->
+      <div class="card bg-[#1e2a3a] border border-gray-700 p-8 flex flex-col items-center mb-6 rounded-2xl profile-card">
+
+        <!-- Avatar con iniciales reales -->
+        <div class="avatar-wrapper">
+          <div class="avatar-circle">
+            {{ getInitials() }}
+          </div>
+          <button class="avatar-edit-btn" aria-label="Editar foto de perfil">
+            <lucide-icon name="pencil" size="12" aria-hidden="true"></lucide-icon>
+          </button>
+        </div>
+
+        <h2 class="profile-name">{{ fullName() }}</h2>
+        @if (data()?.isPremium) {
+          <div class="profile-badge">
+            <span>✓</span>
+            <span>Premium Member</span>
+          </div>
+        }
+        <p class="profile-since">{{ data()?.memberSince ? 'Since ' + data()?.memberSince : '' }}</p>
+      </div>
+
+      <!-- Next Trip Card (solo si hay datos) -->
+      @if (data()?.nextTrip?.destination) {
+        <div class="next-trip-card">
+          <div class="flex justify-between items-start mb-3">
+            <lucide-icon name="plane" size="20" aria-hidden="true" style="color: #38bdf8;"></lucide-icon>
+            <span class="next-trip-label">Next Trip</span>
+          </div>
+          <h3 class="next-trip-dest">{{ data()?.nextTrip?.destination }}</h3>
+          <p class="next-trip-meta">In {{ data()?.nextTrip?.daysLeft }} days • {{ data()?.nextTrip?.airline }}</p>
+        </div>
+      }
+
+      <button class="btn-book-trip">
+        Book New Trip
+      </button>
+    </aside>
+
+    <!-- Contenido Principal -->
+    <section class="perfil-content">
+      <div class="tabs-container">
+        <button class="tab-btn" [class.active]="activeTab() === 'personal'" (click)="activeTab.set('personal')">
+          Datos Personales
+        </button>
+        <button class="tab-btn" [class.active]="activeTab() === 'preferencias'" (click)="activeTab.set('preferencias')">
+          Preferencias
+        </button>
+        <button class="tab-btn" [class.active]="activeTab() === 'seguridad'" (click)="activeTab.set('seguridad')">
+          Seguridad
+        </button>
+      </div>
+
+      <div class="tab-content">
+        @if (activeTab() === 'personal') {
+          <app-profile-personal-data [fullName]="fullName()" [email]="email()" [phone]="phone()"></app-profile-personal-data>
+        }
+        @if (activeTab() === 'preferencias') {
+          <app-profile-preferences [data]="data()"></app-profile-preferences>
+        }
+        @if (activeTab() === 'seguridad') {
+          <app-profile-security [data]="data()"></app-profile-security>
+        }
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="form-actions">
+        <button class="btn-cancel" type="button">Cancelar</button>
+        <button class="btn-save" type="button">Guardar cambios</button>
+      </div>
+    </section>
+  </div>
+</main>

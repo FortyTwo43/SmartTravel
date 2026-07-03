@@ -35,6 +35,10 @@ export class InputComponent implements ControlValueAccessor {
   placeholder = input<string>('');
   icon = input<string | null>(null);
   autocomplete = input<string | undefined>(undefined);
+  /** WCAG 3.3.1 / 2.5.3 — estado de error para aria-invalid y mensaje accesible */
+  hasError = input<boolean>(false);
+  errorMessage = input<string>('');
+  errorId = input<string>('');
 
   value = signal<string>('');
   showPassword = signal(false);

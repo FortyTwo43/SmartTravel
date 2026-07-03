@@ -5,4 +5,5 @@ export interface DestinationCard {
   pais: string;
   imagen: string;
   tipo_experiencia: string;
+  motivo?: string;
 }

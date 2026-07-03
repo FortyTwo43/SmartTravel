@@ -1,22 +1,20 @@
-<div class="card gallery-card">
+<section class="card gallery-card" aria-labelledby="gallery-heading">
   <div class="gallery-header">
-    <h2 class="gallery-title">{{ 'PROVIDER_ESTABLISHMENT.GALLERY.TITLE' | translate }}</h2>
+    <h2 id="gallery-heading" class="gallery-title">{{ 'PROVIDER_ESTABLISHMENT.GALLERY.TITLE' | translate }}</h2>
     <span class="gallery-limit">{{ 'PROVIDER_ESTABLISHMENT.GALLERY.LIMIT' | translate }}</span>
   </div>
 
   @if (isLoading()) {
-    <div class="loading-state">
+    <div class="loading-state" role="status" aria-live="polite">
       <p>{{ 'COMMON.LOADING' | translate }}</p>
     </div>
   } @else {
     <div class="gallery-grid">
       @for (img of resolvedImages(); track $index) {
         <div class="gallery-item">
-          <img [src]="img" alt="Gallery image" class="gallery-img" />
+          <img [src]="img" [alt]="('PROVIDER_ESTABLISHMENT.GALLERY.IMAGE_ALT' | translate) + ' ' + ($index + 1)" class="gallery-img" />
         </div>
       }
-      
-
     </div>
   }
-</div>
+</section>

@@ -12,10 +12,15 @@
 
     <div class="header-actions">
       <input
+        data-search-input
         type="search"
         class="search-input"
         placeholder="{{ 'COMMON.SEARCH' | translate }}"
         aria-label="Search destinations"
+        [value]="inputValue()"
+        (input)="onSearchInput($event)"
+        (keydown.enter)="onEnter()"
+        autocomplete="off"
       />
       <button class="notification-btn" type="button" aria-label="Notifications">
         <span class="notification-icon">🔔</span>

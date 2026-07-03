@@ -1,17 +1,17 @@
 <section class="detail-page">
   <a class="back-link" routerLink="/admin/solicitudes">
-    <lucide-icon name="ArrowLeft"></lucide-icon>
+    <lucide-icon name="ArrowLeft" aria-hidden="true"></lucide-icon>
     Volver a solicitudes
   </a>
 
   @if (isLoading()) {
-    <div class="state-container">
-      <div class="spinner"></div>
+    <div class="state-container" role="status" aria-live="polite">
+      <div class="spinner" aria-hidden="true"></div>
       <p>Cargando solicitud...</p>
     </div>
   } @else if (error() && !detail()) {
-    <div class="state-container error-state">
-      <lucide-icon name="AlertCircle" class="state-icon"></lucide-icon>
+    <div class="state-container error-state" role="alert">
+      <lucide-icon name="AlertCircle" class="state-icon" aria-hidden="true"></lucide-icon>
       <p>{{ error() }}</p>
       <button type="button" class="btn btn-primary" (click)="loadSolicitud()">Reintentar</button>
     </div>
@@ -32,7 +32,7 @@
     </header>
 
     @if (error()) {
-      <p class="inline-error">{{ error() }}</p>
+      <p class="inline-error" role="alert">{{ error() }}</p>
     }
 
     <div class="detail-grid">
@@ -73,16 +73,18 @@
             type="button"
             class="btn btn-success"
             [disabled]="isUpdating() || detail()!.solicitud.estado === 'aceptado'"
-            (click)="changeStatus('aceptado')">
-            <lucide-icon name="CheckCircle2"></lucide-icon>
+            (click)="changeStatus('aceptado')"
+            [attr.aria-label]="'Aceptar solicitud de ' + detail()!.solicitud.nombre_negocio">
+            <lucide-icon name="CheckCircle2" aria-hidden="true"></lucide-icon>
             Aceptar
           </button>
           <button
             type="button"
             class="btn btn-danger"
             [disabled]="isUpdating() || detail()!.solicitud.estado === 'rechazado'"
-            (click)="changeStatus('rechazado')">
-            <lucide-icon name="XCircle"></lucide-icon>
+            (click)="changeStatus('rechazado')"
+            [attr.aria-label]="'Rechazar solicitud de ' + detail()!.solicitud.nombre_negocio">
+            <lucide-icon name="XCircle" aria-hidden="true"></lucide-icon>
             Rechazar
           </button>
         </footer>
@@ -95,8 +97,8 @@
             <p>{{ detail()!.documento.fileName }}</p>
           </div>
           @if (detail()!.documento.signedUrl) {
-            <a class="icon-link" [href]="detail()!.documento.signedUrl" target="_blank" rel="noopener">
-              <lucide-icon name="Download"></lucide-icon>
+            <a class="icon-link" [href]="detail()!.documento.signedUrl" target="_blank" rel="noopener" aria-label="Abrir documento adjunto en nueva pestaña">
+              <lucide-icon name="Download" aria-hidden="true"></lucide-icon>
               Abrir
             </a>
           }
@@ -105,7 +107,7 @@
         <div class="document-viewer">
           @if (!detail()!.documento.signedUrl) {
             <div class="unsupported-document">
-              <lucide-icon name="FileText"></lucide-icon>
+              <lucide-icon name="FileText" aria-hidden="true"></lucide-icon>
               <p>El documento no tiene una URL disponible.</p>
             </div>
           } @else if (detail()!.documento.tipo === 'image') {
@@ -114,7 +116,7 @@
             <iframe [src]="safeDocumentUrl()" title="Documento PDF de proveedor"></iframe>
           } @else {
             <div class="unsupported-document">
-              <lucide-icon name="FileText"></lucide-icon>
+              <lucide-icon name="FileText" aria-hidden="true"></lucide-icon>
               <p>Formato no reconocido. Puedes abrir el archivo en una pestana nueva.</p>
             </div>
           }

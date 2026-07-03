@@ -44,6 +44,12 @@
     "SEE_ALL": "See All",
     "PEOPLE": "people"
   },
+  "SESSION": {
+    "WARNING_TITLE": "Session Expiring",
+    "WARNING_MESSAGE": "Your session will expire in 2 minutes due to inactivity. Would you like to continue?",
+    "CONTINUE_BUTTON": "Continue Session",
+    "LOGOUT_BUTTON": "Log Out"
+  },
   "NAVBAR": {
     "TITLE": "Smart Travel",
     "DESTINATIONS": "Destinations",
@@ -83,7 +89,9 @@
       "HIDE_TRANSCRIPT": "Hide Transcript",
       "TRANSCRIPT_TITLE": "Video Transcript",
       "MUTE_AUDIO": "Mute audio",
-      "UNMUTE_AUDIO": "Unmute audio"
+      "UNMUTE_AUDIO": "Unmute audio",
+      "READ_TRANSCRIPT": "Read transcript",
+      "STOP_READING": "Stop reading"
     },
     "FEATURES": {
       "PERSONALIZATION": "Total Personalization",
@@ -425,6 +433,11 @@
     "REDUCE_MOTION_DESC": "Disables smooth animations and complex transition effects.",
     "SCREEN_READER": "Screen Reader",
     "SCREEN_READER_DESC": "Speech output optimization for NVDA and VoiceOver.",
+    "SCREEN_READER_SECTION": "Screen Reader",
+    "READ_FOCUSED_ELEMENT": "Read element focused with Tab",
+    "READ_FOCUSED_ELEMENT_DESC": "Automatically reads the text of the element that receives focus when navigating with the Tab key.",
+    "READ_SELECTED_TEXT": "Read text selected with mouse",
+    "READ_SELECTED_TEXT_DESC": "Reads the text you select with the mouse once you release the left button.",
     "LANGUAGE_PREFERENCE": "Language Preference",
     "SPANISH_CASTILIAN": "Spanish (Castilian)",
     "ENGLISH": "English",
@@ -459,8 +472,14 @@
     "AUDIO_DESCRIPTION_DESC": "Activates the audio description track in pre-recorded videos.",
     "REALTIME_CAPTIONS": "Real-time captions",
     "REALTIME_CAPTIONS_DESC": "Activates the real-time captions feature for live broadcasts."
-  }
-  ,
+  },
+  "EXPLORE": {
+    "RESULTS_FOUND": "destinations found",
+    "GRID_LABEL": "Destinations grid",
+    "NO_RESULTS": "No destinations found",
+    "NO_RATING": "No rating",
+    "VIEW_DETAILS": "View details"
+  },
   "TRAVELER_EXPLORAR": {
     "TITLE": "Explore Destinations",
     "FILTERS": "Filters",

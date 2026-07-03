@@ -1,5 +1,5 @@
-<div class="card details-card">
-  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-grid">
+<section class="card details-card" aria-label="{{ 'PROVIDER_ESTABLISHMENT.DETAILS.TITLE' | translate }}">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-grid" novalidate>
 
     <!-- Nombre -->
     <div class="form-group">
@@ -19,16 +19,16 @@
 
     <!-- Destino (solo lectura) -->
     <div class="form-group readonly-group">
-      <label>{{ 'PROVIDER_ESTABLISHMENT.DETAILS.DESTINATION' | translate }}</label>
-      <div class="readonly-value">
-        <lucide-icon name="map-pin" class="icon-sm"></lucide-icon>
+      <p class="readonly-label">{{ 'PROVIDER_ESTABLISHMENT.DETAILS.DESTINATION' | translate }}</p>
+      <div class="readonly-value" aria-labelledby="destino-label">
+        <lucide-icon name="map-pin" class="icon-sm" aria-hidden="true"></lucide-icon>
         <span>{{ destinoLabel || establecimiento.id_destino }}</span>
       </div>
     </div>
 
     <!-- Estado Operativo (solo lectura) -->
     <div class="form-group readonly-group">
-      <label>{{ 'PROVIDER_ESTABLISHMENT.DETAILS.STATUS' | translate }}</label>
+      <p class="readonly-label">{{ 'PROVIDER_ESTABLISHMENT.DETAILS.STATUS' | translate }}</p>
       <div class="status-display">
         @if (establecimiento.estado === 'activo') {
           <span class="status-badge active">
@@ -50,7 +50,12 @@
 
     <div class="form-actions full-width">
       <button type="button" class="btn-cancel" (click)="onCancel()">{{ 'PROVIDER_ESTABLISHMENT.CANCEL' | translate }}</button>
-      <button type="submit" class="btn-primary" [disabled]="form.invalid || isUpdating">
+      <button
+        type="submit"
+        class="btn-primary"
+        [disabled]="form.invalid || isUpdating"
+        [attr.aria-busy]="isUpdating"
+      >
         @if (isUpdating) {
           {{ 'COMMON.LOADING' | translate }}
         } @else {
@@ -59,4 +64,4 @@
       </button>
     </div>
   </form>
-</div>
+</section>

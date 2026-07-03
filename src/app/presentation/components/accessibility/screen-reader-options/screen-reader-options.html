@@ -1,0 +1,33 @@
+<section class="adjustments-section">
+  <fieldset class="adjustments-fieldset">
+    <legend class="section-title">
+      {{ 'ACCESSIBILITY.SCREEN_READER_SECTION' | translate }}
+    </legend>
+    <div class="toggles-container">
+      <label class="toggle-option">
+        <input 
+          type="checkbox" 
+          class="toggle-input" 
+          [checked]="selectedScreenReader.readFocusedElement"
+          (change)="onToggle('readFocusedElement', $event)"
+        />
+        <div class="toggle-label-text">
+          <span class="toggle-title">{{ 'ACCESSIBILITY.READ_FOCUSED_ELEMENT' | translate }}</span>
+          <span class="toggle-desc">{{ 'ACCESSIBILITY.READ_FOCUSED_ELEMENT_DESC' | translate }}</span>
+        </div>
+      </label>
+      <label class="toggle-option">
+        <input 
+          type="checkbox" 
+          class="toggle-input" 
+          [checked]="selectedScreenReader.readSelectedText"
+          (change)="onToggle('readSelectedText', $event)"
+        />
+        <div class="toggle-label-text">
+          <span class="toggle-title">{{ 'ACCESSIBILITY.READ_SELECTED_TEXT' | translate }}</span>
+          <span class="toggle-desc">{{ 'ACCESSIBILITY.READ_SELECTED_TEXT_DESC' | translate }}</span>
+        </div>
+      </label>
+    </div>
+  </fieldset>
+</section>

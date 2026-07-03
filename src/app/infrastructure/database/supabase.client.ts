@@ -3,7 +3,9 @@ import { createClient, SupabaseClient } from '@supabase/supabase-js';
 type SupabaseRuntimeConfig = {
   supabaseUrl: string;
   supabaseKey: string;
+  recommendationsApiUrl?: string;
 };
+
 
 const CONFIG_URL = '/config.json';
 
@@ -37,17 +39,26 @@ const normalizeConfig = (config: Partial<SupabaseRuntimeConfig>): SupabaseRuntim
     throw new Error('Invalid Supabase key format. Key must be at least 40 characters long and contain only alphanumeric characters, underscores, or hyphens.');
   }
 
-  return { supabaseUrl, supabaseKey };
+  return {
+    supabaseUrl,
+    supabaseKey,
+    recommendationsApiUrl: (config.recommendationsApiUrl ?? '').trim(),
+  };
 };
 
-export const createSupabaseClient = async (): Promise<SupabaseClient> => {
+export type AppRuntimeConfig = {
+  supabase: SupabaseClient;
+  recommendationsApiUrl: string;
+};
+
+export const createAppRuntimeConfig = async (): Promise<AppRuntimeConfig> => {
   const response = await fetch(CONFIG_URL, {
     cache: 'no-store',
     signal: AbortSignal.timeout(10_000),
   });
 
   if (!response.ok) {
-    throw new Error(`Failed to load Supabase runtime config from ${CONFIG_URL}.`);
+    throw new Error(`Failed to load runtime config from ${CONFIG_URL}.`);
   }
 
   const config = (await response.json()) as Partial<SupabaseRuntimeConfig>;
@@ -55,5 +66,17 @@ export const createSupabaseClient = async (): Promise<SupabaseClient> => {
   // Configuration is validated by normalizeConfig() to ensure:
   // - URL is HTTPS and ends with .supabase.co
   // - Key format is validated (40+ alphanumeric chars)
-  return createClient(normalizedConfig.supabaseUrl, normalizedConfig.supabaseKey); // NOSONAR: S8477
+  const supabase = createClient(normalizedConfig.supabaseUrl, normalizedConfig.supabaseKey); // NOSONAR: S8477
+
+  return {
+    supabase,
+    recommendationsApiUrl: normalizedConfig.recommendationsApiUrl ?? '',
+  };
 };
+
+/** @deprecated Use createAppRuntimeConfig instead */
+export const createSupabaseClient = async (): Promise<SupabaseClient> => {
+  const { supabase } = await createAppRuntimeConfig();
+  return supabase;
+};
+

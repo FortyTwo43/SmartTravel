@@ -5,7 +5,7 @@
   
   <div class="input-wrapper" [class.has-icon]="icon()">
     @if (icon()) {
-      <lucide-icon [name]="icon()!" class="prefix-icon"></lucide-icon>
+      <lucide-icon [name]="icon()!" class="prefix-icon" aria-hidden="true"></lucide-icon>
     }
     
     <input 
@@ -15,15 +15,30 @@
       [value]="value()"
       [disabled]="disabled()"
       [attr.autocomplete]="autocomplete()"
+      [attr.aria-invalid]="hasError() ? 'true' : null"
+      [attr.aria-describedby]="hasError() && errorId() ? errorId() : null"
       (input)="handleInput($event)"
       (blur)="onTouched()"
       class="input-field"
     />
 
     @if (type() === 'password') {
-      <button type="button" class="toggle-password" (click)="togglePassword()">
-        <lucide-icon [name]="showPassword() ? 'eye-off' : 'eye'"></lucide-icon>
+      <!-- WCAG 2.5.3 — aria-label coincide con la acción visible (mostrar/ocultar) -->
+      <!-- WCAG 2.5.8 — padding explícito garantiza área táctil ≥ 24x24px -->
+      <button
+        type="button"
+        class="toggle-password"
+        (click)="togglePassword()"
+        [attr.aria-label]="showPassword() ? 'Ocultar contraseña' : 'Mostrar contraseña'"
+      >
+        <lucide-icon [name]="showPassword() ? 'eye-off' : 'eye'" aria-hidden="true"></lucide-icon>
       </button>
     }
   </div>
+
+  @if (hasError() && errorMessage()) {
+    <div [id]="errorId()" class="input-error-hint" role="alert" aria-live="polite">
+      {{ errorMessage() }}
+    </div>
+  }
 </div>

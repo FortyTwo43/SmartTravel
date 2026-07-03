@@ -44,6 +44,22 @@ export const routes: Routes = [
       {
         path: 'destinations/:id',
         loadComponent: () => import('./presentation/pages/viajero/detalle-destino/detalle-destino.component').then(m => m.DetalleDestinoComponent)
+      },
+      {
+        path: 'itinerarios',
+        loadComponent: () => import('./presentation/pages/viajero/itinerarios/itinerarios.component').then(m => m.ItinerariosComponent)
+      },
+      {
+        path: 'perfil',
+        loadComponent: () => import('./presentation/pages/viajero/perfil/perfil.component').then(m => m.PerfilComponent)
+      },
+      {
+        path: 'mis-viajes',
+        loadComponent: () => import('./presentation/pages/viajero/mis-viajes/mis-viajes.component').then(m => m.MisViajesComponent)
+      },
+      {
+        path: 'favoritos',
+        loadComponent: () => import('./presentation/pages/viajero/favoritos/favoritos.component').then(m => m.FavoritosComponent)
       }
     ]
   },
