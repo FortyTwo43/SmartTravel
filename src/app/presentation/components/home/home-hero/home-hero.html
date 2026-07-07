@@ -26,16 +26,16 @@
         
         @if (multimediaService.audioDescription()) {
           <video autoplay [muted]="multimediaService.pauseAutoAudio()" controls class="hero-video" crossorigin="anonymous">
-            <source src="assets/videos/home_audiodescripcion.mp4" type="video/mp4">
+            <source src="assets/videos/registro/registroAudiodescripcion.mp4" type="video/mp4">
             @if (multimediaService.syncCaptions()) {
-              <track src="assets/videos/subtitulos_audiodescripcion.vtt" kind="captions" srclang="en" label="English" default>
+              <track src="assets/videos/registro/registroAudiodescripcion.vtt" kind="captions" srclang="es" label="Español" default>
             }
           </video>
         } @else {
           <video autoplay [muted]="multimediaService.pauseAutoAudio()" controls class="hero-video" crossorigin="anonymous">
-            <source src="assets/videos/home_video.mp4" type="video/mp4">
+            <source src="assets/videos/registro/registro.mp4" type="video/mp4">
             @if (multimediaService.syncCaptions()) {
-              <track src="assets/videos/subtitulos_video.vtt" kind="captions" srclang="en" label="English" default>
+              <track src="assets/videos/registro/registro.vtt" kind="captions" srclang="es" label="Español" default>
             }
           </video>
         }
@@ -66,7 +66,11 @@
               </button>
             }
           </div>
-          <p class="transcript-content">{{ transcriptText() }}</p>
+          <p class="transcript-content">{{ displayedTranscript() }}</p>
+          <div class="transcript-navigation" style="display: flex; justify-content: space-between; margin-top: 1rem;">
+            <button class="btn btn-sm btn-outlined" (click)="prevTranscript()" [disabled]="!hasPrevTranscript()">Atrás</button>
+            <button class="btn btn-sm btn-outlined" (click)="nextTranscript()" [disabled]="!hasNextTranscript()">Adelante</button>
+          </div>
         </div>
       }
     </div>

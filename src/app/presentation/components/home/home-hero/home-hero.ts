@@ -1,4 +1,4 @@
-import { Component, signal, inject } from '@angular/core';
+import { Component, signal, inject, computed } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, ArrowRight, Play, FileText, AudioLines, Volume2, VolumeX } from 'lucide-angular';
 import { MultimediaService } from '../../../service/multimedia/multimedia';
@@ -20,9 +20,24 @@ export class HomeHero {
   public screenReaderService = inject(ScreenReaderService);
   transcriptText = signal('');
   isSpeaking = signal(false);
+  transcriptPage = signal(0);
+
+  displayedTranscript = computed(() => {
+    const text = this.transcriptText();
+    const start = this.transcriptPage() * 510;
+    return text.substring(start, start + 510);
+  });
+
+  hasNextTranscript = computed(() => {
+    return (this.transcriptPage() + 1) * 510 < this.transcriptText().length;
+  });
+
+  hasPrevTranscript = computed(() => {
+    return this.transcriptPage() > 0;
+  });
 
   constructor() {
-    fetch('assets/videos/transcripcion.txt')
+    fetch('assets/videos/registro/transcripcion.txt')
       .then(res => res.text())
       .then(text => this.transcriptText.set(text))
       .catch(err => console.error('Error loading transcription', err));
@@ -49,5 +64,17 @@ export class HomeHero {
   stopReading() {
     this.screenReaderService.stopSpeaking();
     this.isSpeaking.set(false);
+  }
+
+  prevTranscript() {
+    if (this.hasPrevTranscript()) {
+      this.transcriptPage.update(p => p - 1);
+    }
+  }
+
+  nextTranscript() {
+    if (this.hasNextTranscript()) {
+      this.transcriptPage.update(p => p + 1);
+    }
   }
 }
