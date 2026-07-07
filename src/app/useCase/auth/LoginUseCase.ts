@@ -56,7 +56,17 @@ export class LoginUseCase {
     
     if (role === 'viajero') {
       redirect = '/traveler/dashboard';
-
+      if (userId) {
+        try {
+          const perfilViajero = await this.perfilViajeroRepository.getById(userId);
+          if (perfilViajero && perfilViajero.primera_sesion === false) {
+            redirect = '/traveler-onboarding';
+            await this.perfilViajeroRepository.update(userId, { primera_sesion: true });
+          }
+        } catch (e) {
+          console.error('Error fetching PerfilViajero for onboarding check', e);
+        }
+      }
     } else if(role == 'proveedor'){
       redirect = '/provider/dashboard';
 
