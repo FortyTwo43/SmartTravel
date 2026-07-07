@@ -4,4 +4,5 @@ export interface PerfilViajero {
   presupuesto: number;
   idioma: string;
   tipo_viaje: 'solo' | 'pareja' | 'familia' | 'amigos';
+  primera_sesion: boolean;
 }
