@@ -1,7 +1,7 @@
 import { Component, OnDestroy, signal, ChangeDetectorRef, inject, PLATFORM_ID, effect } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Mic, MicOff, Users, PlayCircle } from 'lucide-angular';
+import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, Mic, MicOff, Users, PlayCircle, AudioLines, Volume2, VolumeX } from 'lucide-angular';
 import { Navbar } from '../../../layouts/navbar/navbar';
 import { Footer } from '../../../layouts/footer/footer';
 import { MultimediaService } from '../../../service/multimedia/multimedia';
@@ -14,7 +14,7 @@ import { AccessibilityWidget } from '../../../components/accessibility/accessibi
   providers: [{
     provide: LUCIDE_ICONS,
     multi: true,
-    useValue: new LucideIconProvider({ Mic, MicOff, Users, PlayCircle })
+    useValue: new LucideIconProvider({ Mic, MicOff, Users, PlayCircle, AudioLines, Volume2, VolumeX })
   }],
   templateUrl: './live-streams-page.html',
   styleUrls: ['./live-streams-page.css']
@@ -98,6 +98,10 @@ export class LiveStreamsPageComponent implements OnDestroy {
 
   toggleListening() {
     this.multimediaService.toggleRealtimeCaptions();
+  }
+
+  toggleAudioDesc() {
+    this.multimediaService.toggleAudioDescription();
   }
 
   startListening() {

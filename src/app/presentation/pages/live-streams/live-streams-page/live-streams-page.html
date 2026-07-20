@@ -7,13 +7,29 @@
 
     <div class="live-main-content">
       <section class="main-stream-section" aria-label="{{ 'LIVE_STREAMS.ARIA_MAIN_VIDEO' | translate }}">
+        <div class="video-top-controls" style="display: flex; justify-content: flex-end; margin-bottom: 0.5rem;">
+          <button class="btn btn-outlined btn-sm custom-control-btn" (click)="multimediaService.togglePauseAutoAudio()" type="button" aria-label="Toggle Auto Audio">
+            <lucide-icon [name]="multimediaService.pauseAutoAudio() ? 'volume-x' : 'volume-2'" aria-hidden="true"></lucide-icon>
+            {{ (multimediaService.pauseAutoAudio() ? 'HOME.HERO.UNMUTE_AUDIO' : 'HOME.HERO.MUTE_AUDIO') | translate }}
+          </button>
+        </div>
+
         <div class="video-wrapper">
-          <video 
-            class="main-video" 
-            src="assets/videos/atajos/atajos.mp4" 
-            controls 
-            crossorigin="anonymous">
-          </video>
+          @if (multimediaService.audioDescription()) {
+            <video autoplay [muted]="multimediaService.pauseAutoAudio()" class="main-video" controls crossorigin="anonymous">
+              <source src="assets/videos/atajos/atajosAudiodescripcion.mp4" type="video/mp4">
+              @if (multimediaService.syncCaptions()) {
+                <track src="assets/videos/atajos/atajosAudiodescripcion.vtt" kind="captions" srclang="es" label="Español" default>
+              }
+            </video>
+          } @else {
+            <video autoplay [muted]="multimediaService.pauseAutoAudio()" class="main-video" controls crossorigin="anonymous">
+              <source src="assets/videos/atajos/atajos.mp4" type="video/mp4">
+              @if (multimediaService.syncCaptions()) {
+                <track src="assets/videos/atajos/atajos.vtt" kind="captions" srclang="es" label="Español" default>
+              }
+            </video>
+          }
           
           @if (isListening() && subtitles()) {
             <div class="live-captions-overlay" aria-live="polite">
@@ -23,6 +39,11 @@
         </div>
 
         <div class="stream-controls">
+          <button class="btn btn-outlined btn-sm custom-control-btn" (click)="toggleAudioDesc()" type="button" style="margin-right: 1rem;">
+            <lucide-icon name="audio-lines" aria-hidden="true"></lucide-icon>
+            {{ (multimediaService.audioDescription() ? 'HOME.HERO.DISABLE_AD' : 'HOME.HERO.ENABLE_AD') | translate }}
+          </button>
+          
           <button 
             type="button"
             class="btn btn-primary btn-mic" 
