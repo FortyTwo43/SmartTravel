@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ScreenReader } from './screen-reader';
+import { ScreenReaderService } from './screen-reader';
 
-describe('ScreenReader', () => {
-  let service: ScreenReader;
+describe('ScreenReaderService', () => {
+  let service: ScreenReaderService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ScreenReader);
+    service = TestBed.inject(ScreenReaderService);
   });
 
   it('should be created', () => {
