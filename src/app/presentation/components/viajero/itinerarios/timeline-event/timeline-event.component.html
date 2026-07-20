@@ -1,0 +1,35 @@
+<div class="event-card">
+  <div class="event-card__left">
+    <div class="event-type-badge">
+      <span class="event-icon">
+        @switch (event()?.type) {
+          @case ('FLIGHT') { <lucide-icon name="plane" size="16" aria-hidden="true"></lucide-icon> }
+          @case ('ACCOMMODATION') { <lucide-icon name="hotel" size="16" aria-hidden="true"></lucide-icon> }
+          @case ('ACTIVITY') { <lucide-icon name="zap" size="16" aria-hidden="true"></lucide-icon> }
+          @case ('DINING') { <lucide-icon name="utensils-crossed" size="16" aria-hidden="true"></lucide-icon> }
+          @default { <lucide-icon name="map-pin" size="16" aria-hidden="true"></lucide-icon> }
+        }
+      </span>
+      <span class="event-type-label">{{ event()?.type }}</span>
+    </div>
+    <h4 class="event-name">{{ event()?.title }}</h4>
+    <p class="event-detail">{{ event()?.details }}</p>
+    <p class="event-detail" *ngIf="event()?.extraInfo">{{ event()?.extraInfo }}</p>
+    <span class="event-status-badge" [ngClass]="getStatusClass()">
+      {{ event()?.status }}
+    </span>
+  </div>
+  @if (event()?.imageUrl && !imageError()) {
+    <img [src]="event()?.imageUrl" [alt]="event()?.title || ''" (error)="onImageError()" class="event-thumb" />
+  } @else {
+    <div class="card-img-placeholder event-thumb">
+      @switch (event()?.type) {
+        @case ('FLIGHT') { <lucide-icon name="plane" size="24" aria-hidden="true"></lucide-icon> }
+        @case ('ACCOMMODATION') { <lucide-icon name="hotel" size="24" aria-hidden="true"></lucide-icon> }
+        @case ('ACTIVITY') { <lucide-icon name="zap" size="24" aria-hidden="true"></lucide-icon> }
+        @case ('DINING') { <lucide-icon name="utensils-crossed" size="24" aria-hidden="true"></lucide-icon> }
+        @default { <lucide-icon name="map-pin" size="24" aria-hidden="true"></lucide-icon> }
+      }
+    </div>
+  }
+</div>

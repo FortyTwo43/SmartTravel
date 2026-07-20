@@ -1,0 +1,35 @@
+<div class="history-row">
+  @if (booking()?.imageUrl && !imageError()) {
+    <img [src]="booking()?.imageUrl" [alt]="booking()?.name" (error)="onImageError()" class="history-thumb" />
+  } @else {
+    <div class="history-thumb history-thumb--placeholder">
+      @switch (booking()?.type) {
+        @case ('HOTEL') { <lucide-icon name="hotel" size="28" aria-hidden="true"></lucide-icon> }
+        @case ('TOUR')  { <lucide-icon name="map" size="28" aria-hidden="true"></lucide-icon> }
+        @default        { <lucide-icon name="compass" size="28" aria-hidden="true"></lucide-icon> }
+      }
+    </div>
+  }
+
+  <div class="history-info">
+    <p class="history-name">{{ booking()?.name }}</p>
+    <p class="history-meta">
+      <lucide-icon name="calendar" class="meta-icon" aria-hidden="true"></lucide-icon>
+      {{ booking()?.dates }}
+    </p>
+    <p class="history-meta">
+      <lucide-icon name="map-pin" class="meta-icon meta-icon--pin" aria-hidden="true"></lucide-icon>
+      {{ booking()?.location }}
+    </p>
+  </div>
+
+  <span class="history-badge" [ngClass]="getBadgeClass()">
+    {{ booking()?.status }}
+  </span>
+  <button
+    class="history-action"
+    [class.history-action--disabled]="booking()?.status === 'Cancelado'"
+    [disabled]="booking()?.status === 'Cancelado'">
+    {{ booking()?.actionLabel }}
+  </button>
+</div>

@@ -1,0 +1,38 @@
+<div class="booking-card" [class.no-image]="!booking()?.imageUrl">
+  @if (booking()?.imageUrl && !imageError()) {
+    <img [src]="booking()?.imageUrl" [alt]="booking()?.name" (error)="onImageError()" class="booking-card__img" />
+  } @else {
+    <div class="card-img-placeholder booking-card__img">
+      @switch (booking()?.type) {
+        @case ('HOTEL') { <lucide-icon name="hotel" size="32" aria-hidden="true"></lucide-icon> }
+        @case ('TOUR')  { <lucide-icon name="map" size="32" aria-hidden="true"></lucide-icon> }
+        @default        { <lucide-icon name="map-pin" size="32" aria-hidden="true"></lucide-icon> }
+      }
+    </div>
+  }
+
+  <div class="booking-card__content">
+    <div class="booking-card__header">
+      <span class="booking-type">{{ booking()?.type }}</span>
+      <span class="booking-badge" [ngClass]="getBadgeClass()">
+        {{ booking()?.status }}
+      </span>
+    </div>
+
+    <h3 class="booking-card__name">{{ booking()?.name }}</h3>
+
+    <p class="booking-card__meta">
+      <lucide-icon name="calendar" class="meta-icon" aria-hidden="true"></lucide-icon>
+      {{ booking()?.dates }}
+    </p>
+    <p class="booking-card__meta">
+      <lucide-icon name="map-pin" class="meta-icon meta-icon--pin" aria-hidden="true"></lucide-icon>
+      {{ booking()?.location }}
+    </p>
+
+    <div class="booking-card__footer">
+      <span class="booking-price">€{{ booking()?.price | number:'1.2-2' }}</span>
+      <button class="btn-action">{{ booking()?.actionLabel }}</button>
+    </div>
+  </div>
+</div>

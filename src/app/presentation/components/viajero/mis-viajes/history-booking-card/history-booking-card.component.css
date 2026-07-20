@@ -1,0 +1,70 @@
+lucide-icon.meta-icon {
+  display: inline-flex !important;
+  width: 13px !important; height: 13px !important;
+  min-width: 13px !important; min-height: 13px !important;
+  flex-shrink: 0 !important;
+  opacity: 0.7; vertical-align: middle;
+}
+lucide-icon.meta-icon--pin { color: var(--color-negative); }
+
+.history-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+.history-row:last-of-type {
+  border-bottom: none;
+}
+.history-thumb {
+  width: 64px; height: 64px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.history-thumb--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-surface-alt);
+  color: var(--text-muted);
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+.history-thumb--placeholder lucide-icon {
+  display: inline-flex !important;
+  width: 28px !important; height: 28px !important;
+}
+.history-info { flex: 1; }
+.history-name {
+  font-family: var(--font-headline);
+  font-size: 0.95rem; font-weight: 600;
+  color: var(--text-main); margin: 0 0 0.25rem;
+}
+.history-meta {
+  font-family: var(--font-body);
+  font-size: 0.8rem; color: var(--text-muted);
+  margin: 0; display: flex; align-items: center;
+  gap: 0.4rem; line-height: 1.6;
+}
+.history-meta + .history-meta { margin-top: 0.1rem; }
+.history-badge {
+  font-family: var(--font-body);
+  font-size: 0.72rem; padding: 3px 10px;
+  border-radius: var(--radius-full); font-weight: 600;
+  white-space: nowrap;
+}
+.badge--completed { background: var(--bg-surface-alt); color: var(--text-main); }
+.badge--cancelled { background: var(--color-negative); color: var(--text-on-primary); }
+.badge--pending   { background: var(--bg-surface-alt); color: var(--color-tertiary); }
+.history-action {
+  background: none; border: none;
+  color: var(--color-primary); cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.85rem; font-weight: 600;
+  white-space: nowrap; padding: 0.3rem 0.5rem;
+  border-radius: var(--radius-sm); transition: background 0.2s;
+}
+.history-action:hover:not(:disabled) { background: var(--bg-surface-alt); }
+.history-action--disabled { color: var(--text-muted) !important; cursor: default; }

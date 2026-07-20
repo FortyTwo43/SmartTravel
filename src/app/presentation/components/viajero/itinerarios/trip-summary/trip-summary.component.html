@@ -1,0 +1,25 @@
+<div class="trip-summary-card card">
+  <h3 class="summary-title">Trip Summary</h3>
+
+  <div class="summary-row">
+    <span class="summary-label">Flights</span>
+    <span class="summary-value">${{ summary()?.flights | number:'1.2-2' }}</span>
+  </div>
+  <div class="summary-row">
+    <span class="summary-label">Accommodation</span>
+    <span class="summary-value">${{ summary()?.accommodation | number:'1.2-2' }}</span>
+  </div>
+  <div class="summary-row">
+    <span class="summary-label">Activities</span>
+    <span class="summary-value">${{ summary()?.activities | number:'1.2-2' }}</span>
+  </div>
+
+  <div class="summary-divider"></div>
+
+  <div class="summary-row summary-total">
+    <span class="summary-label">Total Budget</span>
+    <span class="summary-value total-amount">${{ summary()?.total | number:'1.2-2' }}</span>
+  </div>
+
+  <button class="btn-manage">Manage Expenses</button>
+</div>
