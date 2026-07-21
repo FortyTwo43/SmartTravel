@@ -471,7 +471,9 @@
     "AUDIO_DESCRIPTION": "Audio description",
     "AUDIO_DESCRIPTION_DESC": "Activates the audio description track in pre-recorded videos.",
     "REALTIME_CAPTIONS": "Real-time captions",
-    "REALTIME_CAPTIONS_DESC": "Activates the real-time captions feature for live broadcasts."
+    "REALTIME_CAPTIONS_DESC": "Activates the real-time captions feature for live broadcasts.",
+    "SHAKE_TO_REFRESH": "Shake to refresh destinations",
+    "SHAKE_TO_REFRESH_DESC": "Allows shaking the mobile device to reload the destinations list on the explore page."
   },
   "EXPLORE": {
     "RESULTS_FOUND": "destinations found",
@@ -485,7 +487,14 @@
     "FILTERS": "Filters",
     "LOAD_MORE": "Load more destinations",
     "NO_RESULTS": "No destinations found",
-    "VIEW_DETAILS": "View details"
+    "VIEW_DETAILS": "View details",
+    "REFRESH_DESTINATIONS": "Refresh destinations",
+    "REFRESH_SUCCESS": "Destinations updated successfully.",
+    "SHAKE_GESTURE_ACTIVATED": "Motion control activated. Shake the device to update.",
+    "SENSOR_PERMISSION_BUTTON": "Enable motion sensor",
+    "SENSOR_PERMISSION_GRANTED": "Motion sensor permission granted.",
+    "SENSOR_PERMISSION_DENIED": "Motion sensor permission denied.",
+    "SENSOR_NOT_SUPPORTED": "Motion sensor not supported on this device."
   },
   "DESTINATION_DETAIL": {
     "BACK": "Back to destinations",

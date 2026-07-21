@@ -39,7 +39,8 @@ export class LoadAccessibilityPreferencesUseCase {
       animations: {
         tooltipsMenus: this.animationsService.tooltipsMenus(),
         pauseMotion: this.animationsService.pauseMotion(),
-        disableFlashing: this.animationsService.disableFlashing()
+        disableFlashing: this.animationsService.disableFlashing(),
+        shakeToRefresh: this.animationsService.shakeToRefresh()
       }
     };
   }

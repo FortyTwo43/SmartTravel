@@ -1,4 +1,4 @@
-import { Component, OnInit, signal, inject, computed } from '@angular/core';
+import { Component, OnInit, OnDestroy, signal, inject, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
@@ -6,10 +6,11 @@ import { TranslateModule } from '@ngx-translate/core';
 import { GetExplorarDestinosUseCase, ExploreDestination, ExploreFilter } from '../../../../useCase/viajero/explorar-destinos/GetExplorarDestinosUseCase';
 import { GetImageUrlUseCase } from '../../../../useCase/upload/GetImageUrlUseCase';
 import { SearchService } from '../../../../core/services/search.service';
+import { AnimationsService } from '../../../service/animations/animations.service';
 
 import { TravelerFilterSidebarComponent } from '../../../components/viajero/explorar-destinos/traveler-filter-sidebar/traveler-filter-sidebar.component';
 import { DestinationGridComponent } from '../../../components/viajero/explorar-destinos/destination-grid/destination-grid.component';
-import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, SlidersHorizontal } from 'lucide-angular';
+import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, SlidersHorizontal, RefreshCw, Smartphone } from 'lucide-angular';
 
 @Component({
   selector: 'app-explorar-destinos',
@@ -24,18 +25,30 @@ import { LucideAngularModule, LUCIDE_ICONS, LucideIconProvider, SlidersHorizonta
   providers: [{
     provide: LUCIDE_ICONS,
     multi: true,
-    useValue: new LucideIconProvider({ SlidersHorizontal })
+    useValue: new LucideIconProvider({ SlidersHorizontal, RefreshCw, Smartphone })
   }],
   templateUrl: './explorar-destinos.component.html',
   styleUrl: './explorar-destinos.component.css'
 })
-export class ExplorarDestinosComponent implements OnInit {
+export class ExplorarDestinosComponent implements OnInit, OnDestroy {
   private readonly useCase = inject(GetExplorarDestinosUseCase);
   private readonly getImageUrlUseCase = inject(GetImageUrlUseCase);
   protected readonly searchService = inject(SearchService);
   private readonly route = inject(ActivatedRoute);
+  protected readonly animationsService = inject(AnimationsService);
 
   destinos = signal<ReadonlyArray<ExploreDestination>>([]);
+  
+  // Shake detection and permission state
+  private isListening = false;
+  private lastShakeTime = 0;
+  isIOS = typeof window !== 'undefined' && 
+          typeof (DeviceMotionEvent as any).requestPermission === 'function';
+  isMotionSupported = typeof window !== 'undefined' && 'DeviceMotionEvent' in window;
+  motionPermissionStatus = signal<'default' | 'granted' | 'denied' | 'not-supported'>('default');
+  refreshStatusMessage = signal<string | null>(null);
+
+  private readonly deviceMotionListener = (event: DeviceMotionEvent) => this.onDeviceMotion(event);
   
   filteredDestinations = computed(() => {
     const term = this.searchService.searchTerm();
@@ -81,6 +94,11 @@ export class ExplorarDestinosComponent implements OnInit {
       }
     });
     await this.loadDestinos();
+    this.initMotionDetection();
+  }
+
+  ngOnDestroy(): void {
+    this.stopListening();
   }
 
   openMobileFilters() {
@@ -132,5 +150,105 @@ export class ExplorarDestinosComponent implements OnInit {
         this.error.set(message);
       })
       .finally(() => this.isLoading.set(false));
+  }
+
+  // Motion Detection Methods (WCAG 2.5.4)
+  async refreshDestinos(): Promise<void> {
+    await this.loadDestinos();
+    this.announceStatus('TRAVELER_EXPLORAR.REFRESH_SUCCESS');
+  }
+
+  initMotionDetection() {
+    if (typeof window === 'undefined') return;
+
+    if (!this.isMotionSupported) {
+      this.motionPermissionStatus.set('not-supported');
+      return;
+    }
+
+    if (this.animationsService.shakeToRefresh()) {
+      if (this.isIOS) {
+        const cached = localStorage.getItem('smarttravel_motion_permission');
+        if (cached === 'granted') {
+          this.motionPermissionStatus.set('granted');
+          this.startListening();
+        } else {
+          this.motionPermissionStatus.set('default');
+        }
+      } else {
+        this.motionPermissionStatus.set('granted');
+        this.startListening();
+      }
+    } else {
+      this.stopListening();
+    }
+  }
+
+  startListening() {
+    if (this.isListening || !this.isMotionSupported) return;
+    window.addEventListener('devicemotion', this.deviceMotionListener);
+    this.isListening = true;
+    this.announceStatus('TRAVELER_EXPLORAR.SHAKE_GESTURE_ACTIVATED');
+  }
+
+  stopListening() {
+    if (!this.isListening) return;
+    window.removeEventListener('devicemotion', this.deviceMotionListener);
+    this.isListening = false;
+  }
+
+  onDeviceMotion(event: DeviceMotionEvent) {
+    const acceleration = event.accelerationIncludingGravity || event.acceleration;
+    if (!acceleration) return;
+
+    const x = acceleration.x;
+    const y = acceleration.y;
+    const z = acceleration.z;
+    if (x === null || y === null || z === null) return;
+
+    const force = Math.sqrt(x * x + y * y + z * z);
+    const threshold = 15; // standard shake threshold in m/s2
+
+    if (force > threshold) {
+      const now = Date.now();
+      if (now - this.lastShakeTime > 3000) { // 3-second cooldown
+        this.lastShakeTime = now;
+        this.refreshDestinos();
+      }
+    }
+  }
+
+  async requestMotionPermission() {
+    if (typeof window === 'undefined') return;
+    
+    const requestPermission = (DeviceMotionEvent as any).requestPermission;
+    if (typeof requestPermission === 'function') {
+      try {
+        const response = await requestPermission();
+        if (response === 'granted') {
+          this.motionPermissionStatus.set('granted');
+          localStorage.setItem('smarttravel_motion_permission', 'granted');
+          this.startListening();
+          this.announceStatus('TRAVELER_EXPLORAR.SENSOR_PERMISSION_GRANTED');
+        } else {
+          this.motionPermissionStatus.set('denied');
+          localStorage.setItem('smarttravel_motion_permission', 'denied');
+          this.announceStatus('TRAVELER_EXPLORAR.SENSOR_PERMISSION_DENIED');
+        }
+      } catch (err) {
+        console.error('Error requesting motion permission:', err);
+        this.motionPermissionStatus.set('denied');
+        this.announceStatus('TRAVELER_EXPLORAR.SENSOR_PERMISSION_DENIED');
+      }
+    }
+  }
+
+  announceStatus(messageKey: string) {
+    this.refreshStatusMessage.set(messageKey);
+    setTimeout(() => {
+      if (this.refreshStatusMessage() === messageKey) {
+        this.refreshStatusMessage.set(null);
+      }
+    }, 5000);
   }
 }

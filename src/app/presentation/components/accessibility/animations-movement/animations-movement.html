@@ -40,6 +40,18 @@
           <span class="toggle-desc">{{ 'ACCESSIBILITY.DISABLE_FLASHING_DESC' | translate }}</span>
         </div>
       </label>
+      <label class="toggle-option">
+        <input 
+          type="checkbox" 
+          class="toggle-input" 
+          [checked]="selectedAnimations.shakeToRefresh"
+          (change)="onToggle('shakeToRefresh', $event)"
+        />
+        <div class="toggle-label-text">
+          <span class="toggle-title">{{ 'ACCESSIBILITY.SHAKE_TO_REFRESH' | translate }}</span>
+          <span class="toggle-desc">{{ 'ACCESSIBILITY.SHAKE_TO_REFRESH_DESC' | translate }}</span>
+        </div>
+      </label>
     </div>
   </fieldset>
 </section>

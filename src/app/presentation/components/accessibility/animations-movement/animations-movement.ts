@@ -13,6 +13,7 @@ export class AnimationsMovement {
     tooltipsMenus: boolean;
     pauseMotion: boolean;
     disableFlashing: boolean;
+    shakeToRefresh: boolean;
   };
   @Output() animationsChanged = new EventEmitter<{key: string, value: boolean}>();
 

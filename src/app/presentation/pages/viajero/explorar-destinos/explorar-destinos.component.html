@@ -9,6 +9,10 @@
         <span class="filter-count-badge">{{ activeFiltersCount() }}</span>
       }
     </button>
+    <button class="mobile-filter-btn mobile-refresh-btn" (click)="refreshDestinos()" [attr.aria-label]="'TRAVELER_EXPLORAR.REFRESH_DESTINATIONS' | translate">
+      <lucide-icon name="RefreshCw" size="18" [class.spinning]="isLoading()"></lucide-icon>
+      {{ 'TRAVELER_EXPLORAR.REFRESH_DESTINATIONS' | translate }}
+    </button>
   </div>
 
   <div class="content-area">
@@ -23,22 +27,44 @@
 
     <!-- Resultados -->
     <section class="results-column">
-      <!-- Contador de resultados -->
-      <p class="results-count">
-        @if (searchService.searchTerm()) {
-          {{ filteredDestinations().length }} resultado(s) para
-          "<strong>{{ searchService.searchTerm() }}</strong>"
-          <button class="btn-clear" (click)="searchService.clearSearch()">✕ Limpiar</button>
-        } @else {
-          {{ filteredDestinations().length }} destinos encontrados
-        }
-      </p>
+      @if (isIOS && motionPermissionStatus() === 'default' && animationsService.shakeToRefresh()) {
+        <div class="motion-activation-bar">
+          <div class="motion-text">
+            <lucide-icon name="Smartphone" size="20" class="motion-icon"></lucide-icon>
+            <span>Para usar la función de agitar para actualizar, debes activar el sensor.</span>
+          </div>
+          <button class="btn-activate-sensor" (click)="requestMotionPermission()">
+            {{ 'TRAVELER_EXPLORAR.SENSOR_PERMISSION_BUTTON' | translate }}
+          </button>
+        </div>
+      }
+
+      <!-- Contador de resultados y refrescar en desktop -->
+      <div class="results-header">
+        <p class="results-count">
+          @if (searchService.searchTerm()) {
+            {{ filteredDestinations().length }} resultado(s) para
+            "<strong>{{ searchService.searchTerm() }}</strong>"
+            <button class="btn-clear" (click)="searchService.clearSearch()">✕ Limpiar</button>
+          } @else {
+            {{ filteredDestinations().length }} destinos encontrados
+          }
+        </p>
+        <button class="desktop-refresh-btn mobile-filter-btn" (click)="refreshDestinos()" [attr.aria-label]="'TRAVELER_EXPLORAR.REFRESH_DESTINATIONS' | translate">
+          <lucide-icon name="RefreshCw" size="18" [class.spinning]="isLoading()"></lucide-icon>
+          {{ 'TRAVELER_EXPLORAR.REFRESH_DESTINATIONS' | translate }}
+        </button>
+      </div>
 
       <div aria-live="polite" aria-atomic="true" class="status-messages">
         @if (isLoading()) {
           <div class="loading">{{ 'COMMON.LOADING' | translate }}</div>
         } @else if (error()) {
           <div class="error">{{ error() }}</div>
+        } @else if (refreshStatusMessage()) {
+          <div class="refresh-status-banner">
+            {{ refreshStatusMessage() | translate }}
+          </div>
         }
       </div>
       @if (!isLoading() && !error()) {

@@ -473,14 +473,23 @@
     "AUDIO_DESCRIPTION": "Audiodescripción",
     "AUDIO_DESCRIPTION_DESC": "Activa la pista de audiodescripción en videos pregrabados.",
     "REALTIME_CAPTIONS": "Subtítulos en tiempo real",
-    "REALTIME_CAPTIONS_DESC": "Activa la función de subtítulos en tiempo real para transmisiones en directo."
+    "REALTIME_CAPTIONS_DESC": "Activa la función de subtítulos en tiempo real para transmisiones en directo.",
+    "SHAKE_TO_REFRESH": "Agitar para actualizar destinos",
+    "SHAKE_TO_REFRESH_DESC": "Permite agitar el dispositivo móvil para recargar la lista de destinos en la página de exploración."
   },
   "TRAVELER_EXPLORAR": {
     "TITLE": "Explorar Destinos",
     "FILTERS": "Filtros",
     "LOAD_MORE": "Cargar más destinos",
     "NO_RESULTS": "No se encontraron destinos",
-    "VIEW_DETAILS": "Ver detalles"
+    "VIEW_DETAILS": "Ver detalles",
+    "REFRESH_DESTINATIONS": "Actualizar destinos",
+    "REFRESH_SUCCESS": "Destinos actualizados exitosamente.",
+    "SHAKE_GESTURE_ACTIVATED": "Control por movimiento activado. Agita el dispositivo para actualizar.",
+    "SENSOR_PERMISSION_BUTTON": "Activar sensor de movimiento",
+    "SENSOR_PERMISSION_GRANTED": "Permiso para sensor de movimiento concedido.",
+    "SENSOR_PERMISSION_DENIED": "Permiso denegado para el sensor de movimiento.",
+    "SENSOR_NOT_SUPPORTED": "Sensor de movimiento no soportado en este dispositivo."
   },
   "DESTINATION_DETAIL": {
     "BACK": "Volver a destinos",

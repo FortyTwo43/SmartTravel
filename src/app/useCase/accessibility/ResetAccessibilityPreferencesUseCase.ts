@@ -20,7 +20,8 @@ export class ResetAccessibilityPreferencesUseCase {
     animations: {
       tooltipsMenus: false,
       pauseMotion: false,
-      disableFlashing: false
+      disableFlashing: false,
+      shakeToRefresh: false
     }
   };
 

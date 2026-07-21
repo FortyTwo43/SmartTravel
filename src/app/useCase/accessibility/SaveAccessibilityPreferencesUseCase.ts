@@ -23,6 +23,8 @@ export interface AccessibilityPreferences {
     tooltipsMenus: boolean;
     pauseMotion: boolean;
     disableFlashing: boolean;
+    /** WCAG 2.5.4 — Permite agitar el dispositivo para actualizar destinos */
+    shakeToRefresh: boolean;
   };
 }
 @Injectable({

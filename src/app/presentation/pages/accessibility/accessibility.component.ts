@@ -90,7 +90,8 @@ export class AccessibilityComponent implements OnInit, OnDestroy {
     selectedAnimations = signal({
         tooltipsMenus: false,
         pauseMotion: false,
-        disableFlashing: false
+        disableFlashing: false,
+        shakeToRefresh: false
     });
 
     // Initial state for change detection
@@ -101,7 +102,7 @@ export class AccessibilityComponent implements OnInit, OnDestroy {
         language: 'es' as LanguageCode,
         multimedia: { pauseAutoAudio: true, textTranscripts: false, syncCaptions: false, audioDescription: false, realtimeCaptions: false },
         screenReader: { readFocusedElement: false, readSelectedText: false },
-        animations: { tooltipsMenus: false, pauseMotion: false, disableFlashing: false }
+        animations: { tooltipsMenus: false, pauseMotion: false, disableFlashing: false, shakeToRefresh: false }
     });
 
     // Computed property to detect changes
